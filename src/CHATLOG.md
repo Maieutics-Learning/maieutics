@@ -653,3 +653,6 @@ never "feels faster" — wall time, accuracy, loss, token counts.
 
 ## 2026-11-11 — gameplan mesh + battery (user: mold, don't force; iterate until good)
 - Meshing block + Phase-4 redirect baked into src/README.md gameplan (pre-snapshot taken). Battery R1 (newcomer/skeptic/architect/realist): FORCED (Phase-3-prototype claim), ERODED (Phase 3 meaning, C bypass), CONFUSING (jargon), GROUNDED. Adjudicated: prototype→"harness Phase 3 will be built from ... scaffolding, not the phase"; "never"→forward-looking "will not scale up"; novelty gate made explicit ("no novelty claim ships until its precursor slice is read"). Verification round 3/3 clean (FIXED x2, PRESERVED/KEPT-FOUNDATIONAL, CLEAR after one seat-phrasing simplification). No further rounds needed.
+
+## 2026-11-11 — push 7541c34 (user-supplied PAT, org repo)
+- Blobs+tree overlay on Maieutics-Learning/maieutics main (parent 2a61655): 288 uploaded / 45 unchanged / 1 deletion (keys-card.html staged fragment). Verified 337 blobs incl. 137 gseries-v2 ledgers. Covers evacuation + repaths + mesh + battery + logs. First attempt PATCHed wrong endpoint (/git/ref → 404); retry with /git/refs succeeded.
