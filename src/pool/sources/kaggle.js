@@ -1,11 +1,13 @@
 // Track B pool — Kaggle source (own code, no steal).
 // Keyed auth/reachability probe for the Kaggle API (future P6 GPU path:
-// kernels push/status runs here). Creds = JSON {u,k} in the P3 vault under
-// "kaggle" (username from kaggle.com/account, key = API token). HTTP Basic.
-// This module proves the key + measures reachability with a tiny
-// AUTH-GATED kernels/list read (datasets/list is PUBLIC and proves nothing —
-// it 200s with no credentials at all, so it must never be the probe).
-// Kernel submit/poll comes with the GPU wiring, not here.
+// kernels push/status runs here). Creds in the P3 vault under "kaggle":
+// NEW system preferred — bare "KGAT_..." access token (or JSON {token}),
+// sent as `Authorization: Bearer`. Legacy {u,k} (username + kaggle.json key)
+// still accepted via HTTP Basic. KGAT_ sent as Basic 401s — that was the
+// 2026-11-11 failure (new token saved as a legacy key).
+// Probe = tiny AUTH-GATED kernels/list read (datasets/list is PUBLIC and
+// proves nothing — it 200s with no credentials at all, so it must never
+// be the probe). Kernel submit/poll comes with the GPU wiring, not here.
 // 401/403 -> vault.markAuthFailure (dead + re-paste prompt).
 (function () {
 "use strict";
@@ -31,9 +33,16 @@ function getCreds() {
   if (!V) return Promise.resolve({ error: "no-vault" });
   return V.getKey("kaggle").then(function (raw) {
     if (!raw) return { error: "no-key" };
+    var t = String(raw).trim();
+    // Bare new-system token pasted directly.
+    if (/^KGAT_/.test(t) && t.charAt(0) !== "{") return { creds: { token: t } };
     try {
       var c = JSON.parse(raw);
-      if (c && c.u && c.k) return { creds: c };
+      if (c && c.token) return { creds: { token: String(c.token).trim() } };
+      if (c && c.t) return { creds: { token: String(c.t).trim() } };
+      // New token nested in the legacy-shaped slot.
+      if (c && c.k && /^KGAT_/.test(String(c.k).trim())) return { creds: { token: String(c.k).trim() } };
+      if (c && c.u && c.k) return { creds: { u: c.u, k: c.k } };
       return { error: "bad-creds" };
     } catch (e) { return { error: "bad-creds" }; }
   });
@@ -48,12 +57,13 @@ function test() {
   return getCreds().then(function (g) {
     if (g.error) {
       var r = { reason: g.error };
-      if (g.error === "no-key") { r.needsKey = true; r.needs = "username+key"; r.providerLink = PROVIDER_LINK; }
+      if (g.error === "no-key") { r.needsKey = true; r.needs = "KGAT_ access token (or legacy username+key)"; r.providerLink = PROVIDER_LINK; }
       return done(r);
     }
     var t = transport();
     if (!t) return done({ ok: false, reason: "no-transport" });
-    var basic = "Basic " + btoa(unescape(encodeURIComponent(g.creds.u + ":" + g.creds.k)));
+    var auth = g.creds.token ? "Bearer " + g.creds.token
+      : "Basic " + btoa(unescape(encodeURIComponent(g.creds.u + ":" + g.creds.k)));
     var finished = false;
     return new Promise(function (resolve) {
       var timer = setTimeout(function () {
@@ -61,7 +71,7 @@ function test() {
       }, CALL_TIMEOUT_MS);
       function finish(x) { if (!finished) { finished = true; clearTimeout(timer); resolve(done(x)); } }
       Promise.resolve(t(ENDPOINT_BASE + "/kernels/list?pageSize=1", {
-        method: "GET", headers: { "Authorization": basic }
+        method: "GET", headers: { "Authorization": auth }
       })).then(function (resp) {
         if (!resp) { finish({ ok: false, reason: "no-response" }); return; }
         if (resp.status === 401 || resp.status === 403) {

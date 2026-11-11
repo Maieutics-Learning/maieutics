@@ -1,0 +1,36 @@
+{
+ "tutor": "g1-s202",
+ "seeds": [
+  301,
+  304
+ ],
+ "totalSecs": 551.1,
+ "results": [
+  {
+   "seed": 301,
+   "secs": 207.3,
+   "lastLoss": 0.0046,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.95,
+    "killDa": 1,
+    "killHu": 0.82,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 304,
+   "secs": 341,
+   "lastLoss": 0.0035,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.115,
+    "killDa": 1,
+    "killHu": 0.045,
+    "indist": 1
+   },
+   "ignites": false
+  }
+ ]
+}

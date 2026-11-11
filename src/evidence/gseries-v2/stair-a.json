@@ -1,0 +1,179 @@
+{
+ "arm": "competence-gated",
+ "results": [
+  {
+   "seed": 7,
+   "steps": 1000,
+   "trace": [
+    {
+     "stage": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "stage": 1,
+     "acc": 0.84,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "stage": 1,
+     "acc": 0.97,
+     "act": "advance",
+     "total": 600
+    },
+    {
+     "stage": 2,
+     "acc": 0.93,
+     "act": "stay",
+     "total": 800
+    },
+    {
+     "stage": 2,
+     "acc": 1,
+     "act": "advance",
+     "total": 1000
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.205,
+    "killDa": 0.98,
+    "killHu": 0.1,
+    "indist": 1
+   },
+   "ignites": false,
+   "secs": 22.2
+  },
+  {
+   "seed": 8,
+   "steps": 800,
+   "trace": [
+    {
+     "stage": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "stage": 1,
+     "acc": 0.8,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "stage": 1,
+     "acc": 0.96,
+     "act": "advance",
+     "total": 600
+    },
+    {
+     "stage": 2,
+     "acc": 0.96,
+     "act": "advance",
+     "total": 800
+    }
+   ],
+   "ev": {
+    "killA": 0.8,
+    "killHd": 0.22,
+    "killDa": 0.695,
+    "killHu": 0.02,
+    "indist": 0.96
+   },
+   "ignites": false,
+   "secs": 15.5
+  },
+  {
+   "seed": 9,
+   "steps": 1000,
+   "trace": [
+    {
+     "stage": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "stage": 1,
+     "acc": 0.74,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "stage": 1,
+     "acc": 0.97,
+     "act": "advance",
+     "total": 600
+    },
+    {
+     "stage": 2,
+     "acc": 0.88,
+     "act": "stay",
+     "total": 800
+    },
+    {
+     "stage": 2,
+     "acc": 1,
+     "act": "advance",
+     "total": 1000
+    }
+   ],
+   "ev": {
+    "killA": 0.99,
+    "killHd": 0.16,
+    "killDa": 0.98,
+    "killHu": 0.005,
+    "indist": 1
+   },
+   "ignites": false,
+   "secs": 23.1
+  },
+  {
+   "seed": 10,
+   "steps": 1000,
+   "trace": [
+    {
+     "stage": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "stage": 1,
+     "acc": 0.8,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "stage": 1,
+     "acc": 0.95,
+     "act": "advance",
+     "total": 600
+    },
+    {
+     "stage": 2,
+     "acc": 0.94,
+     "act": "stay",
+     "total": 800
+    },
+    {
+     "stage": 2,
+     "acc": 1,
+     "act": "advance",
+     "total": 1000
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.25,
+    "killDa": 0.99,
+    "killHu": 0.02,
+    "indist": 1
+   },
+   "ignites": false,
+   "secs": 25
+  }
+ ]
+}

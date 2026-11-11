@@ -1,0 +1,14 @@
+{
+ "tool": "benchmark Mode 4 (before/after)",
+ "before": {
+  "appendixH_li": 15,
+  "source": "registry Wave 14 record (token revoked before re-pull)"
+ },
+ "after": {
+  "appendixH_li": 24,
+  "bytes": 118274,
+  "source": "live DOM count + workspace file"
+ },
+ "delta_blurbs": "+9",
+ "verdict": "PASS (15->24 as specified; byte-delta unmeasured — token revoked)"
+}

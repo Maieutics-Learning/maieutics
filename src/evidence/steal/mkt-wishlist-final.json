@@ -1,0 +1,39 @@
+{
+ "generated": "2026-11-10",
+ "round": "v1 premise + 3x unarmed barrage (src/evidence/reviews/fresh-eyes-marketplace-v1-3x-results.md)",
+ "adjudication": {
+  "A": "ACCEPT cuts (pytorch/SAE/nemo/HF-CLI as ports); PARTIAL on playwright (skills are procedures for page_eval, not in-worker runtime — keep 2, cut 5)",
+  "B": "ACCEPT (same python cut, unanimous 3/3)",
+  "C": "ACCEPT dedupe (paper 7->2, eval 7->2, pdf 4->1); REJECT \"stop building publishing house\" framing (paper TBDs are honest opens, compile path stays)"
+ },
+ "final_wants": [
+  "keyargo/web-search (W1 harvest search, zero-key)",
+  "seb1n/pdf-processing (papers pipeline, single)",
+  "paper-compile + xjtulyc/latex-workflow (compile path only)",
+  "affaan-m/eval-harness (verified pure md+bash) + googlechrome/project-evals (grader files)",
+  "affaan-m/benchmark (single methodology)",
+  "anthropic/webapp-testing (have-pattern) + jeffallan/playwright-expert (procedures for page_eval)",
+  "huggingface/transformers.js (browser ML, W1!) + hugging-face-dataset-viewer (reads)",
+  "mohitagw15856/dataset-datasheet (eval-data discipline)",
+  "muratcankoylan/memory-systems + context-compression (G1-adjacent instructions)",
+  "RoundTable02/tutor-skills + SHADOWPR0/beautiful_prose (teaching/prose)",
+  "trailofbits/static-analysis (code quality)",
+  "athola/research (GH/HN/arXiv multi-source) + fradser/storm-research",
+  "Leonxlnx/taste-skill (G5 polish)",
+  "openai/jupyter-notebook (G4 repro)"
+ ],
+ "cut": [
+  "pytorch/SAE/pyvene/nemo-rl (Framework, unanimous)",
+  "HF-CLI/jobs/trainer (cluster)",
+  "duplicate paper-writers, eval-harnesses, pdf tools",
+  "keyed search (Track B)",
+  "sales/marketing bulk"
+ ],
+ "next": "fetch raw SKILL.md for final 14, A3b fit-check each, then A4 ports by gap",
+ "pushback_ruling": "partial-accept: shipped runtime cut stands; instructions slice re-admitted as B-dependent (pytorch-training checklist verified text-only via skillmd API), GPU runs gated on B4+B5; nemo-rl stays cut",
+ "b_dependent_instructions": [
+  "congmnguyen/pytorch-training (verified pure md)",
+  "orchestra-research/sparse-autoencoder-training notes (text-only)",
+  "orchestra-research/pyvene-interventions notes (text-only)"
+ ]
+}

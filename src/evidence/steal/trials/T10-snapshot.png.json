@@ -1,0 +1,31 @@
+{
+  "exp1_valid": {
+    "task": "applied",
+    "depth": "skip-undef",
+    "steps": "applied",
+    "settle": "skip-undef",
+    "hw": "skip-undef",
+    "pcgrad": "applied"
+  },
+  "exp1_check": "PASS",
+  "exp2_invalid": {
+    "task": "skip-badval",
+    "depth": "skip-undef",
+    "steps": "skip-badval",
+    "settle": "skip-undef",
+    "hw": "skip-undef"
+  },
+  "exp2_check": "PASS",
+  "recon_appendixH": {
+    "ok": true,
+    "ms": 1,
+    "value": 24
+  },
+  "recon_heroBtns": {
+    "download": true
+  },
+  "recon_guards": {
+    "self": true,
+    "attn": true
+  }
+}

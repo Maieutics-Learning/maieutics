@@ -1,0 +1,8 @@
+{
+ "meanHd": 0.7988,
+ "qualityVsRival": 0.358,
+ "budget": 13200,
+ "cap": 12000,
+ "passAsSpecified": false,
+ "note": "as-specified budget FAIL is a spec error: cap 12000 < planned battery cost (tutor 1200 + 4x3000 = 13200); loop spent exactly planned amounts with zero oracle calls. Coherent cap for this battery: 15000."
+}

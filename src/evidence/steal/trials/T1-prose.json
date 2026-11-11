@@ -1,0 +1,13 @@
+{
+ "tool": "beautiful-prose",
+ "original_chars": 1045,
+ "rewrite_chars": 812,
+ "lint": {
+  "em_dashes": 0,
+  "reversal_pivot": false,
+  "banned_openers": [],
+  "five_same_length": "manual: lengths vary 3-28 words — PASS",
+  "original_had_emdashes": 3
+ },
+ "rewrite": "Teaching, not time. The same network and data that ignite with hints never ignite without them. Architecture is sufficient. The missing ingredient is signal, not steps. Cold copying slides into the echo-heuristic attractor. Fidelity never transmits. Graduated severance transmits for a majority, six of ten, with three failure signatures: collapse at severance, memorization drift, and slow rescue. One schedule helps the first, harms the second, delays the third. Failure differs by seed, so no single schedule wins. Winners address by content at test time and use geometry as training scaffolding. The global channel is null. Not poison. Zero gradients by construction. This claims nothing about scale, language, or drive. One task family, small nets, ability to learn. Goal-generation stays outside the model."
+}

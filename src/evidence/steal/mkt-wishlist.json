@@ -1,0 +1,37 @@
+{
+ "generated": "2026-11-10",
+ "sources": {
+  "skillmd.com": "REAL catalog, /api/search?q= works, 15 queries x15 mined",
+  "agent-skill.co (joohw)": "REAL curated list, 247 entries / 40+ cats, best for official skills",
+  "agentskill.sh": "BROKEN search (openclaw monoculture regardless of query), SKIP",
+  "awesomeskills.dev": "JS shell, 10 slugs extracted, no public API",
+  "awesomeskill.ai": "JS shell, 54 slugs extracted, no public API"
+ },
+ "tier1_logic_wants": [
+  "keyargo/web-search (DuckDuckGo, zero-key, W1) - nursery harvest search",
+  "anthropic/pdf + openai/pdf + seb1n/pdf-processing + PSPDFKit nutrient (W2) - papers.md pipeline",
+  "imbad0202/academic-paper + samyakjhaveri/paper-write + paper-compile + willoscar/flonat latex-scaffold + xjtulyc/latex-workflow + cboone/write-pandoc-markdown + scdenney/paper-tex (AI instructions) - G2/G5 paper drafting",
+  "affaan-m/eval-harness + michaelschecht/eval-harness + lucassantana-dev/eval + alirezarezvani/self-eval + googlechrome/project-evals + getsentry/vitest-evals + rooseveltadvisors/evals (AI instructions, one raw-verified pure md+bash) - bench rigor",
+  "affaan-m/benchmark + josephneumann/benchmark - benchmark methodology",
+  "anthropic/webapp-testing + github/playwright-generate-test + alirezarezvani/playwright-pro + affaan-m/e2e-testing + jeffallan/playwright-expert + openai/playwright + openai/develop-web-game (W2 procedures) - lab testing harness",
+  "anthropic/xlsx - bench numbers analysis",
+  "huggingface/hugging-face-datasets + dataset-viewer + hf-cli + transformers.js (browser ML, W1!) + kursku/hugging-face-datasets + bytesagain/datasets - datasets + in-browser inference",
+  "woodfishhhh/dataset (Kaggle/UCI/HF discovery) + phuryn/dummy-dataset + nvidia/data-designer + bhanunamikaze/dataset-generator + mohitagw15856/dataset-datasheet - dataset gen/docs",
+  "k-dense-ai/pytorch-lightning + congmnguyen/pytorch-training checklist + ssrjkk/pytorch + orchestra-research/sparse-autoencoder-training (SAELens) + pyvene-interventions + nvidia/nemo-rl-auto-research - training recipes (W2)",
+  "hanfang/claude-memory-skill + muratcankoylan/memory-systems + context-compression + k-kolomeitsev/data-structure-protocol - memory architectures (G1-adjacent)",
+  "RoundTable02/tutor-skills (docs->StudyVaults) + SHADOWPR0/beautiful_prose + smixs/creative-director-skill (TRIZ/SCAMPER) - teaching/prose methods",
+  "trailofbits/static-analysis + audit-context-building + garrytan/qa + coderabbitai/skills - code quality",
+  "alirezarezvani/research + pulse + patent + grants + mattpocock/research + athola/research (GH/HN/Reddit/arXiv/SemanticScholar) + imbad0202/deep-research + jarbitechure/research + fradser/storm-research - research procedures for papers.md",
+  "anthropic/frontend-design + openai/frontend-skill + Leonxlnx/taste-skill - lab UI polish (G5)",
+  "openai/jupyter-notebook - reproducible notebooks (G4)",
+  "alirezarezvani/tc-tracker (session handoff JSON) - scaffolding-adjacent (Track B note)"
+ ],
+ "tier2_api_framework_trackB": [
+  "exa-search / tavily / serpapi / brave / browserbase / firecrawl (keyed search, B3 gate)",
+  "nvidia/jetson-llm-benchmark (hardware), huggingface/model-trainer + jobs (cluster), replicate, openai/sora+speech+imagegen (paid media)",
+  "anthropics/mcp-builder (servers, Framework)"
+ ],
+ "tier3_skip": [
+  "sales/marketing/productivity bulk (leads, invoices, brand, seo) - no gap"
+ ]
+}

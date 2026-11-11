@@ -1,0 +1,6 @@
+{
+  "name": "Colab Free Tier Model Training Studio",
+  "description": "Comprehensive guide, API key setup, interactive notebook generator, and dataset builder for training and fine-tuning AI models on Google Colab free tier.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,72 @@
+{
+ "log": [
+  {
+   "stage": "tutor",
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 0.99,
+    "indist": 1
+   }
+  }
+ ],
+ "studs": [
+  {
+   "seed": 701,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.81,
+    "killDa": 1,
+    "killHu": 0.745,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 702,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.99,
+    "killDa": 1,
+    "killHu": 0.865,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 703,
+   "ev": {
+    "killA": 0.33,
+    "killHd": 0.395,
+    "killDa": 0.38,
+    "killHu": 0.07,
+    "indist": 0.54
+   },
+   "ignites": false
+  },
+  {
+   "seed": 704,
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 0.93,
+    "indist": 1
+   },
+   "ignites": true
+  }
+ ],
+ "ledger": {
+  "steps": 13200,
+  "coins": 3,
+  "oracleCalls": 0
+ },
+ "verdict": {
+  "qualityVsRival": null,
+  "budget": 13200,
+  "cap": 12000,
+  "pass": false,
+  "coinsLeft": 3
+ }
+}

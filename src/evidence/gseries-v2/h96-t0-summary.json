@@ -1,0 +1,12 @@
+{
+ "scale": "h96/m192/d32",
+ "secs": 130.9,
+ "ev": {
+  "killA": 1,
+  "killHd": 0.575,
+  "killDa": 1,
+  "killHu": 0.07,
+  "indist": 0.995
+ },
+ "ignites": true
+}

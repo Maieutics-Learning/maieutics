@@ -1,0 +1,59 @@
+{
+ "arm": "easy->hard 600+600 steps",
+ "seeds": [
+  11,
+  12,
+  13,
+  14
+ ],
+ "results": [
+  {
+   "seed": 11,
+   "secs": 229.8,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.48,
+    "killDa": 0.98,
+    "killHu": 0.275,
+    "indist": 0.805
+   },
+   "ignites": false
+  },
+  {
+   "seed": 12,
+   "secs": 227.4,
+   "ev": {
+    "killA": 0.995,
+    "killHd": 0.745,
+    "killDa": 0.99,
+    "killHu": 0.375,
+    "indist": 0.775
+   },
+   "ignites": true
+  },
+  {
+   "seed": 13,
+   "secs": 151.4,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.425,
+    "killDa": 0.99,
+    "killHu": 0.235,
+    "indist": 0.92
+   },
+   "ignites": false
+  },
+  {
+   "seed": 14,
+   "secs": 41.1,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.55,
+    "killDa": 1,
+    "killHu": 0.26,
+    "indist": 0.99
+   },
+   "ignites": true
+  }
+ ]
+}

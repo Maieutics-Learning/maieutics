@@ -1,0 +1,13 @@
+{
+ "seed": 508,
+ "secs": 105.6,
+ "lastLoss": 0.0042,
+ "ev": {
+  "killA": 1,
+  "killHd": 0.875,
+  "killDa": 1,
+  "killHu": 0.54,
+  "indist": 1
+ },
+ "ignites": true
+}

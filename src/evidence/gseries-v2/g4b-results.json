@@ -1,0 +1,64 @@
+{
+ "tutor": "g3-s405",
+ "seeds": [
+  505,
+  506,
+  507,
+  508
+ ],
+ "totalSecs": 435.7,
+ "results": [
+  {
+   "seed": 505,
+   "secs": 129.1,
+   "lastLoss": 0.004,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.99,
+    "killDa": 1,
+    "killHu": 0.93,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 506,
+   "secs": 98.1,
+   "lastLoss": 0.0036,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.96,
+    "killDa": 1,
+    "killHu": 0.75,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 507,
+   "secs": 99.9,
+   "lastLoss": 0.0033,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.935,
+    "killDa": 1,
+    "killHu": 0.865,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 508,
+   "secs": 105.6,
+   "lastLoss": 0.0042,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.875,
+    "killDa": 1,
+    "killHu": 0.54,
+    "indist": 1
+   },
+   "ignites": true
+  }
+ ]
+}

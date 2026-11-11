@@ -1,0 +1,63 @@
+{
+ "seeds": [
+  205,
+  206,
+  207,
+  208
+ ],
+ "totalSecs": 2215.5,
+ "results": [
+  {
+   "seed": 205,
+   "secs": 551.3,
+   "lastLoss": 0.0028,
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 1,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 206,
+   "secs": 551.3,
+   "lastLoss": 0.0027,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.985,
+    "killDa": 1,
+    "killHu": 0.85,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 207,
+   "secs": 550.2,
+   "lastLoss": 0.0016,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.955,
+    "killDa": 0.995,
+    "killHu": 0.865,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 208,
+   "secs": 546,
+   "lastLoss": 0.0027,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.79,
+    "killDa": 1,
+    "killHu": 0.79,
+    "indist": 1
+   },
+   "ignites": true
+  }
+ ]
+}

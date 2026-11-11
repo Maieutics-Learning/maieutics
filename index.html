@@ -70,7 +70,7 @@
   <span class="badge">DRAFT v0.13 — incomplete</span>
   <span class="badge">bench science, h48 CPU</span>
   <h1>Teaching Addressable Lookup to Small Recurrent Networks by Staged Hint Fading</h1>
-  <p class="paper-meta">Program: Teaching Small Models to Learn · Authors: TBD · Status: draft v0.13, 2026-11-10 · Code: github.com/2012dzli/Maieutics, src/tinynn · Run records: scratch/h2, scratch/rabbithole, scratch/gseries-v2 · Paper shelf: arXiv:2502.05171, arXiv:2512.19428, arXiv:2312.00752, arXiv:2412.06769, arXiv:2301.13196</p>
+  <p class="paper-meta">Program: Teaching Small Models to Learn · Authors: TBD · Status: draft v0.13, 2026-11-10 · Code: github.com/2012dzli/Maieutics, src/tinynn · Run records: src/evidence/gseries-v2 (bench ledgers) + src/evidence/rabbithole (traces); h2/D-wave originals lost in a scratch wipe, rebuilt as v2 · Paper shelf: arXiv:2502.05171, arXiv:2512.19428, arXiv:2312.00752, arXiv:2412.06769, arXiv:2301.13196</p>
   <p><b>Abstract.</b> In this work we investigate whether a small recurrent network can be taught genuine rule-like lookup — retrieving a bound value from an arbitrary position on demand — or whether it can only memorize and shortcut. We propose <b>staged hint fading</b> as a transmission mechanism: a frozen hint-trained teacher supervises a hint-free student while the supervision is graduated to zero. On a bench associative-recall task with fair-slot training, attention-based small nets look up reliably (0.78–0.84 flat across positions) while geometry-only and notebook variants sit near chance. Answer-only training at h48 never ignites (ignite ⇔ Eq. 3; 0/32 across four architectures, 95% CI 0.00–0.11; more steps memorize or heuristic-lock rather than teach). But a frozen hint-trained teacher can transmit the rule to a hint-free student through staged hint fading: 5/8 students ignite with a fast fade (95% Wilson CI 0.31–0.86), and a slower fade rescues 1 of 3 failures (95% CI 0.06–0.79). Chained tutor-to-student across five generations, 35/40 ignite (G1 8/8, G2 6/8, G3 7/8, G4 8/8, G5 6/8) with best students perfect in every generation — teaching compounds, not rots. Transmission is therefore possible but fragile, and failure modes differ by seed. Our contribution is a teachability result with pre-registered bars, plus a characterization of exactly where transmission breaks (severance-fragile collapse, memorize-lean, slow-rescuable). All effect sizes are regime-bound (h48, one task family, n ≤ 8 per condition); the scaling hypothesis and cross-family transfer are <span class="tbd">TBD</span>. Stated failure boundary: cold copying transmits nothing (0/9, 95% CI 0.00–0.33), no single fade schedule fits all seeds, and nothing is claimed beyond h48, one task family, and the schedules tested. This draft reports the first step (transmission) plus its chaining (G1→G5, §8.1); its declared endpoint is §8 — a nursery that, given a topic, creates from scratch a full model that learns it. Everything past G3 is roadmap with pre-registered bars, not results.</p>
   <p class="draft-banner"><b>How to read this draft:</b> claims tagged <span class="tag m">MEASURED</span> have a run record behind them (quoted exactly); claims tagged <span class="tag t">TBD</span> are unwritten, unrun, or open. Section 6 lists where we misstepped on the way here. Nothing here is submitted anywhere; section numbers will move. <button class="dict-link" data-dict="d-livingdoc"><b>Living document:</b></button> after every experiment wave the draft is updated in a fixed order — §4 numbers first, then §6 missteps, then §7 TBDs, then the clickable dictionary — so it never falls behind the lab again.</p>
   <p><span id="dlCtnEl"></span> <span class="hidden-note">saves this lab as one HTML file, editable offline after download</span></p>
@@ -172,10 +172,10 @@
   <ul>
     <li><b>Scale.</b> Width sweep ran 2026-11-10 (proportional h/m/d scaling, same pool/fade/seeds 201–208): h24 T0 fails the bar (Hd 0.205) yet its students ignite <b>8/8</b> (Hd 0.565–1.00) — transmission works where hinted training fails. h96: T0 0.575, students <b>5/8</b> (95% CI 0.31–0.86) with two killA-collapses, a failure shape unseen at h48-G1. Rates overlap (h24/h48 8/8, h96 5/8): no scale collapse at 4× width, wider failure repertoire at the top. New hinge: other architectures. <span class="measured">MEASURED (width sweep)</span>.</li>
     <li><b>Seeds.</b> 8 seeds per claim throughout the v2 chain and sweeps (<button class="dict-link" data-dict="d-bimodal">ignition is bimodal</button>; seed 7 the maximum in all four hinted arches); proportions carry 95% Wilson CIs. <span class="measured">MEASURED (n=8 bars)</span>.</li>
-    <li><b>Transfer.</b> Cross-domain battery ran 2026-11-10 (eval-only on saved v2 blobs, scratch/gseries-v2/xfer-results.json): mid-slot layout shift, gap-12 distance extrapolation, and symbol-permutation relabeling, each in A/Hd variants. Every ignited student (s202, s308, s405, s502, s606) scores 0.97–1.00 on all six — transfer holds, and students exceed T0 (0.675/0.455/0.49 on the three Hd analogues). Memorize-lean seeds fail transfer exactly (s304: 0.08–0.14 Hd analogues; s603: 0.425–0.52); the collapse (s608) is chance everywhere. Transfer tracks ignition. New hinge: cross-family transfer (new task family). <span class="measured">MEASURED (transfer battery)</span>.</li>
+    <li><b>Transfer.</b> Cross-domain battery ran 2026-11-10 (eval-only on saved v2 blobs, src/evidence/gseries-v2/xfer-results.json): mid-slot layout shift, gap-12 distance extrapolation, and symbol-permutation relabeling, each in A/Hd variants. Every ignited student (s202, s308, s405, s502, s606) scores 0.97–1.00 on all six — transfer holds, and students exceed T0 (0.675/0.455/0.49 on the three Hd analogues). Memorize-lean seeds fail transfer exactly (s304: 0.08–0.14 Hd analogues; s603: 0.425–0.52); the collapse (s608) is chance everywhere. Transfer tracks ignition. New hinge: cross-family transfer (new task family). <span class="measured">MEASURED (transfer battery)</span>.</li>
     <li><b>Generations.</b> <button class="dict-link" data-dict="d-g1g2">G1→…→G5 ran 2026-11-10 (8/8, 6/8, 7/8, 8/8, 6/8; 35/40 overall, 95% CI 0.74–0.95)</button>: teaching compounds through five handoffs — the loop is self-sustaining and best students are perfect every generation. Width sweep (h24 8/8, h96 5/8) shows no scale collapse. New hinge: other architectures. <span class="measured">MEASURED (§8.1)</span>.</li>
-    <li><b>Mechanism.</b> Endpoint gradient audit ran 2026-11-10 (same tutor/pool; s302-ignite vs s304-memorize-lean vs s306-near-miss; fixed-probe soft-vs-attn cosine + norms, 30-point timecourse, scratch/gseries-v2/snr-results.json): the igniter settles both channels (|S|~0.003, |A|~0.0004); memorize-lean leaves the attention channel hot (|A| 9× the igniter's, |S|/|A|≈1.5 — the teachers never reconciled); the near-miss settles both at a sub-bar solution. Transient: both failures blip to +0.37 alignment mid-stage-1 then flip at the fade step; the igniter stays near zero throughout. Hypothesis: memorize-lean is unreconciled teachers at severance, ignition is joint settling. n=1 per shape — multi-seed confirmation is the follow-up. <span class="measured">MEASURED (gradient audit)</span>.</li>
-    <li><b>Related work.</b> Pass ran 2026-11-10 (primaries: arXiv:2312.00752, 2412.06769, 2301.13196; bench baseline scratch/gseries-v2/ssm-baseline.json): Mamba's selectivity (input-dependent Δ/B/C) solves its copying/induction-head synthetics, but the Mamba-like bench config (selective write-gate + query-conditioned read, fair slots h48/1200) scores killA 0.465, Hd 0.00, transfer 0.00 — where attention transmits at 0.97–1.00. Input-dependent gating is not sufficient for arbitrary-slot novel-target lookup here; addressing (S-pathway) is. Coconut's continuous-thought feedback maps to our depth loop + settle-training (grade every round); no contradiction (single trajectory vs BFS noted). Looped transformers share §2.4's path-independence lineage (loop as computer vs our loop as thinker); attention's versatility matches our S-lesion result. <span class="measured">MEASURED (related-work pass)</span>.</li>
+    <li><b>Mechanism.</b> Endpoint gradient audit ran 2026-11-10 (same tutor/pool; s302-ignite vs s304-memorize-lean vs s306-near-miss; fixed-probe soft-vs-attn cosine + norms, 30-point timecourse, src/evidence/gseries-v2/snr-results.json): the igniter settles both channels (|S|~0.003, |A|~0.0004); memorize-lean leaves the attention channel hot (|A| 9× the igniter's, |S|/|A|≈1.5 — the teachers never reconciled); the near-miss settles both at a sub-bar solution. Transient: both failures blip to +0.37 alignment mid-stage-1 then flip at the fade step; the igniter stays near zero throughout. Hypothesis: memorize-lean is unreconciled teachers at severance, ignition is joint settling. n=1 per shape — multi-seed confirmation is the follow-up. <span class="measured">MEASURED (gradient audit)</span>.</li>
+    <li><b>Related work.</b> Pass ran 2026-11-10 (primaries: arXiv:2312.00752, 2412.06769, 2301.13196; bench baseline src/evidence/gseries-v2/ssm-baseline.json): Mamba's selectivity (input-dependent Δ/B/C) solves its copying/induction-head synthetics, but the Mamba-like bench config (selective write-gate + query-conditioned read, fair slots h48/1200) scores killA 0.465, Hd 0.00, transfer 0.00 — where attention transmits at 0.97–1.00. Input-dependent gating is not sufficient for arbitrary-slot novel-target lookup here; addressing (S-pathway) is. Coconut's continuous-thought feedback maps to our depth loop + settle-training (grade every round); no contradiction (single trajectory vs BFS noted). Looped transformers share §2.4's path-independence lineage (loop as computer vs our loop as thinker); attention's versatility matches our S-lesion result. <span class="measured">MEASURED (related-work pass)</span>.</li>
     <li><b>Reproducibility.</b> Code + run records ship in-repo (src/tinynn, Appendices); zero dependencies, browser-native. Timing probe: geo h48, batch 16 → 10.8 ms/step on a 10-core laptop CPU, 3k-step seed ≈ 35 s, whole program ≈ 1–3 CPU-hours. Pinned-cluster spec: n/a.</li>
     <li><b>Ethics / broader impacts.</b> Small-scale synthetic tasks; no human subjects, no personal data, no deployed system; methods are standard supervised training with no dual-use beyond ordinary ML practice. No concerns identified.</li>
     <li><b>Authorship, venue, ablations.</b> All <span class="tbd">TBD</span>. Nothing submitted anywhere.</li>
@@ -185,11 +185,11 @@
 <section class="card">
   <h2>8 · What next: the road to a nursery that builds models</h2>
   <p><b>This section reports no results; it maps the road.</b> Transmission (§4.3) is one motion: a teacher installing one skill in one student. The paper's declared endpoint is the whole job — <b>a nursery that, given an assigned topic plus the open world, <button class="dict-link" data-dict="d-nursery">creates from scratch a full model that learns it</button></b> (architecture, weights, curriculum, exams; learners are disposable proof, the nursery is the product). Each stage below inherits this paper's bars and adds its own; §8.1–§8.4 have run (compounds, cut, fails, dies), §8.5 first loop ran partial — full diploma probes stay <span class="tag t">TBD</span>. Full specs live in src/README.md; this is the map.</p>
-  <p><b>8.1 G1→…→G5 (ran 2026-11-10 — teaching compounds, harness limit).</b> Fast fade, attn-h48 throughout, deterministic seeds, tutor-pick rule (highest Hd, then killA, then lowest seed), exact-save harness in src/tinynn/gseries.js (run blobs: scratch/gseries-v2/; v1 chain 21/24 superseded, record in CHATLOG 2026-11-09). T0: retrained hinted tutor (attn + bind labels + attention supervision, allowed-12 fair pool, train seed 8), load-verified at killA 1.00, Hd 0.60, Da 1.00, Hu 0.03 — ignites but weaker than the v1 T0 (1.00/0.675/1.00/0.62; Hu collapsed), a documented limitation. G1 (T0 tutors 8 fresh students, seeds 201–208): severance Hd 0.815, 1.00, 0.62, 0.645, 1.00, 0.985, 0.955, 0.79 — <b>8/8 ignite</b> (95% Wilson CI 0.68–1.00), no failures. G2 (tutor = s202, perfect lowest-seed; students 301–308): 0.95, 0.70, 0.595, 0.115✗, 0.655, 0.48✗, 0.795, 1.00 — <b>6/8</b> (95% CI 0.41–0.93); s304 memorize-lean, s306 near-miss. G3 (tutor = s308, sole perfect; students 401–408): 0.995, 0.965, 0.675, 0.995, 1.00, 1.00, 0.435✗, 0.995 — <b>7/8</b> (95% CI 0.53–0.98). G4 (tutor = s405; students 501–508): 0.915, 1.00, 0.76, 0.995, 0.99, 0.96, 0.935, 0.875 — <b>8/8</b> (95% CI 0.68–1.00), best generation, no failures. G5 (tutor = s502, sole perfect; students 601–608): 0.99, 0.99, 0.365✗, 0.87, 0.735, 1.00, 0.785, 0.33/0.285✗ — <b>6/8</b> (95% CI 0.41–0.93); s603 memorize-lean, s608 full severance collapse (killA 0.33, loss 1.42 unconverged — first collapse in 40 students). Overall 35/40 (95% CI 0.74–0.95); best students perfect in every generation and students routinely match their tutors. Verdict: the winner-promotion loop is self-sustaining through five handoffs — teaching compounds, not rots (a random student would not necessarily tutor; that stronger claim is TBD). Stopped at G5 (harness limit); rates 8/8→6/8→7/8→8/8→6/8 show no monotonic downward trend (CIs overlap throughout), question answered. Width sweep (h24 8/8, h96 5/8) shows no scale collapse. New hinge: other architectures. <span class="tag m">MEASURED</span></p>
-  <p><b>8.2 Harvest.</b> <button class="dict-link" data-dict="d-harvest">First port ran 2026-11-10: curriculum-extraction ordering</button> (easy→hard 600+600 vs fair-mixed 1200, same example multiset, seeds 7–14, scratch/gseries-v2/harvest-mixed.json + harvest-curric-a/b.json) — <b>4/8 vs 3/8</b> (CIs overlap), mean Hd 0.52 vs 0.44: no significant move, port <b>CUT</b> per its own bar. Ordering reshuffles which seeds ignite (gains 7/8/14, loses 9/10 to memorize-lean) rather than raising the rate — late hard-only exposure may lock memorization where interleaving does not. Next ports queued (self-distillation traces, skill/mistake banks). Bar stands: each port must move a bench number or be cut. <span class="tag m">MEASURED (first port)</span></p>
-  <p><b>8.3 Staircase.</b> <button class="dict-link" data-dict="d-staircase">First proposer ran 2026-11-10: competence-gated rung order</button> (advance ≥0.95, bridge below 0.60) vs fixed fair-mixed, same seeds 7–14, same hinted recipe (scratch/gseries-v2/stair-a/b.json) — gated <b>1/8 vs fixed 3/8</b>, mean Hd 0.37 vs 0.44 at ~975 vs 1200 steps: fails the bar. Diagnosis: in-distribution probes saturate in 200 steps (mastery-gaming — the gate advances on memorization), bridges never fire, and short-first staging induces memorize-lean (s12: 0.99/0.005) up to readout inversion (s13: killA 0.00, Hd 1.00). Queued fix: transfer-predictive probes (held-out-combo variants) that cannot be gamed without the rule. Bar stands. <span class="tag m">MEASURED (first proposer)</span></p>
-  <p><b>8.4 Breeding.</b> <button class="dict-link" data-dict="d-breeding">Honest re-entry ran 2026-11-10</button> (src/tinynn/evo.js fixed: makeSets seed honored, attn-gene subsets added; guard green): ES from hinted T0 on attn/gate genes, pop 16, 6 gens, fair resampled fitness + shuffle controls, held-out verdict battery (scratch/gseries-v2/breed-results.json) — fitness flat within SE on all four arms; best champ Hd 0.515 vs base 0.455 (+0.06, below the +2SE bar) and shuffle 0.455. <b>Breeding dies</b> at this budget: bred lineages do not ignite better than hand-designed, and ES barely beats random shuffling. (Prior readout-gene failure stands; the pattern now holds across gene sets.) Bar stands for other genes/budgets. <span class="tag m">MEASURED (breeding dies)</span></p>
-  <p><b>8.5 The nursery finale (first loop ran 2026-11-10 — partial).</b> Bench nursery loop v0 executed twice with no human decisions (tutor from raw pile → verify → rescue-if-fail → fade students → verify → ledger; scratch/gseries-v2/nursery-A/B.json): Topic A (messy pile incl. diag lines) tutor 1.00/1.00/0.99Hu with zero oracle calls, students 3/4 (mean Hd 0.80, +0.36 over the frozen rival) — Quality PASS; spend exactly as planned (13200 steps; the published 12000 cap sat below the battery cost — spec error, coherent cap 15000). Topic B (re-encoded symbols, same code, zero consults): tutor 1.00/1.00, students 1/2 (s802 0.905, s801 collapse) — the strategy executes cross-encoding but 1/2 is not portable skill yet. Remaining for a diploma: synthesis and format-symmetry probes, full ZK (≥3 cross-family topics), field pilots. Graduation stays as specified (nursery-taught vs baseline-taught on novel variants, plus time-and-cost; bar: <button class="dict-link" data-dict="d-nursery">match-or-close to a skilled-human curriculum, then exceed it</button>). <span class="tag m">MEASURED (first loop)</span> <span class="tag t">TBD (full diploma)</span></p>
+  <p><b>8.1 G1→…→G5 (ran 2026-11-10 — teaching compounds, harness limit).</b> Fast fade, attn-h48 throughout, deterministic seeds, tutor-pick rule (highest Hd, then killA, then lowest seed), exact-save harness in src/tinynn/gseries.js (run blobs: src/evidence/gseries-v2/; v1 chain 21/24 superseded, record in CHATLOG 2026-11-09). T0: retrained hinted tutor (attn + bind labels + attention supervision, allowed-12 fair pool, train seed 8), load-verified at killA 1.00, Hd 0.60, Da 1.00, Hu 0.03 — ignites but weaker than the v1 T0 (1.00/0.675/1.00/0.62; Hu collapsed), a documented limitation. G1 (T0 tutors 8 fresh students, seeds 201–208): severance Hd 0.815, 1.00, 0.62, 0.645, 1.00, 0.985, 0.955, 0.79 — <b>8/8 ignite</b> (95% Wilson CI 0.68–1.00), no failures. G2 (tutor = s202, perfect lowest-seed; students 301–308): 0.95, 0.70, 0.595, 0.115✗, 0.655, 0.48✗, 0.795, 1.00 — <b>6/8</b> (95% CI 0.41–0.93); s304 memorize-lean, s306 near-miss. G3 (tutor = s308, sole perfect; students 401–408): 0.995, 0.965, 0.675, 0.995, 1.00, 1.00, 0.435✗, 0.995 — <b>7/8</b> (95% CI 0.53–0.98). G4 (tutor = s405; students 501–508): 0.915, 1.00, 0.76, 0.995, 0.99, 0.96, 0.935, 0.875 — <b>8/8</b> (95% CI 0.68–1.00), best generation, no failures. G5 (tutor = s502, sole perfect; students 601–608): 0.99, 0.99, 0.365✗, 0.87, 0.735, 1.00, 0.785, 0.33/0.285✗ — <b>6/8</b> (95% CI 0.41–0.93); s603 memorize-lean, s608 full severance collapse (killA 0.33, loss 1.42 unconverged — first collapse in 40 students). Overall 35/40 (95% CI 0.74–0.95); best students perfect in every generation and students routinely match their tutors. Verdict: the winner-promotion loop is self-sustaining through five handoffs — teaching compounds, not rots (a random student would not necessarily tutor; that stronger claim is TBD). Stopped at G5 (harness limit); rates 8/8→6/8→7/8→8/8→6/8 show no monotonic downward trend (CIs overlap throughout), question answered. Width sweep (h24 8/8, h96 5/8) shows no scale collapse. New hinge: other architectures. <span class="tag m">MEASURED</span></p>
+  <p><b>8.2 Harvest.</b> <button class="dict-link" data-dict="d-harvest">First port ran 2026-11-10: curriculum-extraction ordering</button> (easy→hard 600+600 vs fair-mixed 1200, same example multiset, seeds 7–14, src/evidence/gseries-v2/harvest-mixed.json + harvest-curric-a/b.json) — <b>4/8 vs 3/8</b> (CIs overlap), mean Hd 0.52 vs 0.44: no significant move, port <b>CUT</b> per its own bar. Ordering reshuffles which seeds ignite (gains 7/8/14, loses 9/10 to memorize-lean) rather than raising the rate — late hard-only exposure may lock memorization where interleaving does not. Next ports queued (self-distillation traces, skill/mistake banks). Bar stands: each port must move a bench number or be cut. <span class="tag m">MEASURED (first port)</span></p>
+  <p><b>8.3 Staircase.</b> <button class="dict-link" data-dict="d-staircase">First proposer ran 2026-11-10: competence-gated rung order</button> (advance ≥0.95, bridge below 0.60) vs fixed fair-mixed, same seeds 7–14, same hinted recipe (src/evidence/gseries-v2/stair-a/b.json) — gated <b>1/8 vs fixed 3/8</b>, mean Hd 0.37 vs 0.44 at ~975 vs 1200 steps: fails the bar. Diagnosis: in-distribution probes saturate in 200 steps (mastery-gaming — the gate advances on memorization), bridges never fire, and short-first staging induces memorize-lean (s12: 0.99/0.005) up to readout inversion (s13: killA 0.00, Hd 1.00). Queued fix: transfer-predictive probes (held-out-combo variants) that cannot be gamed without the rule. Bar stands. <span class="tag m">MEASURED (first proposer)</span></p>
+  <p><b>8.4 Breeding.</b> <button class="dict-link" data-dict="d-breeding">Honest re-entry ran 2026-11-10</button> (src/tinynn/evo.js fixed: makeSets seed honored, attn-gene subsets added; guard green): ES from hinted T0 on attn/gate genes, pop 16, 6 gens, fair resampled fitness + shuffle controls, held-out verdict battery (src/evidence/gseries-v2/breed-results.json) — fitness flat within SE on all four arms; best champ Hd 0.515 vs base 0.455 (+0.06, below the +2SE bar) and shuffle 0.455. <b>Breeding dies</b> at this budget: bred lineages do not ignite better than hand-designed, and ES barely beats random shuffling. (Prior readout-gene failure stands; the pattern now holds across gene sets.) Bar stands for other genes/budgets. <span class="tag m">MEASURED (breeding dies)</span></p>
+  <p><b>8.5 The nursery finale (first loop ran 2026-11-10 — partial).</b> Bench nursery loop v0 executed twice with no human decisions (tutor from raw pile → verify → rescue-if-fail → fade students → verify → ledger; src/evidence/gseries-v2/nursery-A/B.json): Topic A (messy pile incl. diag lines) tutor 1.00/1.00/0.99Hu with zero oracle calls, students 3/4 (mean Hd 0.80, +0.36 over the frozen rival) — Quality PASS; spend exactly as planned (13200 steps; the published 12000 cap sat below the battery cost — spec error, coherent cap 15000). Topic B (re-encoded symbols, same code, zero consults): tutor 1.00/1.00, students 1/2 (s802 0.905, s801 collapse) — the strategy executes cross-encoding but 1/2 is not portable skill yet. Remaining for a diploma: synthesis and format-symmetry probes, full ZK (≥3 cross-family topics), field pilots. Graduation stays as specified (nursery-taught vs baseline-taught on novel variants, plus time-and-cost; bar: <button class="dict-link" data-dict="d-nursery">match-or-close to a skilled-human curriculum, then exceed it</button>). <span class="tag m">MEASURED (first loop)</span> <span class="tag t">TBD (full diploma)</span></p>
 </section>
 
 <section class="card">
@@ -741,10 +741,15 @@ window.TeachingLab.dict = {
 <script src="src/pool/sources/petals.js"></script>
 <script src="src/pool/sources/groq.js"></script>
 <script src="src/pool/decider.js"></script>
+<script src="src/pool/guard.js"></script>
 <script src="src/pool/router.js"></script>
 <script src="src/pool/sources/openrouter.js"></script>
 <script src="src/pool/sources/huggingface.js"></script>
 <script src="src/pool/sources/kaggle.js"></script>
+<script src="src/pool/sources/kaggle-jobs.js"></script>
+<script src="src/pool/sources/kaggle-datasets.js"></script>
+<script src="src/pool/sources/gemini.js"></script>
+<script src="src/pool/nursery-data.js"></script>
 <script>
 // ---------- section 1: depth slider ----------
 (function(){
@@ -1185,116 +1190,3 @@ window.TeachingLab.dict = {
 })();
 </script>
 
-<section class="card" id="poolKeysCardEl">
-  <h2>Pool keys (Track B scaffolding)</h2>
-  <p class="hidden-note">Borrowed-capability pool: paste one key per source and the router dials out itself. Keys live ONLY in this browser (local kv) — never in the repo, never uploaded. Bench-synthetic data only to third-party tiers.</p>
-  <div class="grid2" id="poolKeysGridCtn">
-    <div class="stat" id="poolGroqBoxEl">
-      <b>Groq</b> <a href="https://console.groq.com/keys" target="_blank" rel="noopener">get key</a>
-      <div class="controls"><input type="password" id="poolGroqKeyInput" placeholder="gsk_..." autocomplete="off" spellcheck="false"></div>
-      <div class="controls"><button id="poolGroqSaveBtn">Save</button><button id="poolGroqTestBtn">Test</button></div>
-      <div class="hidden-note" id="poolGroqMsgEl">no key saved</div>
-    </div>
-    <div class="stat" id="poolOrBoxEl">
-      <b>OpenRouter</b> <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">get key</a>
-      <div class="controls"><input type="password" id="poolOrKeyInput" placeholder="sk-or-..." autocomplete="off" spellcheck="false"></div>
-      <div class="controls"><button id="poolOrSaveBtn">Save</button><button id="poolOrTestBtn">Test</button></div>
-      <div class="hidden-note" id="poolOrMsgEl">no key saved</div>
-    </div>
-    <div class="stat" id="poolHfBoxEl">
-      <b>Hugging Face</b> <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener">get key</a>
-      <div class="controls"><input type="password" id="poolHfKeyInput" placeholder="hf_..." autocomplete="off" spellcheck="false"></div>
-      <div class="controls"><button id="poolHfSaveBtn">Save</button><button id="poolHfTestBtn">Test</button></div>
-      <div class="hidden-note" id="poolHfMsgEl">no key saved</div>
-    </div>
-    <div class="stat" id="poolKaggleBoxEl">
-      <b>Kaggle</b> <a href="https://www.kaggle.com/account" target="_blank" rel="noopener">get key</a>
-      <div class="controls"><input type="text" id="poolKaggleUserInput" placeholder="username" autocomplete="off" spellcheck="false"></div>
-      <div class="controls"><input type="password" id="poolKaggleKeyInput" placeholder="api key" autocomplete="off" spellcheck="false"></div>
-      <div class="controls"><button id="poolKaggleSaveBtn">Save</button><button id="poolKaggleTestBtn">Test</button></div>
-      <div class="hidden-note" id="poolKaggleMsgEl">no key saved</div>
-    </div>
-  </div>
-</section>
-<script>
-(function(){
-  function say(id, t){ const el = document.getElementById(id); if (el) el.textContent = t; }
-  async function statusLine(source){
-    try {
-      const has = await window.__pool.vault.hasKey(source);
-      const st = await window.__pool.vault.getStatus(source);
-      return (has ? "key saved" : "no key saved") + (st && st.status ? " · " + st.status + (st.reason ? " (" + st.reason + ")" : "") : "");
-    } catch (e) { return "vault unavailable"; }
-  }
-  function wireSingle(prefix, source, testFn){
-    const input = document.getElementById("pool" + prefix + "KeyInput");
-    const saveBtn = document.getElementById("pool" + prefix + "SaveBtn");
-    const testBtn = document.getElementById("pool" + prefix + "TestBtn");
-    const msgId = "pool" + prefix + "MsgEl";
-    if (!input || !saveBtn || !testBtn) return;
-    saveBtn.onclick = async () => {
-      saveBtn.disabled = true;
-      try {
-        await window.__pool.vault.saveKey(source, input.value);
-        input.value = "";
-        await window.__pool.vault.setStatus(source, "untested", "saved-by-user");
-        say(msgId, await statusLine(source));
-      } catch (e) { say(msgId, "save failed: " + String((e && e.message) || e).slice(0, 100)); }
-      saveBtn.disabled = false;
-    };
-    testBtn.onclick = async () => {
-      testBtn.disabled = true; say(msgId, "testing…");
-      try { say(msgId, await runTest(source, testFn)); }
-      catch (e) { say(msgId, "test error: " + String((e && e.message) || e).slice(0, 100)); }
-      testBtn.disabled = false;
-    };
-    statusLine(source).then(t => say(msgId, t));
-  }
-  async function runTest(source, testFn){
-    const r = await testFn();
-    if (r && r.ok) {
-      await window.__pool.vault.setStatus(source, "live", Math.round(r.wallMs) + "ms");
-      return "live · " + Math.round(r.wallMs) + "ms · " + String(r.outputs || r.detail || "").slice(0, 60);
-    }
-    const reason = ((r && r.reason) || "") + "";
-    if (r && r.authOk) {
-      await window.__pool.vault.setStatus(source, "auth-ok", reason.slice(0, 80));
-      return "key valid · " + reason.slice(0, 120);
-    }
-    await window.__pool.vault.setStatus(source, "dead", reason.slice(0, 80));
-    return "failed: " + reason.slice(0, 120) + ((r && (r.needsRePaste || r.needsKey)) ? " — check key, save again" : "");
-  }
-  function boot(){
-    if (!window.__pool || !window.__pool.vault || !window.__pool.sources) { setTimeout(boot, 500); return; }
-    const S = window.__pool.sources;
-    if (S.groq) wireSingle("Groq", "groq", () => S.groq.generate({ prompt: "Reply with exactly: POOL-OK", maxTokens: 8 }));
-    if (S.openrouter) wireSingle("Or", "openrouter", () => S.openrouter.generate({ prompt: "Reply with exactly: POOL-OK", maxTokens: 128 }));
-    if (S.huggingface && S.huggingface.test) wireSingle("Hf", "huggingface", () => S.huggingface.test());
-    else if (S.huggingface) wireSingle("Hf", "huggingface", () => S.huggingface.generate({ prompt: "The capital of France is", maxTokens: 16 }));
-    const ku = document.getElementById("poolKaggleUserInput");
-    const kk = document.getElementById("poolKaggleKeyInput");
-    const ks = document.getElementById("poolKaggleSaveBtn");
-    const kt = document.getElementById("poolKaggleTestBtn");
-    if (S.kaggle && ku && kk && ks && kt) {
-      ks.onclick = async () => {
-        ks.disabled = true;
-        try {
-          await window.__pool.vault.saveKey("kaggle", JSON.stringify({ u: ku.value.trim(), k: kk.value }));
-          kk.value = "";
-          await window.__pool.vault.setStatus("kaggle", "untested", "saved-by-user");
-          say("poolKaggleMsgEl", await statusLine("kaggle"));
-        } catch (e) { say("poolKaggleMsgEl", "save failed: " + String((e && e.message) || e).slice(0, 100)); }
-        ks.disabled = false;
-      };
-      kt.onclick = async () => {
-        kt.disabled = true; say("poolKaggleMsgEl", "testing…");
-        try { say("poolKaggleMsgEl", await runTest("kaggle", () => S.kaggle.test())); }
-        catch (e) { say("poolKaggleMsgEl", "test error: " + String((e && e.message) || e).slice(0, 100)); }
-        kt.disabled = false;
-      };
-      statusLine("kaggle").then(t => say("poolKaggleMsgEl", t));
-    }
-  }
-  boot();
-})();
-</script>

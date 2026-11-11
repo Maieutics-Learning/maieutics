@@ -1,0 +1,30 @@
+{
+ "branches": {
+  "backlog": [],
+  "dead": [
+   "w2-petals-priority-fairness",
+   "w2-boinc-credit-mechanics"
+  ],
+  "open": []
+ },
+ "capWavesOrNull": 50,
+ "findings": [
+  "W1: Petals onboarding = pip + one run_server command, DHT discovery, monitor thanks (10+ blocks), NO payment/points; real incentive = run 405B models you can't host + democratize-AI ideology + Discord. BOINC = SETI virality + manager project list + credit/leaderboards/teams; 25k users/131k hosts/~15 PFLOPS-d (Aug 2026); credit gated on validation (cheating forced the design).",
+  "W2: Petals FAQ = centralized 'bloom points' PLANNED (AI-Horde-kudos-style game points, spendable on priority/security, explicitly NOT crypto/money; centralized to keep focus on ML). Corrects scoutA (said no points ever). Also: hivemind named as Petals' under-the-hood lib for from-scratch decentralized training.",
+  "W2: BOINC credit mechanics = credit ONLY after project-specific validation; Cobblestone unit; RAC (recent average credit) measures daily rate; projects export XML stats -> third-party boards (BOINCstats); teams incl. institutional; late/invalid = no credit."
+ ],
+ "pace": "light: 2 scouts + up to 2 fetches per wave, stop early if dry",
+ "root": "How did Petals and BOINC get their volunteer peers (acquisition, onboarding, incentives, retention)?",
+ "scopeNotes": [
+  "Light run per user; soft cap 50 waves, stop early when answered.",
+  "Steal-permitted: harvest reusable mechanisms with credit, if open-source-compatible."
+ ],
+ "slug": "volunteer-peers",
+ "status": "done-answered-early",
+ "toBringUp": [],
+ "verdicts": [
+  "W1: scouts on-brief, both confirmed by primaries (README lines 42/82; wiki credit section + scale numbers).",
+  "W2: scoutA PARTIAL (right that no priority exists today, wrong that none planned — FAQ proves bloom-points plan); scoutB USED (confirmed). STOP after W2: acquisition question answered from primaries on all four sub-questions; further waves diminishing."
+ ],
+ "wavesUsed": 2
+}

@@ -54,6 +54,25 @@ one tangential). Status per paper: FOUND → READ (notes below) → USED
   note in the paper (why the common road was not taken). Surprising BENCH
   results from tracks A/B also file here as C3-style entries (R5: observations
   get theorized, not shrugged at). No unread pile.
+- [ ] C6. Token/data-efficiency: doing more with less (added 2026-11-11 — our
+  binding constraint is 50 free OR calls/day + 30 T4h/week, so conservation
+  is a first-class topic, not an optimization). Two halves. (a) Literature
+  to fetch: LIMA (1k curated examples rival scale — less-is-more for
+  alignment); dataset distillation (compress 10k rows into ~100 synthetic
+  ones — gradient/trajectory matching); data pruning/coresets (train the
+  hardest/most-informative subset — EL2N, forgetting scores); small-model
+  recipes that win on little (TinyStories scale-quality tradeoff; LoRA/PEFT
+  — freeze the brain, train the adapter). Each filed USED/SKIPPED with the
+  C5 novelty-delta form. (b) Our own conservation ledger (measured — files
+  as C3-style entries per R5): shape-check before spend (validation costs 0
+  tokens, rejects malformed drafts locally); task-aware routing (long-form
+  never touches the capped resource — measured OR finish=length at 900 AND
+  4000 caps); thinking off by default (thinking shares maxOutputTokens —
+  measured 78-answer truncation at 2000 cap); guard reserve (never spend the
+  last 5/day, 60s cache); agreement-gating only where it pays (a 2nd call
+  per row is spent on rows that will train, not on drafts). House policy
+  for every data-job: spend tokens only where the row's future training
+  value exceeds the price.
 
 ## Shelf (FOUND, in priority order)
 1. Looped-LM survey (preprints 202610.1404)
@@ -61,5 +80,10 @@ one tangential). Status per paper: FOUND → READ (notes below) → USED
 3. Loop, Think, & Generalize (2604.07822)
 4. Model Collapse as Cultural Evolution (2605.23054) + iterated-collapse repo + Ren et al. 2024
 5. Old-2.5 list (C4)
+6. LIMA less-is-more (C6a)
+7. Dataset distillation (C6a)
+8. Data pruning / coresets (C6a)
+9. LoRA / PEFT (C6a)
 
 ## Round 1 (2026-11-10): 2 searches, 16 results. Next: C1+C3 (fetch survey + collapse paper).
+Queued: C6 (conservation — spec'd 2026-11-11 with our measured ledger; literature fetch rides the next wave).

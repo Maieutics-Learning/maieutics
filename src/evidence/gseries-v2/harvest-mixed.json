@@ -1,0 +1,101 @@
+{
+ "arm": "fair-mixed 1200 steps",
+ "results": [
+  {
+   "seed": 7,
+   "secs": 227.2,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.275,
+    "killDa": 0.99,
+    "killHu": 0.19,
+    "indist": 1
+   },
+   "ignites": false
+  },
+  {
+   "seed": 8,
+   "secs": 222,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.45,
+    "killDa": 0.995,
+    "killHu": 0.115,
+    "indist": 1
+   },
+   "ignites": false
+  },
+  {
+   "seed": 9,
+   "secs": 228.5,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.725,
+    "killDa": 1,
+    "killHu": 0.65,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 10,
+   "secs": 228.6,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.655,
+    "killDa": 0.99,
+    "killHu": 0.37,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 11,
+   "secs": 223.8,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.03,
+    "killDa": 0.995,
+    "killHu": 0,
+    "indist": 1
+   },
+   "ignites": false
+  },
+  {
+   "seed": 12,
+   "secs": 226.7,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.72,
+    "killDa": 1,
+    "killHu": 0.485,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 13,
+   "secs": 229.4,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.22,
+    "killDa": 1,
+    "killHu": 0,
+    "indist": 1
+   },
+   "ignites": false
+  },
+  {
+   "seed": 14,
+   "secs": 227.7,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.45,
+    "killDa": 1,
+    "killHu": 0.355,
+    "indist": 1
+   },
+   "ignites": false
+  }
+ ]
+}

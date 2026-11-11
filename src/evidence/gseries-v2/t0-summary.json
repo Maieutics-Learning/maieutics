@@ -1,0 +1,16 @@
+{
+ "seed": 8,
+ "poolSeed": 7,
+ "examBase": 7008,
+ "secs": 227.2,
+ "firstLoss": 5.023237632407771,
+ "lastLoss": 0.0007459078370992347,
+ "ev": {
+  "killA": 1,
+  "killHd": 0.6,
+  "killDa": 1,
+  "killHu": 0.03,
+  "indist": 1
+ },
+ "ignites": true
+}

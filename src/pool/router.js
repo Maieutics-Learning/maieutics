@@ -4,18 +4,27 @@
 // No auto-repricing, no coin market (R6): static priority, health-gated by
 // heartbeat rows, breaker-aware. Keys via P3 vault only.
 //   routeSmoke(opts) -> P1 result through the chain (P7 gate task).
-//   routeLLM({prompt, maxTokens}) -> first-success across
-//     [groq-if-keyed, openrouter-if-keyed, petals], else degraded
-//     (pool exhausted -> status, never hang). Floor is infeasible for open
-//     LLM Qs (no local LLM).
+//   routeLLM({prompt, maxTokens}) -> first-success across a task-aware list:
+//     short (<=512 tok): [groq-if-keyed, gemini-if-keyed, openrouter-if-guard, petals]
+//     long (>512 tok): [groq-if-keyed, gemini-if-keyed, petals] (OR skips:
+//       measured unable to complete long-form, so including it only burns
+//       1 of 50/day for a guaranteed finish=length)
+//     pool-exhausted -> degraded, never hang. Floor is infeasible
+//     for open LLM Qs (no local LLM).
 (function () {
 "use strict";
 
 var GLOBAL_TIMEOUT_MS = 120000; // hard ceiling per routed call (P7 gate drill uses 1ms)
-var HEDGE_DELAY_MS = 15000;     // PROVISIONAL: start next source while first
-// is still pending (spec: T from heartbeat p50+jitter — but p50s measured so
-// far cover front-door only, not generation; retune after first successful
-// generation latency exists). Capped: max 1 hedge in flight (<=2 concurrent).
+var HEDGE_DELAY_MS = 5000;      // RETUNED 2026-11-11 from generation latencies:
+ // openrouter ~2s typical (spikes to ~7s), gemini-no-think ~1.3s typical
+ // (spikes to ~8s). If the leader hasn't answered in 5s something is wrong.
+ // Capped: max 1 hedge in flight (<=2 concurrent).
+var LONG_TASK_TOKENS = 512;     // task-aware routing (measured 2026-11-11):
+ // openrouter's free reasoning model cannot complete long-form — finish=length
+ // with zero text at 900 AND 4000 caps — so long tasks skip it entirely.
+ // Long: [groq?, gemini, petals]. Short: [groq?, gemini, openrouter-if-guard,
+ // petals] (gemini leads: typically fastest post-thinking-fix AND uncapped,
+ // so the capped OR budget is spent only as hedge/failover).
 
 function nowFn() {
   if (typeof performance !== "undefined" && performance.now) return function () { return performance.now(); };
@@ -66,6 +75,10 @@ function routeLLM(opts) {
     if (!S.petals) return Promise.resolve({ ok: false, reason: "petals-unwired" });
     return S.petals.generate({ inputs: prompt, maxNewTokens: maxTokens });
   }
+  function geminiCall() {
+    if (!S.gemini) return Promise.resolve({ ok: false, reason: "gemini-unwired" });
+    return S.gemini.generate({ prompt: prompt, maxTokens: Math.max(maxTokens, 64) });
+  }
   function orCall() {
     if (!S.openrouter) return Promise.resolve({ ok: false, reason: "openrouter-unwired" });
     // The default free OpenRouter model reasons before answering; give it
@@ -75,23 +88,49 @@ function routeLLM(opts) {
   // Keyed sources only if a key exists (else skip without a failing call);
   // petals stays as the keyless tail. Max 2 in flight: first fires at once,
   // second is the hedge, third fires only as failover.
+  // Task-aware: long tasks (maxTokens > LONG_TASK_TOKENS) skip openrouter —
+  // measured unable to complete long-form — and skip the guard check with it.
+  // Short tasks include openrouter only when the quota guard allows.
+  var long = maxTokens > LONG_TASK_TOKENS;
+  function orAllowed() {
+    if (long) return Promise.resolve(false);
+    if (!V) return Promise.resolve(true);
+    return V.hasKey("openrouter").then(function (has) {
+      if (!has) return false;
+      var G = P.guard;
+      if (!G || !G.allowOpenRouter) return true;
+      return G.allowOpenRouter();
+    });
+  }
   var primaries;
   if (V) {
-    primaries = Promise.all([V.hasKey("groq"), V.hasKey("openrouter")]).then(function (has) {
+    primaries = Promise.all([V.hasKey("groq"), orAllowed(), V.hasKey("gemini")]).then(function (has) {
       var calls = [];
       if (has[0] && S.groq) calls.push({ name: "groq", call: groqCall });
+      if (has[2] && S.gemini) calls.push({ name: "gemini", call: geminiCall });
       if (has[1] && S.openrouter) calls.push({ name: "openrouter", call: orCall });
       if (S.petals) calls.push({ name: "petals", call: petalsCall });
-      return calls;
+      return { calls: calls, long: long };
     });
   } else {
-    primaries = Promise.resolve([
-      { name: "groq", call: groqCall },
-      { name: "openrouter", call: orCall },
-      { name: "petals", call: petalsCall }
-    ]);
+    primaries = Promise.resolve({
+      calls: [
+        { name: "groq", call: groqCall },
+        { name: "gemini", call: geminiCall },
+        { name: "openrouter", call: orCall },
+        { name: "petals", call: petalsCall }
+      ].filter(function (c) {
+        if (c.name === "openrouter" && long) return false;
+        return c.name === "petals" ? !!S.petals :
+          c.name === "gemini" ? !!S.gemini :
+          c.name === "openrouter" ? !!S.openrouter : !!S.groq;
+      }),
+      long: long
+    });
   }
-  return primaries.then(function (calls) {
+  return primaries.then(function (x) {
+    var calls = x.calls;
+    var routeName = x.long ? "long" : "short";
     // fire first immediately; hedge fires the second after HEDGE_DELAY_MS
     // if nothing finished yet; later calls fire only as failover.
     // First success wins; exhaustion -> degraded, never hang.
@@ -102,7 +141,7 @@ function routeLLM(opts) {
       var fired = 0;
       function finishOk(r) {
         if (finished) return; finished = true;
-        r.routedMs = nowFn()() - t0; r.attempted = attempted.slice(); resolve(r);
+        r.routedMs = nowFn()() - t0; r.attempted = attempted.slice(); r.route = routeName; resolve(r);
       }
       function fireNext() {
         if (finished || fired >= calls.length) return;
@@ -118,7 +157,7 @@ function routeLLM(opts) {
           else {
             finished = true;
             resolve({ ok: false, reason: "pool-exhausted", detail: results.join(" | "),
-              degraded: true, routedMs: nowFn()() - t0, attempted: attempted.slice() });
+              degraded: true, routedMs: nowFn()() - t0, attempted: attempted.slice(), route: routeName });
           }
         });
       }
@@ -138,6 +177,6 @@ window.__pool = window.__pool || {};
 window.__pool.router = {
   routeSmoke: routeSmoke, routeLLM: routeLLM,
   GLOBAL_TIMEOUT_MS: GLOBAL_TIMEOUT_MS, HEDGE_DELAY_MS: HEDGE_DELAY_MS,
-  provisional: "P5-blocked: priority/failover/timeout mechanics only"
+  provisional: "FULL + task-aware 2026-11-11: short [groq?, gemini, OR-if-guard, petals], long [groq?, gemini, petals], hedge 5s"
 };
 })();

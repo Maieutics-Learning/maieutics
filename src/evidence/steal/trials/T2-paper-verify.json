@@ -1,0 +1,15 @@
+{
+ "tool": "paper-compile (verify-only, HTML-adapted)",
+ "checks": {
+  "TODO": 0,
+  "FIXME": 0,
+  "XXX": 0,
+  "UNCONFIRMED": 0,
+  "missingfigure": 0,
+  "abstract_meta": true,
+  "tables": 3,
+  "figures_canvas": 3,
+  "dict_links": 56,
+  "empty_sections": 0
+ }
+}

@@ -1,0 +1,18 @@
+{
+ "config": "geo-choosy-queryhead-gist fair allowed-12 h48/1200 seed7 (Mamba-like: selective write + query-conditioned read)",
+ "secs": 36,
+ "kill": {
+  "killA": 0.465,
+  "Hd": 0,
+  "Da": 0.475,
+  "Hu": 0
+ },
+ "xe": {
+  "XmidA": 0.485,
+  "XmidHd": 0,
+  "Xgap12A": 0.395,
+  "Xgap12Hd": 0,
+  "XpermA": 0.485,
+  "XpermHd": 0
+ }
+}

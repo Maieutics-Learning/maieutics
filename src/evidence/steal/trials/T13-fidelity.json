@@ -1,0 +1,34 @@
+{
+ "method": "fair probes (present in copy) vs v2 summary",
+ "kept": "5/7",
+ "fidelity": [
+  {
+   "probe": "quickSelfTest",
+   "in_summary": true
+  },
+  {
+   "probe": "quickAttnTest",
+   "in_summary": true
+  },
+  {
+   "probe": "eval-harness",
+   "in_summary": true
+  },
+  {
+   "probe": "context-compression",
+   "in_summary": false
+  },
+  {
+   "probe": "MutationObserver",
+   "in_summary": false
+  },
+  {
+   "probe": "Wave 17",
+   "in_summary": true
+  },
+  {
+   "probe": "Appendix H",
+   "in_summary": true
+  }
+ ]
+}

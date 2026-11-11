@@ -1,0 +1,39 @@
+{
+ "tutorEv": {
+  "killA": 1,
+  "killHd": 1,
+  "killDa": 0.975,
+  "killHu": 0.99,
+  "indist": 1
+ },
+ "studs": [
+  {
+   "seed": 801,
+   "ev": {
+    "killA": 0.305,
+    "killHd": 0.265,
+    "killDa": 0.265,
+    "killHu": 0.225,
+    "indist": 0.38
+   },
+   "ignites": false
+  },
+  {
+   "seed": 802,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.905,
+    "killDa": 1,
+    "killHu": 0.67,
+    "indist": 1
+   },
+   "ignites": true
+  }
+ ],
+ "ledger": {
+  "steps": 7200,
+  "oracleCalls": 0
+ },
+ "meanHd": 0.585,
+ "oracleCalls": 0
+}

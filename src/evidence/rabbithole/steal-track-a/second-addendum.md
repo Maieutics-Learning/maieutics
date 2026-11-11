@@ -1,0 +1,8 @@
+
+## Addendum SECOND (wave 906: second-opinion steal patterns — 20th plugin EXHAUSTIVE)
+- Produces-findings-NOT-fixes-or-remote-posts; choices-given-used asks-missing-grouped; scope uncommitted (staged plus unstaged plus untracked) / branch-diff / commit; missing-base from remote-default else ASK never silently-main.
+- One-captured-patch same-instructions both providers; tempfiles-outside-checkout; shell-vars-same-invocation; repo-content-literal-no-expansion; untracked NUL-delimited with diagnostics; no-HEAD asks-initial-additions; no-changes stops-before-provider; over-limit narrows-scope never silently-truncates.
+- Per-provider invocation contracts: codex-exec read-only plus ephemeral plus output-schema (severity 0-info to 3-high NOT P0, do-not-invert; CLI-version-checked; no-MCP); agy print quoted-arg (disable-slash-commands; arg-limit fallback stdin-or-smaller-scope; zero-exit-after-deny means exit-code-not-completed; plan-artifact-not-review; preserve-permissions); gemini retained-for-explicit-or-Assist-or-paid-or-Vertex (UNSUPPORTED_CLIENT reinstall-wont-fix; approval-default never yolo; failed-empty-denied equals incomplete NOT absence-of-findings).
+- Results discipline: provider plus actual-model plus severity plus file-line plus impact plus fix, keep-low-visible; two-reviews agreement-summary WITHOUT agreement-as-proof; external-vs-own distinguished; incomplete-not-equal-clean; retry-only-diagnosed-recoverable, no-provider-cycling-after-auth-quota.
+- Read-only-selected-provider-ref; both-concurrent with 600000-timeout; missing-exe-or-account equals failed-attempt with setup-instructions plus continue-available.
+- No evals directory (invocation-costly, CLI-dependent); manifest v1.8.3; SKILL fresh-vs-banked IDENTICAL.

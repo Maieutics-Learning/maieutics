@@ -1,0 +1,123 @@
+{
+ "scale": "h24/m48/d8",
+ "tutor": "h24-t0",
+ "t0": {
+  "scale": "h24",
+  "secs": 13.3,
+  "ev": {
+   "killA": 1,
+   "killHd": 0.205,
+   "killDa": 1,
+   "killHu": 0.025,
+   "indist": 1
+  },
+  "ignites": false
+ },
+ "totalSecs": 279.3,
+ "results": [
+  {
+   "seed": 201,
+   "secs": 32.7,
+   "lastLoss": 0.0053,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.87,
+    "killDa": 1,
+    "killHu": 0.8,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 202,
+   "secs": 32.7,
+   "lastLoss": 0.0121,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.615,
+    "killDa": 1,
+    "killHu": 0.485,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 203,
+   "secs": 32.9,
+   "lastLoss": 0.0046,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.75,
+    "killDa": 1,
+    "killHu": 0.41,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 204,
+   "secs": 33,
+   "lastLoss": 0.0054,
+   "ev": {
+    "killA": 0.99,
+    "killHd": 0.985,
+    "killDa": 0.94,
+    "killHu": 0.735,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 205,
+   "secs": 33,
+   "lastLoss": 0.0041,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.775,
+    "killDa": 1,
+    "killHu": 0.665,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 206,
+   "secs": 33.5,
+   "lastLoss": 0.0049,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.81,
+    "killDa": 1,
+    "killHu": 0.65,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 207,
+   "secs": 33.5,
+   "lastLoss": 0.0093,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.565,
+    "killDa": 0.995,
+    "killHu": 0.495,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 208,
+   "secs": 33.5,
+   "lastLoss": 0.0057,
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 0.995,
+    "indist": 1
+   },
+   "ignites": true
+  }
+ ]
+}

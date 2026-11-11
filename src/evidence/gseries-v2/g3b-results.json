@@ -1,0 +1,64 @@
+{
+ "tutor": "g2-s308",
+ "seeds": [
+  405,
+  406,
+  407,
+  408
+ ],
+ "totalSecs": 429.9,
+ "results": [
+  {
+   "seed": 405,
+   "secs": 111,
+   "lastLoss": 0.0037,
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 1,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 406,
+   "secs": 98.8,
+   "lastLoss": 0.0041,
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 0.95,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 407,
+   "secs": 103.9,
+   "lastLoss": 0.0045,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.435,
+    "killDa": 1,
+    "killHu": 0.18,
+    "indist": 1
+   },
+   "ignites": false
+  },
+  {
+   "seed": 408,
+   "secs": 99,
+   "lastLoss": 0.0031,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.995,
+    "killDa": 1,
+    "killHu": 1,
+    "indist": 1
+   },
+   "ignites": true
+  }
+ ]
+}

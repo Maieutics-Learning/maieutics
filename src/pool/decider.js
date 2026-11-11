@@ -27,6 +27,7 @@ function runPoolArm() {
   if (S.petals) avail.push({ name: "petals", fn: function (p) { return S.petals.generate({ inputs: p, maxNewTokens: 12 }); } });
   if (S.groq) avail.push({ name: "groq", fn: function (p) { return S.groq.generate({ prompt: p, maxTokens: 12 }); } });
   if (S.openrouter) avail.push({ name: "openrouter", fn: function (p) { return S.openrouter.generate({ prompt: p, maxTokens: 256 }); } });
+  if (S.gemini) avail.push({ name: "gemini", fn: function (p) { return S.gemini.generate({ prompt: p, maxTokens: 256 }); } });
   var per = [];
   var t0 = nowFn()();
   var seq = Promise.resolve();

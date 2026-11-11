@@ -1,0 +1,64 @@
+{
+ "tutor": "g4-s502",
+ "seeds": [
+  605,
+  606,
+  607,
+  608
+ ],
+ "totalSecs": 397.2,
+ "results": [
+  {
+   "seed": 605,
+   "secs": 97.5,
+   "lastLoss": 0.0035,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.735,
+    "killDa": 1,
+    "killHu": 0.75,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 606,
+   "secs": 97.7,
+   "lastLoss": 0.0041,
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 1,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 607,
+   "secs": 100.8,
+   "lastLoss": 0.0042,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.785,
+    "killDa": 0.995,
+    "killHu": 0.685,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 608,
+   "secs": 98.3,
+   "lastLoss": 1.4189,
+   "ev": {
+    "killA": 0.33,
+    "killHd": 0.285,
+    "killDa": 0.34,
+    "killHu": 0.075,
+    "indist": 0.43
+   },
+   "ignites": false
+  }
+ ]
+}

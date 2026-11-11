@@ -1,0 +1,160 @@
+{
+ "arm": "competence-gated",
+ "results": [
+  {
+   "seed": 11,
+   "steps": 1000,
+   "trace": [
+    {
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "acc": 0.86,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "acc": 0.94,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "acc": 0.99,
+     "act": "advance",
+     "total": 800
+    },
+    {
+     "acc": 1,
+     "act": "advance",
+     "total": 1000
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.705,
+    "killDa": 0.975,
+    "killHu": 0.465,
+    "indist": 1
+   },
+   "ignites": true,
+   "secs": 18.6
+  },
+  {
+   "seed": 12,
+   "steps": 1000,
+   "trace": [
+    {
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "acc": 0.84,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "acc": 0.94,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "acc": 0.97,
+     "act": "advance",
+     "total": 800
+    },
+    {
+     "acc": 1,
+     "act": "advance",
+     "total": 1000
+    }
+   ],
+   "ev": {
+    "killA": 0.99,
+    "killHd": 0.005,
+    "killDa": 0.975,
+    "killHu": 0,
+    "indist": 1
+   },
+   "ignites": false,
+   "secs": 20.8
+  },
+  {
+   "seed": 13,
+   "steps": 1200,
+   "trace": [
+    {
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "acc": 0.81,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "acc": 0.93,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "acc": 0.98,
+     "act": "advance",
+     "total": 800
+    },
+    {
+     "acc": 0.28,
+     "act": "bridge",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0,
+    "killHd": 1,
+    "killDa": 0.085,
+    "killHu": 0.955,
+    "indist": 0.315
+   },
+   "ignites": false,
+   "secs": 31.4
+  },
+  {
+   "seed": 14,
+   "steps": 800,
+   "trace": [
+    {
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "acc": 0.78,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "acc": 0.97,
+     "act": "advance",
+     "total": 600
+    },
+    {
+     "acc": 1,
+     "act": "advance",
+     "total": 800
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.39,
+    "killDa": 0.96,
+    "killHu": 0.025,
+    "indist": 1
+   },
+   "ignites": false,
+   "secs": 16.3
+  }
+ ]
+}

@@ -1,0 +1,64 @@
+{
+ "tutor": "g1-s202",
+ "seeds": [
+  305,
+  306,
+  307,
+  308
+ ],
+ "totalSecs": 1408.3,
+ "results": [
+  {
+   "seed": 305,
+   "secs": 364.4,
+   "lastLoss": 0.0062,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.655,
+    "killDa": 1,
+    "killHu": 0.46,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 306,
+   "secs": 341.9,
+   "lastLoss": 0.0037,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.48,
+    "killDa": 1,
+    "killHu": 0.46,
+    "indist": 1
+   },
+   "ignites": false
+  },
+  {
+   "seed": 307,
+   "secs": 342.6,
+   "lastLoss": 0.0029,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.795,
+    "killDa": 1,
+    "killHu": 0.725,
+    "indist": 1
+   },
+   "ignites": true
+  },
+  {
+   "seed": 308,
+   "secs": 342.7,
+   "lastLoss": 0.0029,
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 0.98,
+    "indist": 1
+   },
+   "ignites": true
+  }
+ ]
+}

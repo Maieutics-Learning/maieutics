@@ -1,0 +1,314 @@
+{
+ "seb1n/pdf-processing": {
+  "status": 200,
+  "bytes": 9408,
+  "license": null,
+  "verdict": null,
+  "installs": 29,
+  "cat": "Docs & Writing"
+ },
+ "lambenthan/paper-compile": {
+  "status": 200,
+  "bytes": 6458,
+  "license": null,
+  "verdict": null,
+  "installs": 13,
+  "cat": "Docs & Writing"
+ },
+ "xjtulyc/latex-workflow": {
+  "status": 200,
+  "bytes": 20110,
+  "license": "MIT",
+  "verdict": null,
+  "installs": 6,
+  "cat": "Research & Search"
+ },
+ "googlechrome/project-evals": {
+  "status": 200,
+  "bytes": 8621,
+  "license": null,
+  "verdict": null,
+  "installs": 14,
+  "cat": "Coding & Dev Tools"
+ },
+ "affaan-m/benchmark": {
+  "status": 200,
+  "bytes": 2148,
+  "license": null,
+  "verdict": null,
+  "installs": 31,
+  "cat": "DevOps & Infra"
+ },
+ "anthropic/webapp-testing": {
+  "status": 200,
+  "bytes": 3575,
+  "license": "Complete terms in LICENSE.txt",
+  "verdict": null,
+  "installs": 118,
+  "cat": "Web & Frontend"
+ },
+ "jeffallan/playwright-expert": {
+  "status": 200,
+  "bytes": 4763,
+  "license": "MIT",
+  "verdict": null,
+  "installs": 31,
+  "cat": "Coding & Dev Tools"
+ },
+ "mohitagw15856/dataset-datasheet": {
+  "status": 200,
+  "bytes": 3270,
+  "license": null,
+  "verdict": null,
+  "installs": 8,
+  "cat": "AI & ML"
+ },
+ "athola/research": {
+  "status": 200,
+  "bytes": 7092,
+  "license": null,
+  "verdict": null,
+  "installs": 7,
+  "cat": "Research & Search"
+ },
+ "fradser/storm-research": {
+  "status": 200,
+  "bytes": 2848,
+  "license": null,
+  "verdict": null,
+  "installs": 14,
+  "cat": "Research & Search"
+ },
+ "openai/jupyter-notebook": {
+  "status": 200,
+  "bytes": 3868,
+  "license": null,
+  "verdict": null,
+  "installs": 32,
+  "cat": "Data & Analytics"
+ },
+ "trailofbits/static-analysis": {
+  "status": 404,
+  "note": "not on skillmd"
+ },
+ "muratcankoylan/memory-systems": {
+  "status": 200,
+  "bytes": 16094,
+  "license": null,
+  "verdict": null,
+  "installs": 26,
+  "cat": "AI & ML"
+ },
+ "leonxlnx/taste-skill": {
+  "status": 404,
+  "note": "not on skillmd"
+ },
+ "orchestra-research/sparse-autoencoder-training": {
+  "status": 200,
+  "bytes": 12165,
+  "license": "MIT",
+  "verdict": null,
+  "installs": 20,
+  "cat": "AI & ML"
+ },
+ "orchestra-research/pyvene-interventions": {
+  "status": 200,
+  "bytes": 13610,
+  "license": "MIT",
+  "verdict": null,
+  "installs": 25,
+  "cat": "AI & ML"
+ },
+ "search:tutor-skills": [
+  {
+   "slug": "infometa/tutor-skills",
+   "desc": "Turn PDFs, docs, and codebases into Obsidian StudyVaults with structured notes, then quiz yourself w",
+   "verdict": null
+  },
+  {
+   "slug": "sickn33/tutorial-engineer",
+   "desc": "Creates step-by-step tutorials and educational content from code. Transforms complex concepts into p",
+   "verdict": null
+  },
+  {
+   "slug": "chrismccoy/tutorial-builder",
+   "desc": "Use this skill when",
+   "verdict": null
+  },
+  {
+   "slug": "dokhacgiakhoa/tutorial-engineer",
+   "desc": "Creates step-by-step tutorials and educational content from code. Transforms complex concepts into p",
+   "verdict": null
+  },
+  {
+   "slug": "comeonoliver/tutor",
+   "desc": "Tutor Skill",
+   "verdict": null
+  },
+  {
+   "slug": "kursku/tutoring-system",
+   "desc": "Tutoring System — Skill especializada para projetar, implementar e otimizar sistemas de tutoria onli",
+   "verdict": null
+  }
+ ],
+ "search:beautiful_prose": [
+  {
+   "slug": "rootcastleco/beautiful-prose",
+   "desc": "Hard-edged writing style contract for timeless, forceful English prose without AI tics",
+   "verdict": null
+  },
+  {
+   "slug": "sickn33/beautiful-prose",
+   "desc": "A hard-edged writing style contract for timeless, forceful English prose without modern AI tics. Use",
+   "verdict": null
+  },
+  {
+   "slug": "kayforkind/beautiful-prose",
+   "desc": "Applies a hard English prose contract: concrete nouns, varied sentence length, banned em dashes, rev",
+   "verdict": null
+  },
+  {
+   "slug": "kscz0000/beautiful-prose",
+   "desc": "一份硬朗的写作风格契约，产出 timeless、有力的英文散文，杜绝现代 AI 病。当用户要求'写出有力散文'、'重写为干净利落的英文'、'去除 AI 味'时使用。",
+   "verdict": null
+  },
+  {
+   "slug": "joshuashepherd/prose-craft",
+   "desc": "Improves or generates prose with sentence-level craft: rhythm, voice, sensory detail, pacing, and li",
+   "verdict": "pass"
+  },
+  {
+   "slug": "conardli/beautiful-article",
+   "desc": "Transforms source materials (URLs, PDFs, DOCX, Markdown, text, screenshots) into a single-file HTML ",
+   "verdict": "caution"
+  }
+ ],
+ "search:transformers.js": [
+  {
+   "slug": "huggingface/transformers-js",
+   "desc": "Run state-of-the-art machine learning models directly in JavaScript/TypeScript across browsers and s",
+   "verdict": "pass"
+  },
+  {
+   "slug": "francostino/transformers-js",
+   "desc": "Use Transformers.js to run state-of-the-art machine learning models directly in JavaScript/TypeScrip",
+   "verdict": null
+  },
+  {
+   "slug": "waybarrios/transformers-js",
+   "desc": "Run Hugging Face models in JavaScript or TypeScript with Transformers.js, WebGPU, or WASM across bro",
+   "verdict": null
+  },
+  {
+   "slug": "vercel-labs/vercel-react-view-transitions",
+   "desc": "Add smooth, native-feeling page transitions and animations to React apps using the browser's View Tr",
+   "verdict": "pass"
+  },
+  {
+   "slug": "microsoft/azure-ai-translation-ts",
+   "desc": "Translate text, transliterate between scripts, detect languages, and perform batch document translat",
+   "verdict": "pass"
+  },
+  {
+   "slug": "microsoft/azure-ai-translation-text-py",
+   "desc": "Translate text in real-time, detect languages, transliterate between scripts, and look up dictionary",
+   "verdict": "pass"
+  }
+ ],
+ "search:context-compression": [
+  {
+   "slug": "muratcankoylan/context-compression",
+   "desc": "Optimizes long-running agent sessions with structured context compression, summarization, and durabl",
+   "verdict": "pass"
+  },
+  {
+   "slug": "seb1n/context-compression",
+   "desc": "Compress selected context to a target token budget while preserving decisions, evidence, constraints",
+   "verdict": "pass"
+  },
+  {
+   "slug": "sickn33/context-compression",
+   "desc": "When agent sessions generate millions of tokens of conversation history, compression becomes mandato",
+   "verdict": null
+  },
+  {
+   "slug": "muratcankoylan/context-optimization",
+   "desc": "Extends effective context capacity through strategic compression, masking, caching, and partitioning",
+   "verdict": "pass"
+  },
+  {
+   "slug": "sickn33/context-optimization",
+   "desc": "Context optimization extends the effective capacity of limited context windows through strategic com",
+   "verdict": null
+  },
+  {
+   "slug": "minimax-ai/context-pressure-compact",
+   "desc": "Compress a long-running multi-step task into a structured snapshot before continuing. USE WHEN: `tod",
+   "verdict": "pass"
+  }
+ ],
+ "search:taste-skill": [
+  {
+   "slug": "alunadev/taste-skill",
+   "desc": "Anti-slop frontend design skill for building NEW landing pages, portfolios, and UI from a brief. Rea",
+   "verdict": "pass"
+  },
+  {
+   "slug": "podo/taste-skill",
+   "desc": "High-agency frontend skill that gives AI good taste with tunable design variance, motion intensity, ",
+   "verdict": null
+  },
+  {
+   "slug": "pixartseu/taste-skill",
+   "desc": "Aesthetic-direction design skill: reads a brief, infers the right visual style and direction, and sh",
+   "verdict": "pass"
+  },
+  {
+   "slug": "google-labs-code/taste-design",
+   "desc": "Generates DESIGN.md files for Google Stitch that encode premium, anti-generic UI standards with stri",
+   "verdict": "pass"
+  },
+  {
+   "slug": "affaan-m/taste",
+   "desc": "Provides a creative-direction layer for music videos and short-form edits in the angelcore/cloud-tra",
+   "verdict": "pass"
+  },
+  {
+   "slug": "keyargo/design-taste",
+   "desc": "Stops AI from generating boring, generic UI. Use when building new interfaces, reviewing generated U",
+   "verdict": "pass"
+  }
+ ],
+ "search:hugging-face-dataset-viewer": [
+  {
+   "slug": "huggingface/hugging-face-dataset-viewer",
+   "desc": "Hugging Face Dataset Viewer",
+   "verdict": null
+  },
+  {
+   "slug": "kscz0000/hugging-face-dataset-viewer",
+   "desc": "通过 Dataset Viewer API 查询 Hugging Face 数据集，获取分片、行数据、搜索、过滤和 parquet 链接。",
+   "verdict": null
+  },
+  {
+   "slug": "huggingface/huggingface-datasets",
+   "desc": "Fetch dataset metadata, paginate rows, search text, apply filters, and download parquet URLs from th",
+   "verdict": "caution"
+  },
+  {
+   "slug": "huggingface/huggingface-tool-builder",
+   "desc": "Creates reusable command-line scripts and utilities for the Hugging Face API, enabling chaining, pip",
+   "verdict": "caution"
+  },
+  {
+   "slug": "kursku/hugging-face-datasets",
+   "desc": "Create and manage datasets on Hugging Face Hub. Supports initializing repos, defining configs/system",
+   "verdict": null
+  },
+  {
+   "slug": "sickn33/hugging-face-datasets",
+   "desc": "Create and manage datasets on Hugging Face Hub. Supports initializing repos, defining configs/system",
+   "verdict": null
+  }
+ ]
+}

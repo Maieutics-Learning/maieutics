@@ -1,0 +1,12 @@
+{
+ "scale": "h24",
+ "secs": 13.3,
+ "ev": {
+  "killA": 1,
+  "killHd": 0.205,
+  "killDa": 1,
+  "killHu": 0.025,
+  "indist": 1
+ },
+ "ignites": false
+}

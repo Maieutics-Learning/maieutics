@@ -1,0 +1,754 @@
+[
+  {
+    "name": "agentic-actions-auditor",
+    "path": "plugins/agentic-actions-auditor",
+    "sha": "ce9dc10c223562bf366783702cedcd6a3c85bf62",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/agentic-actions-auditor?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/agentic-actions-auditor",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/ce9dc10c223562bf366783702cedcd6a3c85bf62",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/agentic-actions-auditor?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/ce9dc10c223562bf366783702cedcd6a3c85bf62",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/agentic-actions-auditor"
+    }
+  },
+  {
+    "name": "audit-context-building",
+    "path": "plugins/audit-context-building",
+    "sha": "910a5c5d196e96bae408021c033097b05431545e",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/audit-context-building?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/audit-context-building",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/910a5c5d196e96bae408021c033097b05431545e",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/audit-context-building?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/910a5c5d196e96bae408021c033097b05431545e",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/audit-context-building"
+    }
+  },
+  {
+    "name": "building-secure-contracts",
+    "path": "plugins/building-secure-contracts",
+    "sha": "186a0de0fb7d0e4a267679b3683f9d30d2989348",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/building-secure-contracts?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/186a0de0fb7d0e4a267679b3683f9d30d2989348",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/building-secure-contracts?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/186a0de0fb7d0e4a267679b3683f9d30d2989348",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/building-secure-contracts"
+    }
+  },
+  {
+    "name": "burpsuite-project-parser",
+    "path": "plugins/burpsuite-project-parser",
+    "sha": "d1582144d90a19b334cd993438f33b9afde9c56a",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/burpsuite-project-parser?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/burpsuite-project-parser",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/d1582144d90a19b334cd993438f33b9afde9c56a",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/burpsuite-project-parser?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/d1582144d90a19b334cd993438f33b9afde9c56a",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/burpsuite-project-parser"
+    }
+  },
+  {
+    "name": "c-review",
+    "path": "plugins/c-review",
+    "sha": "99e9ffebce3609eb81ebe7c7435412e2193cdd24",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/c-review?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/c-review",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/99e9ffebce3609eb81ebe7c7435412e2193cdd24",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/c-review?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/99e9ffebce3609eb81ebe7c7435412e2193cdd24",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/c-review"
+    }
+  },
+  {
+    "name": "chrome-mcp-troubleshooting",
+    "path": "plugins/chrome-mcp-troubleshooting",
+    "sha": "1781c2f8aee1820a5d9c8f062926735597241c78",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/chrome-mcp-troubleshooting?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/chrome-mcp-troubleshooting",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/1781c2f8aee1820a5d9c8f062926735597241c78",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/chrome-mcp-troubleshooting?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/1781c2f8aee1820a5d9c8f062926735597241c78",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/chrome-mcp-troubleshooting"
+    }
+  },
+  {
+    "name": "code-improver",
+    "path": "plugins/code-improver",
+    "sha": "ce552331ef974c9dffb5536f9275bbdbd21afb32",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/code-improver?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/code-improver",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/ce552331ef974c9dffb5536f9275bbdbd21afb32",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/code-improver?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/ce552331ef974c9dffb5536f9275bbdbd21afb32",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/code-improver"
+    }
+  },
+  {
+    "name": "constant-time-analysis",
+    "path": "plugins/constant-time-analysis",
+    "sha": "9b6b79cfb0b51cc070001b269554f84a4003a06c",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/constant-time-analysis?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/constant-time-analysis",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/9b6b79cfb0b51cc070001b269554f84a4003a06c",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/constant-time-analysis?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/9b6b79cfb0b51cc070001b269554f84a4003a06c",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/constant-time-analysis"
+    }
+  },
+  {
+    "name": "culture-index",
+    "path": "plugins/culture-index",
+    "sha": "2c0debfbf77110a401909f313d94f8c3cf7e026a",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/culture-index?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/culture-index",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/2c0debfbf77110a401909f313d94f8c3cf7e026a",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/culture-index?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/2c0debfbf77110a401909f313d94f8c3cf7e026a",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/culture-index"
+    }
+  },
+  {
+    "name": "cvss-scoring",
+    "path": "plugins/cvss-scoring",
+    "sha": "ef84ad2d4012006bdd5c9e6f20ed51ed57b28252",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/cvss-scoring?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/cvss-scoring",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/ef84ad2d4012006bdd5c9e6f20ed51ed57b28252",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/cvss-scoring?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/ef84ad2d4012006bdd5c9e6f20ed51ed57b28252",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/cvss-scoring"
+    }
+  },
+  {
+    "name": "devcontainer-setup",
+    "path": "plugins/devcontainer-setup",
+    "sha": "cf1564453f654a2cf3fa374ac51fd9808fee8135",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/devcontainer-setup?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/devcontainer-setup",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/cf1564453f654a2cf3fa374ac51fd9808fee8135",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/devcontainer-setup?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/cf1564453f654a2cf3fa374ac51fd9808fee8135",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/devcontainer-setup"
+    }
+  },
+  {
+    "name": "differential-review",
+    "path": "plugins/differential-review",
+    "sha": "cca619df7d2e84f56695ddb3813565b0e0886460",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/differential-review?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/differential-review",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/cca619df7d2e84f56695ddb3813565b0e0886460",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/differential-review?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/cca619df7d2e84f56695ddb3813565b0e0886460",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/differential-review"
+    }
+  },
+  {
+    "name": "dimensional-analysis",
+    "path": "plugins/dimensional-analysis",
+    "sha": "9225a9d9001a049d8c73b318fa553ce8157b91d1",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/dimensional-analysis?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/dimensional-analysis",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/9225a9d9001a049d8c73b318fa553ce8157b91d1",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/dimensional-analysis?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/9225a9d9001a049d8c73b318fa553ce8157b91d1",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/dimensional-analysis"
+    }
+  },
+  {
+    "name": "dwarf-expert",
+    "path": "plugins/dwarf-expert",
+    "sha": "db44e94f2dbf47693a0fa1d1a0b6c03ee6a4f90f",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/dwarf-expert?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/dwarf-expert",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/db44e94f2dbf47693a0fa1d1a0b6c03ee6a4f90f",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/dwarf-expert?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/db44e94f2dbf47693a0fa1d1a0b6c03ee6a4f90f",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/dwarf-expert"
+    }
+  },
+  {
+    "name": "entry-point-analyzer",
+    "path": "plugins/entry-point-analyzer",
+    "sha": "ba65cce937ca35c12e861268c390365bea1443a1",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/entry-point-analyzer?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/entry-point-analyzer",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/ba65cce937ca35c12e861268c390365bea1443a1",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/entry-point-analyzer?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/ba65cce937ca35c12e861268c390365bea1443a1",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/entry-point-analyzer"
+    }
+  },
+  {
+    "name": "firebase-apk-scanner",
+    "path": "plugins/firebase-apk-scanner",
+    "sha": "c81c631c00299b1cba2debaeb503d81c381ac56e",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/firebase-apk-scanner?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/firebase-apk-scanner",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/c81c631c00299b1cba2debaeb503d81c381ac56e",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/firebase-apk-scanner?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/c81c631c00299b1cba2debaeb503d81c381ac56e",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/firebase-apk-scanner"
+    }
+  },
+  {
+    "name": "fp-check",
+    "path": "plugins/fp-check",
+    "sha": "bccea72ede5f7ea4ea864368b427a815477dec66",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/fp-check?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/fp-check",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/bccea72ede5f7ea4ea864368b427a815477dec66",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/fp-check?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/bccea72ede5f7ea4ea864368b427a815477dec66",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/fp-check"
+    }
+  },
+  {
+    "name": "gh-cli",
+    "path": "plugins/gh-cli",
+    "sha": "ce9457d274e0eb32ede176149ba2c210159171f7",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/gh-cli?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/gh-cli",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/ce9457d274e0eb32ede176149ba2c210159171f7",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/gh-cli?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/ce9457d274e0eb32ede176149ba2c210159171f7",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/gh-cli"
+    }
+  },
+  {
+    "name": "git-cleanup",
+    "path": "plugins/git-cleanup",
+    "sha": "19e083d2eceba7a0f04d3a3b1f97bb361aa1df56",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/git-cleanup?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/git-cleanup",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/19e083d2eceba7a0f04d3a3b1f97bb361aa1df56",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/git-cleanup?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/19e083d2eceba7a0f04d3a3b1f97bb361aa1df56",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/git-cleanup"
+    }
+  },
+  {
+    "name": "github-triage",
+    "path": "plugins/github-triage",
+    "sha": "7e76380d2c0445de67d48d67242af3f338f87974",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/github-triage?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/github-triage",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/7e76380d2c0445de67d48d67242af3f338f87974",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/github-triage?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/7e76380d2c0445de67d48d67242af3f338f87974",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/github-triage"
+    }
+  },
+  {
+    "name": "goal-prompt",
+    "path": "plugins/goal-prompt",
+    "sha": "740276f3ffc333521889675c219598be2a55fd24",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/goal-prompt?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/goal-prompt",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/740276f3ffc333521889675c219598be2a55fd24",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/goal-prompt?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/740276f3ffc333521889675c219598be2a55fd24",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/goal-prompt"
+    }
+  },
+  {
+    "name": "insecure-defaults",
+    "path": "plugins/insecure-defaults",
+    "sha": "199a0f22b1e8c93007245aed38c146cd9c9e31dd",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/insecure-defaults?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/insecure-defaults",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/199a0f22b1e8c93007245aed38c146cd9c9e31dd",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/insecure-defaults?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/199a0f22b1e8c93007245aed38c146cd9c9e31dd",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/insecure-defaults"
+    }
+  },
+  {
+    "name": "let-fate-decide",
+    "path": "plugins/let-fate-decide",
+    "sha": "dcc992cc28d79afaeb77851fb63dc26755648d59",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/let-fate-decide?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/let-fate-decide",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/dcc992cc28d79afaeb77851fb63dc26755648d59",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/let-fate-decide?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/dcc992cc28d79afaeb77851fb63dc26755648d59",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/let-fate-decide"
+    }
+  },
+  {
+    "name": "modern-cpp",
+    "path": "plugins/modern-cpp",
+    "sha": "6839cb969e4265f1a50449c1a0ee8ad922dc3f1a",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/modern-cpp?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/modern-cpp",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/6839cb969e4265f1a50449c1a0ee8ad922dc3f1a",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/modern-cpp?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/6839cb969e4265f1a50449c1a0ee8ad922dc3f1a",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/modern-cpp"
+    }
+  },
+  {
+    "name": "modern-python",
+    "path": "plugins/modern-python",
+    "sha": "d9ad4fd1e537c3a58f555dbe93086511f990820d",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/modern-python?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/modern-python",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/d9ad4fd1e537c3a58f555dbe93086511f990820d",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/modern-python?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/d9ad4fd1e537c3a58f555dbe93086511f990820d",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/modern-python"
+    }
+  },
+  {
+    "name": "mutation-testing",
+    "path": "plugins/mutation-testing",
+    "sha": "cae205aa15b46607a79d76db84cf3818e491e9dc",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/mutation-testing?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/mutation-testing",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/cae205aa15b46607a79d76db84cf3818e491e9dc",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/mutation-testing?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/cae205aa15b46607a79d76db84cf3818e491e9dc",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/mutation-testing"
+    }
+  },
+  {
+    "name": "open-sourcing",
+    "path": "plugins/open-sourcing",
+    "sha": "c429916eca1f6a47e5f1fc664b150bcc8c381bbf",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/open-sourcing?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/open-sourcing",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/c429916eca1f6a47e5f1fc664b150bcc8c381bbf",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/open-sourcing?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/c429916eca1f6a47e5f1fc664b150bcc8c381bbf",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/open-sourcing"
+    }
+  },
+  {
+    "name": "patching-bugs",
+    "path": "plugins/patching-bugs",
+    "sha": "399b2c7b8c23ce7422d97d8896904627547928e2",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/patching-bugs?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/patching-bugs",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/399b2c7b8c23ce7422d97d8896904627547928e2",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/patching-bugs?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/399b2c7b8c23ce7422d97d8896904627547928e2",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/patching-bugs"
+    }
+  },
+  {
+    "name": "post-patch-validation",
+    "path": "plugins/post-patch-validation",
+    "sha": "25a120bbf7a8c9557e0461e05bc0224f472e0c69",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/post-patch-validation?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/post-patch-validation",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/25a120bbf7a8c9557e0461e05bc0224f472e0c69",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/post-patch-validation?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/25a120bbf7a8c9557e0461e05bc0224f472e0c69",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/post-patch-validation"
+    }
+  },
+  {
+    "name": "property-based-testing",
+    "path": "plugins/property-based-testing",
+    "sha": "ada618ab094e4b6caf0e5b9d66be414690d5f577",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/property-based-testing?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/property-based-testing",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/ada618ab094e4b6caf0e5b9d66be414690d5f577",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/property-based-testing?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/ada618ab094e4b6caf0e5b9d66be414690d5f577",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/property-based-testing"
+    }
+  },
+  {
+    "name": "regression-hunt",
+    "path": "plugins/regression-hunt",
+    "sha": "ffd57cbff4e13ee7eeca5b38834cd69a4575c8eb",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/regression-hunt?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/regression-hunt",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/ffd57cbff4e13ee7eeca5b38834cd69a4575c8eb",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/regression-hunt?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/ffd57cbff4e13ee7eeca5b38834cd69a4575c8eb",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/regression-hunt"
+    }
+  },
+  {
+    "name": "review-walkthrough",
+    "path": "plugins/review-walkthrough",
+    "sha": "6a0714037c3f7b60d28d9351954ab9b7401d23d8",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/review-walkthrough?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/review-walkthrough",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/6a0714037c3f7b60d28d9351954ab9b7401d23d8",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/review-walkthrough?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/6a0714037c3f7b60d28d9351954ab9b7401d23d8",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/review-walkthrough"
+    }
+  },
+  {
+    "name": "rust-review",
+    "path": "plugins/rust-review",
+    "sha": "e3c5d27e629d91ca5ec9578ccbb5176234c745df",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/rust-review?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/rust-review",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/e3c5d27e629d91ca5ec9578ccbb5176234c745df",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/rust-review?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/e3c5d27e629d91ca5ec9578ccbb5176234c745df",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/rust-review"
+    }
+  },
+  {
+    "name": "second-opinion",
+    "path": "plugins/second-opinion",
+    "sha": "f1b100c4f2bb85626e0497dfc20e45f8607a7d50",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/second-opinion?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/second-opinion",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/f1b100c4f2bb85626e0497dfc20e45f8607a7d50",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/second-opinion?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/f1b100c4f2bb85626e0497dfc20e45f8607a7d50",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/second-opinion"
+    }
+  },
+  {
+    "name": "semgrep-rule-creator",
+    "path": "plugins/semgrep-rule-creator",
+    "sha": "4c22ca4c6c4c2de2bbb5a26419ef907bec41375e",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/semgrep-rule-creator?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/semgrep-rule-creator",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/4c22ca4c6c4c2de2bbb5a26419ef907bec41375e",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/semgrep-rule-creator?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/4c22ca4c6c4c2de2bbb5a26419ef907bec41375e",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/semgrep-rule-creator"
+    }
+  },
+  {
+    "name": "semgrep-rule-variant-creator",
+    "path": "plugins/semgrep-rule-variant-creator",
+    "sha": "b8536c6718d4ce1c992a75c67ec1215cd17323b2",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/semgrep-rule-variant-creator?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/semgrep-rule-variant-creator",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/b8536c6718d4ce1c992a75c67ec1215cd17323b2",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/semgrep-rule-variant-creator?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/b8536c6718d4ce1c992a75c67ec1215cd17323b2",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/semgrep-rule-variant-creator"
+    }
+  },
+  {
+    "name": "sharp-edges",
+    "path": "plugins/sharp-edges",
+    "sha": "55bb36675befa02389c9cebe50716e8bc133ab7e",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/sharp-edges?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/sharp-edges",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/55bb36675befa02389c9cebe50716e8bc133ab7e",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/sharp-edges?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/55bb36675befa02389c9cebe50716e8bc133ab7e",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/sharp-edges"
+    }
+  },
+  {
+    "name": "spec-to-code-compliance",
+    "path": "plugins/spec-to-code-compliance",
+    "sha": "24999569509e998a2ec574890391877dacf68e5d",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/spec-to-code-compliance?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/spec-to-code-compliance",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/24999569509e998a2ec574890391877dacf68e5d",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/spec-to-code-compliance?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/24999569509e998a2ec574890391877dacf68e5d",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/spec-to-code-compliance"
+    }
+  },
+  {
+    "name": "static-analysis",
+    "path": "plugins/static-analysis",
+    "sha": "7d51c070edcfd573c86221e24e70e670658b482d",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/static-analysis?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/static-analysis",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/7d51c070edcfd573c86221e24e70e670658b482d",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/static-analysis?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/7d51c070edcfd573c86221e24e70e670658b482d",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/static-analysis"
+    }
+  },
+  {
+    "name": "supply-chain-risk-auditor",
+    "path": "plugins/supply-chain-risk-auditor",
+    "sha": "e4bf3afde50db950f7a760bb704c6d8a22e7f113",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/supply-chain-risk-auditor?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/supply-chain-risk-auditor",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/e4bf3afde50db950f7a760bb704c6d8a22e7f113",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/supply-chain-risk-auditor?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/e4bf3afde50db950f7a760bb704c6d8a22e7f113",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/supply-chain-risk-auditor"
+    }
+  },
+  {
+    "name": "testing-handbook-skills",
+    "path": "plugins/testing-handbook-skills",
+    "sha": "95d4beb5988b8aa0d911baa4254e51ca74480b36",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/testing-handbook-skills?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/95d4beb5988b8aa0d911baa4254e51ca74480b36",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/testing-handbook-skills?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/95d4beb5988b8aa0d911baa4254e51ca74480b36",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/testing-handbook-skills"
+    }
+  },
+  {
+    "name": "trailmark",
+    "path": "plugins/trailmark",
+    "sha": "33f45793c678c3d84368233c787d76ac01f3eb05",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/trailmark?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/trailmark",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/33f45793c678c3d84368233c787d76ac01f3eb05",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/trailmark?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/33f45793c678c3d84368233c787d76ac01f3eb05",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/trailmark"
+    }
+  },
+  {
+    "name": "variant-analysis",
+    "path": "plugins/variant-analysis",
+    "sha": "67b3b05fd0e7c27f40d45655b3c09ef95c546af3",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/variant-analysis?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/variant-analysis",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/67b3b05fd0e7c27f40d45655b3c09ef95c546af3",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/variant-analysis?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/67b3b05fd0e7c27f40d45655b3c09ef95c546af3",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/variant-analysis"
+    }
+  },
+  {
+    "name": "vulnerability-triage-brocards",
+    "path": "plugins/vulnerability-triage-brocards",
+    "sha": "6f1b088498618bb90f87fe52b4c1cf53b24f3490",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/vulnerability-triage-brocards?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/vulnerability-triage-brocards",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/6f1b088498618bb90f87fe52b4c1cf53b24f3490",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/vulnerability-triage-brocards?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/6f1b088498618bb90f87fe52b4c1cf53b24f3490",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/vulnerability-triage-brocards"
+    }
+  },
+  {
+    "name": "writing-lean-proofs",
+    "path": "plugins/writing-lean-proofs",
+    "sha": "e8b922f92dd1111b649495f0a7aa7a43222e61ff",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/writing-lean-proofs?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/writing-lean-proofs",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/e8b922f92dd1111b649495f0a7aa7a43222e61ff",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/writing-lean-proofs?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/e8b922f92dd1111b649495f0a7aa7a43222e61ff",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/writing-lean-proofs"
+    }
+  },
+  {
+    "name": "yara-authoring",
+    "path": "plugins/yara-authoring",
+    "sha": "beed130fdd6392d48011af072eae2e4d4388bcad",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/yara-authoring?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/yara-authoring",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/beed130fdd6392d48011af072eae2e4d4388bcad",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/yara-authoring?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/beed130fdd6392d48011af072eae2e4d4388bcad",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/yara-authoring"
+    }
+  },
+  {
+    "name": "zeroize-audit",
+    "path": "plugins/zeroize-audit",
+    "sha": "234734df42b44080e40770f874c1271af67065d6",
+    "size": 0,
+    "url": "https://api.github.com/repos/trailofbits/skills/contents/plugins/zeroize-audit?ref=main",
+    "html_url": "https://github.com/trailofbits/skills/tree/main/plugins/zeroize-audit",
+    "git_url": "https://api.github.com/repos/trailofbits/skills/git/trees/234734df42b44080e40770f874c1271af67065d6",
+    "download_url": null,
+    "type": "dir",
+    "_links": {
+      "self": "https://api.github.com/repos/trailofbits/skills/contents/plugins/zeroize-audit?ref=main",
+      "git": "https://api.github.com/repos/trailofbits/skills/git/trees/234734df42b44080e40770f874c1271af67065d6",
+      "html": "https://github.com/trailofbits/skills/tree/main/plugins/zeroize-audit"
+    }
+  }
+]
