@@ -26,6 +26,7 @@ function runPoolArm() {
   var avail = [];
   if (S.petals) avail.push({ name: "petals", fn: function (p) { return S.petals.generate({ inputs: p, maxNewTokens: 12 }); } });
   if (S.groq) avail.push({ name: "groq", fn: function (p) { return S.groq.generate({ prompt: p, maxTokens: 12 }); } });
+  if (S.openrouter) avail.push({ name: "openrouter", fn: function (p) { return S.openrouter.generate({ prompt: p, maxTokens: 256 }); } });
   var per = [];
   var t0 = nowFn()();
   var seq = Promise.resolve();
@@ -115,7 +116,7 @@ function verdict(pool, incumbent, floor) {
     return { verdict: "fail", speedupVsIncumbent: ratio, note: "pool ran but <2x" };
   }
   if (pool.succeeded === 0 && fixable) {
-    return { verdict: "blocked", note: "no working pool arm (groq needs key; petals swarm empty)", pool: pool };
+    return { verdict: "blocked", note: "no working pool arm (keyed sources unavailable; petals swarm empty)", pool: pool };
   }
   return { verdict: "fail", note: "pool incomplete", pool: pool };
 }

@@ -1,0 +1,116 @@
+<!-- STAGED FRAGMENT — NOT LOADED. Inline at end of index.html <body> (after the
+     G3 download-button script). Key-paste card for Track B P3/P4.
+     Contains NO secrets — form markup + wiring only. -->
+<section class="card" id="poolKeysCardEl">
+  <h2>Pool keys (Track B scaffolding)</h2>
+  <p class="hidden-note">Borrowed-capability pool: paste one key per source and the router dials out itself. Keys live ONLY in this browser (local kv) — never in the repo, never uploaded. Bench-synthetic data only to third-party tiers.</p>
+  <div class="grid2" id="poolKeysGridCtn">
+    <div class="stat" id="poolGroqBoxEl">
+      <b>Groq</b> <a href="https://console.groq.com/keys" target="_blank" rel="noopener">get key</a>
+      <div class="controls"><input type="password" id="poolGroqKeyInput" placeholder="gsk_..." autocomplete="off" spellcheck="false"></div>
+      <div class="controls"><button id="poolGroqSaveBtn">Save</button><button id="poolGroqTestBtn">Test</button></div>
+      <div class="hidden-note" id="poolGroqMsgEl">no key saved</div>
+    </div>
+    <div class="stat" id="poolOrBoxEl">
+      <b>OpenRouter</b> <a href="https://openrouter.ai/keys" target="_blank" rel="noopener">get key</a>
+      <div class="controls"><input type="password" id="poolOrKeyInput" placeholder="sk-or-..." autocomplete="off" spellcheck="false"></div>
+      <div class="controls"><button id="poolOrSaveBtn">Save</button><button id="poolOrTestBtn">Test</button></div>
+      <div class="hidden-note" id="poolOrMsgEl">no key saved</div>
+    </div>
+    <div class="stat" id="poolHfBoxEl">
+      <b>Hugging Face</b> <a href="https://huggingface.co/settings/tokens" target="_blank" rel="noopener">get key</a>
+      <div class="controls"><input type="password" id="poolHfKeyInput" placeholder="hf_..." autocomplete="off" spellcheck="false"></div>
+      <div class="controls"><button id="poolHfSaveBtn">Save</button><button id="poolHfTestBtn">Test</button></div>
+      <div class="hidden-note" id="poolHfMsgEl">no key saved</div>
+    </div>
+    <div class="stat" id="poolKaggleBoxEl">
+      <b>Kaggle</b> <a href="https://www.kaggle.com/account" target="_blank" rel="noopener">get key</a>
+      <div class="controls"><input type="text" id="poolKaggleUserInput" placeholder="username" autocomplete="off" spellcheck="false"></div>
+      <div class="controls"><input type="password" id="poolKaggleKeyInput" placeholder="api key" autocomplete="off" spellcheck="false"></div>
+      <div class="controls"><button id="poolKaggleSaveBtn">Save</button><button id="poolKaggleTestBtn">Test</button></div>
+      <div class="hidden-note" id="poolKaggleMsgEl">no key saved</div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  function say(id, t){ const el = document.getElementById(id); if (el) el.textContent = t; }
+  async function statusLine(source){
+    try {
+      const has = await window.__pool.vault.hasKey(source);
+      const st = await window.__pool.vault.getStatus(source);
+      return (has ? "key saved" : "no key saved") + (st && st.status ? " · " + st.status + (st.reason ? " (" + st.reason + ")" : "") : "");
+    } catch (e) { return "vault unavailable"; }
+  }
+  function wireSingle(prefix, source, testFn){
+    const input = document.getElementById("pool" + prefix + "KeyInput");
+    const saveBtn = document.getElementById("pool" + prefix + "SaveBtn");
+    const testBtn = document.getElementById("pool" + prefix + "TestBtn");
+    const msgId = "pool" + prefix + "MsgEl";
+    if (!input || !saveBtn || !testBtn) return;
+    saveBtn.onclick = async () => {
+      saveBtn.disabled = true;
+      try {
+        await window.__pool.vault.saveKey(source, input.value);
+        input.value = "";
+        await window.__pool.vault.setStatus(source, "untested", "saved-by-user");
+        say(msgId, await statusLine(source));
+      } catch (e) { say(msgId, "save failed: " + String((e && e.message) || e).slice(0, 100)); }
+      saveBtn.disabled = false;
+    };
+    testBtn.onclick = async () => {
+      testBtn.disabled = true; say(msgId, "testing…");
+      try { say(msgId, await runTest(source, testFn)); }
+      catch (e) { say(msgId, "test error: " + String((e && e.message) || e).slice(0, 100)); }
+      testBtn.disabled = false;
+    };
+    statusLine(source).then(t => say(msgId, t));
+  }
+  async function runTest(source, testFn){
+    const r = await testFn();
+    if (r && r.ok) {
+      await window.__pool.vault.setStatus(source, "live", Math.round(r.wallMs) + "ms");
+      return "live · " + Math.round(r.wallMs) + "ms · " + String(r.outputs || r.detail || "").slice(0, 60);
+    }
+    const reason = ((r && r.reason) || "") + "";
+    if (r && r.authOk) {
+      await window.__pool.vault.setStatus(source, "auth-ok", reason.slice(0, 80));
+      return "key valid · " + reason.slice(0, 120);
+    }
+    await window.__pool.vault.setStatus(source, "dead", reason.slice(0, 80));
+    return "failed: " + reason.slice(0, 120) + ((r && (r.needsRePaste || r.needsKey)) ? " — check key, save again" : "");
+  }
+  function boot(){
+    if (!window.__pool || !window.__pool.vault || !window.__pool.sources) { setTimeout(boot, 500); return; }
+    const S = window.__pool.sources;
+    if (S.groq) wireSingle("Groq", "groq", () => S.groq.generate({ prompt: "Reply with exactly: POOL-OK", maxTokens: 8 }));
+    if (S.openrouter) wireSingle("Or", "openrouter", () => S.openrouter.generate({ prompt: "Reply with exactly: POOL-OK", maxTokens: 128 }));
+    if (S.huggingface && S.huggingface.test) wireSingle("Hf", "huggingface", () => S.huggingface.test());
+    else if (S.huggingface) wireSingle("Hf", "huggingface", () => S.huggingface.generate({ prompt: "The capital of France is", maxTokens: 16 }));
+    const ku = document.getElementById("poolKaggleUserInput");
+    const kk = document.getElementById("poolKaggleKeyInput");
+    const ks = document.getElementById("poolKaggleSaveBtn");
+    const kt = document.getElementById("poolKaggleTestBtn");
+    if (S.kaggle && ku && kk && ks && kt) {
+      ks.onclick = async () => {
+        ks.disabled = true;
+        try {
+          await window.__pool.vault.saveKey("kaggle", JSON.stringify({ u: ku.value.trim(), k: kk.value }));
+          kk.value = "";
+          await window.__pool.vault.setStatus("kaggle", "untested", "saved-by-user");
+          say("poolKaggleMsgEl", await statusLine("kaggle"));
+        } catch (e) { say("poolKaggleMsgEl", "save failed: " + String((e && e.message) || e).slice(0, 100)); }
+        ks.disabled = false;
+      };
+      kt.onclick = async () => {
+        kt.disabled = true; say("poolKaggleMsgEl", "testing…");
+        try { say("poolKaggleMsgEl", await runTest("kaggle", () => S.kaggle.test())); }
+        catch (e) { say("poolKaggleMsgEl", "test error: " + String((e && e.message) || e).slice(0, 100)); }
+        kt.disabled = false;
+      };
+      statusLine("kaggle").then(t => say("poolKaggleMsgEl", t));
+    }
+  }
+  boot();
+})();
+</script>

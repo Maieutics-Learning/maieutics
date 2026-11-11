@@ -1,12 +1,13 @@
-// Track B pool — P7 router (own code, no steal). PROVISIONAL: P5 has not
-// passed (blocked on Groq key + empty Petals swarm), so this wires the
-// priority list + failover + global-timeout mechanics against the sources
-// that exist today. No auto-repricing, no coin market (R6): static priority,
-// health-gated by heartbeat rows, breaker-aware. Keys via P3 vault only.
+// Track B pool — P7 router (own code, no steal). FULL: P5 passed 2026-11-11
+// via the keyed OpenRouter arm (pool 3/3 in ~5.9s vs incumbent 3/3 in
+// ~12.7s, ~2.15x), so the priority list now spends the saved keys.
+// No auto-repricing, no coin market (R6): static priority, health-gated by
+// heartbeat rows, breaker-aware. Keys via P3 vault only.
 //   routeSmoke(opts) -> P1 result through the chain (P7 gate task).
 //   routeLLM({prompt, maxTokens}) -> first-success across
-//     [groq-if-keyed, petals], else degraded (pool exhausted -> status,
-//     never hang). Floor is infeasible for open LLM Qs (no local LLM).
+//     [groq-if-keyed, openrouter-if-keyed, petals], else degraded
+//     (pool exhausted -> status, never hang). Floor is infeasible for open
+//     LLM Qs (no local LLM).
 (function () {
 "use strict";
 
@@ -65,50 +66,70 @@ function routeLLM(opts) {
     if (!S.petals) return Promise.resolve({ ok: false, reason: "petals-unwired" });
     return S.petals.generate({ inputs: prompt, maxNewTokens: maxTokens });
   }
-  // groq only if a key exists (else skip without a failing call)
+  function orCall() {
+    if (!S.openrouter) return Promise.resolve({ ok: false, reason: "openrouter-unwired" });
+    // The default free OpenRouter model reasons before answering; give it
+    // room even when the caller asked for a short completion.
+    return S.openrouter.generate({ prompt: prompt, maxTokens: Math.max(maxTokens, 256) });
+  }
+  // Keyed sources only if a key exists (else skip without a failing call);
+  // petals stays as the keyless tail. Max 2 in flight: first fires at once,
+  // second is the hedge, third fires only as failover.
   var primaries;
   if (V) {
-    primaries = V.hasKey("groq").then(function (has) {
-      return has ? [groqCall, petalsCall] : [petalsCall];
+    primaries = Promise.all([V.hasKey("groq"), V.hasKey("openrouter")]).then(function (has) {
+      var calls = [];
+      if (has[0] && S.groq) calls.push({ name: "groq", call: groqCall });
+      if (has[1] && S.openrouter) calls.push({ name: "openrouter", call: orCall });
+      if (S.petals) calls.push({ name: "petals", call: petalsCall });
+      return calls;
     });
   } else {
-    primaries = Promise.resolve([groqCall, petalsCall]);
+    primaries = Promise.resolve([
+      { name: "groq", call: groqCall },
+      { name: "openrouter", call: orCall },
+      { name: "petals", call: petalsCall }
+    ]);
   }
   return primaries.then(function (calls) {
     // fire first immediately; hedge fires the second after HEDGE_DELAY_MS
-    // if nothing succeeded yet. First success wins.
+    // if nothing finished yet; later calls fire only as failover.
+    // First success wins; exhaustion -> degraded, never hang.
     return new Promise(function (resolve) {
       var finished = false;
       var results = [];
+      var attempted = [];
+      var fired = 0;
       function finishOk(r) {
         if (finished) return; finished = true;
         r.routedMs = nowFn()() - t0; r.attempted = attempted.slice(); resolve(r);
       }
-      function noteFail(r, name) {
-        results.push(name + ":" + (r && r.reason));
-        attempted.push(name);
-        if (results.length >= calls.length && !finished) {
-          finished = true;
-          resolve({ ok: false, reason: "pool-exhausted", detail: results.join(" | "),
-            degraded: true, routedMs: nowFn()() - t0, attempted: attempted.slice() });
-        }
-      }
-      calls.forEach(function (call, i) {
-        function fire() {
+      function fireNext() {
+        if (finished || fired >= calls.length) return;
+        var c = calls[fired++];
+        attempted.push(c.name);
+        withTimeout(c.call(), GLOBAL_TIMEOUT_MS, function () {
+          return { ok: false, reason: "router-timeout" };
+        }).then(function (r) {
           if (finished) return;
-          var name = (call === groqCall) ? "groq" : "petals";
-          withTimeout(call(), GLOBAL_TIMEOUT_MS, function () {
-            return { ok: false, reason: "router-timeout" };
-          }).then(function (r) {
-            if (r && r.ok) finishOk(r);
-            else noteFail(r, name);
-          });
-        }
-        if (i === 0) fire();
-        else setTimeout(fire, HEDGE_DELAY_MS);
-      });
-      // edge: empty call list
-      if (!calls.length) resolve({ ok: false, reason: "no-sources", degraded: true, routedMs: 0, attempted: [] });
+          if (r && r.ok) { finishOk(r); return; }
+          results.push(c.name + ":" + (r && r.reason));
+          if (fired < calls.length) fireNext();
+          else {
+            finished = true;
+            resolve({ ok: false, reason: "pool-exhausted", detail: results.join(" | "),
+              degraded: true, routedMs: nowFn()() - t0, attempted: attempted.slice() });
+          }
+        });
+      }
+      if (!calls.length) {
+        resolve({ ok: false, reason: "no-sources", degraded: true, routedMs: 0, attempted: [] });
+        return;
+      }
+      fireNext();
+      if (calls.length > 1) {
+        setTimeout(function () { if (!finished && fired < calls.length) fireNext(); }, HEDGE_DELAY_MS);
+      }
     });
   });
 }
