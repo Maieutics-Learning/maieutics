@@ -659,3 +659,6 @@ never "feels faster" — wall time, accuracy, loss, token counts.
 
 ## 2026-11-12 — PUSHED 627bbac (user-supplied PAT, parent eb97a62)
 - Bulk push via git-blobs API: 404 files (404 uploaded), 327 unchanged, 0 deleted. Covers Track C R63 notes/state/log + tool/doc updates. Blob-compare pre-push: 6 modified + 398 new. Ref verified at 627bbacc217b7d5330f8bc70018783da8db4aa9d.
+
+## 2026-11-12 — PUSHED 524fc11 (user-supplied PAT, parent 0c2afb3)
+- Bulk push via git-blobs API: 22 files uploaded, 729 unchanged, 0 deleted. Covers Track C wind-down Waves 408-414 (w408-notch through w414-cliff notes + grids + bench/sandbox scripts w345-w350) + synthesis-r66 + track-c state/log. Backlog drained 6->0 (391 waves). Ref verified at 524fc11.
