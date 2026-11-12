@@ -5,6 +5,19 @@ procedure, the rules learned the hard way) plus optional runnable scripts
 beside it. Each skill below was built for real work, verified live, and
 kept current — copy anything you want, that's what they're for.
 
+## Workspace durability (read first — user-set 2026-11-11)
+
+`scratch/` is a recycling bin, NOT durable storage. Assume it may be wiped
+on reload, compaction, or new chat. `src/` is the durable, versioned home;
+it ships publicly, so never put secrets there.
+MUST: run state, logs, notes, evidence, code, docs live ONLY under `src/`.
+MAY: use `scratch/` ONLY for re-fetchable/regenerable intermediates (fetch
+dumps, unzip temp, caches, sandboxes). MUST NOT store a sole copy of
+referenced work in `scratch/` or link durable docs to `scratch/` paths.
+IF `scratch/` content is cited THEN the durable log MUST carry the source
+URL or a deterministic regenerate-from-`src/` recipe. AFTER any handoff,
+reconcile from `src/` + handoff note only (newest `src/` timestamp wins).
+
 ## Index
 
 | Skill | Path | Needs | One line |

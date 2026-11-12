@@ -5,6 +5,8 @@ Long-term project: build our own AI inspired by Geiping et al. **arXiv:2502.0517
 
 Start here: `src/CHATLOG.md` (session log — decisions + measurements, newest last), `src/CURRENT_TASK.md` (working task record).
 
+AI orientation (read this first, every session): reusable skills live under `src/tools/` (index at `src/tools/README.md` — websearch, rabbithole, memory, fresh-eyes, eval-harness, paper-compile, and more). Check there BEFORE inventing a procedure. Forgetting that folder exists is a known, repeated failure mode — this line is the reminder.
+
 Workspace rule (2026-11-11, user): `scratch/` is a recycling bin, not a sandbox — nothing referenced may live there. Run records, review verdicts, and working data live in `src/evidence/`; pointers in the paper (`index.html`) and track files (`src/steal/`) aim at `src/evidence/`, never at `scratch/`.
 
 ## What the paper did (Sec 3–7)

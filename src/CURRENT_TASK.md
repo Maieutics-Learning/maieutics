@@ -15,7 +15,7 @@
 - Memory audit 2026-11-10: CURRENT_TASK was stale (still said G-series), CHATLOG missed skill+steal entries, Phase 2.5 rewrite skipped its snapshot (post-hoc snapshot: src/evidence/gameplan-snapshots/2026-11-10-pre-steal-phase25.md, provenance labeled). Steal files moved scratch→src/steal for durability.
 
 ## Unpushed
-- Nothing. Pushed with user-supplied PAT 2026-11-11: commit 7541c34 on Maieutics-Learning/maieutics main (parent 2a61655): 288 blobs uploaded / 45 unchanged, 1 remote deletion (src/pool/keys-card.html — staged fragment removed from workspace earlier), verify 337/337 blobs incl. all 137 gseries-v2 ledgers. Covers scratch evacuation (src/evidence/), repathed pointers, gameplan mesh + battery, CHATLOG + CURRENT_TASK. (First attempt hit wrong ref endpoint /git/ref + PATCH 404; retry with /git/refs succeeded; dangling objects from attempt 1 are unreachable, harmless.)
+- Nothing. 7541c34 (288 up / 45 unchanged / 1 del, 337 blobs verified) + follow-up eb97a62 (2 log files). Full records in CHATLOG.
 
 ## Pending
 - [ ] Steal tracks: battery 2 DONE (8 rounds, 48 reviewers, R8 6/6 HOLD — CHATLOG has the record). User corrections adopted: A = code and/or AI instructions; B = scaffolding tool that dials out itself, automated after one-time paste (keys local-kv only). Run A1, B1+B2, C1+C3. NOT started — user holds the go-order.

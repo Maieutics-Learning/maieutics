@@ -1,0 +1,24 @@
+# Synthesis R30 (covers log Waves 190–194) 2026-11-11
+
+STOP RULE: stop only when justified by user request or out of leads (no waves left). Queue-jump per rule 5 — backlog unchanged, state untouched, 0-fetch.
+
+Verdicts covered (all USED; one with teeth, one boundary; no conflicts, no precursors, no SKIPs):
+- W190 config-space coverage (backlog-W163): argmin moves (16,.16)->(16,.02), adaptive follows with 200-400w lag, 1.47x on mean; defects priced (noise double-count bias ~0.8/w, LS transient ~4400).
+- W191 early-ignition predictor (backlog-W164): USED-with-teeth boundary — no lottery on parity6-h16 at any share (31/32, 30/32, 32/32); pipeline built, gated, waiting; less-aux-raises-floor noted against interest.
+- W192 steering-threshold tuning (backlog-W165): S dominates 3x, cooldown pure loss, discriminator reorders (K-first vs bias-first) on serves-vs-attempts Pareto; stuck-at-K2 mechanism identified not reproduced; fixed-arm calibration diverges (owned).
+- W193 parity shock ladder (backlog-W166): breaking point bracketed 30-100; cut = pause not dip; dose x time integral hypothesis; auxW inverted-U (0:.575/1:.977/3:.897); drag-release scoped to assocR; debt address re-confirmed.
+- W194 loose-gate treatment test (backlog-W167): stakes budget scales with fp (±.005 -> ~.38); false-cost dominance >=95%; routed ~= retrieval at all gates; k* = .62*fp/(fp+tp); level/stakes separation.
+
+New convergences (4):
+1. Decisions need variance (W191 + W194 + W190): uniform success is unroutable (W191); the gate sets the stakes budget treatments compete within (W194); identification error is free on flat tops, priced on sharp landscapes (W190 pre vs post, W193 control-spread .06 vs cut-spread .58). One shape: no spread, no decision; know which landscape you're on before buying a meter.
+2. The instrument decides more than the policy (W190 + W192 + W193): double-counted noise beats the decision rule (W190); K-first-vs-bias-first ordering beats the discriminator's precision story (W192); trajectory meters see pauses point meters miss (W193). Three waves in a row where the headline moved from the policy to the measurement apparatus. Meter-first is now a standing rule, not a suggestion.
+3. Calibrated rebuilds as method (W190 + W192 + W194): c-sweep picks the interior world openly (W190); v1 killed for unpriced K + fixed-arm divergence owned (W192); W151 mechanics reused verbatim with pre-registered predictions, all four confirmed (W194). The round's honesty pattern: rebuilds carry their divergences in the note, and every tuning claim is labeled within-world. Contrast with the pre-registration habit (W191's gate, W194's four predictions) — the trail now binds itself before seeing numbers twice in five waves.
+4. Lottery learned its bounds (W191 + W185 + W170 + W193): W191 scopes the ignition lottery to substrate (parity6-h16 ~universal ignition) rather than extending the triple-sighting; W193 shows early-cut RESURRECTING lottery full aux had eliminated. The lottery is no longer "a thing that happens" but a thing with an address (pre-ignition cut, weak aux, specific substrates) — same addressing move as debt (W185) and stakes (W194). The ledger's phenomena keep acquiring WHEREs.
+
+Kill/scope ledger additions: fade-shape debates (moot, W184-carry), tax-generality (bounded, W186-carry), N=5 sensitivity (artifact, W188-carry), auxW-monotonicity (inverted-U, W193), discriminator-precision (rejected for speed, W192), cooldown-value (none here, W192), point-meter sufficiency (for timing interventions, W193), W150-lottery-generality (scoped, W191), selective-gate treatment debate (budget zero, W194).
+
+Cross-round threads: the ignition lottery is now triple-sighted AND bounded (W191's scope is the responsible counterpart to W175/W176's pending decision); debt address triple-confirmed (W185 testIn, W193 testIn/hard split, W188's resonance as the detector analogue); the siren ledger gains its fifth entry (W192 unpriced levers); k* graduates from single-gate map (W174) to formula (W194); forgetting-rate (W190) + bill-every-lever (W192) + filter-first (W194) = the round's three design rules, all priced.
+
+Open honesty collateral (8): W175 (hint-dose), W176 (cut-recovery horizon — decides lottery-vs-mechanism with W175), W177 (tax-stability) + W178 (OBF-2 field test on it), W179 (adaptive tau), W180 (corrected model + LS regularization + memory-price curve), W181 (lottery-substrate hunt + predictor), W182 (price-frontier + false stalls + trickle), W183 (bisection + integral + inverted-U + G-series), W184 (selective-abstain hybrid). The ledger's debt grows faster than its repayments — bisection/integral waves (W183, W176) are the highest-yield repayments; substrate hunts (W181, W177) the riskiest.
+
+Clock: R30 0/5 (RESET). Next: breadth-first at backlog head (W168 gate-meter threshold calibration).

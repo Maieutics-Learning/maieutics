@@ -54,13 +54,12 @@ User says one of:
   report) is BANNED; a turn ends when the work is done or blocked, never to
   force a check-in.
 
-No root question given = default to the standing topic in
-`scratch/CURRENT_TASK.md` (at writing: the project wall — capacity vs.
-interference, current lead PCGrad). Slug = short kebab-case of the root;
-`continue` resumes the most-recently-updated run; record active slugs in
-`scratch/CURRENT_TASK.md`.
+No root question given = default to the standing topic in the durable working
+record (`src/CURRENT_TASK.md`; NEVER `scratch/` alone — scratch is a bin and
+may be wiped). Slug = short kebab-case of the root; `continue` resumes the
+most-recently-updated run; record active slugs in the durable working record.
 
-## State (all under `scratch/rabbithole/<slug>/`)
+## State (all under the durable run dir, e.g. `src/evidence/rabbithole/<slug>/` — NEVER `scratch/` alone)
 
 - `state.json`: `{ root, capWavesOrNull, wavesUsed, pace, branches: {open,
   dead, backlog}, findings, verdicts, scopeNotes, status,
@@ -70,8 +69,10 @@ interference, current lead PCGrad). Slug = short kebab-case of the root;
   in every report so it can never be buried.
 - `STOP`: if this file exists, do not start another wave.
 
-`scratch/` is private and may not survive forever; after compaction or disconnect,
-reconcile state with `scratch/CURRENT_TASK.md` before continuing.
+`scratch/` may be wiped at any time and MUST NOT hold the authoritative copy
+of anything referenced. After compaction or disconnect, reconcile from the
+handoff note + durable working record + durable `state.json` + log tail
+before continuing (newest durable timestamp wins).
 
 ## Wave loop (cautious defaults)
 
@@ -85,13 +86,39 @@ reconcile state with `scratch/CURRENT_TASK.md` before continuing.
 4. Fetch at most 2 PRIMARY sources (arxiv/repo/docs) via `fetch_url`.
 5. Synthesize: per-branch verdict (useful / dead end + why); failed search =
    inconclusive (retry once, varied); clean empty search = negative evidence.
-6. Update `state.json`, `log.md`, and `scratch/CURRENT_TASK.md` checkpoint.
+6. Checkpoint (memory: checkpoint-after-every-wave, incremental). Update
+   durable `state.json`, `log.md`, and working-record checkpoint (all under
+   `src/`, NEVER `scratch/` alone — a `scratch/` copy is a disposable extra,
+   never the checkpoint). Write results incrementally so an interrupted wave
+   resumes from the file, not from scratch; scripts filter `done` on start.
+   Before any plan/synthesis rewrite, save the verbatim current version +
+   log the path (snapshot rule — reconstruction from memory is how drift
+   starts). Append-only: never rewrite history; supersede explicitly
+   ("X retracted, Y measured instead") — retractions are first-class entries.
 7. Queue rule (user-set 2026-11-10): every finished wave MUST open at least 1
-   new wave (append to `branches.open`). The queue never empties by finishing
-   work — it empties only at run end (user stop, genuine block, explicit cap,
-   or proven-dry: a wave that genuinely cannot spawn a follow-up, logged with
-   why). If `branches.open` is ever empty outside run end, that is a bug.
-8. pause/report: short status, then continue while the turn is active.
+    new wave (append to `branches.open`). The queue never empties by finishing
+    work — it empties only at run end (user stop, genuine block, explicit cap,
+    or proven-dry: a wave that genuinely cannot spawn a follow-up, logged with
+    why). If `branches.open` is ever empty outside run end, that is a bug. Spawn order is
+breadth-first (append to back), no cap, multiple spawns per cleared wave allowed
+(user-set 2026-11-11). Run end = user stop or out-of-leads (user phrasing for
+proven-dry); consumed entries are removed at execution.
+8. pause/report: checkpoint first (step 6), then short status, then continue
+   while the turn is active. Report + next-wave tools are ATOMIC — a wave
+   summary must ride in the same turn as the next wave's tool calls, never
+   as a bare tool-call-free message (user-set 2026-11-11, earned from
+   W31-type stall: summary with no tools ends the turn and stalls the run
+   even though nobody said stop). Mandatory closer: "Next: <backlog head> —
+   tools below." plus ACTUAL tools below. BANNED closings (each is a
+   permission gate on its face): "when you say go", "whenever you're
+   ready", "want me to continue?", "say continue", "let me know", or any
+   closing that transfers initiative to the user. "Good chunk to report" is
+   NOT an exemption — after N waves either keep chaining or declare an
+   explicit HANDOFF, and a HANDOFF by choice is justified ONLY by (a) "I
+   have run out of leads, there are no more waves left" (all-four
+   out-of-leads) or (b) "The user explicitly asked me to stop" (stop/hold
+   for this turn). Turn length, waves already run this turn, and desire
+   for visibility never justify yielding — never a bare status.
    pause/report is NON-blocking — never a permission gate. NEVER ask the user
    for `continue`: standing permission to resume is assumed YES (user-set
    2026-11-10); ending a turn with "say continue" as a precondition for more
@@ -117,14 +144,58 @@ instead of them. A plain reply with no tools IS the handoff — emit one only
 when the run is truly over (stopped, capped, or blocked). When in doubt, keep
 chaining. Past behavior to not repeat: winding down after a few waves because
 the agenda emptied — the hole is nearly endless by design.
+Two stops look identical on the wire (a message with no tools) but differ
+in cause and recoverability — do not conflate them (user-set 2026-11-11,
+tool-debug detour, not a Track C content ruling):
+- Handoff (system-forced, legitimate): compaction checkpoint, disconnect,
+  explicit user hold/pause, or normal-conversation Q&A. Ends the turn by
+  outside order. Recovers via the resume packet (state + log + working
+  record, newest wins) and standing resume-YES — next session reconciles
+  and emits the next wave's tools without asking.
+- Sign-off (habit, forbidden): mid-session wave-boundary summary with no
+  tools behind it and none of the legal turn-enders true. Ends the turn by
+  choice and stalls the run with leads still queued. This is the W31 shape:
+  neither user stop nor out-of-leads, just a report with no tools.
+Turn-close checklist (user-set 2026-11-11, earned from incident: wave-boundary
+sign-offs with no tools behind them): before any tool-call-free message mid-run,
+confirm (1) user stop? (2) out-of-leads = backlog empty AND zero new spawns AND
+tangential slot dead AND lookups closed/parked? (3) genuine block (same tool
+failing after 2 varied retries, or missing user-only input)? If none: keep
+working — emit tool calls, not a sign-off. Legal tool-call-free turn-enders
+mid-run: the stop reasons above, labeled BLOCKED
+("BLOCKED: <reason> | tried: <...> | need: <...>"), or an explicit user hold for
+the current turn. Scope: this section binds rabbithole runs only; normal
+conversation is unaffected and may end turns freely.
+Pre-send gate (user-set 2026-11-11, W31/W34/W35 incidents): before any
+tool-call-free message, confirm one of (1) user stop, (2) all-four
+out-of-leads, (3) BLOCKED with label, (4) explicit user hold for this turn,
+(5) I am answering a user question RIGHT NOW (normal conversation — exempt
+under Scope; questions arriving AFTER the message cannot retroactively
+justify it). Decision rule (user-set 2026-11-11): whenever evaluating
+whether to continue chaining or yield with an explicit HANDOFF for reasons
+of turn length or user request, justify the yield with EITHER (a) "I have
+run out of leads, there are no more waves left" (all-four out-of-leads
+proven) OR (b) "The user explicitly asked me to stop" (stop/hold covering
+this turn). Turn length, waves run, and visibility are never justifications
+on their own. System-forced ends (compaction, disconnect) are not decisions
+and need no justification — write the packet anyway. Explicit handoff
+format: "HANDOFF: <cause: compaction | disconnect | user hold> | packet:
+state+log+record written, newest wins | next: <backlog head + exact
+action>". Log every mid-run tool-call-free end as an incident (what,
+backlog size, which exemption claimed) — visible habits die faster.
 
 ## Interruptions
 
 - errors: retry once, isolate, save good work, record failure.
 - limits: smaller waves, longer pauses; no auto-stop except an explicit cap.
-- compaction: reconcile after — read state.json + log tail + CURRENT_TASK;
-  newest timestamped entry wins conflicts; mark uncertain fields UNKNOWN and
-  re-derive with one wave rather than guessing.
+- compaction: reconcile after — read handoff note + working record +
+  state.json + log tail; newest timestamped entry wins conflicts; mark
+  uncertain fields UNKNOWN and re-derive with one wave rather than
+  guessing. Resume packet invariant (user-set 2026-11-11): backlog head +
+  exact next action must already be written in state and the working
+  record BEFORE any summary text, so a forced handoff costs one resume
+  step, not a debug session. After reconciling, emit the next wave's
+  tools in the same turn — never a bare "ready to resume" message.
 - lost connection: RISK ACCEPTED — resume from last checkpoint.
 - scope: nearly nothing is scope creep (see Purpose). Minor add/remove is mine
   to decide — ask "should this be in scope?", document the answer in
@@ -143,7 +214,10 @@ the agenda emptied — the hole is nearly endless by design.
 ## Scope and ownership
 
 Research + docs only. Read-only toward the lab/generator/repo: may write
-scratch notes, task records, CHATLOG lines, and research docs. No shipped-code
+disposable scratch notes plus durable task records, CHATLOG lines, and
+research docs (durable = under `src/`, NEVER `scratch/` alone).
+Disposable means explicitly OK with losing it; anything referenced later
+MUST have its durable copy under `src/`. No shipped-code
 changes, pushes, or irreversible actions without explicit instruction.
 Assistant is final stakeholder for research direction within scope and throttle.
 
@@ -158,10 +232,56 @@ Assistant is final stakeholder for research direction within scope and throttle.
   itself before committing to a direction. Used here for the agenda and
   the skill's own review (5 points, 2 real gaps fixed).
 
+## Memory (why multi-hour runs work — stolen from the memory skill)
+
+- Four layers, cheapest first: working record (live notebook, short entries,
+  pointers not prose) → run logs (`state.json` + append-only wave log) →
+  verbatim snapshots (exact copies before rewrites) → durable log + pushes
+  (the only layer that survives everything). Anything that matters must
+  climb; log what's unpushed every session so the risk is visible.
+- Newest-wins: after any compaction/disconnect, read handoff note + all
+  layers; newest timestamped entry wins; mark conflicts UNKNOWN and
+  re-derive with one wave rather than guessing. Date everything —
+  undated entries are unorderable.
+- Promote-or-recipe: a script that produces a MEASURED number is data —
+  it lives in a tracked path or its full recipe (config, seeds, every
+  delta vs checked-in code) sits beside the numbers, or the numbers are
+  flagged hearsay. (Earned: D-wave scripts died in `scratch/`; the G
+  series was rebuilt from prose.)
+- Proof it works: steal-track-a at 920 waves active; D-rate/D-slow
+  specified two checkpoints earlier executed exactly; an 8-seed wave
+  killed mid-run resumed from the file (lost hour → lost minute); the log
+  answered a "quick retest" in seconds; a wrong published mechanism was
+  retracted with the exact killing numbers.
+Costs: logs grow without pruning; `scratch/` is a cache with a good hit
+rate, not storage; durability bottlenecks on pushes.
+
+## Durability (global, user-set 2026-11-11)
+
+Trail lives under `src/` (e.g. `src/evidence/rabbithole/<slug>/` for
+state.json + log.md), NEVER under `scratch/` alone. Rationale: scratch is a
+recycling bin; referenced work must be durable. Bulk fetch dumps MAY stay in
+scratch (bin, explicitly disposable) ONLY when every URL is recorded in the
+durable log — URLs are the durable reference, dumps are re-fetchable. All
+other wave-loop/state/queue rules unchanged. Durable logs MUST NOT cite
+`scratch/` paths as live references (provenance/debug pointers only).
+
+## Run instances (tracks specialize; the skill stays generic)
+
+- Track C run rules (canonical for that run):
+  `src/evidence/rabbithole/track-c/RULES.md` — stop/turn phrasing, verdict system,
+  synthesis cadence, trail conventions.
+- Track C shelf/history: `src/steal/papers.md` (points to RULES.md).
+- Novelty-optional verdicts, gated paper patches, sandbox experiments with noted
+  results (user-set 2026-11-11) are run-level regime choices recorded in the
+  run's RULES.md, not skill changes.
+
 ## Sandbox
 
-- Root: `scratch/sandbox/`. Full root access: create, overwrite, or delete
-  anything inside, especially while rabbitholing. Iterations are subfolders
+- Root: `scratch/sandbox/` (disposable by design — explicitly OK with losing
+  it; NEVER the home of referenced work). Full root access: create,
+  overwrite, or delete anything inside, especially while rabbitholing.
+  Iterations are subfolders
   (`s01-...`, `s02-...`); never mutate the real model/training in place —
   copy it into the sandbox first.
 - No new roots: tangents are branches or sandbox iterations, never new runs.
@@ -170,6 +290,7 @@ Assistant is final stakeholder for research direction within scope and throttle.
   method) may be promoted to its own run — log a pointer both ways and keep
   going. Promotion is bookkeeping, not escalation.
 - Docs stay OUT: run state, logs, and records live in
-  `scratch/rabbithole/<slug>/` + task records, so the sandbox can be freely
-  overwritten. Provenance of anything copied in is recorded in the run log
+  the durable run dir + working record, so the sandbox can be freely
+  overwritten. Provenance of anything copied in is recorded in the durable
+  run log
   (outside the sandbox), never inside it.

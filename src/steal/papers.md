@@ -1,5 +1,14 @@
 # Track C — paper rabbithole
 
+RUN RULES (canonical, 2026-11-11): `src/evidence/rabbithole/track-c/RULES.md` — stop/turn/scope,
+wave budget, verdicts, breadth-first spawning, synthesis cadence. This file is the track SHELF +
+history; RULES.md governs the run. If they disagree, RULES.md wins.
+STATUS (2026-11-11): original shelf FULLY READ (W19); source-chasing + conservation waves running
+(W26 done, 26 waves, 33 verdicts). Backlog + standing slot in trail state.json. R2 synthesis next.
+Regime updates since this file was written: novelty optional (improve counts), patches gated on
+user, sandbox experiments allowed with results noted, breadth-first no-cap spawning, stop/turn
+rules per RULES.md.
+
 Standing question: everything about teaching small models to learn — direct,
 tangential, and different methods toward the same goal. Shotgun per the
 rabbithole skill (nearly nothing is scope creep; default wave = one direct +
