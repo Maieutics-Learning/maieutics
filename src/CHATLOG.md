@@ -656,3 +656,6 @@ never "feels faster" — wall time, accuracy, loss, token counts.
 
 ## 2026-11-11 — push 7541c34 (user-supplied PAT, org repo)
 - Blobs+tree overlay on Maieutics-Learning/maieutics main (parent 2a61655): 288 uploaded / 45 unchanged / 1 deletion (keys-card.html staged fragment). Verified 337 blobs incl. 137 gseries-v2 ledgers. Covers evacuation + repaths + mesh + battery + logs. First attempt PATCHed wrong endpoint (/git/ref → 404); retry with /git/refs succeeded.
+
+## 2026-11-12 — PUSHED 627bbac (user-supplied PAT, parent eb97a62)
+- Bulk push via git-blobs API: 404 files (404 uploaded), 327 unchanged, 0 deleted. Covers Track C R63 notes/state/log + tool/doc updates. Blob-compare pre-push: 6 modified + 398 new. Ref verified at 627bbacc217b7d5330f8bc70018783da8db4aa9d.
