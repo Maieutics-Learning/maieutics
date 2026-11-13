@@ -21,7 +21,7 @@ of bench-science sessions with dozens of compactions.
 
 ## The stack (four layers, cheapest first)
 
-1. **Working record** (`scratch/CURRENT_TASK.md`). The live notebook: what
+1. **Working record** (`src/CURRENT_TASK.md`). The live notebook: what
    the task is, what's done, what's queued, key decisions, pointers to
    run records. Rule: newest timestamped entry wins conflicts (newest =
    latest timestamp value, not file position). After any
@@ -42,7 +42,7 @@ of bench-science sessions with dozens of compactions.
    readable status (open/dead/backlog branches, findings, caps). (Trail
    lives under `src/` per the 2026-11-11 durability global — never
    `scratch/` alone.)
-3. **Verbatim snapshots** (`scratch/gameplan-snapshots/<date>-<label>.md`).
+3. **Verbatim snapshots** (`src/gameplan-snapshots/<date>-<label>.md`).
    Exact copies, no paraphrase (see the gap below for why). MANDATORY
    before any gameplan rewrite or critique round; log the snapshot path
    in the working record. Reconstruction from memory is how drift starts;
@@ -53,17 +53,20 @@ of bench-science sessions with dozens of compactions.
    and why. This + git is the only layer that survives everything. "Link"
    means a relative file path from the repo root (e.g.
    `src/tinynn/gseries.js`), never a bare filename or URL — in ALL layers.
-   DURABILITY POLICY (canonical — every other mention points here): no
-   working copy is durable by itself. Layers 1–3 live in `scratch/` as working
-   copies by design; every referenced item must ALSO have its durable copy
-   under `src/` — the `src/` copy is the reference, the `scratch/` copy is
-   the scratchpad, and a link into `scratch/` is a link into a cache:
-   caches get wiped.
+   DURABILITY POLICY (canonical — every other mention points here; revised
+   2026-11-11, external review 2026-11-13 confirmed the old text was stale):
+   `scratch/` is a recycling bin, NOT storage — anything there may be wiped
+   on reload, compaction, or a new chat, and no durable document links to a
+   `scratch/` path. Layers 1–3 live under `src/` as working copies;
+   `scratch/` holds only re-fetchable/regenerable intermediates (fetch
+   dumps, unzip temp, caches, sandboxes). If `scratch/` content is cited,
+   the durable log must carry the source URL or a deterministic
+   regenerate-from-`src/` recipe instead — a bare `scratch/` link is a link
+   into a cache: caches get wiped.
 
 Durability order (weakest → strongest — survivability, not conflict
-precedence; a newer `scratch/` entry still wins under Step 2, then must climb): working record < run logs <
-snapshots (all `scratch/`, private, may not survive a reload or a new
-chat) < shipped files + git pushes (survive everything — ONCE PUSHED; until
+precedence): unpushed `src/` working layers < shipped files + git pushes
+(survive everything — ONCE PUSHED; until
 then they are only the best local candidates, and the push gap is the
 central risk Step 4 exists to track). Anything that
 matters must climb to layer 4. The climb needs a push token (PAT) — an
@@ -134,7 +137,7 @@ token into chat anyway it is now in chat history, push then rotate it.
   Next steps — specific enough to continue with zero prior context ("Adjacent reality" = real
   things outside the active thread: other tracks, tools, pools, pending
   user interests, generator renames (storage partitions shift)). Name the authoritative working record for this task
-  (`scratch/CURRENT_TASK.md` unless the task keeps its own — two-record
+  (`src/CURRENT_TASK.md` unless the task keeps its own — two-record
   tasks name theirs; see U2).
   `Stand alone` = content complete enough to continue with zero prior
   context, assuming the live workspace (files present) but zero memory of the
@@ -269,8 +272,9 @@ Solved:
   5-case E2E passing (record-stamp, chatlog new/append/split, failures).
 
 Unsolved:
-- U2 TWO WORKING RECORDS. scratch/CURRENT_TASK.md (bench waves) vs
-  scratch/SYNTHESIS_TASK.md (synthesis) — different tasks, newest-wins
+- U2 TWO WORKING RECORDS. src/CURRENT_TASK.md (bench waves) vs
+  scratch/SYNTHESIS_TASK.md (synthesis; pre-durability-rule working copy —
+  promote to src/ on next touch) — different tasks, newest-wins
   cannot apply across tasks. Proposed: task-identity check before
   newest-wins; handoff names the authoritative record.
   FIX P2-4 2026-11-12: Step 2 scopes newest-wins to the authoritative

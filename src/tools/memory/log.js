@@ -5,7 +5,7 @@
 //   const run = new (Object.getPrototypeOf(async function(){}).constructor)("fs","tools","args", src);
 //   return await run(fs, tools, {layer:"record", text:"..."});
 // args: {layer: "record"|"chatlog", text, title?, file?, stamp?}
-//   record  -> appends timestamped line to scratch/CURRENT_TASK.md (default;
+//   record  -> appends timestamped line to src/CURRENT_TASK.md (default;
 //              override with file for U2 two-record tasks); stamp "YYYY-MM-DD
 //              HH:MM" backfills event time (validated, else now).
 //   chatlog -> appends bullets to today's ## section in src/CHATLOG.md
@@ -26,7 +26,7 @@ return await (async () => {
   const stamp = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(stampIn) ? stampIn : nowStamp;
   const day = stamp.slice(0, 10);
   if (layer === "record") {
-    const p = String((args && args.file) || "scratch/CURRENT_TASK.md");
+    const p = String((args && args.file) || "src/CURRENT_TASK.md");
     let cur = "";
     try { cur = await fs.readTextFile(p); } catch (e) { cur = "# " + p.split("/").pop() + "\n"; }
     if (!cur.endsWith("\n")) cur += "\n";

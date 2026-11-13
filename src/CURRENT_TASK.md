@@ -71,3 +71,21 @@
 - [ ] D5 step-1 loop BLOCKED on tutor recipe (6 seeds, best Hd 0.67 < 0.88 gate; longer-training entrenches). Awaiting call: sweep / user-run loop / step 3.
 
 - [x] D5 step-1 loop RUN 2026-11-11: 3/4 ignite (meanHd 0.857), outcome on T1-003, v2 pushed+verified. Tutor-block story resolved (M4 original lost in wipe; rebuild-band gate was the right bar).
+
+## 2026-11-12 — Track C wind-down COMPLETE + pushes (391 waves, backlog 0)
+- Rabbithole Track C closed per wind-down rules (R60–R66, Waves 369–414, no spawns throughout). Receipts/rules in src/evidence/rabbithole/track-c/ (state.json, log.md, synthesis-r60..r66, w-notes).
+- PUSHED 627bbac (404 files, parent eb97a62), 524fc11 (22 files, parent 0c2afb3, Waves 408–414), 62554c1 (34 files, parent 524fc11: skills-battery freeze + memory SECRET HANDLING + rabbithole SKILL). All via git-blobs API, user PAT, refs verified.
+- Repo tip after: 62554c1. Nothing queued.
+
+## 2026-11-13 — evo-fade loop CLOSED + §8.8 + Groq + push d55ae09
+- Cheap-tests a–g (spec + wave1–5 drivers + a–g JSONs, pool spend 0): schedule HOLDS, taught 0.888 vs breed 0.515, transfer 10/12 real (symmetry-easy caveat), single-tutor 4/4 vs champ 4/4 (bench = hedge), hand schedule init-sensitive (n=1 thin), PBT-lite no edge, cyclic/many-to-one rule-ish binding. Batteries v1 6/4 → v2 6/2/2 → v3 steelman 10/10 → stop, satisfaction declared. Premises v1–v3 + results in src/evidence/synthesis/. Pool 0.
+- index.html §8.8 written (numbers byte-identical, 3 refs: ES/PBT/WANN), abstract + §8 intro + tutor bullet updated. Verified live, clean refresh.
+- Groq key imported via temp paste box (user pasted in preview, never chat/files; box removed after). First test http-404: llama-3.3-70b-versatile retired → default now openai/gpt-oss-20b, retest POOL-OK ~1.5s, vault live. Router: groq first.
+- PUSHED d55ae09 (parent 62554c1, 39 files: 34 added + 5 modified, ref verified). Repo clean at push time.
+
+## 2026-11-13 — External review adjudicated + license + front-door fix STAGED (unpushed)
+- Independent review (message-attachments/maieutics-chat-handoff.md): concrete catch VERIFIED + FIXED — memory SKILL pointed at pre-2026-11-11 layout (5 sites fixed: layer-1 path, durability-policy rewrite, handoff default, U2 paths, log.js default src/CURRENT_TASK.md). Methodological demands already practice (prereg bars/CIs/controls/honest negatives); genuine gaps: no LICENSE, no one-command rerun, no claim→artifact index. Review predates G-series/§8.8 (stale base) + repo front door unnavigable (see below).
+- License chosen: Apache-2.0 (code) + CC-BY-4.0 (prose). Holder: Daniel Zikuan Li (no entity yet). AI credit: Muse Spark at perchance.org, named + linked.
+- Root README was a Phase-1/2 time capsule (v0.1, start-at-CHATLOG) — explains the review mismatch. New front door + 12-row results map drafted at src/meta/root-README.md (all ledger paths verified); LICENSE text at src/meta/LICENSE.
+- Snapshot promoted scratch/gameplan-snapshots → src/gameplan-snapshots/ (2335B verified, old deleted, mapping logged in CHATLOG).
+- UNPUSHED (needs user PAT): SKILL.md, log.js, snapshot move, root-README source, LICENSE source, this CHATLOG. Push plan: LICENSE blob under tree path LICENSE, README content under tree path README.md (path overrides, repo-meta not in workspace).
