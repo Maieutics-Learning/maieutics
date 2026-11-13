@@ -9,7 +9,7 @@
 "use strict";
 
 var ENDPOINT = "https://api.groq.com/openai/v1/chat/completions";
-var MODEL_DEFAULT = "llama-3.3-70b-versatile";
+var MODEL_DEFAULT = "openai/gpt-oss-20b";
 var PROVIDER_LINK = "https://console.groq.com/keys";
 var CALL_TIMEOUT_MS = 60000;
 

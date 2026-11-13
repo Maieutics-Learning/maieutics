@@ -1,0 +1,188 @@
+{
+ "test": "g-asymmetric-probe",
+ "preReg": "cyclic holds >=9/12 => symmetry-invariance receipt; many-to-one exploratory",
+ "n": 12,
+ "cycHold": 10,
+ "rows": [
+  {
+   "model": "g203",
+   "std": {
+    "killA": 1,
+    "killHd": 0.765
+   },
+   "cyc": {
+    "killA": 1,
+    "killHd": 0.77
+   },
+   "m21": {
+    "killA": 0.725,
+    "killHd": 0.395
+   }
+  },
+  {
+   "model": "g204",
+   "std": {
+    "killA": 1,
+    "killHd": 0.885
+   },
+   "cyc": {
+    "killA": 1,
+    "killHd": 0.84
+   },
+   "m21": {
+    "killA": 0.715,
+    "killHd": 0.57
+   }
+  },
+  {
+   "model": "g205",
+   "std": {
+    "killA": 1,
+    "killHd": 0.29
+   },
+   "cyc": {
+    "killA": 1,
+    "killHd": 0.37
+   },
+   "m21": {
+    "killA": 0.695,
+    "killHd": 0.345
+   }
+  },
+  {
+   "model": "g206",
+   "std": {
+    "killA": 1,
+    "killHd": 0.54
+   },
+   "cyc": {
+    "killA": 1,
+    "killHd": 0.51
+   },
+   "m21": {
+    "killA": 0.795,
+    "killHd": 0.615
+   }
+  },
+  {
+   "model": "g207",
+   "std": {
+    "killA": 0.85,
+    "killHd": 0.41
+   },
+   "cyc": {
+    "killA": 0.85,
+    "killHd": 0.38
+   },
+   "m21": {
+    "killA": 0.685,
+    "killHd": 0.655
+   }
+  },
+  {
+   "model": "g208",
+   "std": {
+    "killA": 1,
+    "killHd": 0.54
+   },
+   "cyc": {
+    "killA": 1,
+    "killHd": 0.555
+   },
+   "m21": {
+    "killA": 0.925,
+    "killHd": 0.42
+   }
+  },
+  {
+   "model": "s203",
+   "std": {
+    "killA": 1,
+    "killHd": 0.995
+   },
+   "cyc": {
+    "killA": 1,
+    "killHd": 1
+   },
+   "m21": {
+    "killA": 0.77,
+    "killHd": 0.61
+   }
+  },
+  {
+   "model": "s204",
+   "std": {
+    "killA": 0.29,
+    "killHd": 0.52
+   },
+   "cyc": {
+    "killA": 0.32,
+    "killHd": 0.57
+   },
+   "m21": {
+    "killA": 0.515,
+    "killHd": 0.535
+   }
+  },
+  {
+   "model": "s205",
+   "std": {
+    "killA": 0.315,
+    "killHd": 0.555
+   },
+   "cyc": {
+    "killA": 0.29,
+    "killHd": 0.61
+   },
+   "m21": {
+    "killA": 0.455,
+    "killHd": 0.67
+   }
+  },
+  {
+   "model": "s206",
+   "std": {
+    "killA": 1,
+    "killHd": 1
+   },
+   "cyc": {
+    "killA": 1,
+    "killHd": 1
+   },
+   "m21": {
+    "killA": 0.825,
+    "killHd": 0.905
+   }
+  },
+  {
+   "model": "s207",
+   "std": {
+    "killA": 1,
+    "killHd": 1
+   },
+   "cyc": {
+    "killA": 1,
+    "killHd": 1
+   },
+   "m21": {
+    "killA": 0.85,
+    "killHd": 0.93
+   }
+  },
+  {
+   "model": "s208",
+   "std": {
+    "killA": 1,
+    "killHd": 0.99
+   },
+   "cyc": {
+    "killA": 0.995,
+    "killHd": 1
+   },
+   "m21": {
+    "killA": 0.875,
+    "killHd": 0.91
+   }
+  }
+ ]
+}

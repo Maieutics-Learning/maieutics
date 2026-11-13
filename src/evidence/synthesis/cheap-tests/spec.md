@@ -1,0 +1,12 @@
+# Cheap-tests spec v1.0 (pre-registered 2026-11-13) — answers the 6 queued probes from fresh-eyes battery v1
+
+Regime (all tests): attn h48/m96/d16, vocab 9, classes 4, pool buildPool(7, ALLOWED12), exams buildExams(7008) r=4, gate killA>=0.60 && killHd>=0.55. SHORT_FADE = 3x400 steps (attnKeep 1.0/0.5/0.0, softW 1.0, hardW 0). Fresh seeds 301-304 unless reusing Phase-3 blobs (named). Pool spend: 0 (all local CPU worker).
+
+- (a) zero-hint baseline: 4 students, supervised hard-labels only, NO tutor, NO attn hints, 1200 steps, seeds 301-304. Bar: if >=2/4 ignite, the fade-schedule claim WEAKENS (fixed-mix alone suffices). If 0/4, schedule claim HOLDS.
+- (b) same-budget mutation duel (confirm, mostly answered by paper §8.4 breeding-dies: ES pop16x6gens flat within SE, champ Hd 0.515 vs base 0.455): reuse (d)'s T0-taught SHORT_FADE students vs §8.4 champ numbers. Bar: taught students must beat 0.515 Hd by >2SE or the duel is inconclusive; no new ES run needed.
+- (c) novel-rule transfer probe (EVAL-ONLY, no training): load Phase-3 final winners (highest w-blob per arm/seed, 203-208), eval killA/Hd on standard exams (receipt) + permuted exams (keys 0<->1, values 0<->1, y remapped). Bar: perm killA>=0.6 on majority => transfer REAL; perm killA<0.3 majority => memorization (bias-amplification warning CONFIRMED, sharpens toward rule-learning tests).
+- (d) frozen single-tutor ablation: per seed 301-304, train T0 (HINTED 1200); teach 2 SHORT_FADE students: from T0 vs from CHAMP (best Phase-3 winner blob). Bar: if T0-taught ≈ champ-taught (within 1 gen-equivalent, both ignite), bench is OVERHEAD (single champion suffices); if champ-taught wins >=3/4 while T0-taught rots, bench is NEEDED.
+- (e) midKeep sweep (CMA-ES-lite hand step): 1 seed (305), SHORT_FADE with mid attnKeep in {0, 0.25, 0.5, 0.75, 1.0}. Bar: if curve is flat (all ignite or all rot), 0.5 is arbitrary — schedule needs real outer-loop search; if peaked at 0.5, hand schedule KEEPS.
+- (f) PBT-lite (deferred, most complex): pop 4, 2 rounds x 600-step legs, exploit = copy weights of top-2 by (killA+Hd), explore = midKeep ±0.25 + weight noise sigma 0.005; 2 seeds. Bar: beats best fixed-schedule SHORT_FADE student on same seeds by >=1 ignition, else outer-loop PBT not worth its complexity at this scale.
+
+Order: (c) eval-only first, then (a)+(d), then (e)+(b), then (f). Drivers live beside results: `src/evidence/synthesis/cheap-tests/<wave>-driver.js` (durable recipe per promote-or-recipe rule). Ledger: `src/evidence/synthesis/cheap-tests/*.json`.

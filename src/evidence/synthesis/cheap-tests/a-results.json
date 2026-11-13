@@ -1,0 +1,98 @@
+{
+ "test": "a-zero-hint",
+ "preReg": ">=2/4 ignite => schedule claim WEAKENS; 0/4 => HOLDS",
+ "n": 4,
+ "supIgnite": 0,
+ "t0": {
+  "301": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.67,
+    "killDa": 1,
+    "killHu": 0.335,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 211
+  },
+  "302": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.31,
+    "killDa": 1,
+    "killHu": 0.08,
+    "indist": 1
+   },
+   "ig": false,
+   "secs": 211.8
+  },
+  "303": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.47,
+    "killDa": 1,
+    "killHu": 0.15,
+    "indist": 1
+   },
+   "ig": false,
+   "secs": 130.4
+  },
+  "304": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.61,
+    "killDa": 1,
+    "killHu": 0.43,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 130.8
+  }
+ },
+ "sup": {
+  "301": {
+   "ev": {
+    "killA": 0.26,
+    "killHd": 0.25,
+    "killDa": 0.295,
+    "killHu": 0.2,
+    "indist": 0.28
+   },
+   "ig": false,
+   "secs": 209.5
+  },
+  "302": {
+   "ev": {
+    "killA": 0.23,
+    "killHd": 0.295,
+    "killDa": 0.235,
+    "killHu": 0.255,
+    "indist": 0.395
+   },
+   "ig": false,
+   "secs": 149.5
+  },
+  "303": {
+   "ev": {
+    "killA": 0.29,
+    "killHd": 0.67,
+    "killDa": 0.43,
+    "killHu": 0.03,
+    "indist": 0.765
+   },
+   "ig": false,
+   "secs": 100.7
+  },
+  "304": {
+   "ev": {
+    "killA": 0.305,
+    "killHd": 0.615,
+    "killDa": 0.475,
+    "killHu": 0,
+    "indist": 0.755
+   },
+   "ig": false,
+   "secs": 133.4
+  }
+ }
+}

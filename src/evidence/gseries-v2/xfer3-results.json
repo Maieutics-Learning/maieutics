@@ -1,0 +1,1157 @@
+{
+ "battery": "v2-rebuild (see transfer-predictive-spec.md)",
+ "results": {
+  "A7": {
+   "arm": "A",
+   "seed": 7,
+   "steps": 1200,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.965,
+    "killDa": 1,
+    "killHu": 0.78,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.89,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.89,
+    "XpermA": 1,
+    "XpermHd": 0.965
+   },
+   "ignites": true
+  },
+  "A8": {
+   "arm": "A",
+   "seed": 8,
+   "steps": 1200,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.775,
+    "killDa": 1,
+    "killHu": 0.465,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.54,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.63,
+    "XpermA": 1,
+    "XpermHd": 0.7
+   },
+   "ignites": true
+  },
+  "B7": {
+   "arm": "B",
+   "seed": 7,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.785,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.94,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.935,
+     "act": "stay",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 1,
+     "act": "advance",
+     "total": 1000
+    },
+    {
+     "rung": 2,
+     "acc": 1,
+     "act": "done",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0.995,
+    "killHd": 0.52,
+    "killDa": 0.985,
+    "killHu": 0.03,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.67,
+    "Xgap12A": 0.99,
+    "Xgap12Hd": 0.375,
+    "XpermA": 0.995,
+    "XpermHd": 0.51
+   },
+   "ignites": false
+  },
+  "B8": {
+   "arm": "B",
+   "seed": 8,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.76,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.865,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.995,
+     "act": "advance",
+     "total": 800
+    },
+    {
+     "rung": 2,
+     "acc": 0.92,
+     "act": "stay",
+     "total": 1000
+    },
+    {
+     "rung": 2,
+     "acc": 1,
+     "act": "done",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.085,
+    "killDa": 1,
+    "killHu": 0,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.625,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.01,
+    "XpermA": 1,
+    "XpermHd": 0.075
+   },
+   "ignites": false
+  },
+  "B9": {
+   "arm": "B",
+   "seed": 9,
+   "steps": 1000,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.82,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.895,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 1,
+     "act": "advance",
+     "total": 800
+    },
+    {
+     "rung": 2,
+     "acc": 1,
+     "act": "done",
+     "total": 1000
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.585,
+    "killDa": 1,
+    "killHu": 0.37,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 0.99,
+    "XmidHd": 0.79,
+    "Xgap12A": 0.985,
+    "Xgap12Hd": 0.53,
+    "XpermA": 0.99,
+    "XpermHd": 0.63
+   },
+   "ignites": true,
+   "wallS": 106.5
+  },
+  "B10": {
+   "arm": "B",
+   "seed": 10,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.785,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.865,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.945,
+     "act": "stay",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 1,
+     "act": "advance",
+     "total": 1000
+    },
+    {
+     "rung": 2,
+     "acc": 1,
+     "act": "done",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.525,
+    "killDa": 0.985,
+    "killHu": 0.15,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.77,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.53,
+    "XpermA": 1,
+    "XpermHd": 0.5
+   },
+   "ignites": false,
+   "wallS": 118.1
+  },
+  "B11": {
+   "arm": "B",
+   "seed": 11,
+   "steps": 1000,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.795,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.855,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.955,
+     "act": "advance",
+     "total": 800
+    },
+    {
+     "rung": 2,
+     "acc": 1,
+     "act": "done",
+     "total": 1000
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.605,
+    "killDa": 1,
+    "killHu": 0.135,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.81,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.505,
+    "XpermA": 1,
+    "XpermHd": 0.57
+   },
+   "ignites": true,
+   "wallS": 106.7
+  },
+  "B12": {
+   "arm": "B",
+   "seed": 12,
+   "steps": 1000,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.82,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.935,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.995,
+     "act": "advance",
+     "total": 800
+    },
+    {
+     "rung": 2,
+     "acc": 1,
+     "act": "done",
+     "total": 1000
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.33,
+    "killDa": 1,
+    "killHu": 0.105,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.79,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.205,
+    "XpermA": 1,
+    "XpermHd": 0.375
+   },
+   "ignites": false,
+   "wallS": 104.7
+  },
+  "B13": {
+   "arm": "B",
+   "seed": 13,
+   "steps": 1000,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.77,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.9,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 1,
+     "act": "advance",
+     "total": 800
+    },
+    {
+     "rung": 2,
+     "acc": 1,
+     "act": "done",
+     "total": 1000
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.565,
+    "killDa": 0.98,
+    "killHu": 0.285,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.84,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.565,
+    "XpermA": 1,
+    "XpermHd": 0.57
+   },
+   "ignites": true,
+   "wallS": 104.4
+  },
+  "B14": {
+   "arm": "B",
+   "seed": 14,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.795,
+     "act": "stay",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.91,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.915,
+     "act": "stay",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 0.995,
+     "act": "advance",
+     "total": 1000
+    },
+    {
+     "rung": 2,
+     "acc": 1,
+     "act": "done",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 1,
+    "killHd": 0.44,
+    "killDa": 1,
+    "killHu": 0.205,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.8,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.425,
+    "XpermA": 1,
+    "XpermHd": 0.445
+   },
+   "ignites": false,
+   "wallS": 120.3
+  },
+  "C7": {
+   "arm": "C",
+   "seed": 7,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.255,
+     "act": "bridge",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.385,
+     "act": "bridge",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.495,
+     "act": "bridge",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 0.555,
+     "act": "bridge",
+     "total": 1000
+    },
+    {
+     "rung": 1,
+     "acc": 0.625,
+     "act": "stay",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0.035,
+    "killHd": 0.62,
+    "killDa": 0,
+    "killHu": 1,
+    "indist": 0.265
+   },
+   "xf": {
+    "XmidA": 0.01,
+    "XmidHd": 0.555,
+    "Xgap12A": 0.045,
+    "Xgap12Hd": 0.67,
+    "XpermA": 0.035,
+    "XpermHd": 0.575
+   },
+   "ignites": false,
+   "wallS": 255.8
+  },
+  "C8": {
+   "arm": "C",
+   "seed": 8,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.08,
+     "act": "bridge",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.53,
+     "act": "bridge",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.685,
+     "act": "stay",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 0.28,
+     "act": "bridge",
+     "total": 1000
+    },
+    {
+     "rung": 1,
+     "acc": 0.375,
+     "act": "bridge",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0.075,
+    "killHd": 0.645,
+    "killDa": 0,
+    "killHu": 1,
+    "indist": 0.72
+   },
+   "xf": {
+    "XmidA": 0.06,
+    "XmidHd": 0.585,
+    "Xgap12A": 0.05,
+    "Xgap12Hd": 0.665,
+    "XpermA": 0.065,
+    "XpermHd": 0.69
+   },
+   "ignites": false,
+   "wallS": 216.8
+  },
+  "C9": {
+   "arm": "C",
+   "seed": 9,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.25,
+     "act": "bridge",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.885,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.165,
+     "act": "bridge",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 0.765,
+     "act": "stay",
+     "total": 1000
+    },
+    {
+     "rung": 1,
+     "acc": 0.405,
+     "act": "bridge",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0.32,
+    "killHd": 0.33,
+    "killDa": 0.375,
+    "killHu": 0.6,
+    "indist": 0.985
+   },
+   "xf": {
+    "XmidA": 0.37,
+    "XmidHd": 0.335,
+    "Xgap12A": 0.355,
+    "Xgap12Hd": 0.23,
+    "XpermA": 0.37,
+    "XpermHd": 0.31
+   },
+   "ignites": false,
+   "wallS": 178.2
+  },
+  "C10": {
+   "arm": "C",
+   "seed": 10,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.085,
+     "act": "bridge",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.165,
+     "act": "bridge",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.195,
+     "act": "bridge",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 0.215,
+     "act": "bridge",
+     "total": 1000
+    },
+    {
+     "rung": 1,
+     "acc": 0.315,
+     "act": "bridge",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0.015,
+    "killHd": 0.72,
+    "killDa": 0,
+    "killHu": 1,
+    "indist": 0.19
+   },
+   "xf": {
+    "XmidA": 0.005,
+    "XmidHd": 0.675,
+    "Xgap12A": 0.02,
+    "Xgap12Hd": 0.82,
+    "XpermA": 0.03,
+    "XpermHd": 0.725
+   },
+   "ignites": false,
+   "wallS": 254.6
+  },
+  "C11": {
+   "arm": "C",
+   "seed": 11,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.33,
+     "act": "bridge",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.105,
+     "act": "bridge",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.08,
+     "act": "bridge",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 0.025,
+     "act": "bridge",
+     "total": 1000
+    },
+    {
+     "rung": 1,
+     "acc": 0.06,
+     "act": "bridge",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0.26,
+    "killHd": 0,
+    "killDa": 0,
+    "killHu": 1,
+    "indist": 0.35
+   },
+   "xf": {
+    "XmidA": 0.11,
+    "XmidHd": 0,
+    "Xgap12A": 0.19,
+    "Xgap12Hd": 0.005,
+    "XpermA": 0.23,
+    "XpermHd": 0
+   },
+   "ignites": false,
+   "wallS": 254.9
+  },
+  "C12": {
+   "arm": "C",
+   "seed": 12,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.075,
+     "act": "bridge",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.555,
+     "act": "bridge",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.62,
+     "act": "stay",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 0.1,
+     "act": "bridge",
+     "total": 1000
+    },
+    {
+     "rung": 1,
+     "acc": 0.11,
+     "act": "bridge",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0.04,
+    "killHd": 0.84,
+    "killDa": 0,
+    "killHu": 1,
+    "indist": 0.79
+   },
+   "xf": {
+    "XmidA": 0.03,
+    "XmidHd": 0.73,
+    "Xgap12A": 0.05,
+    "Xgap12Hd": 0.88,
+    "XpermA": 0.045,
+    "XpermHd": 0.87
+   },
+   "ignites": false,
+   "wallS": 215.6
+  },
+  "C13": {
+   "arm": "C",
+   "seed": 13,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.155,
+     "act": "bridge",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.465,
+     "act": "bridge",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.61,
+     "act": "stay",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 0.27,
+     "act": "bridge",
+     "total": 1000
+    },
+    {
+     "rung": 1,
+     "acc": 0.66,
+     "act": "stay",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0.095,
+    "killHd": 0.55,
+    "killDa": 0.015,
+    "killHu": 1,
+    "indist": 0.79
+   },
+   "xf": {
+    "XmidA": 0.065,
+    "XmidHd": 0.44,
+    "Xgap12A": 0.15,
+    "Xgap12Hd": 0.525,
+    "XpermA": 0.08,
+    "XpermHd": 0.56
+   },
+   "ignites": false,
+   "wallS": 216.2
+  },
+  "C14": {
+   "arm": "C",
+   "seed": 14,
+   "steps": 1200,
+   "trace": [
+    {
+     "rung": 0,
+     "acc": 1,
+     "act": "advance",
+     "total": 200
+    },
+    {
+     "rung": 1,
+     "acc": 0.16,
+     "act": "bridge",
+     "total": 400
+    },
+    {
+     "rung": 1,
+     "acc": 0.695,
+     "act": "stay",
+     "total": 600
+    },
+    {
+     "rung": 1,
+     "acc": 0.19,
+     "act": "bridge",
+     "total": 800
+    },
+    {
+     "rung": 1,
+     "acc": 0.435,
+     "act": "bridge",
+     "total": 1000
+    },
+    {
+     "rung": 1,
+     "acc": 0.36,
+     "act": "bridge",
+     "total": 1200
+    }
+   ],
+   "ev": {
+    "killA": 0.05,
+    "killHd": 0.55,
+    "killDa": 0,
+    "killHu": 1,
+    "indist": 0.57
+   },
+   "xf": {
+    "XmidA": 0.04,
+    "XmidHd": 0.555,
+    "Xgap12A": 0.085,
+    "Xgap12Hd": 0.615,
+    "XpermA": 0.055,
+    "XpermHd": 0.555
+   },
+   "ignites": false,
+   "wallS": 217.5
+  },
+  "A9": {
+   "arm": "A",
+   "seed": 9,
+   "steps": 1200,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.77,
+    "killDa": 1,
+    "killHu": 0.69,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.77,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.715,
+    "XpermA": 1,
+    "XpermHd": 0.675
+   },
+   "ignites": true,
+   "secs": 222.9
+  },
+  "A10": {
+   "arm": "A",
+   "seed": 10,
+   "steps": 1200,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.38,
+    "killDa": 0.975,
+    "killHu": 0.005,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.665,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.25,
+    "XpermA": 1,
+    "XpermHd": 0.395
+   },
+   "ignites": false,
+   "secs": 214.3
+  },
+  "A11": {
+   "arm": "A",
+   "seed": 11,
+   "steps": 1200,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.71,
+    "killDa": 1,
+    "killHu": 0.535,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.865,
+    "Xgap12A": 0.995,
+    "Xgap12Hd": 0.655,
+    "XpermA": 1,
+    "XpermHd": 0.75
+   },
+   "ignites": true,
+   "secs": 216.6
+  },
+  "A12": {
+   "arm": "A",
+   "seed": 12,
+   "steps": 1200,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.975,
+    "killDa": 1,
+    "killHu": 0.91,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.9,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.985,
+    "XpermA": 1,
+    "XpermHd": 0.975
+   },
+   "ignites": true,
+   "secs": 216.7
+  },
+  "A13": {
+   "arm": "A",
+   "seed": 13,
+   "steps": 1200,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.78,
+    "killDa": 1,
+    "killHu": 0.445,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.98,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.705,
+    "XpermA": 1,
+    "XpermHd": 0.81
+   },
+   "ignites": true,
+   "secs": 218.9
+  },
+  "A14": {
+   "arm": "A",
+   "seed": 14,
+   "steps": 1200,
+   "ev": {
+    "killA": 1,
+    "killHd": 0.61,
+    "killDa": 1,
+    "killHu": 0.535,
+    "indist": 1
+   },
+   "xf": {
+    "XmidA": 1,
+    "XmidHd": 0.685,
+    "Xgap12A": 1,
+    "Xgap12Hd": 0.58,
+    "XpermA": 1,
+    "XpermHd": 0.6
+   },
+   "ignites": true,
+   "secs": 217.8
+  }
+ },
+ "tally": {
+  "A": {
+   "n": 8,
+   "ign": 7,
+   "Hds": [
+    0.965,
+    0.775,
+    0.77,
+    0.38,
+    0.71,
+    0.975,
+    0.78,
+    0.61
+   ]
+  },
+  "B": {
+   "n": 8,
+   "ign": 3,
+   "Hds": [
+    0.52,
+    0.085,
+    0.585,
+    0.525,
+    0.605,
+    0.33,
+    0.565,
+    0.44
+   ]
+  },
+  "C": {
+   "n": 8,
+   "ign": 0,
+   "Hds": [
+    0.62,
+    0.645,
+    0.33,
+    0.72,
+    0,
+    0.84,
+    0.55,
+    0.55
+   ]
+  }
+ }
+}

@@ -1,0 +1,146 @@
+{
+ "test": "c-novel-rule-probe",
+ "preReg": "perm killA>=0.6 majority => transfer REAL; <0.3 majority => memorization",
+ "n": 12,
+ "permHold": 10,
+ "permCollapse": 0,
+ "smoke": {
+  "firstLoss": 3.241,
+  "lastLoss": 1.2347,
+  "fell": true
+ },
+ "rows": [
+  {
+   "model": "g203",
+   "std": {
+    "killA": 1,
+    "killHd": 0.765
+   },
+   "perm": {
+    "killA": 1,
+    "killHd": 0.79
+   }
+  },
+  {
+   "model": "g204",
+   "std": {
+    "killA": 1,
+    "killHd": 0.885
+   },
+   "perm": {
+    "killA": 1,
+    "killHd": 0.845
+   }
+  },
+  {
+   "model": "g205",
+   "std": {
+    "killA": 1,
+    "killHd": 0.29
+   },
+   "perm": {
+    "killA": 1,
+    "killHd": 0.34
+   }
+  },
+  {
+   "model": "g206",
+   "std": {
+    "killA": 1,
+    "killHd": 0.54
+   },
+   "perm": {
+    "killA": 1,
+    "killHd": 0.53
+   }
+  },
+  {
+   "model": "g207",
+   "std": {
+    "killA": 0.85,
+    "killHd": 0.41
+   },
+   "perm": {
+    "killA": 0.805,
+    "killHd": 0.42
+   }
+  },
+  {
+   "model": "g208",
+   "std": {
+    "killA": 1,
+    "killHd": 0.54
+   },
+   "perm": {
+    "killA": 1,
+    "killHd": 0.555
+   }
+  },
+  {
+   "model": "s203",
+   "std": {
+    "killA": 1,
+    "killHd": 0.995
+   },
+   "perm": {
+    "killA": 1,
+    "killHd": 0.995
+   }
+  },
+  {
+   "model": "s204",
+   "std": {
+    "killA": 0.29,
+    "killHd": 0.52
+   },
+   "perm": {
+    "killA": 0.305,
+    "killHd": 0.565
+   }
+  },
+  {
+   "model": "s205",
+   "std": {
+    "killA": 0.315,
+    "killHd": 0.555
+   },
+   "perm": {
+    "killA": 0.325,
+    "killHd": 0.585
+   }
+  },
+  {
+   "model": "s206",
+   "std": {
+    "killA": 1,
+    "killHd": 1
+   },
+   "perm": {
+    "killA": 1,
+    "killHd": 1
+   }
+  },
+  {
+   "model": "s207",
+   "std": {
+    "killA": 1,
+    "killHd": 1
+   },
+   "perm": {
+    "killA": 1,
+    "killHd": 1
+   }
+  },
+  {
+   "model": "s208",
+   "std": {
+    "killA": 1,
+    "killHd": 0.99
+   },
+   "perm": {
+    "killA": 1,
+    "killHd": 0.995
+   }
+  }
+ ]
+}

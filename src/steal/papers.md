@@ -5,6 +5,9 @@ wave budget, verdicts, breadth-first spawning, synthesis cadence. This file is t
 history; RULES.md governs the run. If they disagree, RULES.md wins.
 STATUS (2026-11-11): original shelf FULLY READ (W19); source-chasing + conservation waves running
 (W26 done, 26 waves, 33 verdicts). Backlog + standing slot in trail state.json. R2 synthesis next.
+STATUS (2026-11-12): campaign WOUND DOWN by user set — 391 waves, 66 syntheses (R66 last),
+359 verdicts, backlog 0, no spawns from W334 on. Shelf lines above are history; live state is
+src/evidence/rabbithole/track-c/state.json + log.md + reconciliation-w408-w414-r66.md.
 Regime updates since this file was written: novelty optional (improve counts), patches gated on
 user, sandbox experiments allowed with results noted, breadth-first no-cap spawning, stop/turn
 rules per RULES.md.

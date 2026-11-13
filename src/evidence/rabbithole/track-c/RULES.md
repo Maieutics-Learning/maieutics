@@ -48,6 +48,8 @@ Every verdict lands in state.json (verdicts[]) and the wave note, with a finding
 Every cleared wave spawns ≥1 follow-up wave from its open questions (more allowed). Spawns append
 to the BACK of state.json backlog[]; consumed entries are removed at execution. No queue cap.
 The rabbithole ends at user stop or genuine out-of-leads — unlikely by design.
+Amendment 2026-11-12 (user-set wind-down, logged openly R64–R66, no backdate): a declared
+wind-down suspends the spawn rule — cleared waves drain the backlog with no spawns until empty.
 
 ## 7. Synthesis cadence
 

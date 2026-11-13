@@ -1,0 +1,13 @@
+{
+ "test": "b-mutation-duel-confirm",
+ "method": "(d) fromT0 SHORT_FADE students vs paper §8.4 breed champ (pop16x6gens, Hd 0.515 vs base 0.455, below +2SE)",
+ "taughtHdMean": 0.888,
+ "breedChampHd": 0.515,
+ "verdict": "taught BEATS breed champ by >2SE — duel conclusive, no new ES needed",
+ "taughtHd": [
+  0.775,
+  0.795,
+  1,
+  0.98
+ ]
+}

@@ -1,0 +1,115 @@
+{
+ "test": "f-pbt-lite",
+ "preReg": "beats best fixed SHORT_FADE on same seeds by >=1 ignition, else not worth complexity",
+ "n": "2 seeds x pop4 x 2 rounds x 600-step legs",
+ "fixed": {
+  "305": {
+   "killA": 1,
+   "killHd": 0.995,
+   "fit": 1.995,
+   "ig": true
+  },
+  "306": {
+   "killA": 1,
+   "killHd": 0.85,
+   "fit": 1.85,
+   "ig": true
+  }
+ },
+ "pbt": {
+  "305": [
+   {
+    "mid": 0.25,
+    "fit": 1.845,
+    "ig": true,
+    "killA": 1,
+    "killHd": 0.845
+   },
+   {
+    "mid": 0.25,
+    "fit": 1.81,
+    "ig": true,
+    "killA": 1,
+    "killHd": 0.81
+   },
+   {
+    "mid": 1,
+    "fit": 0.925,
+    "ig": false,
+    "killA": 0.34,
+    "killHd": 0.585
+   },
+   {
+    "mid": 0.75,
+    "fit": 0.685,
+    "ig": false,
+    "killA": 0.315,
+    "killHd": 0.37
+   }
+  ],
+  "306": [
+   {
+    "mid": 0.25,
+    "fit": 2,
+    "ig": true,
+    "killA": 1,
+    "killHd": 1
+   },
+   {
+    "mid": 1,
+    "fit": 1.955,
+    "ig": true,
+    "killA": 1,
+    "killHd": 0.955
+   },
+   {
+    "mid": 0.75,
+    "fit": 1.89,
+    "ig": true,
+    "killA": 1,
+    "killHd": 0.89
+   },
+   {
+    "mid": 0.25,
+    "fit": 1.71,
+    "ig": true,
+    "killA": 1,
+    "killHd": 0.71
+   }
+  ]
+ },
+ "cmp": {
+  "305": {
+   "pbtBest": {
+    "mid": 0.25,
+    "fit": 1.845,
+    "ig": true,
+    "killA": 1,
+    "killHd": 0.845
+   },
+   "fixed": {
+    "killA": 1,
+    "killHd": 0.995,
+    "fit": 1.995,
+    "ig": true
+   },
+   "verdict": "no PBT advantage"
+  },
+  "306": {
+   "pbtBest": {
+    "mid": 0.25,
+    "fit": 2,
+    "ig": true,
+    "killA": 1,
+    "killHd": 1
+   },
+   "fixed": {
+    "killA": 1,
+    "killHd": 0.85,
+    "fit": 1.85,
+    "ig": true
+   },
+   "verdict": "PBT wins on fitness"
+  }
+ }
+}

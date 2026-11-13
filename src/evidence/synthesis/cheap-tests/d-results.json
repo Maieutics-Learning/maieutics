@@ -1,0 +1,100 @@
+{
+ "test": "d-single-tutor",
+ "champ": "scratch/fs-blob-s206w3.json (S206 perfect 1.0/1.0)",
+ "preReg": "T0-taught ~= champ-taught (both ignite) => bench OVERHEAD; champ wins >=3/4 while T0 rots => bench NEEDED",
+ "n": 4,
+ "fromT0ignite": 4,
+ "fromChampIgnite": 4,
+ "fromT0": {
+  "301": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.775,
+    "killDa": 1,
+    "killHu": 0.66,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 123.7
+  },
+  "302": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.795,
+    "killDa": 1,
+    "killHu": 0.665,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 135.5
+  },
+  "303": {
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 1,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 136.3
+  },
+  "304": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.98,
+    "killDa": 0.94,
+    "killHu": 0.755,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 140.7
+  }
+ },
+ "fromChamp": {
+  "301": {
+   "ev": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 1,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 133.7
+  },
+  "302": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.625,
+    "killDa": 1,
+    "killHu": 0.49,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 135
+  },
+  "303": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.9,
+    "killDa": 1,
+    "killHu": 0.74,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 142.9
+  },
+  "304": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.845,
+    "killDa": 1,
+    "killHu": 0.745,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 138.9
+  }
+ }
+}

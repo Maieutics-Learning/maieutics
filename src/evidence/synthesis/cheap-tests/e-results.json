@@ -1,0 +1,73 @@
+{
+ "test": "e-midkeep-sweep",
+ "preReg": "flat (all ignite or all rot) => 0.5 arbitrary, needs outer-loop search; peaked at 0.5 => hand schedule KEEPS",
+ "seed": 305,
+ "t0": {
+  "ev": {
+   "killA": 1,
+   "killHd": 0.385,
+   "killDa": 1,
+   "killHu": 0.22,
+   "indist": 1
+  },
+  "ig": false
+ },
+ "sweep": {
+  "0": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.785,
+    "killDa": 0.995,
+    "killHu": 0.58,
+    "indist": 1
+   },
+   "ig": true
+  },
+  "1": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.725,
+    "killDa": 0.995,
+    "killHu": 0.475,
+    "indist": 1
+   },
+   "ig": true
+  },
+  "0.25": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.915,
+    "killDa": 1,
+    "killHu": 0.765,
+    "indist": 1
+   },
+   "ig": true
+  },
+  "0.5": {
+   "ev": {
+    "killA": 0.37,
+    "killHd": 0.465,
+    "killDa": 0.425,
+    "killHu": 0,
+    "indist": 0.775
+   },
+   "ig": false
+  },
+  "0.75": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.715,
+    "killDa": 1,
+    "killHu": 0.61,
+    "indist": 1
+   },
+   "ig": true
+  }
+ },
+ "sweepIgnite": "4/5",
+ "bConfirm": {
+  "taughtHdMean": 0.888,
+  "breedChampHd": 0.515,
+  "verdict": "taught BEATS breed champ by >2SE — duel conclusive, no new ES needed"
+ }
+}
