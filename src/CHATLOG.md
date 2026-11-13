@@ -689,3 +689,10 @@ never "feels faster" — wall time, accuracy, loss, token counts.
 ## 2026-11-13 — License chosen: Apache-2.0 (code) + CC-BY-4.0 (prose)
 - User picked Apache-2.0 over MIT (patent retaliation = Bob-sues-Charlie deterrent; option value for novel methods). Holder: Daniel Zikuan Li (no legal entity set up yet; revisit if that changes). Prose CC-BY-4.0 (industry standard, arXiv default). AI credit: Muse Spark (Perchance AI) credited in front-door README.
 - Staged: src/meta/LICENSE (verbatim Apache-2.0 + 2026 copyright line), src/meta/root-README.md (license section + Credit section). Push plan: LICENSE blob under tree path LICENSE, README content under tree path README.md (path overrides). UNPUSHED with the pile.
+
+## 2026-11-13 — PUSHED 16ee2ab (user-supplied PAT, parent d55ae09)
+- Bulk push via git-blobs API, 7 files: memory SKILL.md + log.js (drift fix), src/gameplan-snapshots/2026-11-10-pre-steal-phase25.md (promoted), src/CURRENT_TASK.md (backfilled thru today), src/CHATLOG.md, LICENSE (tree root, from src/meta/LICENSE, Apache-2.0 © Daniel Zikuan Li), README.md (tree root, from src/meta/root-README.md: front door + results map + license + Muse Spark/perchance.org credit). Repo-meta otherwise preserved. Front door verified live via raw.githubusercontent (7927B, current state + results map present). Fresh-reader path now: README → paper → records. Repo fully unstale.
+
+## 2026-11-13 — Full claim→artifact index BUILT (src/RESULTS_INDEX.md, 37 rows)
+- All 16 MEASURED sites + §8/§4 unmarked verdict rows mapped: 19 CONFIRMED (ledgers verified), 3 THIN (n=1/caveat-owned), 10 PROSE-ONLY (§4.1-era: F-series, hybrid M4, C-suite, K/K2, campfire, settle, PCGrad, H2/D — ledgers lost in pre-evacuation scratch wipes), 4 SUPERSEDED (E-series shortcut, v1 chain, D-v1, §8.7 fix), lit section for §2.
+- Index finding: recipe settlement (§8) stands on ledgers; foundation arch ranking (§4.1) stands on prose. Re-ledger queue filed in-index (F2+M4+K battery = milestone-1 reproduction; H2 spot check; multi-seed SNR). Root README pointer added. UNPUSHED: index + README tweak + this CHATLOG.

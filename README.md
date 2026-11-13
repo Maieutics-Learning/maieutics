@@ -7,7 +7,7 @@
 ## Where to look (fresh-reader order)
 
 1. **The paper:** `index.html` §§1–8 (renders as the generator page; the living bench is Appendices A–H below it). Abstract + §8 intro carry the claim map; every MEASURED tag quotes a run record byte-identically.
-2. **The results map** below — each headline claim → numbers → artifacts → code.
+2. **The results map** below — each headline claim → numbers → artifacts → code. The full per-claim ledger (every MEASURED tag, including superseded and prose-only rows with their status) is `src/RESULTS_INDEX.md`.
 3. **`src/CHATLOG.md`** (newest last) — session log: what was decided, what was MEASURED, what failed and why. This + git is how state survives.
 4. **`src/CURRENT_TASK.md`** — the live working record.
 5. **`src/tools/`** — reusable methods (memory, fresh-eyes reviewers, rabbithole research, websearch, pool). Index at `src/tools/README.md`; check there before inventing a procedure.
