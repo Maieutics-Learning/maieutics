@@ -61,15 +61,30 @@ surprisingly good at catching what you can't see anymore.
 6. **Red-team.** Attack the whole plan by discipline (one kill-shot each).
    Adopted 9 findings (synthesis + symmetry + zero-knowledge probes as
    graduation gates, cross-teacher validation, trace portability checks).
+   Never run without its steelman pair — see format 10.
 7. **Steelman.** Defenders argue every load-bearing claim holds; each
    verdict must name the priced residual. 10/10 HOLDS → declare
-   satisfaction and STOP the loop.
+   satisfaction and STOP the loop. Never run solo — always paired
+   with red-team in the same battery (see format 10).
 8. **Tie-break.** Ask the reviewer to design the hardest test between two
    options, then adjudicate the DESIGN before running (we revised a
    >0.6-gate out: selection bias; kept the matched pair + unlucky seeds).
 9. **Tooling self-review.** Point fresh eyes at your OWN skill docs. Our
    rabbithole-skill review found 2 real gaps (fixed), 2 clarifications,
    1 rejection-by-design. Review the reviewer-instructions too.
+10. **Paired red-team + steelman debate (collaborative — the default
+    for load-bearing verdicts).** Steelman never runs solo; red-team
+    never runs unpaired either. Run them TOGETHER in the same battery
+    and, for the load-bearing claims, let them TALK to each other:
+    red-team attacks, steelman defends the same claim, then each gets
+    1 rebuttal turn seeing the other's prior output. You are the
+    adjudicator throughout — they argue, you rule (ACCEPT / REJECT /
+    PARTIAL per point, same as ever). Sealed opening briefs first
+    (both sides write from the artifact alone, no peeking), THEN open
+    the channel for rebuttals; never skip the sealed round, or the
+    second speaker just anchors on the first. Cap it at open + 1
+    rebuttal each unless a claim is genuinely tied — cost is ~3x a
+    sealed round, so spend it on load-bearing documents only.
 
 ## The premise artifact (the thing you hand them)
 
@@ -104,6 +119,10 @@ Premise hygiene (learned the hard way):
   experiment."
 - Barrage ask: "Hammer this premise. State verdict + single hardest
   test/falsifier. <=150 words, numbered."
+- Debate rebuttal (format 10 only): "Here is the other side's verdict
+  on the SAME claim + artifact: <quote>. Rebut in <=120 words: concede
+  what holds, kill what doesn't, state what evidence would settle it.
+  No new claims outside this claim."
 - Sealed briefs: question + background + word cap + return shape, one
   brief per scout, questions disjoint, cap scout count per wave.
 
@@ -117,6 +136,9 @@ Premise hygiene (learned the hard way):
   impossible — aux is train-only gradients; the real version was
   recency/position heuristics). Correct the reviewer in the log.
 - Score the round: adoption count, real gaps found, diminishing returns?
+- In format-10 debates you are the adjudicator, not a participant:
+  both sides argue the claim, you rule per point (ACCEPT / REJECT /
+  PARTIAL) and the ruling — not who "won" — is the round output.
 
 ## Equipping reviewers with the research skill (reviewers can search, if you let them)
 
@@ -155,6 +177,8 @@ Rules for armed rounds:
   comparable verdicts). Results file per round with raw replies +
   your adjudication.
 - Reviewers never see each other (sealed briefs, parallel calls).
+  EXCEPTION: format 10 opens the channel AFTER sealed openings, for
+  rebuttals only — same claim, quoted opponent output, capped words.
 - Diminishing returns applies faster when armed: our R11 attack round
   yielded almost nothing ("yield small by design") — that closed the
   attack phase, not the loop; later rounds moved to new layers.

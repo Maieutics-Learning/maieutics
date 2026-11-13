@@ -696,3 +696,44 @@ never "feels faster" — wall time, accuracy, loss, token counts.
 ## 2026-11-13 — Full claim→artifact index BUILT (src/RESULTS_INDEX.md, 37 rows)
 - All 16 MEASURED sites + §8/§4 unmarked verdict rows mapped: 19 CONFIRMED (ledgers verified), 3 THIN (n=1/caveat-owned), 10 PROSE-ONLY (§4.1-era: F-series, hybrid M4, C-suite, K/K2, campfire, settle, PCGrad, H2/D — ledgers lost in pre-evacuation scratch wipes), 4 SUPERSEDED (E-series shortcut, v1 chain, D-v1, §8.7 fix), lit section for §2.
 - Index finding: recipe settlement (§8) stands on ledgers; foundation arch ranking (§4.1) stands on prose. Re-ledger queue filed in-index (F2+M4+K battery = milestone-1 reproduction; H2 spot check; multi-seed SNR). Root README pointer added. UNPUSHED: index + README tweak + this CHATLOG.
+
+## 2026-11-13 — PUSHED 10e5673 (user-supplied PAT, parent 16ee2ab)
+- Index push via git-blobs API, 3 tree paths: src/RESULTS_INDEX.md (new, 37-row claim→artifact index), src/CHATLOG.md, README.md (tree root, from src/meta/root-README.md pointer tweak). Ref verified (tip matches commit). Repo clean, nothing queued.
+
+## 2026-11-13 — Consensus first test: key saved, API says 401
+- Visitor pasted a Consensus key into the temp box (vault hasKey true). First search (assoc-recall query, page_size 5, 1 call) -> auth-401 in ~0.5s, key marked dead + re-paste. No calls spent on failures per plan billing. Full record: scratch/consensus-first-test.json (attached to user). Awaiting fresh key paste; box + consensus.js module stay until verified.
+
+## 2026-11-13 — Consensus blocked: superFetch strips x-api-key (platform bug dbecb0ac)
+- New key still 401; diagnosis: httpbin echo proves the proxy forwards Authorization (Groq works) but drops custom headers (x-api-key never arrives; Consensus replies generic 401 Not authenticated for missing AND invalid keys). Consensus OpenAPI confirms header-only auth (XApiKeyHeader, no query option), plain fetch dies on CORS. So no runtime path until the proxy forwards headers. Bug filed. Call budget unspent (auth failures are not billed). Plan: first real call stays the repo-critique search once fixed. consensus.js + temp box stay staged.
+
+## 2026-11-13 — Consensus removed (user: will run manually)
+- Vault key deleted (hasKey false), src/pool/sources/consensus.js deleted, index key-box + script tag removed, scratch consensus files deleted. Live page verified: no box, no module, no key. Shipped set holds no key material (only CHATLOG history entries). Platform bug dbecb0ac stands.
+
+## 2026-11-13 — Review #2 adjudicated (7 questions checked vs code+ledgers)
+- Q1 CONFIRMED (gap): soft targets run softW=1.0 all stages, only attnKeep fades; attn-only + constant-combined student arms missing. Q2 CONFIRMED (moderate): killAExam AND killMatrix both target-first; arbitrary-position rests on F2 sweep + mid-slot transfer. Q3 CONFIRMED: single teacher-selected chain; independent chains never run. Q4 ANSWERED: recompute 35/40 base, 34 @+0.05, 32 @+0.10, 36 @-0.10; failures catastrophic, bimodal — bar separates regimes. Q5 CONFIRMED (already owned): within-family only; parity tasks exist in-house for cheap cross-family probe. Q6 CONFIRMED: no one-command rerun; D originals lost. Q7: backprop unaudited here (grad-check + determinism partial evidence; PyTorch cross-check agreed); Dockerfile is broad COPY src/ but repo holds no secrets so low severity. Scorecard 3.7/5 fair.
+
+## 2026-11-13 — Gameplan v6 written (paper-first, supersedes README v5 nursery block)
+- Reviews agree: no scale-up; compact mechanism settlement first. v6 = A1 ablations, A2 slot-swept kills, A3 parity probe, A4 PyTorch cross-check, R one-command rerun harness, C second chain (gated), P paper v0.15. Nursery phases parked with re-entry bars. Durable: src/GAMEPLAN.md; README got a pointer line.
+
+## 2026-11-13 — Horizons + §7 engineering track added to v6
+- Early: A1–A4 + R skeleton. Mid: C chain, cross-family battery, source split + node tests + headless runner + allowlist, v0.15 → venue. Late: nursery re-entry fork. §7 reading: Perchance constrains the artifact, not the source; tinynn already portable (zero-dep, no DOM) — headless + CI fully compatible.
+
+## 2026-11-13 — Two-task battery requested (user) — A3 design
+- User wants same suite run separately on two independent tasks. Recommendation: parity (parityR running-state, in-house) as task #2 vs assoc-recall; task-native conjunctive bar; prereg both; pilot n=4 then full n=8; report side-by-side with matched compute.
+
+## 2026-11-13 — Gameplan v7 (phased 1/2/3, a/b/c + i/ii/iii) replaces v6 sketch
+- Phase 1: 1.a ablations, 1.b slot-swept kills, 1.c parity probe, 1.d PyTorch check, 1.e paper inputs. Phase 2: 2.a rerun harness, 2.b second chain (gated), 2.c wider battery, 2.d §7 engineering, 2.e v0.15 → venue. Phase 3: 3.a gate, 3.b nursery re-entry (TBD) or 3.c closure. Durable: src/GAMEPLAN.md.
+
+## 2026-11-13 — 3.c removed (user): no closure phase; unmet bar emits new TBDs feeding back into Phase-1/2 batteries. Closure only when TBDs exhausted (standing rule in GAMEPLAN.md).
+
+## 2026-11-13 — Refactor + test-suite thoughts recorded (user asked)
+- Refactor: source-vs-artifact split (paper/manuscript.md + lab/ partials built into shipped index.html); manuscript extraction first, lab split later; no big-bang. Tests: node --test via loader shim; order = numerical trust first (grad finite-diff, seed determinism, serialization), then shortcut regressions (F1 memorial, echo-key, null-global), then objectives/eval integrity/hint withdrawal; in-page guards stay smoke, Node is gate; rerun harness consumes same fixtures.
+
+## 2026-11-13 — 10-step iteration COMPLETE (3 batteries, 26 reviewers) → v10, satisfaction declared
+- R1 (10): 1H/3B/6P → 8 adoptions (v8). R2 (10 fresh): 1H/2B/7P → 9 adoptions (v9: α plan-wide, numerics, tutor-swap, CI ownership, caps). R3 steelman (6 fresh): 6/6 HOLDS → STOP. Folds: S1 verdict wording, S5 tolerance mode, S6 power analysis (1.f). Priced residuals filed in r3 results. Next artifact: Phase 1.a prereg. Drivers: src/tools/fresh-eyes/gameplan-v{7,8,9}-fleet.js; specs+results in src/evidence/synthesis/.
+
+## 2026-11-13 — Fresh-eyes skill: steelman always paired with red-team + collaborative debate format
+- User rule adopted: steelman never runs solo, red-team never unpaired — they run together, and on load-bearing claims they TALK (format 10: sealed openings, then 1 rebuttal each quoting the other side, owner adjudicates ACCEPT/REJECT/PARTIAL). Skill edits: formats 6/7 pairing pointers, new format 10, debate rebuttal prompt, sealed-exception, adjudicator line. UNPUSHED with the pile; Phase 1.a prereg still queued (no go yet).
+
+## 2026-11-13 — Gameplan r4 PAIRED DEBATE done (format 10 maiden run) → v11
+- 5 claims × RED/STEELMAN (10 sealed armed + 10 rebuttals): all 5 split BREAK/HOLD. Rulings: C1 ACCEPT (instant-drop arm 1.a.iv + five-way table — no non-gradual zero-hint arm existed), C2 REJECT (0.95 rule is fail-safe, not proof), C3 REJECT (r3 S3 repeat, 2.c owns scope), C4 REJECT (tutor-swap + N=10 + gap analysis already in text), C5 ACCEPT (2.e.iv submit gate — both sides conceded present-tense overclaim). Method: rebuttals earned 3x cost (C1 converged on same settler; C2/C4 exposed answered attacks). 36 reviewers total. Next: execute, Phase 1.a prereg.

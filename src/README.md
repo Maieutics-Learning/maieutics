@@ -1,3 +1,5 @@
+> **Current plan: `src/GAMEPLAN.md` (v11, 2026-11-13) — paper-first mechanism settlement. The Phase 0–5 block below is archived context.**
+
 # Teaching Small Models to Learn
 
 Long-term project: build our own AI inspired by Geiping et al. **arXiv:2502.05171**
