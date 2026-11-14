@@ -85,7 +85,8 @@ token into chat anyway it is now in chat history, push then rotate it.
 ## Rules
 
 - **Snapshot rule.** Before rewriting a plan or running a critique round,
-  save the verbatim current version + log the path — no exceptions for
+  save the verbatim current version + log the path + byte count (a later
+  re-read verifies the bytes) — no exceptions for
   substance-changing rewrites (the one skipped time is what created the
   rule). Typo/format-only touches skip the copy but log the touch in the
   working record (snapshot bloat breeds stale-copy confusion — U7).
@@ -106,6 +107,14 @@ token into chat anyway it is now in chat history, push then rotate it.
   (see Step 3) — never
   answer from bare model memory. (U4's audit trail is the receipt; this rule
   is the gate.)
+- **Epistemic labels.** Every claim filed in a layer carries one:
+  Observed (directly in a source, artifact, or execution result), Verified
+  (independently checked or reproduced), Inferred (supported but not
+  directly established), Hypothesis (plausible, untested), Retracted
+  (superseded with pointer — retractions stay first-class, never silent).
+  Labels travel with claims when copied into summaries, handoffs, or
+  review briefs; a claim that loses its label on copy is UNKNOWN until
+  re-grounded. (Review 2026-11-13.)
 - **Checkpoint after every wave.** Results files (under `src/`) are written incrementally
   (every run appends + saves), so an interrupted run resumes from the
   file, not from scratch. Scripts filter `done` from the results file on
@@ -304,6 +313,17 @@ Unsolved:
   R3 2026-11-12: Reconcile Step 1 now requires a timestamp check on every
   artifact (frozen copy older than the log tail = stale, re-read live).
   Remaining: no check at other use sites (reviewer briefing, wave-loop reads).
+- U8 SKILL-SCALE COMPLEXITY. External toolset review 2026-11-13 (Memory
+  4.5/5) corroborates the accretion worry: procedures grow faster than the
+  core shrinks. Proposed 3-layer split (Core/Ops/Governance) DEFERRED to
+  the post-Phase-2 physical-split vehicle with rabbithole U1 (single-file
+  locality beats split-file drift for now). Meanwhile: no new mandatory
+  procedure without retiring or folding one. DECIDED 2026-11-13: user picks
+  deferral (option b).
+  Second corroboration 2026-11-13: scientific review exhibits the Track C
+  391-wave wind-down (stopped via the user-stop rule — done right, but not
+  native) as stopping-done-right-but-not-native. Feeds the continuation-policy
+  user decision, not this skill.
 
 ## Has this helped? (honest assessment)
 

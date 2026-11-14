@@ -1,0 +1,349 @@
+{
+ "prereg": "phase-1b v1.0 COUNTERSIGNED FROZEN",
+ "test": "1b-sweep",
+ "subjects": {
+  "311-staged": {
+   "ev0": {
+    "killA": 1,
+    "killHd": 0.995,
+    "killDa": 1,
+    "killHu": 1,
+    "indist": 1
+   },
+   "filedEv": {
+    "killA": 1,
+    "killHd": 0.995,
+    "killDa": 1,
+    "killHu": 1,
+    "indist": 1
+   },
+   "replicationMatch": true,
+   "killA": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "killHd": [
+    1,
+    0.995,
+    1,
+    0.995,
+    1,
+    0.995,
+    0.995,
+    1,
+    0.97
+   ],
+   "secs": 272.5
+  },
+  "314-staged": {
+   "ev0": {
+    "killA": 1,
+    "killHd": 0.865,
+    "killDa": 1,
+    "killHu": 0.28,
+    "indist": 1
+   },
+   "filedEv": {
+    "killA": 1,
+    "killHd": 0.865,
+    "killDa": 1,
+    "killHu": 0.28,
+    "indist": 1
+   },
+   "replicationMatch": true,
+   "killA": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    0.995
+   ],
+   "killHd": [
+    0.805,
+    0.8,
+    0.845,
+    0.82,
+    0.86,
+    0.825,
+    0.83,
+    0.805,
+    0.89
+   ],
+   "secs": 174.4
+  },
+  "315-staged": {
+   "ev0": {
+    "killA": 1,
+    "killHd": 0.87,
+    "killDa": 1,
+    "killHu": 0.695,
+    "indist": 1
+   },
+   "filedEv": {
+    "killA": 1,
+    "killHd": 0.87,
+    "killDa": 1,
+    "killHu": 0.695,
+    "indist": 1
+   },
+   "replicationMatch": true,
+   "killA": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "killHd": [
+    0.88,
+    0.77,
+    0.84,
+    0.75,
+    0.745,
+    0.77,
+    0.75,
+    0.775,
+    0.855
+   ],
+   "secs": 319.8
+  },
+  "316-staged": {
+   "ev0": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 0.995,
+    "indist": 1
+   },
+   "filedEv": {
+    "killA": 1,
+    "killHd": 1,
+    "killDa": 1,
+    "killHu": 0.995,
+    "indist": 1
+   },
+   "replicationMatch": true,
+   "killA": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "killHd": [
+    1,
+    0.99,
+    0.99,
+    0.995,
+    0.985,
+    1,
+    0.995,
+    1,
+    1
+   ],
+   "secs": 422.9
+  },
+  "312-constant": {
+   "ev0": {
+    "killA": 1,
+    "killHd": 0.92,
+    "killDa": 1,
+    "killHu": 0.73,
+    "indist": 1
+   },
+   "filedEv": {
+    "killA": 1,
+    "killHd": 0.92,
+    "killDa": 1,
+    "killHu": 0.73,
+    "indist": 1
+   },
+   "replicationMatch": true,
+   "killA": [
+    1,
+    0.995,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "killHd": [
+    0.925,
+    0.945,
+    0.94,
+    0.915,
+    0.94,
+    0.93,
+    0.915,
+    0.935,
+    0.955
+   ],
+   "secs": 498.3
+  },
+  "317-constant": {
+   "ev0": {
+    "killA": 1,
+    "killHd": 0.96,
+    "killDa": 1,
+    "killHu": 0.695,
+    "indist": 1
+   },
+   "filedEv": {
+    "killA": 1,
+    "killHd": 0.96,
+    "killDa": 1,
+    "killHu": 0.695,
+    "indist": 1
+   },
+   "replicationMatch": true,
+   "killA": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "killHd": [
+    0.94,
+    0.97,
+    0.96,
+    0.97,
+    0.975,
+    0.975,
+    0.965,
+    0.965,
+    0.95
+   ],
+   "secs": 489.3
+  },
+  "313-instdrop": {
+   "ev0": {
+    "killA": 1,
+    "killHd": 0.7,
+    "killDa": 1,
+    "killHu": 0.68,
+    "indist": 1
+   },
+   "filedEv": {
+    "killA": 1,
+    "killHd": 0.7,
+    "killDa": 1,
+    "killHu": 0.68,
+    "indist": 1
+   },
+   "replicationMatch": true,
+   "killA": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "killHd": [
+    0.685,
+    0.795,
+    0.835,
+    0.745,
+    0.77,
+    0.825,
+    0.79,
+    0.82,
+    0.86
+   ],
+   "secs": 352
+  },
+  "318-instdrop": {
+   "ev0": {
+    "killA": 1,
+    "killHd": 0.96,
+    "killDa": 1,
+    "killHu": 0.725,
+    "indist": 1
+   },
+   "filedEv": {
+    "killA": 1,
+    "killHd": 0.96,
+    "killDa": 1,
+    "killHu": 0.725,
+    "indist": 1
+   },
+   "replicationMatch": true,
+   "killA": [
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+   ],
+   "killHd": [
+    0.98,
+    0.99,
+    0.965,
+    0.94,
+    0.97,
+    0.96,
+    0.96,
+    0.95,
+    0.98
+   ],
+   "secs": 344.2
+  }
+ },
+ "conditions": {
+  "replicationGate": true,
+  "cond1": {
+   "rho": 0.0366,
+   "pass": false
+  },
+  "cond2": {
+   "meanRange": 0.0362,
+   "pass": true
+  },
+  "cond3": {
+   "worst": {
+    "subject": "313-instdrop",
+    "kill": "killHd",
+    "slot": 0,
+    "acc": 0.685,
+    "gap": 0.175
+   },
+   "gateFails": [],
+   "pass": true
+  }
+ },
+ "verdict": "POSITION-SENSITIVE (replace kills with swept variant; Stage 1/2 provisional pending re-gate)"
+}

@@ -89,3 +89,10 @@
 - Root README was a Phase-1/2 time capsule (v0.1, start-at-CHATLOG) — explains the review mismatch. New front door + 12-row results map drafted at src/meta/root-README.md (all ledger paths verified); LICENSE text at src/meta/LICENSE.
 - Snapshot promoted scratch/gameplan-snapshots → src/gameplan-snapshots/ (2335B verified, old deleted, mapping logged in CHATLOG).
 - UNPUSHED (needs user PAT): SKILL.md, log.js, snapshot move, root-README source, LICENSE source, this CHATLOG. Push plan: LICENSE blob under tree path LICENSE, README content under tree path README.md (path overrides, repo-meta not in workspace).
+
+## 2026-11-13 — PUSHED 10e5673 (parent 16ee2ab, 3 paths, ref verified)
+- src/RESULTS_INDEX.md + README.md (root-README pointer) + src/CHATLOG.md. Tip 10e5673 clean. Nothing queued: re-ledger queue + rerun + v0.15 bump + rabbithole scoping + sibling reviews all offered/queued, none requested.
+
+## 2026-11-13 — v6 gameplan: src/GAMEPLAN.md (paper-first). Immediate: A1/A2/A3/A4 + R, then C (gated), then P (v0.15).
+
+## 2026-11-13 — gameplan v10 final (3-battery iteration done, steelman 6/6). Next: Phase 1.a prereg + arms.

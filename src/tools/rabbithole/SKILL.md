@@ -28,7 +28,9 @@ Narrowing to the root too early is the failure mode, not the discipline.
    ONE TANGENTIAL per wave already satisfies this when honored), or a
    neighboring field's version of it (even if it looks
    unrelated at first). Direct work optimizes the current path; this slot is
-   how a better path gets found.
+   how a better path gets found. Each tangential spawn states its plausible
+   connection to the root in one clause; interesting-but-unconnected goes
+   to the backlog, not the wave (review 2026-11-13).
 
 Most promising: #1. Most exciting: #3. No pressure to finish a topic before
 hopping — follow whichever is most alive, hop freely, take as long as needed,
@@ -55,6 +57,7 @@ User says one of:
   user-set 2026-11-10, so never ask for it and never wait for it; awaiting
   a continue message is itself a permission gate)
 - `stop` / `pause rabbithole` (stop signal — honored on next turn)
+- async brief ("delve into <X> until I get back" — user-set 2026-11-13): goal + bounds + return condition. Highest-value branches first; milestone reports ride WITH tools; full debrief at return. Ends at the return condition or a stop reason — never to ask permission.
 - per-turn budget (user-set 2026-11-10): 10,000~20,000 waves per turn, i.e.
   effectively unbounded — a wave is one loop pass (≤2 scouts + ≤2 fetches),
   so this number says "never ration waves to force a check-in", not "do
@@ -222,6 +225,8 @@ hourly pace. If pressure or failures appear, shrink waves (down to 1 scout)
 and lengthen pauses. An optional user-set cap, if present, is the only
 budget-like gate — reaching it means checkpoint + report + await extension.
 
+Milestones (user-set 2026-11-13): every ~25 waves and at every phase/run exit, checkpoint + a 4-line interim report (where I am / what I learned / what's next / what needs your eyes) riding WITH the next wave's tools, never instead of them. The full debrief lands at the return condition (async brief) or run end. Milestones report; they never gate.
+
 ## Marathon rule
 
 A run ends only at the stop reasons (user stop — including unextended cap,
@@ -329,7 +334,8 @@ visible habits die faster.
 - forks: pursue competing branches in parallel until one is noticeably less
   productive, then prune the loser with a verdict (prune only on a verdict —
  dead-end or dominated with numbers — never on slowness alone; slow branches
- are scheduled, not killed). Pruned branches keep their
+are scheduled, not killed). Pruned branches keep their
+  A branch whose expected payoff is below its cost is deferred to the backlog with a one-line value reason (deferring is prioritizing, not stopping — the queue still owes its spawn).
   verdict and stay revivable; pruning is a delegated judgment call, logged.
   Escalate only forks that need user values, major scope, or an irreversible
   choice.
@@ -387,7 +393,9 @@ Unsolved:
   earned rules (W31/W34/W35). Untested whether a first-time AI reader can
   operate it without misreading precedence (what overrides what when rules
   collide). This battery program (clarity rounds → refinement rounds) is
-  the fix vehicle.
+  the fix vehicle. Corroboration 2026-11-13: external toolset review
+  independently rates continuation/stopping the weakest link (Rabbithole
+  4.2/5) and flags complexity — see toolset-review results.
   PARTIAL FIX P2-5 2026-11-12: tangential bridge-or-verdict rule (verdict or
   bridge-back spawn within 2 waves, else dry + prune); fork prune gated on
   verdict, never slowness; escalation covers missing user-only input. Stays open.

@@ -14,16 +14,25 @@
 //             file convention: "## YYYY-MM-DD — title" + "- bullet" lines.
 // v2 (P2-6 2026-11-12): record default SYNTHESIS->CURRENT_TASK + file/stamp
 // overrides; chatlog missing-file fallback; title-aware sections.
+// Single-writer contract: read-modify-write is not atomic — never run
+// concurrent appends to the same file (review 2026-11-13).
 return await (async () => {
   const layer = (args && args.layer) || "record";
   const text = String((args && args.text) || "").trim();
   if (!text) return { ok: false, reason: "empty-text" };
+  const fileArg = String((args && args.file) || "");
+  if (fileArg && (/(\.\.|^\/|^[A-Za-z]:)/.test(fileArg))) return { ok: false, reason: "bad-path" };
   const stampIn = String((args && args.stamp) || "");
   const d = new Date();
   const pad = (n) => String(n).padStart(2, "0");
   const nowDay = d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
   const nowStamp = nowDay + " " + pad(d.getHours()) + ":" + pad(d.getMinutes());
-  const stamp = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}$/.test(stampIn) ? stampIn : nowStamp;
+  const m = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2})$/.exec(stampIn);
+  let stamp = nowStamp;
+  if (m) {
+    const dd = new Date(+m[1], +m[2] - 1, +m[3], +m[4], +m[5]);
+    if (dd.getFullYear() === +m[1] && dd.getMonth() === +m[2] - 1 && dd.getDate() === +m[3] && dd.getHours() === +m[4] && dd.getMinutes() === +m[5]) stamp = stampIn;
+  }
   const day = stamp.slice(0, 10);
   if (layer === "record") {
     const p = String((args && args.file) || "src/CURRENT_TASK.md");
@@ -32,7 +41,7 @@ return await (async () => {
     if (!cur.endsWith("\n")) cur += "\n";
     cur += "- " + stamp + ": " + text + "\n";
     await fs.writeTextFile(p, cur);
-    return { ok: true, file: p, bytes: cur.length };
+    return { ok: true, file: p, bytes: new TextEncoder().encode(cur).length };
   }
   if (layer === "chatlog") {
     const p = String((args && args.file) || "src/CHATLOG.md");
@@ -54,7 +63,7 @@ return await (async () => {
     if (append) cur += "\n" + bullets;
     else cur += (cur ? "\n" : "") + "## " + day + " — " + title + "\n" + bullets;
     await fs.writeTextFile(p, cur);
-    return { ok: true, file: p, bytes: cur.length, newSection: !append };
+    return { ok: true, file: p, bytes: new TextEncoder().encode(cur).length, newSection: !append };
   }
   return { ok: false, reason: "unknown-layer: " + layer };
 })();

@@ -95,6 +95,7 @@ otherwise infeasible (e.g. bigger model, longer sweep); else it stays a doc. con
 GPU: Kaggle, Colab free (manual-only: no API — verify ruling, do not automate), HF ZeroGPU, Lightning AI, Paperspace (open: Core API vs Gradient free sessions?)
 (Buried: SageMaker Studio Lab — in transition per gpupicks.)
 LLM: Gemini AI Studio, Groq, Cerebras (deferred past decider), OpenRouter $0 (deferred), HF inference (deferred), Petals public swarm (no key, slow tail), Ollama local (floor)
+CPU-batch: GitHub Actions matrix (WIRED 2026-11-14: full 240-run Stage-2 matrix green first try — run success, 30/30 shards, both ledgers-per-shard verified; ~2.5 h wall for 240 tutor+student runs vs ~day+ chunked in-browser; lane module src/pool/sources/github-actions.js + spec src/pool/workflows/p1a-matrix.yml + runner src/lab/run-p1a.js; smoke workflow deleted after green per spec)
 
 ## Round 1 (2026-11-10): 2 searches, 16 results. Next: B1+B2 (fetch 2 comparison pages).
 

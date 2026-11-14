@@ -1,0 +1,27 @@
+# One-off Node≡browser cross-check (1.d prep): re-runs Stage-1 seed 311-staged
+# in Node and diffs against the filed browser ledger (killA 1.0 / Hd 0.995).
+# No adjudication attached — methods verification only. Delete after green.
+name: p1a-verify
+on:
+  workflow_dispatch:
+    inputs:
+      ref_note:
+        description: ledger note
+        required: false
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - name: rerun 311-staged
+        run: |
+          mkdir -p ledgers
+          node src/lab/run-p1a.js --seed 311 --arm staged --out ledgers/ledger-311-staged.json
+          cat ledgers/ledger-311-staged.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: verify-311-staged
+          path: ledgers/

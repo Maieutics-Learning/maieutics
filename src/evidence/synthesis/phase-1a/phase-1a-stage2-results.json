@@ -1,0 +1,1967 @@
+{
+ "summary": {
+  "prereg": "phase-1a v1.0 + v1.1 (b-i) COUNTERSIGNED 2026-11-13 FROZEN",
+  "test": "1a-stage2",
+  "n": 80,
+  "seeds": "321-400 fresh",
+  "arms": {
+   "staged": {
+    "n": 80,
+    "ig": 76,
+    "tutorIg": 29
+   },
+   "constant": {
+    "n": 80,
+    "ig": 77,
+    "tutorIg": 29
+   },
+   "instdrop": {
+    "n": 80,
+    "ig": 74,
+    "tutorIg": 29
+   }
+  },
+  "contrasts": {
+   "staged-vs-constant": {
+    "diff": -0.0125,
+    "ci": [
+     -0.0883,
+     0.0611
+    ],
+    "fisherP": 1,
+    "verdict": "EQUIVALENT"
+   },
+   "staged-vs-instdrop": {
+    "diff": 0.025,
+    "ci": [
+     -0.0571,
+     0.1098
+    ],
+    "fisherP": 0.746,
+    "verdict": "EQUIVALENT"
+   }
+  }
+ },
+ "ledgers": [
+  {
+   "seed": 321,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55,
+   "studentSecs": 134.5
+  },
+  {
+   "seed": 321,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 59.1,
+   "studentSecs": 100.7
+  },
+  {
+   "seed": 321,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 32.8,
+   "studentSecs": 80.9
+  },
+  {
+   "seed": 322,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.8,
+   "studentSecs": 134.7
+  },
+  {
+   "seed": 322,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.5,
+   "studentSecs": 60.1
+  },
+  {
+   "seed": 322,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.1,
+   "studentSecs": 133.6
+  },
+  {
+   "seed": 323,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 50.9,
+   "studentSecs": 124.2
+  },
+  {
+   "seed": 323,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 50.6,
+   "studentSecs": 85.9
+  },
+  {
+   "seed": 323,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.6,
+   "studentSecs": 110.6
+  },
+  {
+   "seed": 324,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.3,
+   "studentSecs": 136
+  },
+  {
+   "seed": 324,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 34.4,
+   "studentSecs": 58.4
+  },
+  {
+   "seed": 324,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 34.7,
+   "studentSecs": 85.2
+  },
+  {
+   "seed": 325,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 51.3,
+   "studentSecs": 125.7
+  },
+  {
+   "seed": 325,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.9,
+   "studentSecs": 91.2
+  },
+  {
+   "seed": 325,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": false,
+   "tutorSecs": 45.3,
+   "studentSecs": 110.9
+  },
+  {
+   "seed": 326,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 62.7,
+   "studentSecs": 152.2
+  },
+  {
+   "seed": 326,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 57.7,
+   "studentSecs": 95.1
+  },
+  {
+   "seed": 326,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.1,
+   "studentSecs": 135
+  },
+  {
+   "seed": 327,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 47.2,
+   "studentSecs": 116.2
+  },
+  {
+   "seed": 327,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 35.8,
+   "studentSecs": 61
+  },
+  {
+   "seed": 327,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 44.3,
+   "studentSecs": 108.9
+  },
+  {
+   "seed": 328,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 48.3,
+   "studentSecs": 117.8
+  },
+  {
+   "seed": 328,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.9,
+   "studentSecs": 76.3
+  },
+  {
+   "seed": 328,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.7,
+   "studentSecs": 111
+  },
+  {
+   "seed": 329,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 46.7,
+   "studentSecs": 114.2
+  },
+  {
+   "seed": 329,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 56.2,
+   "studentSecs": 93.6
+  },
+  {
+   "seed": 329,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 44.9,
+   "studentSecs": 110
+  },
+  {
+   "seed": 330,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 46.7,
+   "studentSecs": 115
+  },
+  {
+   "seed": 330,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": false,
+   "tutorSecs": 46.3,
+   "studentSecs": 75.7
+  },
+  {
+   "seed": 330,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 32,
+   "studentSecs": 79.9
+  },
+  {
+   "seed": 331,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.1,
+   "studentSecs": 135.8
+  },
+  {
+   "seed": 331,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": false,
+   "tutorSecs": 60.2,
+   "studentSecs": 100.9
+  },
+  {
+   "seed": 331,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 32.9,
+   "studentSecs": 80.5
+  },
+  {
+   "seed": 332,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.9,
+   "studentSecs": 136.1
+  },
+  {
+   "seed": 332,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 35.5,
+   "studentSecs": 60.5
+  },
+  {
+   "seed": 332,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 54.7,
+   "studentSecs": 134.4
+  },
+  {
+   "seed": 333,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 50.6,
+   "studentSecs": 127.7
+  },
+  {
+   "seed": 333,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 50.5,
+   "studentSecs": 86.7
+  },
+  {
+   "seed": 333,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.4,
+   "studentSecs": 111.3
+  },
+  {
+   "seed": 334,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": false,
+   "tutorSecs": 54.2,
+   "studentSecs": 134.4
+  },
+  {
+   "seed": 334,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 33.7,
+   "studentSecs": 60.9
+  },
+  {
+   "seed": 334,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 32.9,
+   "studentSecs": 83
+  },
+  {
+   "seed": 335,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 52.1,
+   "studentSecs": 126.8
+  },
+  {
+   "seed": 335,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.7,
+   "studentSecs": 91.6
+  },
+  {
+   "seed": 335,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.8,
+   "studentSecs": 112
+  },
+  {
+   "seed": 336,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 62.3,
+   "studentSecs": 152.4
+  },
+  {
+   "seed": 336,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 57.2,
+   "studentSecs": 96.7
+  },
+  {
+   "seed": 336,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 56.2,
+   "studentSecs": 138
+  },
+  {
+   "seed": 337,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.6,
+   "studentSecs": 115.7
+  },
+  {
+   "seed": 337,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.9,
+   "studentSecs": 60.3
+  },
+  {
+   "seed": 337,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.4,
+   "studentSecs": 110.6
+  },
+  {
+   "seed": 338,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 48,
+   "studentSecs": 118.2
+  },
+  {
+   "seed": 338,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.3,
+   "studentSecs": 75.1
+  },
+  {
+   "seed": 338,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": false,
+   "tutorSecs": 45.1,
+   "studentSecs": 110.5
+  },
+  {
+   "seed": 339,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 46.7,
+   "studentSecs": 116.4
+  },
+  {
+   "seed": 339,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": false,
+   "tutorSecs": 56.4,
+   "studentSecs": 93.8
+  },
+  {
+   "seed": 339,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 44.9,
+   "studentSecs": 109.7
+  },
+  {
+   "seed": 340,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.8,
+   "studentSecs": 113.7
+  },
+  {
+   "seed": 340,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.4,
+   "studentSecs": 76.5
+  },
+  {
+   "seed": 340,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 34.1,
+   "studentSecs": 83.1
+  },
+  {
+   "seed": 341,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.5,
+   "studentSecs": 134.2
+  },
+  {
+   "seed": 341,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 59.3,
+   "studentSecs": 101
+  },
+  {
+   "seed": 341,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 32,
+   "studentSecs": 79.7
+  },
+  {
+   "seed": 342,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.7,
+   "studentSecs": 136.4
+  },
+  {
+   "seed": 342,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.9,
+   "studentSecs": 61.4
+  },
+  {
+   "seed": 342,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.5,
+   "studentSecs": 134.2
+  },
+  {
+   "seed": 343,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 51.1,
+   "studentSecs": 127.1
+  },
+  {
+   "seed": 343,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": false,
+   "tutorSecs": 50.9,
+   "studentSecs": 85.1
+  },
+  {
+   "seed": 343,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.7,
+   "studentSecs": 111.5
+  },
+  {
+   "seed": 344,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.3,
+   "studentSecs": 134
+  },
+  {
+   "seed": 344,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.1,
+   "studentSecs": 58.5
+  },
+  {
+   "seed": 344,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 33.5,
+   "studentSecs": 80.9
+  },
+  {
+   "seed": 345,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 51.8,
+   "studentSecs": 126.5
+  },
+  {
+   "seed": 345,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.5,
+   "studentSecs": 92.2
+  },
+  {
+   "seed": 345,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": false,
+   "tutorSecs": 45.6,
+   "studentSecs": 110.7
+  },
+  {
+   "seed": 346,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 61.6,
+   "studentSecs": 149.5
+  },
+  {
+   "seed": 346,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 56.7,
+   "studentSecs": 94.3
+  },
+  {
+   "seed": 346,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.2,
+   "studentSecs": 133.7
+  },
+  {
+   "seed": 347,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.2,
+   "studentSecs": 116.2
+  },
+  {
+   "seed": 347,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.4,
+   "studentSecs": 59.8
+  },
+  {
+   "seed": 347,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.3,
+   "studentSecs": 111.2
+  },
+  {
+   "seed": 348,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.2,
+   "studentSecs": 117.5
+  },
+  {
+   "seed": 348,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.5,
+   "studentSecs": 76.8
+  },
+  {
+   "seed": 348,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.1,
+   "studentSecs": 109.3
+  },
+  {
+   "seed": 349,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 47.6,
+   "studentSecs": 116.2
+  },
+  {
+   "seed": 349,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.8,
+   "studentSecs": 92.6
+  },
+  {
+   "seed": 349,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.1,
+   "studentSecs": 110.8
+  },
+  {
+   "seed": 350,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 46.2,
+   "studentSecs": 112.2
+  },
+  {
+   "seed": 350,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.9,
+   "studentSecs": 76.4
+  },
+  {
+   "seed": 350,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 32.9,
+   "studentSecs": 82.7
+  },
+  {
+   "seed": 351,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.1,
+   "studentSecs": 136.3
+  },
+  {
+   "seed": 351,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 59.8,
+   "studentSecs": 100.6
+  },
+  {
+   "seed": 351,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 32.6,
+   "studentSecs": 80.7
+  },
+  {
+   "seed": 352,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.3,
+   "studentSecs": 135.9
+  },
+  {
+   "seed": 352,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 36.5,
+   "studentSecs": 60.1
+  },
+  {
+   "seed": 352,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.8,
+   "studentSecs": 136.6
+  },
+  {
+   "seed": 353,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 52.7,
+   "studentSecs": 127.3
+  },
+  {
+   "seed": 353,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 50.4,
+   "studentSecs": 87.3
+  },
+  {
+   "seed": 353,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.9,
+   "studentSecs": 111.7
+  },
+  {
+   "seed": 354,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.6,
+   "studentSecs": 134.7
+  },
+  {
+   "seed": 354,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 34.6,
+   "studentSecs": 58.9
+  },
+  {
+   "seed": 354,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.9,
+   "studentSecs": 85
+  },
+  {
+   "seed": 355,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 51.3,
+   "studentSecs": 125.1
+  },
+  {
+   "seed": 355,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 54.3,
+   "studentSecs": 90.9
+  },
+  {
+   "seed": 355,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.2,
+   "studentSecs": 111.3
+  },
+  {
+   "seed": 356,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": false,
+   "tutorSecs": 61.7,
+   "studentSecs": 151.6
+  },
+  {
+   "seed": 356,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 56.8,
+   "studentSecs": 94.7
+  },
+  {
+   "seed": 356,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.9,
+   "studentSecs": 134.9
+  },
+  {
+   "seed": 357,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 46.8,
+   "studentSecs": 116.3
+  },
+  {
+   "seed": 357,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 34.6,
+   "studentSecs": 59.9
+  },
+  {
+   "seed": 357,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.4,
+   "studentSecs": 111.3
+  },
+  {
+   "seed": 358,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.6,
+   "studentSecs": 116.4
+  },
+  {
+   "seed": 358,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.7,
+   "studentSecs": 76.2
+  },
+  {
+   "seed": 358,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 44.9,
+   "studentSecs": 110.9
+  },
+  {
+   "seed": 359,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 47.2,
+   "studentSecs": 117.2
+  },
+  {
+   "seed": 359,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 56.3,
+   "studentSecs": 93.7
+  },
+  {
+   "seed": 359,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.1,
+   "studentSecs": 110.4
+  },
+  {
+   "seed": 360,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.5,
+   "studentSecs": 110.8
+  },
+  {
+   "seed": 360,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.2,
+   "studentSecs": 76.8
+  },
+  {
+   "seed": 360,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 32.7,
+   "studentSecs": 80.4
+  },
+  {
+   "seed": 361,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 58.8,
+   "studentSecs": 135.4
+  },
+  {
+   "seed": 361,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 59.3,
+   "studentSecs": 100.9
+  },
+  {
+   "seed": 361,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 32.5,
+   "studentSecs": 80.1
+  },
+  {
+   "seed": 362,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.9,
+   "studentSecs": 135.8
+  },
+  {
+   "seed": 362,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 34.8,
+   "studentSecs": 59.5
+  },
+  {
+   "seed": 362,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.3,
+   "studentSecs": 133.9
+  },
+  {
+   "seed": 363,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 51.7,
+   "studentSecs": 125.7
+  },
+  {
+   "seed": 363,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 51.1,
+   "studentSecs": 87.6
+  },
+  {
+   "seed": 363,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.4,
+   "studentSecs": 111.9
+  },
+  {
+   "seed": 364,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.2,
+   "studentSecs": 132.9
+  },
+  {
+   "seed": 364,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 36,
+   "studentSecs": 61.7
+  },
+  {
+   "seed": 364,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 34.6,
+   "studentSecs": 87.3
+  },
+  {
+   "seed": 365,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 50.9,
+   "studentSecs": 126.4
+  },
+  {
+   "seed": 365,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55,
+   "studentSecs": 91.9
+  },
+  {
+   "seed": 365,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 46.2,
+   "studentSecs": 111.3
+  },
+  {
+   "seed": 366,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 61.8,
+   "studentSecs": 151
+  },
+  {
+   "seed": 366,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 56.9,
+   "studentSecs": 94.9
+  },
+  {
+   "seed": 366,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 56.2,
+   "studentSecs": 137.3
+  },
+  {
+   "seed": 367,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 47.2,
+   "studentSecs": 114.9
+  },
+  {
+   "seed": 367,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 36.2,
+   "studentSecs": 60.6
+  },
+  {
+   "seed": 367,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": false,
+   "tutorSecs": 45.8,
+   "studentSecs": 111.1
+  },
+  {
+   "seed": 368,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.6,
+   "studentSecs": 117.6
+  },
+  {
+   "seed": 368,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.5,
+   "studentSecs": 76.6
+  },
+  {
+   "seed": 368,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 44.9,
+   "studentSecs": 109.7
+  },
+  {
+   "seed": 369,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.4,
+   "studentSecs": 114.9
+  },
+  {
+   "seed": 369,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 57.2,
+   "studentSecs": 96.2
+  },
+  {
+   "seed": 369,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.4,
+   "studentSecs": 111.8
+  },
+  {
+   "seed": 370,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 47,
+   "studentSecs": 112.5
+  },
+  {
+   "seed": 370,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 46,
+   "studentSecs": 74.5
+  },
+  {
+   "seed": 370,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 32.9,
+   "studentSecs": 82.3
+  },
+  {
+   "seed": 371,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.7,
+   "studentSecs": 134.1
+  },
+  {
+   "seed": 371,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 59.8,
+   "studentSecs": 101
+  },
+  {
+   "seed": 371,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 31.6,
+   "studentSecs": 79
+  },
+  {
+   "seed": 372,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.7,
+   "studentSecs": 137.9
+  },
+  {
+   "seed": 372,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.3,
+   "studentSecs": 56.4
+  },
+  {
+   "seed": 372,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55,
+   "studentSecs": 133.7
+  },
+  {
+   "seed": 373,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 51.2,
+   "studentSecs": 120.5
+  },
+  {
+   "seed": 373,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": false,
+   "tutorSecs": 51.1,
+   "studentSecs": 85.6
+  },
+  {
+   "seed": 373,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.9,
+   "studentSecs": 112.3
+  },
+  {
+   "seed": 374,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 54.3,
+   "studentSecs": 135.5
+  },
+  {
+   "seed": 374,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 35.7,
+   "studentSecs": 59.6
+  },
+  {
+   "seed": 374,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 34.9,
+   "studentSecs": 87.9
+  },
+  {
+   "seed": 375,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 51.9,
+   "studentSecs": 128.6
+  },
+  {
+   "seed": 375,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.1,
+   "studentSecs": 91.5
+  },
+  {
+   "seed": 375,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.4,
+   "studentSecs": 111.7
+  },
+  {
+   "seed": 376,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 62.1,
+   "studentSecs": 150.8
+  },
+  {
+   "seed": 376,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 57.8,
+   "studentSecs": 95.2
+  },
+  {
+   "seed": 376,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.5,
+   "studentSecs": 135.6
+  },
+  {
+   "seed": 377,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 46.7,
+   "studentSecs": 116
+  },
+  {
+   "seed": 377,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.5,
+   "studentSecs": 59.8
+  },
+  {
+   "seed": 377,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 44.9,
+   "studentSecs": 110.4
+  },
+  {
+   "seed": 378,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.5,
+   "studentSecs": 115.2
+  },
+  {
+   "seed": 378,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 46.3,
+   "studentSecs": 76.3
+  },
+  {
+   "seed": 378,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.2,
+   "studentSecs": 110.7
+  },
+  {
+   "seed": 379,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47,
+   "studentSecs": 115
+  },
+  {
+   "seed": 379,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.7,
+   "studentSecs": 92.7
+  },
+  {
+   "seed": 379,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.4,
+   "studentSecs": 110.6
+  },
+  {
+   "seed": 380,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.8,
+   "studentSecs": 112.8
+  },
+  {
+   "seed": 380,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.2,
+   "studentSecs": 75.4
+  },
+  {
+   "seed": 380,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 33.1,
+   "studentSecs": 82.9
+  },
+  {
+   "seed": 381,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.5,
+   "studentSecs": 136.9
+  },
+  {
+   "seed": 381,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 59.4,
+   "studentSecs": 100.8
+  },
+  {
+   "seed": 381,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 32.9,
+   "studentSecs": 80.8
+  },
+  {
+   "seed": 382,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 56,
+   "studentSecs": 135.7
+  },
+  {
+   "seed": 382,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 33,
+   "studentSecs": 57.4
+  },
+  {
+   "seed": 382,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.6,
+   "studentSecs": 136.7
+  },
+  {
+   "seed": 383,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 48.9,
+   "studentSecs": 118.1
+  },
+  {
+   "seed": 383,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": false,
+   "tutorSecs": 50.1,
+   "studentSecs": 85.7
+  },
+  {
+   "seed": 383,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.4,
+   "studentSecs": 110.5
+  },
+  {
+   "seed": 384,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.1,
+   "studentSecs": 134.4
+  },
+  {
+   "seed": 384,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 34.7,
+   "studentSecs": 58.6
+  },
+  {
+   "seed": 384,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 36,
+   "studentSecs": 88.1
+  },
+  {
+   "seed": 385,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 52.7,
+   "studentSecs": 127.8
+  },
+  {
+   "seed": 385,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.8,
+   "studentSecs": 91.1
+  },
+  {
+   "seed": 385,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.9,
+   "studentSecs": 112.1
+  },
+  {
+   "seed": 386,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 62.1,
+   "studentSecs": 151.4
+  },
+  {
+   "seed": 386,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 57.9,
+   "studentSecs": 95.8
+  },
+  {
+   "seed": 386,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.9,
+   "studentSecs": 136.4
+  },
+  {
+   "seed": 387,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.4,
+   "studentSecs": 116.2
+  },
+  {
+   "seed": 387,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.3,
+   "studentSecs": 60.1
+  },
+  {
+   "seed": 387,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.8,
+   "studentSecs": 110.6
+  },
+  {
+   "seed": 388,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 46.8,
+   "studentSecs": 114.9
+  },
+  {
+   "seed": 388,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45,
+   "studentSecs": 75.7
+  },
+  {
+   "seed": 388,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 44.7,
+   "studentSecs": 108.1
+  },
+  {
+   "seed": 389,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 49,
+   "studentSecs": 118.5
+  },
+  {
+   "seed": 389,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 55.3,
+   "studentSecs": 92.2
+  },
+  {
+   "seed": 389,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.5,
+   "studentSecs": 110.3
+  },
+  {
+   "seed": 390,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": false,
+   "tutorSecs": 45.5,
+   "studentSecs": 113.3
+  },
+  {
+   "seed": 390,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 44.5,
+   "studentSecs": 74.6
+  },
+  {
+   "seed": 390,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 32.9,
+   "studentSecs": 80.2
+  },
+  {
+   "seed": 391,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 54.5,
+   "studentSecs": 135.1
+  },
+  {
+   "seed": 391,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 60,
+   "studentSecs": 101.8
+  },
+  {
+   "seed": 391,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 32.6,
+   "studentSecs": 80
+  },
+  {
+   "seed": 392,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.7,
+   "studentSecs": 135.7
+  },
+  {
+   "seed": 392,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 33.9,
+   "studentSecs": 56.5
+  },
+  {
+   "seed": 392,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.8,
+   "studentSecs": 134.3
+  },
+  {
+   "seed": 393,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 48.1,
+   "studentSecs": 122.8
+  },
+  {
+   "seed": 393,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 50.4,
+   "studentSecs": 86.1
+  },
+  {
+   "seed": 393,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.3,
+   "studentSecs": 111
+  },
+  {
+   "seed": 394,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.8,
+   "studentSecs": 136.3
+  },
+  {
+   "seed": 394,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 33.8,
+   "studentSecs": 57.2
+  },
+  {
+   "seed": 394,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 36.6,
+   "studentSecs": 88
+  },
+  {
+   "seed": 395,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 51.5,
+   "studentSecs": 127.3
+  },
+  {
+   "seed": 395,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 54.5,
+   "studentSecs": 91.3
+  },
+  {
+   "seed": 395,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.6,
+   "studentSecs": 111.5
+  },
+  {
+   "seed": 396,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 62.5,
+   "studentSecs": 150.9
+  },
+  {
+   "seed": 396,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 57.3,
+   "studentSecs": 95.6
+  },
+  {
+   "seed": 396,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 55.4,
+   "studentSecs": 133.8
+  },
+  {
+   "seed": 397,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.4,
+   "studentSecs": 116
+  },
+  {
+   "seed": 397,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 35.9,
+   "studentSecs": 60.1
+  },
+  {
+   "seed": 397,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.6,
+   "studentSecs": 110.3
+  },
+  {
+   "seed": 398,
+   "arm": "constant",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 47.6,
+   "studentSecs": 117.7
+  },
+  {
+   "seed": 398,
+   "arm": "instdrop",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.6,
+   "studentSecs": 75.2
+  },
+  {
+   "seed": 398,
+   "arm": "staged",
+   "tutorIg": false,
+   "studentIg": true,
+   "tutorSecs": 45.5,
+   "studentSecs": 110.4
+  },
+  {
+   "seed": 399,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 48.8,
+   "studentSecs": 116.8
+  },
+  {
+   "seed": 399,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 56.3,
+   "studentSecs": 94.3
+  },
+  {
+   "seed": 399,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45,
+   "studentSecs": 109.4
+  },
+  {
+   "seed": 400,
+   "arm": "constant",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 47.7,
+   "studentSecs": 114.9
+  },
+  {
+   "seed": 400,
+   "arm": "instdrop",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 45.3,
+   "studentSecs": 74.6
+  },
+  {
+   "seed": 400,
+   "arm": "staged",
+   "tutorIg": true,
+   "studentIg": true,
+   "tutorSecs": 33.2,
+   "studentSecs": 80.1
+  }
+ ]
+}

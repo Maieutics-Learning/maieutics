@@ -737,3 +737,28 @@ never "feels faster" — wall time, accuracy, loss, token counts.
 
 ## 2026-11-13 — Gameplan r4 PAIRED DEBATE done (format 10 maiden run) → v11
 - 5 claims × RED/STEELMAN (10 sealed armed + 10 rebuttals): all 5 split BREAK/HOLD. Rulings: C1 ACCEPT (instant-drop arm 1.a.iv + five-way table — no non-gradual zero-hint arm existed), C2 REJECT (0.95 rule is fail-safe, not proof), C3 REJECT (r3 S3 repeat, 2.c owns scope), C4 REJECT (tutor-swap + N=10 + gap analysis already in text), C5 ACCEPT (2.e.iv submit gate — both sides conceded present-tense overclaim). Method: rebuttals earned 3x cost (C1 converged on same settler; C2/C4 exposed answered attacks). 36 reviewers total. Next: execute, Phase 1.a prereg.
+
+## 2026-11-13 — PUSHED dca3892 (user-supplied PAT, parent 10e5673)
+- 16 files via git-blobs API (13 new: GAMEPLAN.md v11, 4 fleet drivers, 4 battery specs + 4 results; 3 modified: SKILL format-10, CHATLOG, README pointer bumped v6→v11). Ref verified match from the live page (worker GETs were serving stale cache — note for next time: cache-bust ref reads). Repo clean, nothing queued.
+
+## 2026-11-13 — Toolset review adjudicated (rabbithole/fresh-eyes/memory skills)
+- 10 adoptions, no rearchitecture: log.js byte-count + date-validation bugs CONFIRMED and fixed (verified via bootstrap: UTF-8 bytes exact, bad date falls back, `..`/absolute paths rejected); epistemic labels (O/V/I/H/R), anti-bias packet, unanimity line, provider-diversity limitation, audit roles, verdict-record fields, tangential-connection rule, snapshot byte counts, U8 complexity deferral. 5 recommendations already present (ZIP staleness), 3 need the user: ROTATE both pasted PATs, continuation-policy override, memory-split timing. Durable: src/evidence/synthesis/toolset-review-results.md. UNPUSHED pile grows (5 skill files + results, no PAT).
+
+## 2026-11-13 — Stats review adjudicated, 4 ACCEPTs → gameplan v12 (pushback where earned)
+- A equivalence-over-overlap CONFIRMED (incl. my own r4 "above CI" error — owned): Conventions gain δ + Fisher exact + Wilson difference-CI + three zones; 1.a.iii/iv, 2.b.iii rewritten. B power-first CONFIRMED: 1.f moved to Phase 1 front as Statistical setup (numbering frozen), gates all arms. C pilot bias CONFIRMED: 1.c.iii confirmation = 8 fresh disjoint seeds, pilot never counts (plan-wide rule); 5/8 justified honestly vs measured nulls (excludes ≤0.25, p≈0.027 — rate-vs-coin is the wrong test at n=8, only 8/8 could exclude 0.5). D position teeth ACCEPTED as strengthening (r4 C2 REJECT stands): 1.b.iii now ρ + |Δacc| + worst-position floor. §§3–4 corroborate U1/U8 with pushback: marathon/queue/no-closure are user-set orders, not AI self-legislation; Track C wind-down executed the user-stop rule legitimately — value-based stopping stays a user decision, compromise text proposed in results. P1 done, P5 queued. UNPUSHED: GAMEPLAN v12 + results + this entry (no PAT).
+
+## 2026-11-13 — Phase 1.a COMPLETE (4 arms × 8 seeds, seeds 311–318)
+- staged 7/8 (lone fail s313 catastrophic), attn-only 0/8 (Fisher vs staged p≈0.0014) → DECIDED: "hints insufficient alone." constant 8/8 vs staged → CI (-0.22,+0.47) INCONCLUSIVE; staged vs instdrop 8/8 → (-0.47,+0.22) INCONCLUSIVE (frozen δ=0.25).
+- Calibration error owned: δ=0.25 unachievable at n=8 for ANY data (8v8 CI ±0.32) — empty EQUIVALENT zone, shown by pure math, no observed data used. v1.1 proposed in verdicts file (recommend (b): keep inconclusive, specify n≈24 resolver), NOT applied — post-data amendments need countersign.
+- Tutors 4/8 rotted yet students 23/24 → teaching≠score (consistent with cheap-tests (d)). Substantive read (Hypothesis): soft targets carry transmission, schedule secondary at n=8. Cost: 2 launches ~110 min wall (gameplan "35 s/seed" was 4–6× off on this worker), pool 0. Durable: phase-1a/phase-1a-results.json + phase-1a-verdicts.md.
+
+## 2026-11-13 — User decisions on the gated list
+- D1 PAT rotation: DONE by user (both tokens revoked).
+- D3 memory split: user picks deferral (option b) — recorded in U8.
+- D2 continuation policy: user clarifies the real scenario is the async brief ("delve into that until I get back") + past explicit no-stopping orders (W31 stall) stand. Standing orders untouched pending ruling; reconciled proposal in chat (permission-gate ban preserved + branch-level value gating + milestone reports + ABANDONED verdicts).
+
+## 2026-11-13 — D2 ruled: milestones adopted → gameplan v13 + rabbithole skill
+- User approves the reconciled policy. Written in: async-brief command, ~25-wave 4-line milestone reports (ride with tools, never gate), branch defer-to-backlog with one-line value reason, ABANDONED as first-class TBD verdict + phase-exit report-and-return in the gameplan standing rule. Permission-gate ban untouched. Stats-review results flipped to DECIDED. UNPUSHED pile grows (no PAT).
+
+## 2026-11-13 — Nursery-purpose assessment (user: destination vs current implementation)
+- Delivered faculty-by-faculty gap analysis (curiosity/lit/exploration/hypothesis/experiment/adversarial/preservation/teaching/verification/generational) + the discovery-vs-reproduction crux (surprise, abduction, falsification design, independent grounding, separated powers, retraction, teaching-as-test, self-briefing, VoI). No gameplan generated (explicitly deferred). Key frame: our skill stack IS the prototype nursery cognition; autonomy = taking human seats one by one (proposer → grader → topic-picker, per meshing note).

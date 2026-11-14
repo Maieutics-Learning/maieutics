@@ -100,6 +100,12 @@ errors. Structure that worked (`scratch/fresh-eyes-premise-10x.md`):
 4. Done / Next (what ran, what's spec'd, what's parked).
 5. The ask (e.g. "Hammer this premise. Verdict + single hardest
    test/falsifier. <=150 words, numbered.").
+6. Anti-bias packet (review 2026-11-13): the brief must let reviewers
+   name the central claims, the evidence for each, contradictory/missing
+   evidence, unverified assumptions, and which conclusions depend on
+   which assumptions. Where practical, brief one reviewer on the raw
+   artifact and another on your summary — diverging verdicts mean the
+   summary framed them.
 
 Premise hygiene (learned the hard way):
 - Keep it current. Reviewers corrected us with STALE facts twice ("A3
@@ -182,6 +188,11 @@ Rules for armed rounds:
 - Diminishing returns applies faster when armed: our R11 attack round
   yielded almost nothing ("yield small by design") — that closed the
   attack phase, not the loop; later rounds moved to new layers.
+- Staff audit roles on load-bearing rounds (review 2026-11-13): at least
+  one math/stat auditor (check the numbers, CIs, thresholds), one
+  implementation/repro auditor (does the code do what the plan says),
+  one alternative-explanation reviewer. Red-team covers falsification;
+  these cover verification.
 - Full recipe lives in `src/tools/websearch/SKILL.md`; the standing
   pre-step rule (max ~2 searches, primary sources, cite URL + verdict)
   is the same rule reviewers get.
@@ -254,6 +265,10 @@ reviewers). Results files carry the version:
   stop and declare satisfaction. Don't keep reviewing out of anxiety.
 - One round that finds nothing is negative evidence (log it), not a
   wasted round. Two in a row = stop.
+- Unanimity ends the DOCUMENT round, never the inquiry: 10/10 HOLDS stops
+  reviewing, not measuring. Adopted points still need a run (armed-rounds
+  rule), and only runnable evidence retires a priced residual (r3
+  convention, now in-skill).
 
 ## Honest limitations
 
@@ -262,6 +277,11 @@ reviewers). Results files carry the version:
   and which don't (means, rankings).
 - Reviewers can't run code. Anything they assert about your implementation
   must be checked against the code, not trusted.
+- One provider means correlated errors. All reviewers share a model
+  family, training data, and prompt lineage — they can all miss the same
+  flaw or reproduce the same conventional assumption. Mitigate with role
+  diversity (red/steel/blind/armed/audit), independent searches, sealed
+  briefs, and code-checks; never treat unanimity as proof (see stop rule).
 - Reviewers inherit your framing. The blind test exists because of this:
   if nobody spontaneously raises the objection, it may be your frame
   doing the work, not the evidence.
@@ -275,4 +295,7 @@ reviewers). Results files carry the version:
   + your adjudication). Premise artifacts kept beside them.
 - Verdicts filed in the durable log (CHATLOG) + working record
   (CURRENT_TASK). Numbers sacred: reviewer scores quoted exactly, then
-  your ruling.
+  your ruling. Verdict records carry the shared fields — claim, status,
+  evidence + source locations, challenge, ruling, settler (what would
+  change it), next action — so exploration, review, and memory trade the
+  same shape (review 2026-11-13).

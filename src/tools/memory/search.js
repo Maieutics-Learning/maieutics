@@ -6,6 +6,10 @@
 //   const run = new (Object.getPrototypeOf(async function(){}).constructor)("fs","tools","args", src);
 //   return await run(fs, tools, {query: "pool nursery kaggle"});
 // args: {query, limit?, snippetsPerFile?, allowPaths?[] (extra roots)}
+// Retrieval limits (review 2026-11-13): lexical baseline only — substring
+// hits can mislead, path-only matches may not answer, and recency/status
+// are NOT ranked. Snippets are pointers: verify against the source artifact
+// and check its timestamp (STALE vs live) before building on a hit.
 const STOP = new Set(("the,a,an,and,or,of,to,in,on,for,with,what,why,how,does,did,was,were,is,are,that,this,these,those,it,its,from,where,which,who,when,can,could,should,would,there,their,then,than,not,but,you,your,we,our,they,all,any,has,have,had,been,will,just,about,into,over,after,before,our").split(","));
 return await (async () => {
   const q = String((args && args.query) || "");

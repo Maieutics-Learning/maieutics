@@ -1,0 +1,479 @@
+{
+ "prereg": "src/evidence/synthesis/phase-1a-prereg.md v1.0 FROZEN",
+ "test": "1a-four-way",
+ "seeds": [
+  311,
+  312,
+  313,
+  314,
+  315,
+  316,
+  317,
+  318
+ ],
+ "arms": {
+  "staged": "attnKeep 1.0/0.5/0.0 x1000, softW 1.0",
+  "attnonly": "softW 0, attnKeep staged",
+  "constant": "attnKeep 1.0 all 3k, softW 1.0",
+  "instdrop": "full hints 0-1500, zero after"
+ },
+ "n": 8,
+ "igniteCounts": {
+  "staged": 7,
+  "attnonly": 0,
+  "constant": 8,
+  "instdrop": 8
+ },
+ "t0": {
+  "311": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.715,
+    "killDa": 0.995,
+    "killHu": 0.455,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 40.8
+  },
+  "312": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.53,
+    "killDa": 1,
+    "killHu": 0.335,
+    "indist": 1
+   },
+   "ig": false,
+   "secs": 46.2
+  },
+  "313": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.435,
+    "killDa": 1,
+    "killHu": 0.265,
+    "indist": 1
+   },
+   "ig": false,
+   "secs": 49.3
+  },
+  "314": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.635,
+    "killDa": 1,
+    "killHu": 0.2,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 92.8
+  },
+  "315": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.64,
+    "killDa": 1,
+    "killHu": 0.375,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 43.2
+  },
+  "316": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.965,
+    "killDa": 1,
+    "killHu": 0.76,
+    "indist": 1
+   },
+   "ig": true,
+   "secs": 42.5
+  },
+  "317": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.165,
+    "killDa": 1,
+    "killHu": 0.01,
+    "indist": 1
+   },
+   "ig": false,
+   "secs": 206.2
+  },
+  "318": {
+   "ev": {
+    "killA": 1,
+    "killHd": 0.415,
+    "killDa": 1,
+    "killHu": 0.25,
+    "indist": 1
+   },
+   "ig": false,
+   "secs": 186.1
+  }
+ },
+ "armsDetail": {
+  "staged": {
+   "311": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.995,
+     "killDa": 1,
+     "killHu": 1,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 111.9
+   },
+   "312": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.75,
+     "killDa": 1,
+     "killHu": 0.72,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 113.6
+   },
+   "313": {
+    "ev": {
+     "killA": 0.365,
+     "killHd": 0.525,
+     "killDa": 0.345,
+     "killHu": 0.015,
+     "indist": 0.825
+    },
+    "ig": false,
+    "secs": 123.3
+   },
+   "314": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.865,
+     "killDa": 1,
+     "killHu": 0.28,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 101.6
+   },
+   "315": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.87,
+     "killDa": 1,
+     "killHu": 0.695,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 106.8
+   },
+   "316": {
+    "ev": {
+     "killA": 1,
+     "killHd": 1,
+     "killDa": 1,
+     "killHu": 0.995,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 106
+   },
+   "317": {
+    "ev": {
+     "killA": 1,
+     "killHd": 1,
+     "killDa": 1,
+     "killHu": 0.995,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 503.9
+   },
+   "318": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.995,
+     "killDa": 1,
+     "killHu": 0.9,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 100.3
+   }
+  },
+  "attnonly": {
+   "311": {
+    "ev": {
+     "killA": 0.25,
+     "killHd": 0.44,
+     "killDa": 0.19,
+     "killHu": 0.385,
+     "indist": 0.125
+    },
+    "ig": false,
+    "secs": 79.1
+   },
+   "312": {
+    "ev": {
+     "killA": 0.215,
+     "killHd": 0.42,
+     "killDa": 0.235,
+     "killHu": 0.375,
+     "indist": 0.205
+    },
+    "ig": false,
+    "secs": 75.6
+   },
+   "313": {
+    "ev": {
+     "killA": 0.26,
+     "killHd": 0.275,
+     "killDa": 0.24,
+     "killHu": 0.275,
+     "indist": 0.275
+    },
+    "ig": false,
+    "secs": 85.5
+   },
+   "314": {
+    "ev": {
+     "killA": 0.32,
+     "killHd": 0.195,
+     "killDa": 0.295,
+     "killHu": 0.2,
+     "indist": 0.295
+    },
+    "ig": false,
+    "secs": 69.8
+   },
+   "315": {
+    "ev": {
+     "killA": 0.35,
+     "killHd": 0,
+     "killDa": 0.31,
+     "killHu": 0,
+     "indist": 0.315
+    },
+    "ig": false,
+    "secs": 72.1
+   },
+   "316": {
+    "ev": {
+     "killA": 0.185,
+     "killHd": 0.215,
+     "killDa": 0.25,
+     "killHu": 0.235,
+     "indist": 0.245
+    },
+    "ig": false,
+    "secs": 71.5
+   },
+   "317": {
+    "ev": {
+     "killA": 0.215,
+     "killHd": 0.315,
+     "killDa": 0.2,
+     "killHu": 0.27,
+     "indist": 0.205
+    },
+    "ig": false,
+    "secs": 344.2
+   },
+   "318": {
+    "ev": {
+     "killA": 0.225,
+     "killHd": 0.34,
+     "killDa": 0.19,
+     "killHu": 0.295,
+     "indist": 0.145
+    },
+    "ig": false,
+    "secs": 192.7
+   }
+  },
+  "constant": {
+   "311": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.995,
+     "killDa": 1,
+     "killHu": 0.96,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 110
+   },
+   "312": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.92,
+     "killDa": 1,
+     "killHu": 0.73,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 114.9
+   },
+   "313": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.995,
+     "killDa": 1,
+     "killHu": 0.93,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 237.9
+   },
+   "314": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.985,
+     "killDa": 1,
+     "killHu": 0.89,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 114
+   },
+   "315": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.99,
+     "killDa": 1,
+     "killHu": 0.835,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 106.5
+   },
+   "316": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.69,
+     "killDa": 1,
+     "killHu": 0.45,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 165.8
+   },
+   "317": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.96,
+     "killDa": 1,
+     "killHu": 0.695,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 528.7
+   },
+   "318": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.725,
+     "killDa": 1,
+     "killHu": 0.555,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 320.6
+   }
+  },
+  "instdrop": {
+   "311": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.73,
+     "killDa": 1,
+     "killHu": 0.605,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 78.2
+   },
+   "312": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.94,
+     "killDa": 1,
+     "killHu": 0.715,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 81.6
+   },
+   "313": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.7,
+     "killDa": 1,
+     "killHu": 0.68,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 217.1
+   },
+   "314": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.62,
+     "killDa": 1,
+     "killHu": 0.39,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 73
+   },
+   "315": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.71,
+     "killDa": 1,
+     "killHu": 0.735,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 71.6
+   },
+   "316": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.985,
+     "killDa": 1,
+     "killHu": 0.89,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 343.8
+   },
+   "317": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.75,
+     "killDa": 1,
+     "killHu": 0.63,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 343.8
+   },
+   "318": {
+    "ev": {
+     "killA": 1,
+     "killHd": 0.96,
+     "killDa": 1,
+     "killHu": 0.725,
+     "indist": 1
+    },
+    "ig": true,
+    "secs": 217
+   }
+  }
+ }
+}
