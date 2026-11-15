@@ -2,7 +2,7 @@
 
 ---
 name: fresh-eyes
-description: Stateless AI reviewers on demand. This skill should be used when a second opinion is needed on plans, premises, lab reports, or skill docs — via single checks, sealed answers, barrages, blind tests, armed rounds, red-teams, steelman, tie-breaks, or tooling self-reviews.
+description: Stateless AI reviewers on demand. This skill should be used when a second opinion is needed on plans, premises, lab reports, or skill docs — via single checks, sealed answers, barrages, blind tests, armed rounds, red-teams, steelman, tie-breaks, staff audits, retrospective batteries, or tooling self-reviews.
 ---
 
 # Fresh-eyes skill — stateless reviewers on demand
@@ -85,6 +85,45 @@ surprisingly good at catching what you can't see anymore.
     second speaker just anchors on the first. Cap it at open + 1
     rebuttal each unless a claim is genuinely tied — cost is ~3x a
     sealed round, so spend it on load-bearing documents only.
+11. **Staff audit round (the closer — added 2026-11-14, ix rounds).** After
+    red/steel rounds go barren-ish, run three fresh sealed auditors in
+    parallel on the patched artifact: (a) MATH auditor — checks every number
+    and threshold for soundness (prompts: is each co-bar meaningful at its n?
+    pooled variance? baseline definitions correct? which threshold misbehaves
+    at these n's?); (b) IMPLEMENTATION auditor — checks the text describes
+    something code can enforce (are assertions reviewable in the driver? is
+    the firewall implementable without silent human judgment?); (c)
+    ALTERNATIVE-EXPLANATION reviewer — must bring ONE rival mechanism plus
+    the cheapest killer test plus whether-the-design-contains-it. This round
+    repeatedly pays: the math auditor's solo FAIL becomes a filed chance
+    calculation, the rival becomes a pre-registered null control WITH TEETH
+    (example: shuffled-weights control — if the null beats the bar too, the
+    PASS demotes to a scoped finding rather than dying or passing clean).
+12. **Retrospective battery (what-would-they-have-said — added 2026-11-14).**
+    Re-run any battery on a frozen plan with outcomes WITHHELD ("you review
+    BEFORE any run; outcomes do not exist, do not assume them"), then score
+    predictions vs actuals. Purpose is calibration of trust, not patching:
+    reds calling a mechanism in advance (vii collapse-to-point-estimate, 3/4
+    predicting full FAIL) earns weight; unanimous misses (all reds calling
+    pointer ABANDONED 0.65–0.85 vs actual 1.000) prove reviewer priors wrong
+    and certify the surprise as genuine. Log the scorecard beside the raw
+    replies; feed calibration notes into the next battery's briefs.
+
+## Adjudication additions (2026-11-14, ix rounds)
+- Score JOINT gates jointly. A reviewer FAILing one half of a two-half gate
+  gets downgraded with explicit chance math, not a threshold move: pilot gate
+  pooled≥0.60 (~3σ alone on ~1600 lines, p≈1e-3) × win-rate≥5/8 (loose alone,
+  chance 0.36) ≈ 2e-4 joint — the halves carry stringency and robustness
+  respectively. Moving bars on reviewer opinion alone, after rounds already
+  set them, is tuning-to-reviewers: file the math instead.
+- Gate inputs enumerated (firewall rule). If any exploratory arm exists, the
+  prereg must list EXACTLY what the gate reads; anything computed but
+  gate-invisible must say when it is computed (verdict time) and that it is
+  never consulted earlier. Three independent reds will otherwise (correctly)
+  flag look-ahead.
+- Rival controls need teeth to be worth filing. A null control without a
+  demotion rule is commentary; with one (null-wins ⇒ PASS demotes to scoped
+  finding with its true label) it decides something.
 
 ## The premise artifact (the thing you hand them)
 

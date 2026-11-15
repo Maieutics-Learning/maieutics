@@ -50,7 +50,7 @@ not free tuition). Every probe evaluation is metered against the budget.
 i. Probe: ≤P metered evaluations across the unlabeled stream (calibration
    ledger: predicted vs actual per cluster).
 ii. Declare (optional): {cluster id, predicted acc < X, H from a fixed
-    rule-descriptor vocabulary, budget request N} — or explicit ABSTAIN,
+    rule-descriptor vocabulary, budget request N, W = what would prove this declaration wrong (one line, pre-hoc, scored at verification)} — or explicit ABSTAIN,
     which is scored (§6).
 iii. Investigate: if declared, spend ≤N training a fresh student on C via
     existing curriculum machinery. Students stay disposable.
