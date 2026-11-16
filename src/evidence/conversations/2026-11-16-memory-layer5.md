@@ -171,3 +171,74 @@ Lets go ahead and do the full run
 assistant:
 [tools: read CURRENT_TASK.md (stale era noted, handoff governs) + index.html full survey (137868 B, 17 h2, v0.14 2026-11-12, zero doubt content) + postmortem + GAMEPLAN 1.e + vii/ix/x verdicts + ix-latch/signflip/susp-hu JSONs + iii dump/energy/committee verdicts; execute_js 10-edit script → badge/status/roadmap/§4.4/§5/§6/§7/abstract×2/dict (len 137868 → 152518); page_refresh → 2 perchanceErrors (literal [...] parsed as templates); fixed to parenthesized ranges; page_refresh clean; DOM checks (17 h2, §4.4 heading, 3 dict keys, panel opens, ids intact, §6 13 items, §7 15 items, §5 2 paras); snapshot §4.4 screenshot read]
 Full living-doc update v0.15 done, verified, filed. Push queued.
+
+---
+
+# 2026-11-16 (later, post-v0.15) — reconstructed from layers 1–4 (CHATLOG + working record), not verbatim
+
+user:
+PUSHED 40ffd89f receipt filed; R2 academic review attached as transcript docx for adjudication.
+
+assistant:
+[tools: read fresh-academic-review-r2-results adjudication work; promoted f-singlegen small files + review sources to src/evidence/reviews/; RESULTS_INDEX §8.6 row + O3 scope note; reconciled R1 queued-list; replaced stale src/CURRENT_TASK.md with pointer; corrected fleet headers + historical marks; filed CHATLOG entries]
+Adjudication filed: O3-deviation charge PARTIAL-REJECT as framed (3-arm spec, pilot ran S-optfresh, Phase 3 scoping logged, §8.6 discloses fresh Adam; fair remainder = pilot thin for O3, true Adam-carry unrun → narrow O3 reading). Memory/websearch/rabbithole bugs verified-true, queued as code (not started). ix blobs (~225 MB) queued as quota decision; compounds reword queued as claim language. Pushed 0b522a95 (parent 38ee6c4e), verified via ref + commits APIs.
+
+---
+
+# 2026-11-16 (current session, verbatim user turns from live context)
+
+user:
+eli5 what happened?
+
+assistant:
+[tool: read scratch/CURRENT_TASK.md]
+Gave ELI5 recap (school/fragile transmission, doubt meter, failed transfer, latching, two reviews, pushes, open decisions).
+
+user:
+sorry, you got compacted. can you dive deeper and explain in english: [R2 adjudication summary pasted in full: verified fixes pushed as 0b522a95; O3 charge did not survive; fixed list; queued code fixes; two decisions — ix blobs options and paper wording]
+
+assistant:
+[tools: read scratch/CURRENT_TASK.md (reconcile: handoff governs over stale body)]
+Gave section-by-section English walkthrough (what R2 adjudicated, O3 narrow vs broad, each fix, each queued bug with locations, blob options, wording options).
+
+user:
+Do we need big blobs anymore for anything?
+
+assistant:
+[tools: glob src/evidence/synthesis ix-*.json + src/tools ix-*.js; read RESULTS_INDEX §4.4; read ix-latch.js + ix-latch.json; grep ix-partial/ix-final/ix-probe refs; grep GAMEPLAN for 1.b/1.c/2.a; glob scratch ix-probe + ix-partial]
+Answer: nothing active needs them (all verdicts filed durable); only future re-audit / Run B promotion / killHu mini-prereg could; 1.b/1.c/2.a do not; regeneration via frozen ix-pilot recipe possible (~4.5h pilot / ~18h full). Recommended drop-all or finals-only.
+
+user:
+What could want them later: Re-audit without recompute; Run B promotion to CONFIRMED; suspicion-killHu mini-prereg. Lets go ahead and finish everything that we need from this. 15 is just a super small data set and we would want different ones from the future first. Then keep the recipe
+
+assistant:
+[tools: read scratch/CURRENT_TASK.md + phase-1dx-verdicts.md + RESULTS_INDEX §4.4 + glob scratch ix-runb.* + read ix-runb.js/json + ix-susp-hu.js + phase-1dix-verdicts.md]
+Started finish-out: confirmed blobs present (5 probe nets ~42MB each + finals + partial).
+
+user:
+before moving on I understand this less but this seems like an easier change: b) Paper wording — replace "compounds, not rots" with the narrower "maintains performance across five generations, but a continued-weight student performs comparably"? [plus O2 explanation] Can you explain in english then eli5?
+
+assistant:
+[tools: grep index.html compounds/rots/O2 + glob f-singlegen files]
+Gave English + ELI5 (old claims turnover helps; O2 G 28/32 vs S 29/31, max diff 1, inversions 206/207/208 favor S → only narrower claim supported).
+
+user:
+yes, lets be as accurate and rigorous as possible
+
+assistant:
+[tools: grep all compound variants (8 hits in index.html); execute_js 9-replacement script over index.html (abstract, Chaining label, Generations bullet, §8 road-map list, §8.1 title + verdict, §8.6 stands-as clause, d-g1g2 professional/simple/eli5); grep verify zero remaining; page_refresh clean; page_eval DOM check found new abstract wording; read src/CHATLOG.md tail; appended CHATLOG wording-narrowed entry]
+Done, 9 spots, verified, filed. Noted unpushed (index.html + CHATLOG) and queued ix finish-out.
+
+user:
+are we storing things in the audit (memory skill?)
+
+assistant:
+[tools: read src/tools/memory/SKILL.md (full, 389 lines); glob src/evidence/conversations; read conversations README; read 2026-11-16-memory-layer5.md head; compared LAYER5 tail vs CHATLOG tail vs src/CURRENT_TASK pointer vs scratch/CURRENT_TASK head]
+Answer: Layer 4 yes (wording entry landed); Layer 5 exists (12KB) but ends at v0.15 full run — missing pushes/R2/wording; working record header current body stale; index.html + CHATLOG unpushed. Offered to bring layers current then ix finish-out.
+
+user:
+It should be noted that layer 5 should pretty much always be updated. Lets note that in the memory skill, push and then finish ix out
+
+assistant:
+[tool: edit src/tools/memory/SKILL.md — added UPDATE RULE under layer 5 (d): layer 5 updated every session, pretty much always, at same checkpoint as CHATLOG; un-updated transcript is a gap]
+Appending this transcript update now, then pushing, then ix finish-out.

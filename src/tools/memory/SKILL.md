@@ -71,6 +71,7 @@ of bench-science sessions with dozens of compactions.
    a transcript containing a live token is a leak, and the SECRET
    HANDLING rule below applies to layer 5 with no exceptions);
    (d) attachments are referenced by path, never embedded.
+   UPDATE RULE (user-ordered 2026-11-16): layer 5 is updated every session, pretty much always — append the session's turns (verbatim where available, marked reconstructed where not) before the session ends, at the same checkpoint as the layer-4 CHATLOG entry. An un-updated transcript is a gap, not a backlog: file it with the session, push it with the session.
    One file per session (part-files only if a session ever approaches the
    platform's 100MB/file ceiling under `src/` — no other size limit applies
    per user decision 2026-11-16).
