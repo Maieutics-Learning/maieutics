@@ -1,0 +1,87 @@
+{
+ "runId": "2026-11-16-01",
+ "fingerprint": "in:575135edaafe+code:c335d56ac999",
+ "version": "60c3e47",
+ "subject": "ix-latch.json (Run C) re-verdict under 2.a.v",
+ "gateResults": [
+  {
+   "name": "ledger-present-parse",
+   "kill": true,
+   "pass": true,
+   "detail": "parsed, keys: diagnostic,setting,validation,zeroLine_weightsLive,zeroB_linesLive,suspicionSameLines,floorRef,perBrain,closeRule,verdict,recipe"
+  },
+  {
+   "name": "validation-gate-holds",
+   "kill": true,
+   "pass": true,
+   "detail": "recomputedUnmasked=0.7633 match=true"
+  },
+  {
+   "name": "filed-values-intact",
+   "kill": true,
+   "pass": true,
+   "detail": "zeroLine=0.7585 zeroB=0.5465"
+  },
+  {
+   "name": "per-brain-grained",
+   "kill": false,
+   "pass": true,
+   "detail": "perBrain rows=15 (pooled never stands alone)"
+  },
+  {
+   "name": "verdict-matches-rule",
+   "kill": true,
+   "pass": true,
+   "detail": "rule=true claims=true"
+  }
+ ],
+ "evaluation": {
+  "verdict": "PASS",
+  "failedKill": [],
+  "failedSoft": []
+ },
+ "signoff": {
+  "at": "2026-11-16T21:28:44.114Z",
+  "ctxFingerprint": "in:575135edaafe+code:c335d56ac999",
+  "version": "60c3e47",
+  "results": [
+   {
+    "name": "ledger-present-parse",
+    "kill": true,
+    "pass": true,
+    "detail": "parsed, keys: diagnostic,setting,validation,zeroLine_weightsLive,zeroB_linesLive,suspicionSameLines,floorRef,perBrain,closeRule,verdict,recipe"
+   },
+   {
+    "name": "validation-gate-holds",
+    "kill": true,
+    "pass": true,
+    "detail": "recomputedUnmasked=0.7633 match=true"
+   },
+   {
+    "name": "filed-values-intact",
+    "kill": true,
+    "pass": true,
+    "detail": "zeroLine=0.7585 zeroB=0.5465"
+   },
+   {
+    "name": "per-brain-grained",
+    "kill": false,
+    "pass": true,
+    "detail": "perBrain rows=15 (pooled never stands alone)"
+   },
+   {
+    "name": "verdict-matches-rule",
+    "kill": true,
+    "pass": true,
+    "detail": "rule=true claims=true"
+   }
+  ],
+  "evaluation": {
+   "verdict": "PASS",
+   "failedKill": [],
+   "failedSoft": []
+  },
+  "decision": "PASS",
+  "note": "first gated run under 2.a.v/2.d.v + version-bound approval"
+ }
+}

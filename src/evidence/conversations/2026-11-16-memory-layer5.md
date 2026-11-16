@@ -337,3 +337,10 @@ I agree with all three.
 assistant:
 [tools: inserted exact draft texts into GAMEPLAN v22 as 2.a.v + 2.d.v + Conventions bullet (each tagged borrow/countersigned; title untouched); re-headed 3 addenda files COUNTERSIGNED + applied. Filed CHATLOG countersign entry. This transcript update.]
 All three live in the plan. Authorized now: frozen-driver forensics wiring; first 2.d.v run logs runId + fingerprint. Unpushed: GAMEPLAN + addenda + CHATLOG + this update.
+
+user:
+push and apply
+
+assistant:
+[tools: push parent d984a49 → 60c3e47 verified (902 scope; 902-entry tree POST 422-timed-out → 8 incremental overlays, lesson filed; 894 reused / 8 uploaded ~258KB). Apply = run 2026-11-16-01: 2.a.v gate over frozen ix-latch ledger (5 checks incl. recomputed close rule) → PASS; signoff ledger filed with runId + fingerprint + version 60c3e47 first. Filed CHATLOG push+apply entry. This transcript update.]
+Pushed 60c3e47; gate live with first PASS. Unpushed: signoff ledger + CHATLOG + this update.
