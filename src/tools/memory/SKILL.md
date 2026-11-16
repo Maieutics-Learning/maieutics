@@ -2,7 +2,7 @@
 
 ---
 name: memory
-description: Continuity across compactions and sessions. This skill should be used when long work must survive context loss — via working record, run/wall logs, verbatim snapshots, and durable log layers with snapshot, newest-wins, and append-only rules.
+description: Continuity across compactions and sessions. This skill should be used when long work must survive context loss — via working record, run/wall logs, verbatim snapshots, durable log, and verbatim conversation-transcript layers with snapshot, newest-wins, and append-only rules.
 ---
 
 # Memory skill — continuity across compactions and sessions
@@ -19,7 +19,7 @@ that let a future session — or a contextless you — reconstruct state and
 keep working without re-deriving everything. Battle-tested across weeks
 of bench-science sessions with dozens of compactions.
 
-## The stack (four layers, cheapest first)
+## The stack (five layers, cheapest first)
 
 1. **Working record** (`src/CURRENT_TASK.md`). The live notebook: what
    the task is, what's done, what's queued, key decisions, pointers to
@@ -53,11 +53,32 @@ of bench-science sessions with dozens of compactions.
    and why. This + git is the only layer that survives everything. "Link"
    means a relative file path from the repo root (e.g.
    `src/tinynn/gseries.js`), never a bare filename or URL — in ALL layers.
+5. **Verbatim transcript** (`src/evidence/conversations/<YYYY-MM-DD>-<label>.md`,
+   format defined in that directory's README). The full user↔assistant
+   conversation of each session, verbatim, plus any thinking-record blocks
+   the assistant explicitly writes into it. The largest layer, checked
+   LAST (see Reconcile Step 1): the bottom source of truth. When layers
+   1–4 conflict about what was decided, asked, or promised, layer 5
+   decides what was actually said. MEASURED numbers still come from
+   artifacts (chat numbers are provisional until filed), but disputes
+   about intent, wording, and decisions end at the transcript.
+   HONEST LIMITS (read before relying on this layer): (a) private
+   reasoning is NOT auto-captured — only what the assistant writes into
+   the transcript file counts; anything unwritten is lost like any other
+   unfiled thought; (b) history before 2026-11-16 is reconstructed from
+   layers 1–4, marked as such, never presented as verbatim; (c) secrets
+   are redacted on filing (`[REDACTED: secret-pattern]`, marker stays —
+   a transcript containing a live token is a leak, and the SECRET
+   HANDLING rule below applies to layer 5 with no exceptions);
+   (d) attachments are referenced by path, never embedded.
+   One file per session (part-files only if a session ever approaches the
+   platform's 100MB/file ceiling under `src/` — no other size limit applies
+   per user decision 2026-11-16).
    DURABILITY POLICY (canonical — every other mention points here; revised
    2026-11-11, external review 2026-11-13 confirmed the old text was stale):
    `scratch/` is a recycling bin, NOT storage — anything there may be wiped
    on reload, compaction, or a new chat, and no durable document links to a
-   `scratch/` path. Layers 1–3 live under `src/` as working copies;
+   `scratch/` path. Layers 1–3 and 5 live under `src/` as working copies;
    `scratch/` holds only re-fetchable/regenerable intermediates (fetch
    dumps, unzip temp, caches, sandboxes). If `scratch/` content is cited,
    the durable log must carry the source URL or a deterministic
@@ -68,8 +89,9 @@ Durability order (weakest → strongest — survivability, not conflict
 precedence): unpushed `src/` working layers < shipped files + git pushes
 (survive everything — ONCE PUSHED; until
 then they are only the best local candidates, and the push gap is the
-central risk Step 4 exists to track). Anything that
-matters must climb to layer 4. The climb needs a push token (PAT) — an
+central risk Step 4 exists to track). Decisions and MEASURED numbers
+must climb to layer 4; the session's transcript must climb to layer 5.
+The climb needs a push token (PAT) — an
 unpushed session is a session at risk; say so in the log.
 SECRET HANDLING (no exceptions): the AI NEVER stores, or echoes a
 PAT — not in `src/`, not in `scratch/`, not in chat quotes. The user holds
@@ -186,7 +208,11 @@ token into chat anyway it is now in chat history, push then rotate it.
    verify it parses (at minimum JSON-parse; against the task's known shape
    if it has one) before trusting it: an unparseable file is not a
    candidate (parseability precedes newest-wins). If corrupt, fall back to
-   the newest readable among log tail + record, and rebuild state). Missing/empty artifact = noted and
+   the newest readable among log tail + record, and rebuild state). LAST,
+   read the newest layer-5 transcript tail (last session's file): it is
+   checked last and settles disputes about what was said, decided, asked,
+   or promised — never the first thing read, always the final word on
+   wording. Missing/empty artifact = noted and
    skipped, never fatal (first sessions have no snapshot yet).
    Check each artifact's timestamp as you read it: a frozen
    copy (e.g. a snapshot) older than the log tail is STALE — re-read the
@@ -324,6 +350,10 @@ Unsolved:
   391-wave wind-down (stopped via the user-stop rule — done right, but not
   native) as stopping-done-right-but-not-native. Feeds the continuation-policy
   user decision, not this skill.
+
+AMENDMENT 2026-11-16 (user-ordered, carves out of the U8 no-accretion rule):
+layer 5 (verbatim transcript) added. Cost accepted: transcripts grow
+unbounded, no pruning/size discipline on layer 5.
 
 ## Has this helped? (honest assessment)
 

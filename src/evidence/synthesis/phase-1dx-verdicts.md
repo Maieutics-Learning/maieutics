@@ -1,5 +1,7 @@
 # 1.d.x lines-only ablation — VERDICT: HALT (integrity kill-switch) (2026-11-16)
 
+Terminology (2026-11-16, user decision): **suspicion** = 1 − top1, the doubt readout formerly called "loudness" in this repo. Definition unchanged; frozen verdicts keep "loudness" with this alias.
+
 Diagnostic of ix PILOT-FAIL. Frozen ix verdict untouched — PILOT-FAIL stands regardless of anything below.
 Spec: `scratch/fresh-x-ablation-v0.10.md` (10 fresh-eyes batteries, COMFORTABLE, 2026-11-15).
 Driver: `scratch/ix-ablate.js` (+ slice runner with identical math; per-seed outputs bit-deterministic by construction).
@@ -28,6 +30,15 @@ Recomputed independently (score-matrix pipeline; trip draw reproduced 0.6562 →
 - Old-switch false-trip rate on TRUE nulls: 134/200 draws trip it (0.67, both arms). The switch as written fires on two-thirds of pure-chance mappings.
 - Status update: H1 CONFIRMED (switch miscalibrated — cluster blindness + single-draw null); H2-flat REJECTED (scores vary, rho 0.87) but refined (the scalar is real: brain quality). HALT stands as the filed outcome (the switch fired under its written rule — spec-faithful), but the diagnosis is now FALSE TRIP, not compromised arms.
 - Next: (b) re-specified switch (cluster bootstrap + multi-draw) + A-arm readings with B-thermometer caveat (needs user go); (c) ADOPTED 2026-11-16 red-team battery: W1-channel ablation — zero-B + zero-line forwards of SAVED ix probe nets on killHu (cheap, quarantined; tests latching directly; needs user go). Battery ruling: C1 HOLD (asymmetry proof + max-of-201 settler), C2/C3/C4 PARTIAL with priced residuals, C5 (A-decides framing) ACCEPTED as HYPOTHESIS — relabeled, settler = the A number.
+
+## Run B (2026-11-16; user-authorized "lets run B first"; quarantined, no retraining)
+Tool: `scratch/ix-runb.js` (line-row tail-parse of saved A/S nets — full 44MB files never parsed; 200 line-forwards/net; fast rank-AUC; 2000-rep brain-cluster CIs). Output: `scratch/ix-runb.json` (read 2026-11-16). S-null recompute 0.4852 matches filed value exactly — pipeline validated.
+- A pooled novel 0.4851, train 0.4658, cluster-95% CI [0.4313,0.5423] COVERS 0.5 → A collapses. A0 fold-averaged recompute 0.545/0.552 (filed pooled-folds 0.5410/0.5443 — estimator difference, immaterial; both ~0.54, far from 0.76).
+- Δ(A−A0): line-bootstrap −0.060 [−0.0917,−0.0302] (A UNDERPERFORMS the floor under N=3000); honest cluster [−0.1513,0.0255] covers 0 (tie under N=15). LOO deltas all negative (−0.043 to −0.086). Per-brain A beats A0 on 3/14 (5011 undefined, acc 1.00). Driver rule → "world-3 (both collapse)".
+- Sanity: gradNorms w=0.0 (weights zeroed as designed); actLog live (postMax ~0.39, deadFrac 0.44–0.66, preVar ~0.02) — not VOID.
+- Re-specified single-draw-cluster switch: S clears ([0.4307,0.5374] covers); B-perm seed-555 still borderline-TRIPS ([0.5063,0.7721] excludes by 0.006 — corrects the loose "covers" language in the re-calibration entry above); Bc clears ([0.4903,0.7718]). So cluster-alone does NOT exonerate the draw — the exoneration rests on multi-draw (trip = ordinary max, E[max]≈0.69; old-switch false-trip 0.67), i.e. the adopted switch is cluster AND multi-draw, not cluster alone.
+- C5 resolves to the "lines dead" branch, in strong form: A cannot even reach the shared-difficulty floor under the strict test and ties it under the honest one. W1 (0.763) was quality-stamping all along. B-thermometer caveat attached: true B 0.761 [0.6538,0.8369], rho 0.8679 (rec file).
+- Next: (c) W1-channel ablation (still needs user go); C2-fresh-brains parked.
 
 ## Diagnosis (Hypothesis — explicitly not verdict; venue = discussion)
 - H1 (lead): the switch CI is miscalibrated for arm B. B scores are per-brain CONSTANTS (line input zeroed → all 200 lines of a brain share one score); the CI bootstraps 3000 LINES as if independent, but effective N ≈ 15 brains — the CI is ~√200× too tight. And a single fixed permutation is one draw, not a null distribution.
