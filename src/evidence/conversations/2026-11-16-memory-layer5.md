@@ -242,3 +242,15 @@ It should be noted that layer 5 should pretty much always be updated. Lets note 
 assistant:
 [tool: edit src/tools/memory/SKILL.md — added UPDATE RULE under layer 5 (d): layer 5 updated every session, pretty much always, at same checkpoint as CHATLOG; un-updated transcript is a gap]
 Appending this transcript update now, then pushing, then ix finish-out.
+
+---
+
+# 2026-11-16 (push + ix finish-out, filed same checkpoint per layer-5 update rule)
+
+assistant:
+[tools: edited src/tools/memory/SKILL.md (layer-5 UPDATE RULE: updated every session, pretty much always, same checkpoint as CHATLOG); appended transcript catch-up (post-v0.15 reconstruction + current-session verbatim user turns); execute_js git-blobs push via vault PAT in worker memory only — scope 891 (main.pjs + index.html + src/** + LICENSE/README mapped, excludes scratch/.tool-output/imports), secret-scan clean, parent 0b522a95 → commit 75af283e, reused 887 / uploaded 4 / deleted 0, verified ref + commits agree]
+Pushed 75af283e. Backlog: ix finish-out.
+
+assistant:
+[tools: execute_js 3-in-1 re-audit timed out at 10 min (probe-net JSON parses heavy, files intact 1338/3332/1112 B); then singles — susp-hu pooled 0.5572 identical=true; latch 0.7633/0.7585/0.5465 DEMONSTRATED identical=true; signflip 0.4936/0.8598/k20 0.5486/oracle 0.4824 identical=true. Promoted scratch/ix-runb.js (12,410 B) → src/tools/ix-runb.js + scratch/ix-runb.json (2,883 B) → src/evidence/synthesis/ix-runb.json; RESULTS_INDEX Run B row THIN→CONFIRMED. Wrote phase-1dsusp-hu-prereg.md v1.0 DRAFT (fresh brains, bars, paper-claim rule); RESULTS_INDEX suspicion row points at it. Filed CHATLOG ix finish-out entry. Blobs droppable, recipe kept.]
+Ix finish-out done. Unpushed: runb.js + runb.json + prereg + RESULTS_INDEX + CHATLOG. Pushing next.
