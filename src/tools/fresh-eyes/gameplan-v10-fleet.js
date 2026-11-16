@@ -1,4 +1,4 @@
-// Fleet driver — gameplan v10 round 4 PAIRED DEBATE (format 10).
+// Fleet driver — gameplan v10 round 4 PAIRED DEBATE (format 10) (HISTORICAL — gameplan v22 frozen; live procedure is the fleet pattern in SKILL.md).
 // Runs in execute_js (has fs + tools). 5 claims × (RED + STEELMAN sealed, armed)
 // + 1 rebuttal each (unarmed, both openings quoted). Raw -> scratch file.
 const PLAN = await fs.readTextFile("src/GAMEPLAN.md");

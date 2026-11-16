@@ -1,0 +1,56 @@
+{
+  "cfg": {
+    "seeds": [
+      201
+    ],
+    "gens": 1,
+    "stageSteps": 50
+  },
+  "chains": [
+    {
+      "seed": 201,
+      "arm": "G",
+      "gen": 1,
+      "ev": {
+        "killA": 0.305,
+        "killHd": 0.58,
+        "killDa": 0.455,
+        "killHu": 0.045,
+        "indist": 0.755
+      },
+      "ignites": false,
+      "lastLoss": 0.8491,
+      "secs": 7.3
+    },
+    {
+      "seed": 201,
+      "arm": "S",
+      "gen": 1,
+      "ev": {
+        "killA": 0.305,
+        "killHd": 0.58,
+        "killDa": 0.455,
+        "killHu": 0.045,
+        "indist": 0.755
+      },
+      "ignites": false,
+      "lastLoss": 0.8491,
+      "secs": 6.2
+    },
+    {
+      "seed": 201,
+      "arm": "S-optfresh",
+      "gen": 1,
+      "ev": {
+        "killA": 0.305,
+        "killHd": 0.58,
+        "killDa": 0.455,
+        "killHu": 0.045,
+        "indist": 0.755
+      },
+      "ignites": false,
+      "lastLoss": 0.8491,
+      "secs": 6.1
+    }
+  ]
+}

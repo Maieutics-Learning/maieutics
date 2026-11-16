@@ -1,0 +1,100 @@
+{
+ "phase": "pilot-retry",
+ "chains": [
+  {
+   "seed": 203,
+   "mode": "G",
+   "wallMin": 6.1,
+   "result": {
+    "cfg": {
+     "mode": "G",
+     "seed": 203,
+     "gens": 2,
+     "stageSteps": 600
+    },
+    "chains": [
+     {
+      "arm": "G",
+      "gen": 1,
+      "ev": {
+       "killA": 0.335,
+       "killHd": 0.625,
+       "killDa": 0.54,
+       "killHu": 0,
+       "indist": 0.795
+      },
+      "ignites": false,
+      "lastLoss": 0.8071,
+      "secs": 342.7
+     }
+    ]
+   }
+  },
+  {
+   "seed": 203,
+   "mode": "S",
+   "wallMin": 5.4,
+   "result": {
+    "cfg": {
+     "mode": "S",
+     "seed": 203,
+     "gens": 2,
+     "stageSteps": 600
+    },
+    "chains": [
+     {
+      "arm": "S",
+      "gen": 1,
+      "ev": {
+       "killA": 0.335,
+       "killHd": 0.625,
+       "killDa": 0.54,
+       "killHu": 0,
+       "indist": 0.795
+      },
+      "ignites": false,
+      "lastLoss": 0.8071,
+      "secs": 303.8
+     }
+    ]
+   }
+  },
+  {
+   "seed": 203,
+   "mode": "SOPT",
+   "wallMin": 5.4,
+   "result": {
+    "cfg": {
+     "mode": "SOPT",
+     "seed": 203,
+     "gens": 2,
+     "stageSteps": 600
+    },
+    "chains": [
+     {
+      "arm": "SOPT",
+      "gen": 1,
+      "ev": {
+       "killA": 0.335,
+       "killHd": 0.625,
+       "killDa": 0.54,
+       "killHu": 0,
+       "indist": 0.795
+      },
+      "ignites": false,
+      "lastLoss": 0.8071,
+      "secs": 305.7
+     }
+    ]
+   }
+  },
+  {
+   "seed": 202,
+   "mode": "SOPT",
+   "wallMin": 8.1,
+   "result": {
+    "toolError": "{\"ok\":false,\"error\":\"page_eval hit its 480s time limit (the page stayed responsive — the eval just didn't finish). Console output so far is included in this result. You could retry with a larger `timeoutMs` (max 500) and/or perhaps add some logging if you suspect it's hanging somewhere.\"}"
+   }
+  }
+ ]
+}

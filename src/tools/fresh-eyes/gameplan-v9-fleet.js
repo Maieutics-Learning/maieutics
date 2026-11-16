@@ -1,4 +1,4 @@
-// Fleet driver — gameplan v7 round 1. Runs in execute_js (has fs + tools).
+// Fleet driver — gameplan v9 round (HISTORICAL — gameplan v22 frozen; live procedure is the fleet pattern in SKILL.md). Runs in execute_js (has fs + tools).
 // For each of 10 sealed reviewers: 2 DDG searches + 1 primary read, then one
 // page_eval generateText verdict (<=150 words, fixed shape). Raw -> scratch file.
 const PLAN = await fs.readTextFile("src/GAMEPLAN.md");

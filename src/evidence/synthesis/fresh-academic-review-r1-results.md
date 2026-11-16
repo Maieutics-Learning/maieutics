@@ -25,13 +25,13 @@ taxonomy it asks for (criticism / re-analysis / reproduction), it is level 1. Gr
 - §3.4 per-experiment AI-provenance (asked/proposed/built/checked/verdict): **PARTIAL** — preregs already carry expectation + pre-mortem + nearest-failure, verdicts score them; the gap is logging which AI suggestions influenced decisions and their accept/reject. Queued as a cheap CHATLOG convention.
 - Historical transcripts reconstructed: **ACCEPT as disclosed limitation** (already in memory-SKILL honest limits). Nothing to fix retroactively.
 
-## Queued actions (NOT started — user said no new work yet)
-1. Paper one-liner: fix "past G3" roadmap sentence (verified stale in v0.15).
-2. Paper surfacing: O2 + three-level criticism taxonomy + evidence taxonomy + selection-variability sentence (§5/§7/banner).
-3. Tools: license audit (starting with the two flagged files), index completion, core-set decision (user).
-4. Conventions: AI-suggestion provenance logging (cheap).
-5. 2.e decision: one draft vs A/B split (user call).
-6. Reply to reviewer: point at §8.6 for P2; note scratch-vs-durable record correction.
+## Queued actions (reconciled 2026-11-16 — R2 rightly called this list stale)
+1. Paper one-liner (G3) — DONE in 38ee6c4e.
+2. Paper surfacing (O2/levels/taxonomy/selection) — DONE in 38ee6c4e.
+3. Tools (license audit, index) — DONE in 38ee6c4e; core-set still USER call.
+4. AI-provenance convention — DONE (declared CHATLOG 2026-11-16).
+5. 2.e one-vs-split — still USER call (open; R2 repeats the A/B suggestion).
+6. Reply to reviewers — still open (now covers R1+R2; see R2 adjudication for the O3 pointer).
 
 ## Cost
 0 compute. Adjudication + CHATLOG entry + working-record note only.

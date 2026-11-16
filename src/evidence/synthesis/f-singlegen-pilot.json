@@ -1,0 +1,264 @@
+{
+ "phase": "pilot-3seed-2gen-600step",
+ "chains": [
+  {
+   "seed": 201,
+   "mode": "G",
+   "wallMin": 2.1,
+   "result": {
+    "cfg": {
+     "mode": "G",
+     "seed": 201,
+     "gens": 2,
+     "stageSteps": 600
+    },
+    "chains": [
+     {
+      "arm": "G",
+      "gen": 1,
+      "ev": {
+       "killA": 1,
+       "killHd": 0.84,
+       "killDa": 0.995,
+       "killHu": 0.77,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.0038,
+      "secs": 60.5
+     },
+     {
+      "arm": "G",
+      "gen": 2,
+      "ev": {
+       "killA": 1,
+       "killHd": 0.985,
+       "killDa": 0.99,
+       "killHu": 0.87,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.0045,
+      "secs": 58
+     }
+    ]
+   }
+  },
+  {
+   "seed": 201,
+   "mode": "S",
+   "wallMin": 2.1,
+   "result": {
+    "cfg": {
+     "mode": "S",
+     "seed": 201,
+     "gens": 2,
+     "stageSteps": 600
+    },
+    "chains": [
+     {
+      "arm": "S",
+      "gen": 1,
+      "ev": {
+       "killA": 1,
+       "killHd": 0.84,
+       "killDa": 0.995,
+       "killHu": 0.77,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.0038,
+      "secs": 58.3
+     },
+     {
+      "arm": "S",
+      "gen": 2,
+      "ev": {
+       "killA": 1,
+       "killHd": 0.82,
+       "killDa": 0.995,
+       "killHu": 0.785,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.0055,
+      "secs": 57.6
+     }
+    ]
+   }
+  },
+  {
+   "seed": 201,
+   "mode": "SOPT",
+   "wallMin": 2.1,
+   "result": {
+    "cfg": {
+     "mode": "SOPT",
+     "seed": 201,
+     "gens": 2,
+     "stageSteps": 600
+    },
+    "chains": [
+     {
+      "arm": "SOPT",
+      "gen": 1,
+      "ev": {
+       "killA": 1,
+       "killHd": 0.84,
+       "killDa": 0.995,
+       "killHu": 0.77,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.0038,
+      "secs": 57.9
+     },
+     {
+      "arm": "SOPT",
+      "gen": 2,
+      "ev": {
+       "killA": 1,
+       "killHd": 0.82,
+       "killDa": 0.995,
+       "killHu": 0.78,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.0041,
+      "secs": 59.2
+     }
+    ]
+   }
+  },
+  {
+   "seed": 202,
+   "mode": "G",
+   "wallMin": 2.2,
+   "result": {
+    "cfg": {
+     "mode": "G",
+     "seed": 202,
+     "gens": 2,
+     "stageSteps": 600
+    },
+    "chains": [
+     {
+      "arm": "G",
+      "gen": 1,
+      "ev": {
+       "killA": 1,
+       "killHd": 0.74,
+       "killDa": 1,
+       "killHu": 0.68,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.0017,
+      "secs": 61.2
+     },
+     {
+      "arm": "G",
+      "gen": 2,
+      "ev": {
+       "killA": 1,
+       "killHd": 1,
+       "killDa": 1,
+       "killHu": 1,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.003,
+      "secs": 60.8
+     }
+    ]
+   }
+  },
+  {
+   "seed": 202,
+   "mode": "S",
+   "wallMin": 5.6,
+   "result": {
+    "cfg": {
+     "mode": "S",
+     "seed": 202,
+     "gens": 2,
+     "stageSteps": 600
+    },
+    "chains": [
+     {
+      "arm": "S",
+      "gen": 1,
+      "ev": {
+       "killA": 1,
+       "killHd": 0.74,
+       "killDa": 1,
+       "killHu": 0.68,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.0017,
+      "secs": 120.3
+     },
+     {
+      "arm": "S",
+      "gen": 2,
+      "ev": {
+       "killA": 1,
+       "killHd": 0.74,
+       "killDa": 1,
+       "killHu": 0.695,
+       "indist": 1
+      },
+      "ignites": true,
+      "lastLoss": 0.0039,
+      "secs": 197.3
+     }
+    ]
+   }
+  },
+  {
+   "seed": 202,
+   "mode": "SOPT",
+   "wallMin": 8.1,
+   "result": {
+    "toolError": "{\"ok\":false,\"error\":\"page_eval hit its 480s time limit (the page stayed responsive — the eval just didn't finish). Console output so far is included in this result. You could retry with a larger `timeoutMs` (max 500) and/or perhaps add some logging if you suspect it's hanging somewhere.\",\"pendingSrc"
+   }
+  },
+  {
+   "seed": 203,
+   "mode": "G",
+   "wallMin": 0.4,
+   "result": {
+    "toolError": "{\"ok\":false,\"error\":\"Unexpected token 'N', \\\"No src man\\\"... is not valid JSON\",\"pendingSrcChanges\":true}"
+   }
+  },
+  {
+   "seed": 203,
+   "mode": "S",
+   "wallMin": 0.8,
+   "result": {
+    "cfg": {
+     "mode": "S",
+     "seed": 203,
+     "gens": 2,
+     "stageSteps": 600
+    },
+    "chains": [
+     {
+      "arm": "S",
+      "gen": 1,
+      "error": "no-tutor"
+     }
+    ]
+   }
+  },
+  {
+   "seed": 203,
+   "mode": "SOPT",
+   "wallMin": 0.5,
+   "result": {
+    "toolError": "{\"ok\":false,\"error\":\"Unexpected token 'N', \\\"No src man\\\"... is not valid JSON\",\"pendingSrcChanges\":true}"
+   }
+  }
+ ]
+}

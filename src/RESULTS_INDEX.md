@@ -1,4 +1,4 @@
-# RESULTS_INDEX — every paper claim → its artifact (2026-11-13; §4.4 doubt arc added 2026-11-16)
+# RESULTS_INDEX — every paper claim → its artifact (2026-11-13; §4.4 added 2026-11-16; F-singlegen promoted+indexed 2026-11-16)
 
 How to read: each row is one MEASURED claim in `index.html` §§1–8. **Status** grades:
 - **CONFIRMED** — run ledger exists under `src/evidence/`, path verified 2026-11-13, numbers byte-checked against the paper at write time.
@@ -105,3 +105,10 @@ Huginn 2502.05171, Grassmann 2512.19428, Mamba 2312.00752, Coconut 2412.06769, L
 | Suspicion killHu boundary | pooled 0.5572; 0.32–0.43 where brains systematically wrong, 0.63–0.81 where competent | `ix-susp-hu.json` + script | same lines as W1 | CONFIRMED as quarantined observation (mini-prereg required before paper claims) |
 
 Caveat (applies to every row above whose inputs are scratch-only): the durable record is the verdict/result JSON; re-running needs `scratch/ix-partial.json`, `ix-final-*`, `ix-probe-P*` — re-materialize via the frozen ix-pilot recipe if wiped (headers in `src/tools/ix-*.js` give the exact recipe).
+
+## §8.6 F-singlegen O2 — schedule, not generations (added 2026-11-16)
+
+| Claim | Numbers | Artifacts | Code | Status |
+|---|---|---|---|---|
+| O2: continued student ≈ fresh students | G 28/32 vs S 29/31 gens; max paired diff 1 gen; 3 inversion seeds (206/207/208) favor S; 204 mirrors, 205 rots both | spec v1.0 + pilot + 8 phase-3 seed files + runner + results (all durable; small files promoted 2026-11-16) | `src/evidence/synthesis/f-singlegen.js` (ran from scratch/) | CONFIRMED (full power 8xG/Sx5x3000) |
+| O3 scope: S = weights-carried/fresh-Adam | pilot SOPT==S (s201 both gens, s203 identical rot; s202 SOPT missing infra); Phase 3 ran {G,S} per pilot scoping; true Adam-carry untested, tracked | pilot verdict + per-seed justification lines + paper §8.6 disclosure | same | CONFIRMED as scoped decision (NOT optimizer-irrelevance-in-general) |

@@ -1,0 +1,344 @@
+Academic Review: Maieutics — Teaching Small Models to Learn
+
+Review of the supplied GitHub repository snapshot | maieutics-main(3).zip
+
+Review perspective
+
+Research methodology, experimental validity, reproducibility, proof-of-concept engineering, and the quality of the documented student–AI research process.
+
+AI assistance is treated throughout this review as a legitimate research and development instrument. The relevant question is whether the resulting work is transparent, testable, and scientifically defensible.
+
+1. Scope and Overall Assessment
+
+1.1 Materials examined
+
+The repository contains several distinct components:
+
+Research paper: index.html and src/paper/related-work.md — research argument, literature positioning, and experimental claims.
+
+Experimental implementation: src/tinynn/ — neural architectures, training, evaluation, and generational experiments.
+
+Research evidence: src/evidence/ — experimental ledgers, reviews, research notes, and historical records.
+
+Research documentation: src/README.md and src/GAMEPLAN.md — project development and experimental planning.
+
+AI interaction record: src/CHATLOG.md and src/evidence/conversations/ — decisions, iterations, measurements, and AI-assisted work.
+
+Reusable tools: src/tools/ — research, evaluation, memory, documentation, and development workflows.
+
+Demonstration interface: index.html and src/evidence/colab-studio/ — interactive research presentation and supporting interface work.
+
+The review distinguishes between code present in the repository, results recorded in experimental ledgers, claims made in the paper, proposed experiments, and verification that has actually been documented. These are not interchangeable forms of evidence.
+
+1.2 Research objective
+
+The project's central question is: Can small recurrent neural networks be taught genuine rule-learning, and can teaching compound across generations?
+
+The project explores whether learned capabilities can be transmitted through staged teaching, auxiliary supervision, and selection of successful teacher–student relationships. This is interesting because it asks not only whether a small model can learn a task, but whether a learning capability can be acquired through instruction and subsequently transmitted.
+
+A successful demonstration of task performance does not automatically demonstrate acquisition or transmission of a generalizable learning procedure.
+
+1.3 Current stage
+
+The repository's README.md (dated 2026-11-13) reports five generations of teacher–student transmission, 35 successful ignitions out of 40 generational trials, transfer results on held-out configurations, experiments examining model width, curriculum design, and breeding, three rounds of adversarial research review, and an evolving paper covering Sections 1–8.
+
+Importantly, the README explicitly states that the reported results have not yet been independently reproduced from the tracked code. The project should therefore be evaluated as an advanced proof of concept and developing empirical research paper, not as a completed demonstration of a general learning principle.
+
+1.4 Overall judgment
+
+The strongest characteristic of the project is its experimental development process. The repository documents negative findings, abandoned approaches, corrections, and changes in the research hypothesis. This is more valuable than a polished demonstration that presents only successful outcomes.
+
+The most significant unresolved question is whether the central generational teaching effect is robust beyond the current experimental regime. The current evidence supports further investigation, but does not yet justify broad claims about general-purpose machine learning, autonomous learning, or generalization across unrelated task families.
+
+2. Tools in src/tools
+
+2.1 Inventory and purpose
+
+The repository contains 22 tool directories, representing a collection of reusable research and development procedures. They fall into five functional categories:
+
+Research: research, websearch, rabbithole — literature discovery, source investigation, and structured research.
+
+Experimental quality: benchmark, eval-harness, dataset-datasheet, project-evals — measurement, evaluation design, and dataset documentation.
+
+AI collaboration: memory, fresh-eyes, context-compression, skill-creator — continuity, independent critique, and context management.
+
+Scientific implementation: pytorch-training, sparse-autoencoder-training, pyvene-notes, jupyter-notebook — model training and interpretability workflows.
+
+Paper and software development: paper-compile, latex-workflow, pdf-processing, playwright-expert, webapp-testing, beautiful-prose, taste-skill, tutor-skills — documentation, writing, interface development, and testing.
+
+Additional files include src/tools/ix-latch.js, src/tools/ix-signflip.js, and src/tools/ix-susp-hu.js. These are particularly relevant because they implement targeted experimental investigations rather than merely providing instructions to an AI assistant.
+
+2.2 Strengths
+
+The tools address identifiable research problems. src/tools/fresh-eyes/SKILL.md establishes a procedure for submitting an isolated artifact to a stateless AI reviewer, with the intention of obtaining criticism without giving the reviewer the full conversational history. This is useful for conceptual challenge, although it is not equivalent to independent empirical replication.
+
+Research continuity is explicitly addressed through src/tools/memory/SKILL.md and src/CHATLOG.md, which preserve decisions, results, failed approaches, and outstanding work. This addresses the risk that important experimental decisions disappear between sessions.
+
+Evaluation is treated as a first-class activity. The presence of eval-harness, benchmark, and dataset-datasheet indicates awareness that model development requires more than successful training runs. The project also has numerical evaluation infrastructure in src/tinynn/.
+
+Several tools are designed to identify problems, challenge assumptions, or document failures. This is an appropriate use of AI in scientific research: AI is not restricted to generating code or drafting text, but also participates in structured criticism.
+
+2.3 Risks and implementation limitations
+
+First, the distinction between a tool and an instruction document is not always sufficiently clear. Most entries in src/tools/ are SKILL.md documents describing procedures an AI agent can follow; they are not necessarily independently executable software. For example, research/SKILL.md describes a workflow, websearch/search.js provides a runnable implementation, and ix-latch.js implements an experimental diagnostic. These have different operational characteristics.
+
+Second, the tool index is incomplete. src/tools/README.md presents only four principal skills in its index—memory, websearch, fresh-eyes, and rabbithole—while the directory contains 22 tool categories. This is a documentation inconsistency that makes discovery and maintenance more difficult.
+
+Third, external tool provenance and licensing require attention. Several tool files identify upstream origins and describe licenses as unlisted or not independently confirmed. The root LICENSE contains an Apache 2.0 license, but that should not automatically be interpreted as granting Apache 2.0 rights over every imported third-party skill. For example, provenance comments in src/tools/beautiful-prose/SKILL.md and src/tools/benchmark/SKILL.md identify upstream material whose licensing is not established in the individual files. This is a documentation and distribution risk, not evidence of improper use.
+
+Fourth, AI-generated criticism is not independent empirical verification. Multiple AI reviewers do not automatically constitute independent scientific replication. Reviewers can share biases, reproduce mistaken assumptions, or agree because they receive similar evidence. The project should distinguish independent conceptual criticism, independent analysis of existing data, and independent reproduction of experiments.
+
+2.4 Suitability for the proof of concept
+
+The tools are suitable as supporting infrastructure. Memory, fresh-eyes, websearch, rabbithole, benchmark, eval-harness, and webapp-testing have identifiable roles. However, the tools themselves are not the scientific contribution. Their value should be judged by whether they improve reliability, efficiency, and transparency.
+
+Recommendation: retain the collection, but introduce a smaller, clearly documented core toolset for the research pipeline. Every tool should have an identifiable purpose, execution requirements, provenance, and evidence of successful use.
+
+3. Student–AI Interactions (src/chatlog)
+
+3.1 Available evidence
+
+There is no directory literally named /src/chatlog in the supplied archive. The corresponding material is primarily src/CHATLOG.md, src/evidence/conversations/README.md, src/evidence/conversations/2026-11-16-memory-layer5.md, and src/tools/memory/SKILL.md.
+
+The main chatlog is a research-development record, not a complete verbatim transcript of every interaction. The repository describes it as an AI memory document. A newer conversation-archiving procedure was introduced on 2026-11-16, and its README acknowledges that earlier conversations were reconstructed from existing records rather than preserved verbatim. The historical interaction record is useful but incomplete.
+
+3.2 Observable interaction patterns
+
+Iterative problem-solving: the 2026-11-08 entries in src/CHATLOG.md describe Phase 2a parity experiments. Mean-pooling failed to learn the intended task; a representation change was introduced; concat-padding improved in-distribution performance; out-of-distribution generalization remained unsuccessful; and the negative result was retained.
+
+Verification rather than unquestioning acceptance: the 2026-11-08 Phase 2c entry records two gradient-related bugs—a missing gradient through the attention gate path and an incorrect gradient contribution from a dummy initial retrieval position. The log records numerical gradient-check discrepancies and subsequent corrections, reporting that corrected gradients matched finite-difference checks to approximately 10^-10.
+
+Willingness to retain negative results: the chatlog documents parity generalization failures, attention models that memorized training correlations, insufficient capacity for larger associative-recall problems, and approaches that failed to preserve information across long gaps.
+
+Increasingly structured research criticism: later entries document use of the fresh-eyes procedure to challenge research plans, multiple review rounds, rebuttals, and adjudications. The 2026-11-16 sign-flip diagnostic records a failed expectation: the oracle could identify a per-brain effect, but pooled measurement failed to capture it. The subsequent interpretation recognizes that pooling incompatible per-brain score scales obscured the effect.
+
+3.3 Quality of the student–AI process
+
+The observable process shows strong evidence of iteration, error detection, retention of negative results, hypothesis revision, and attempts at independent criticism. Statistical reflection is also present. Complete interaction transparency remains incomplete because the historical transcripts are partial.
+
+The records show user decisions, corrections to research assumptions, approval requirements, and explicit decisions to postpone experiments. This is consistent with an active, iterative human–AI research workflow.
+
+3.4 Verification of AI contributions
+
+The archive does not provide a complete, independently auditable history of all AI-generated code and research decisions. The newer transcript procedure is a positive improvement, but the historical record remains a combination of summaries and selected evidence. A lightweight experiment record should capture: what the student requested; what the AI proposed; what was implemented; what was independently checked; and what was accepted or rejected after testing.
+
+3.5 Assessment of AI use
+
+AI use is not a weakness of this project. The relevant assessment is whether AI-assisted work is subject to verification. The available evidence indicates meaningful efforts to challenge outputs, test implementations, retain failed results, and correct mistaken conclusions. The principal remaining weakness is provenance completeness, not the presence of AI assistance.
+
+4. Research and Proof of Concept
+
+4.1 Research question and rationale
+
+The central question has evolved into a more specific and experimentally testable proposition: Can a small recurrent neural network acquire addressable lookup through staged hint fading, rather than merely memorizing training examples or relying on superficial shortcuts?
+
+This is a reasonable research question: it is narrow enough to investigate, admits measurable outcomes, permits comparisons between teaching procedures, allows negative controls, and creates opportunities to investigate transfer and generalization. The broader motivation is to understand whether learning capabilities can be transmitted between small neural networks. Demonstrating addressable lookup in a constrained associative-recall task is not equivalent to demonstrating general-purpose learning.
+
+4.2 Methodology and experimental implementation
+
+The principal implementation is located in src/tinynn/. The main files are nn.js (neural-network components and architectures), tasks.js (task generation and examples), train.js (training and evaluation), gseries.js (generational teaching experiments), pcgrad.js (gradient surgery), evo.js (evolutionary experiments), and seeded.js (seeded experimental utilities).
+
+The project implements neural-network functionality directly in JavaScript rather than depending entirely on a conventional machine-learning framework. This is appropriate for a small proof of concept where control over the computational process matters. The repository also records gradient checking before training, which is important because plausible training results do not prove that the intended mathematical operation is implemented correctly.
+
+4.3 Experimental evidence
+
+The following are repository-reported measurements, not independently reproduced findings from this review.
+
+Experiment A: Answer-only training
+
+The paper reports 0 successful ignitions in 32 trials. The discussion in src/CHATLOG.md and Sections 4.2–4.3 describes models that either memorize or develop heuristic shortcuts. This is an important control against the simpler explanation that additional training time alone produces the desired capability. However, src/RESULTS_INDEX.md identifies the original H2 experimental ledgers as lost and classifies the 0/32 result as PROSE-ONLY. The tracked implementation may permit rerunning the experiment, but the original numerical result is not fully preserved.
+
+Experiment B: Staged hint fading
+
+The paper reports fast fading at 5/8 successful ignitions, with a 95% Wilson confidence interval of approximately 0.31–0.86. Slow fading reportedly rescued 1 of 3 initial failures. This is promising and suggests the teaching procedure can influence acquisition, but the small sample produces considerable uncertainty. It supports further investigation, not a universal conclusion that staged fading reliably produces learning.
+
+Experiment C: Generational transmission
+
+The repository reports G1: 8/8, G2: 6/8, G3: 7/8, G4: 8/8, and G5: 6/8, for a total of 35 successful ignitions out of 40 trials. The repository reports a 95% confidence interval of approximately 0.74–0.95 for the aggregate proportion. These results are encouraging because they show no obvious progressive collapse over five generations. However, selecting the best-performing students can conceal population variability, and transmission within one tested task and experimental regime does not establish generality across unrelated tasks or architectures. Evidence is located in src/evidence/gseries-v2/, src/tinynn/gseries.js, and src/RESULTS_INDEX.md.
+
+Experiment D: Transfer
+
+The repository reports that 10 of 12 permuted-key transfer tests held, with no observed collapse, alongside strong performance across additional evaluation configurations. These experiments help distinguish learning a relationship from memorizing particular key–value combinations. However, cross-family transfer remains unresolved. Generalization to new configurations of the same task is not equivalent to generalization to an entirely different task family.
+
+4.4 Negative results and experimental honesty
+
+The project preserves unsuccessful experiments. Reported examples include curriculum ordering (3/8 versus 4/8, with no established advantage), competence-gated staircase (1/8 versus 3/8, failing its predefined criterion), evolutionary breeding (failed twice), nursery prototype A (3/4), nursery prototype B (1/2), and an SSM-like baseline with near-chance kill-set performance. These failures are informative. In particular, breeding results suggest that improving training fitness does not necessarily improve transferable learning.
+
+4.5 Uncertainty and interpretability investigation
+
+The November 16 paper update introduces a second experimental thread, documented in index.html (draft v0.15), src/CHATLOG.md, and diagnostic scripts in src/tools/. It examines whether model uncertainty can predict errors and whether information in model weights can provide predictive signals. Reported findings include a suspicion score defined as 1 - top1, stronger error-ranking performance in some regimes, overconfidence on a meaningful proportion of incorrect predictions, failures of energy, committee, and Laplace-based approaches, and a distinction between reading previously observed weights and transferring interpretation to fresh initializations.
+
+The sign-flip investigation found that per-model oracle corrections could work while pooled evaluation failed to capture the effect. The subsequent interpretation identifies a mismatch between per-model effects and the pooled measurement. The suspicion score reportedly performs poorly when models are systematically wrong on the tested killHu condition. This appropriately qualifies the claim: uncertainty estimation is not equivalent to correctness estimation.
+
+This is a worthwhile secondary investigation, but it should remain clearly separated from the central teaching-and-transmission contribution. The two research threads have different hypotheses, methods, and evidential requirements.
+
+4.6 Application of the scientific method
+
+Research question: clear and testable (index.html, Section 1).
+
+Hypotheses: increasingly rigorous (src/GAMEPLAN.md).
+
+Experimental design: substantial (src/tinynn/ and evidence specifications).
+
+Controls: answer-only, cold-copy, and baseline experiments.
+
+Measurement: JSON run ledgers; strong internal practice.
+
+Statistical treatment: Wilson intervals and preregistered comparisons; positive.
+
+Negative results: well documented in src/RESULTS_INDEX.md.
+
+Replication: rerunnable code exists, but a complete reproduction record is not established.
+
+Independent validation: adversarial AI reviews are documented; independent experimental reproduction is not.
+
+Generalization: within-family transfer evidence is promising but limited.
+
+Uncertainty: limitations and quarantined findings are explicitly discussed.
+
+4.7 Major scientific concern: reproducibility
+
+This is the most important technical issue. src/README.md states that there is no single command that regenerates every headline result and that independent reproduction from the tracked code has not been logged. src/RESULTS_INDEX.md reports 137 G-series v2 ledgers and 15 synthesis files preserved; earlier architectural comparison results have lost their original ledgers; some claims survive only in src/CHATLOG.md and are classified as PROSE-ONLY; and some earlier results have been explicitly superseded.
+
+The evidence should be classified as: (1) preserved measurements, where experimental records exist and can be inspected; (2) recoverable but unconfirmed measurements, where code exists but original result records are missing; and (3) proposed or incomplete experiments, where a hypothesis or procedure exists but required evidence does not. This classification should appear prominently in the paper.
+
+4.8 Paper quality and publication readiness
+
+The paper has an ambitious experimental narrative. Its strengths include a specific central question, explicit experimental terminology, discussion of failed approaches, a structured results-to-evidence mapping, attention to the boundaries of findings, and attempts to distinguish measurements from future plans.
+
+However, it is not ready for conventional academic submission. The manuscript needs a tighter research narrative: architectural background, teaching experiments, uncertainty estimation, interpretability, the broader nursery vision, and the interactive demonstration are related but not equally necessary to support the central claim. The main contribution should remain visible throughout.
+
+There are status inconsistencies across repository documents. README.md describes a November 13 snapshot; src/CURRENT_TASK.md still identifies an earlier November 11 state; src/GAMEPLAN.md is at version 22 dated November 15; and index.html is updated to v0.15 dated November 16. The abstract also discusses five-generation results and the doubt-readout investigation, while its closing roadmap sentence says everything past G3 is roadmap. This is inconsistent with the reported G4–G5 results and should be corrected.
+
+src/paper/related-work.md is explicitly a draft. Every citation should be checked for bibliographic accuracy, correct attribution, and whether the cited work supports the associated claim. The final manuscript should explain more clearly which specific gap remains after prior work.
+
+The experimental methods need conventional presentation: model initialization; training data; teacher selection; hint introduction and removal; success definition; random seeds; exclusion criteria; and uncertainty calculations. The interactive interface should be supplementary, not necessary to understand the scientific argument.
+
+4.9 Overall research judgment
+
+I do not consider this research direction to be going nowhere. The repository contains a coherent experimental progression, meaningful negative findings, and a promising positive result concerning generational transmission. The conclusions must nevertheless remain narrow.
+
+In a constrained associative-recall setting, staged hint fading can enable small recurrent networks to acquire addressable lookup, and this capability can be transmitted through successive teacher–student generations under particular experimental conditions.
+
+This is already a worthwhile proof-of-concept result. It does not need to be inflated into a claim about general intelligence, autonomous scientific discovery, or universal learning.
+
+5. Prioritized Advice and Next Steps
+
+I would not recommend abandoning the current research direction or starting an entirely new project. There is sufficient experimental progress to justify continuing. However, the immediate objective should be narrowed, and further architectural features, tools, or research branches should be deferred. The next stage should establish exactly what has been learned.
+
+Priority 1 — Establish reproducibility of the central result
+
+This is the immediate priority. The repository already has src/tinynn/gseries.js, src/tinynn/train.js, src/evidence/gseries-v2/, and src/RESULTS_INDEX.md. What is missing is a straightforward, independently executable reproduction procedure.
+
+Provide exact experimental configurations.
+
+Record fixed random seeds.
+
+Document model initialization procedures.
+
+Provide training and evaluation commands.
+
+Specify expected output formats.
+
+Automate comparison against preserved results.
+
+Clearly distinguish reproduced and unreproduced results.
+
+The first reproduction should target the central generational teaching experiment and establish whether the reported 35/40 result can be regenerated. Earlier architecture comparisons should be secondary because their original records are missing (src/RESULTS_INDEX.md). Success criterion: another researcher should obtain the principal results without relying on the original AI conversation history.
+
+Priority 2 — Strengthen the evidence for the teaching mechanism
+
+The interesting finding is not simply that a model can learn associative recall, but that the teaching procedure appears to make a difference. Prioritize comparisons of staged fading, constant hints, immediate removal, answer-only training, cold copying, and single-student fading. The single-student fading comparison is especially important: if one student can acquire the capability through the same fading schedule without successive generations, the central claim must be adjusted. This would not invalidate a teaching effect, but it would change the explanation.
+
+Several comparisons are already specified in src/GAMEPLAN.md, Phase 1. Complete this mechanism investigation before expanding the model architecture.
+
+Priority 3 — Test generalization beyond associative recall
+
+The evidence is concentrated on one task family. Select one substantially different task family, such as a simple compositional transformation or rule-based sequence task. It should differ meaningfully in computational requirements, not merely rearrange associative-recall examples. Include a fresh task definition, separately designed evaluation set, matched baseline, teacher–student transmission condition, and explicit failure criterion. One carefully controlled cross-family experiment is more valuable than many weakly evaluated demonstrations.
+
+Priority 4 — Separate the main contribution from secondary investigations
+
+Treat teaching and transmission (staged hint fading, acquisition of addressable lookup, generational transmission, failure modes and transfer) as Research A. Treat uncertainty and interpretability (suspicion-based error detection, weight-based interpretation, per-model calibration, sign ambiguity and transfer limitations) as Research B. Complete the first paper around teaching and transmission. The second investigation could become a separate paper if subsequent experiments establish a sufficiently strong contribution.
+
+Priority 5 — Improve research documentation and AI provenance
+
+Synchronize README.md, src/README.md, src/CURRENT_TASK.md, src/GAMEPLAN.md, and index.html.
+
+Maintain one authoritative experiment-status index.
+
+Record whether each result is measured, reproduced, provisional, or proposed.
+
+Preserve AI-generated suggestions that materially influenced experimental decisions.
+
+Record the student's acceptance, rejection, or modification of those suggestions.
+
+Maintain provenance and licensing records for imported tools.
+
+The existing src/evidence/conversations/ approach is a good foundation. AI transcripts document the research process; they do not independently validate scientific findings.
+
+Priority 6 — Prepare the manuscript for external academic review
+
+Abstract: one research question, method, principal result, and limitations.
+
+Introduction: why learning transmission is important.
+
+Related work: specific research gap and theoretical positioning.
+
+Methodology: architecture, tasks, hints, fading, selection, and evaluation.
+
+Results: controlled experiments and confidence intervals.
+
+Discussion: what the results establish and what they do not.
+
+Limitations: scale, task diversity, seed count, and reproducibility.
+
+Conclusion: narrow, defensible contribution.
+
+Keep the interactive demonstration available as supplementary material rather than the primary means of communicating the research. Conduct a final reference audit and consistency check.
+
+Priority 7 — Consolidate the tool infrastructure
+
+The tool collection is already sufficiently extensive for the current research stage. Avoid expanding it until the central experimental claims have been reproduced. Complete src/tools/README.md, separate executable tools from AI instructions, verify third-party licenses, document dependencies, identify tools essential to the research pipeline, and archive tools that do not contribute to an identifiable research activity.
+
+Recommended immediate work plan
+
+Reproduce the existing generational result from tracked code and compare it against the preserved 35/40 result.
+
+Complete mechanism controls to determine whether fading, rather than exposure or additional training, explains acquisition.
+
+Run one cross-family experiment using a genuinely different learning problem.
+
+Reconcile manuscript and evidence so every reported number has a traceable source and unresolved claims are marked.
+
+Prepare an external-review version that can be evaluated without the interactive lab or AI conversation history.
+
+Conclusion
+
+My overall assessment is positive, with important qualifications. This is a serious in-progress research project with a meaningful research question, a working experimental implementation, evidence of iterative development and mathematical verification, a substantial collection of preserved experimental records, willingness to document failed hypotheses and retract earlier conclusions, and a thoughtful AI-assisted research process that includes criticism and verification.
+
+The most critical gaps are that the central results have not yet been independently reproduced from the tracked implementation; evidence is concentrated in one task family and a relatively small experimental regime; the causal mechanism behind successful teaching and transmission needs further controlled investigation; historical evidence and project documentation are not entirely consistent; and the paper contains more research directions than can be supported by one coherent scientific argument.
+
+The single most valuable next step
+
+Reproduce the five-generation teaching experiment from the tracked code, with its configurations and evaluation procedure fully documented. This is more valuable than adding another model architecture, another AI tool, or another speculative research direction. If the result reproduces, the project will have a considerably stronger empirical foundation. If it does not, the discrepancy will identify exactly where the research needs to be corrected. Either outcome is scientifically useful.
+
+Final reviewer verdict
+
+Research potential: Promising.
+
+Proof-of-concept maturity: Substantial.
+
+Experimental rigor: Good foundations.
+
+Reproducibility: Not yet established.
+
+Generalizability: Unproven.
+
+Publication readiness: Further work required.
+
+Recommendation: Continue the project, narrow the immediate research objective, and prioritize independent reproducibility.
+
+I would not advise the student to start over. There is a sufficiently coherent research direction, meaningful experimental progress, and enough preserved evidence to justify further work. The next challenge is to turn an impressive experimental development history into a compact, reproducible, independently defensible scientific contribution.
+
+Review limitation: This assessment is based on static inspection of the supplied ZIP archive. I inspected the repository's documentation, research records, tool descriptions, manuscript, and implementation inventory, but did not execute the experimental code, independently reproduce numerical results, or verify every external literature reference. Consequently, reported measurements are attributed to the repository rather than represented as independently confirmed findings.
+
