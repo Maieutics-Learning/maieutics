@@ -258,3 +258,11 @@ Ix finish-out done. Unpushed: runb.js + runb.json + prereg + RESULTS_INDEX + CHA
 assistant:
 [tool: execute_js git-blobs push — parent 75af283e → commit 10a5b4f08, scope 894, reused 888 / uploaded 6 / deleted 0, verified ref + commits agree; filed CHATLOG PUSHED receipt]
 Pushed 10a5b4f08. Backlog drained except this receipt. Ix chapter fully closed on current blobs; confirmatory killHu work waits on countersign + fresh brains.
+
+assistant:
+[tool: execute_js git-blobs push — parent 10a5b4f08 → commit 2d6c9705, scope 894, reused 892 / uploaded 2 / deleted 0, verified ref + commits agree; filed CHATLOG PUSHED receipt]
+Pushed 2d6c9705 on user request. Backlog drained except this receipt.
+
+assistant:
+[tools: read both fetched generators (main.pjs, READMEs, SPECs, definition outlines) + our SKILLs (fresh-eyes 347 lines, research 214, rabbithole wave loop/queue/marathon, eval-harness, paper-compile) + tools README index + GAMEPLAN v22 + our main.pjs imports (generateText/kv/superFetch, no server-plugin); read Ariadne forensics/autoChecks/killGates/signoff + review tribunal + memory portable + AI Lab controller tick/fingerprint]
+Filed borrow-gameplan (5 insertions with targets, explicit non-insertions, v22-frozen + no-new-imports + U8 constraints, forensics-first sequence). Unpushed: CHATLOG entry.
