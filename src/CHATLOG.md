@@ -897,6 +897,12 @@ never "feels faster" — wall time, accuracy, loss, token counts.
 - HALT verdict push via worker-side git-blobs overlay on Maieutics-Learning/maieutics main: 871 files in scope, 869 reused / 2 uploaded (phase-1dx-verdicts.md new + CHATLOG, ~161KB), 0 deleted, secret-scan clean. Ref verified match.
 ## 2026-11-16 — term rename: loudness → suspicion (user decision)
 - suspicion = 1 − top1, unchanged definition. Frozen docs (vii/ix verdicts, preregs, GAMEPLAN v22) keep "loudness" with alias; live dx verdicts doc carries the note. Code variable names untouched.
+## 2026-11-16 — run C DONE: latching demonstrated, C4 closes + suspicion boundary found (user-authorized)
+- ix-latch.json: validation 0.7633 == W1; zero-line 0.7585 [0.652,0.831]; zero-B 0.5465 [0.470,0.623] covers chance. Rule met → joint probe rode the weights margin, never learned lines. ix mechanistic story closed.
+- ix-susp-hu.json (follow-up, bit-identical reproduce via filed script): suspicion on killHu seen-brains = 0.5572 pooled; anti-predicts where brains systematically wrong (0.32–0.43 on 120–170 errors), works where competent (0.63–0.81). All prior wins were killHd/killA — killHu unmeasured until now. Reading (Hypothesis): suspicion ranks occasional errors, inverts under systematic error. Quarantined; needs mini-prereg before paper claims.
+- Scripts src/tools/ix-latch.js + ix-susp-hu.js (artifact maps in headers). UNPUSHED (2 scripts + 2 JSONs + this entry + transcript).
+## 2026-11-16 — PUSHED 22226b8 (vault github PAT, parent 6d538a5)
+- Sign-flip bundle via worker-side git-blobs overlay: 875 in scope, 871 reused / 4 uploaded (~186KB: ix-signflip.js, ix-signflip.json, transcript backfill, CHATLOG), 0 deleted, secret-scan clean. Ref verified match. PAT stayed in worker memory. Backlog drained except this receipt (rides next session).
 ## 2026-11-16 — sign-flip diagnostic DONE (user-authorized; validation exact, mechanism confirmed, cheap path dead)
 - Validation: recomputed unflipped pooled 0.4936 == filed, suspicion 0.8598 == filed — pipeline valid, numbers are results not bugs.
 - Oracle per-brain flips confirm the mirror axis: 5018 0.13→0.87, 5021 0.12→0.88, 5022 0.15→0.85 (mean flipped ~0.73). But oracle POOLED 0.4824 < 0.4936: cross-brain score scales are incompatible, pooled metric blind to per-brain fixes. Lesson filed: grade interpreter tests per-brain.

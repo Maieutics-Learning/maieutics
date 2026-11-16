@@ -143,3 +143,24 @@ Also, please note the properly mapped thing so that we can add more tests in the
 assistant:
 [tool: write src/tools/ix-signflip.js — header carries full artifact map (probe nets, input layout, brains, lines, filed numbers, forward recipe, sign rule, k set, validation gate)]
 Script written with the map; running it now.
+
+---
+
+# 2026-11-16 (later) — run C + suspicion boundary, verbatim from live context
+
+user:
+What is run C and what does it give us at this stage?
+
+assistant:
+Run C = W1-channel ablation on saved ix nets (freeze, blank one channel at a time, no retraining; adopted from battery for C4). What it gives now: nearly pre-registered by run B (expect no-lines ≈ 0.76, no-weights collapse); upgrades C4 to demonstrated; paper material not discovery; one open bit (masked-joint vs from-scratch-A). Offered to run or leave parked.
+
+user:
+lets run it and close the chapter on ix.
+
+assistant:
+[tools: edit scratch/CURRENT_TASK.md (run-C plan: design, expectation, close rule, validation gate, script-in-src/); write src/tools/ix-latch.js; execute_js run → {aFull 0.7633, aZL 0.7585 [0.652,0.831], aZB 0.5465 [0.470,0.623], aSusp 0.5572, verdict latching DEMONSTRATED}; read ix-latch.json (per-brain table: full 0.28–0.82, zeroB 0.21–0.88)]
+Held the report: suspicion 0.5572 on these lines needs verification first — anomaly check before reporting.
+
+assistant:
+[tool: execute_js inline check — per-brain acc + suspicion AUC on killHu seen brains (3000 tiny forwards, no probe nets) → acc 0.15–1.00, suspAUC 0.32–0.81, anti-prediction on high-error brains with 120–170 errors each]
+Real, not noise. Filing with a recipe: wrote src/tools/ix-susp-hu.js, re-ran from the filed script (bit-identical 0.5572 → src/evidence/synthesis/ix-susp-hu.json), filed working-record + CHATLOG entries, this transcript append. Now reporting.
