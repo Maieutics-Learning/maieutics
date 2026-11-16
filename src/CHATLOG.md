@@ -897,6 +897,13 @@ never "feels faster" — wall time, accuracy, loss, token counts.
 - HALT verdict push via worker-side git-blobs overlay on Maieutics-Learning/maieutics main: 871 files in scope, 869 reused / 2 uploaded (phase-1dx-verdicts.md new + CHATLOG, ~161KB), 0 deleted, secret-scan clean. Ref verified match.
 ## 2026-11-16 — term rename: loudness → suspicion (user decision)
 - suspicion = 1 − top1, unchanged definition. Frozen docs (vii/ix verdicts, preregs, GAMEPLAN v22) keep "loudness" with alias; live dx verdicts doc carries the note. Code variable names untouched.
+## 2026-11-16 — sign-flip diagnostic DONE (user-authorized; validation exact, mechanism confirmed, cheap path dead)
+- Validation: recomputed unflipped pooled 0.4936 == filed, suspicion 0.8598 == filed — pipeline valid, numbers are results not bugs.
+- Oracle per-brain flips confirm the mirror axis: 5018 0.13→0.87, 5021 0.12→0.88, 5022 0.15→0.85 (mean flipped ~0.73). But oracle POOLED 0.4824 < 0.4936: cross-brain score scales are incompatible, pooled metric blind to per-brain fixes. Lesson filed: grade interpreter tests per-brain.
+- Cheap path fails: k=10/20/40 pooled 0.527/0.549/0.424; ref sign estimates unstable (5017 flips decision every k). 20-label sign detection dead. Expectation (~0.7 pooled) was wrong through pooled-grading of a per-brain effect — owned.
+- Script src/tools/ix-signflip.js (artifact map in header) + results src/evidence/synthesis/ix-signflip.json (futureTests list). UNPUSHED (script + JSON + this entry).
+## 2026-11-16 — PUSHED 6d538a5 (vault github PAT, parent 6e80aef)
+- Run-B bundle via worker-side git-blobs overlay: 873 in scope (871 + conversations/ x2), 868 reused / 5 uploaded (~197KB: SKILL.md layer-5 section, CHATLOG x2 entries, dx-verdicts run-B section + terminology note, conversations README + seed transcript), 0 deleted, secret-scan clean. Ref verified match (cache-busted re-read). PAT stayed in worker memory; no rotation owed. Backlog drained — zero unpushed src/ files.
 ## 2026-11-16 — memory layer 5 created (user-ordered; verbatim conversation transcripts)
 - SKILL.md: five-layer stack, layer-5 section (checked last, bottom truth on wording/decisions; artifacts still rule numbers), HONEST LIMITS (no auto-capture of private thought; pre-2026-11-16 history reconstructed; secrets redacted; attachments by reference), U8 carve-out, no size discipline per user (part-files only at platform 100MB/file ceiling). New home src/evidence/conversations/ (README + first verbatim file 2026-11-16-memory-layer5.md). UNPUSHED (SKILL.md + this entry + verdicts note + conversations/ x2).
 ## 2026-11-16 — run B DONE: A collapses, lines dead (user-authorized; verdicts doc + push queued)
