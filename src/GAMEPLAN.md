@@ -18,6 +18,7 @@ battery. Threshold bar robust (±0.10 → 35→32/36; bimodal ledger distributio
 - Budgets: Phase 1 <2 h wall, 2.b.0 <1 h wall (round-2 caps against bloat).
 - Doubt instruments (standing, all phases — metacognition that lives in process, not heads): every prereg carries three required sections — agent expectation (numeric, filed pre-run, scored in the verdict: the author's track record), pre-mortem (strongest objection + most likely failure reason, scored post-hoc), nearest-failure citation (which past mistake this design could repeat and why it doesn't). Architecture/process changes (new heads, losses, channels, gates, template changes) allowed only as mini-preregs with comparative bars against the best dial-fiddle (new dial beats best fiddle by preregistered margin or it's sprawl — refused); sunset review at each phase exit (gates/checks firing clean 3× running get downgraded/retired; ABANDONED verdicts for methods, same as TBDs). Declarations (gap spec + nursery-bound) carry "what would prove this wrong" (one line, pre-hoc, scored at verification).
 - Selection pressure (standing, replaces drive — learned 2026-11-14 from geometry/Track C): scarcity + selector with teeth, not hunger. Fixed wave-budget per round (allocate, don't spawn unbounded — bids required); branch bids carry falsifiable promise + kill condition; teeth-streak escalator (N straight teeth rounds auto-forces a sunset proposal — proposing a whole kill is licensed science here, never disobedience); world selector (fitness = novel-family transfer on rival-generated tasks, never own exams); breed the allocator (score branch-value predictors on calibration, not waves).
+- Version-bound approval (borrow 2026-11-16, countersigned): an approval (countersign, gate pass, design freeze) binds to the exact evidence/plan version reviewed (version tag + date; fingerprint where cheap). A new version re-opens approval — no inherited approvals, no grandfathering. A decision record carries `{version, fingerprint, decision}`; applying a vX approval to vY without a re-verify flag is a process violation, caught at filing time.
 
 ## Phase 1 — Mechanism settlement (cheap; ≈35 s per 3k-step seed, full Phase 1 under an hour)
 
@@ -69,6 +70,7 @@ battery. Threshold bar robust (±0.10 → 35→32/36; bimodal ledger distributio
   - iii. Ledger byte-compare with PASS/FAIL per claim (exact on same engine; documented tolerance fallback for cross-engine ulp drift so CI cannot deadlock), owned by CI (GitHub Actions runs it; local pre-commit hook mirrors it). Overrides only via a logged ledger-or-cut verdict — the gate fails closed, the override is a verdict, not a bypass.
   - iv. Re-ledger-or-cut: old-arch claims without ledgers rerun through it or leave
     the paper (review #2's rule).
+  - v. Forensics signoff gate (borrow 2026-11-16, countersigned): every ledger-producing run passes the forensics kernel (`src/tools/forensics.js`) before its verdict is filed — registered checks run on run fingerprint + ledger rows; any kill-check failure => verdict KILL, gate fails closed. Overriding KILL is a logged verdict (decision `OVERRIDE` + who/why note in the filed signoff record), never a bypass; a `PASS` signoff over a `KILL` evaluation is refused by the kernel. Zero-UI, caller-owned persistence, ships its own self-test.
 - **2.b.0 Shuffle-seed pre-gate** (cheap; MANDATORY BLOCKING — zero Phase-2 spend until it passes):
   - cross-lineage G2 (different-seed G1 winner as tutor) + G1→G2 rate over N=10 seeds;
   - tutor-swap control (NEW round 2): low- vs high-performing G1 winners as tutors — tests teacher-variance prospectively.
@@ -91,6 +93,7 @@ battery. Threshold bar robust (±0.10 → 35→32/36; bimodal ledger distributio
   - iii. Headless runner as the scientific path (merged with 2.a.ii); keyed pool arms stay
     browser-side where the vault lives.
   - iv. Dockerfile allowlist (runtime subset only; evidence/logs/notes stay out of the image).
+  - v. Run identity (borrow 2026-11-16, countersigned): every run logs `runId` (date-tag + session counter) and a fingerprint (input-hash + code-version of the driver) in its first ledger lines and in the CHATLOG entry. Late/stale outputs from a superseded run are discarded, never merged into the live verdict. Quiet mode explicitly NOT adopted (unmotivated).
 - **2.e Paper v0.15 → venue**
   - i. Fold Phase 1 + Phase 2 verdicts.
   - ii. Venue decision (TMLR / ICLR / NeurIPS shortlist per review #2).
