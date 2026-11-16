@@ -164,3 +164,10 @@ Held the report: suspicion 0.5572 on these lines needs verification first — an
 assistant:
 [tool: execute_js inline check — per-brain acc + suspicion AUC on killHu seen brains (3000 tiny forwards, no probe nets) → acc 0.15–1.00, suspAUC 0.32–0.81, anti-prediction on high-error brains with 120–170 errors each]
 Real, not noise. Filing with a recipe: wrote src/tools/ix-susp-hu.js, re-ran from the filed script (bit-identical 0.5572 → src/evidence/synthesis/ix-susp-hu.json), filed working-record + CHATLOG entries, this transcript append. Now reporting.
+
+user:
+Lets go ahead and do the full run
+
+assistant:
+[tools: read CURRENT_TASK.md (stale era noted, handoff governs) + index.html full survey (137868 B, 17 h2, v0.14 2026-11-12, zero doubt content) + postmortem + GAMEPLAN 1.e + vii/ix/x verdicts + ix-latch/signflip/susp-hu JSONs + iii dump/energy/committee verdicts; execute_js 10-edit script → badge/status/roadmap/§4.4/§5/§6/§7/abstract×2/dict (len 137868 → 152518); page_refresh → 2 perchanceErrors (literal [...] parsed as templates); fixed to parenthesized ranges; page_refresh clean; DOM checks (17 h2, §4.4 heading, 3 dict keys, panel opens, ids intact, §6 13 items, §7 15 items, §5 2 paras); snapshot §4.4 screenshot read]
+Full living-doc update v0.15 done, verified, filed. Push queued.
