@@ -254,3 +254,7 @@ Pushed 75af283e. Backlog: ix finish-out.
 assistant:
 [tools: execute_js 3-in-1 re-audit timed out at 10 min (probe-net JSON parses heavy, files intact 1338/3332/1112 B); then singles — susp-hu pooled 0.5572 identical=true; latch 0.7633/0.7585/0.5465 DEMONSTRATED identical=true; signflip 0.4936/0.8598/k20 0.5486/oracle 0.4824 identical=true. Promoted scratch/ix-runb.js (12,410 B) → src/tools/ix-runb.js + scratch/ix-runb.json (2,883 B) → src/evidence/synthesis/ix-runb.json; RESULTS_INDEX Run B row THIN→CONFIRMED. Wrote phase-1dsusp-hu-prereg.md v1.0 DRAFT (fresh brains, bars, paper-claim rule); RESULTS_INDEX suspicion row points at it. Filed CHATLOG ix finish-out entry. Blobs droppable, recipe kept.]
 Ix finish-out done. Unpushed: runb.js + runb.json + prereg + RESULTS_INDEX + CHATLOG. Pushing next.
+
+assistant:
+[tool: execute_js git-blobs push — parent 75af283e → commit 10a5b4f08, scope 894, reused 888 / uploaded 6 / deleted 0, verified ref + commits agree; filed CHATLOG PUSHED receipt]
+Pushed 10a5b4f08. Backlog drained except this receipt. Ix chapter fully closed on current blobs; confirmatory killHu work waits on countersign + fresh brains.
