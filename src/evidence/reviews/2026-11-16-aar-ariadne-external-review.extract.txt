@@ -1,0 +1,249 @@
+Conversation Transcript
+
+From the question about Maieutics, Autonomous AI Research Lab, and Ariadne to the present
+
+Transcript note: The user question below is reproduced verbatim. The assistant response is reproduced from the visible conversation, with formatting normalized for this document.
+
+User
+
+The student is thinking with the AI of bringing in these new things to help the AI. Given the gameplan in maieutics of what to take, they wanted to ask me to ask you if the gameplan looks fine since you were against creating more tools.Also please look at the other (autonomous-ai-research and ariadne) zips with as critical of an eye as you did with the main maieutics, specifically what the student wants to import
+
+Assistant
+
+I’ve inspected all three uploaded snapshots. My preliminary recommendation is not to import either project wholesale. They are not simply collections of helpful skills: both are substantial applications with their own state models, workflows, assumptions, and dependencies. Importing them wholesale would risk turning Maieutics into a collection of overlapping research systems rather than strengthening the specific capabilities its current plan is trying to validate.There is an important distinction in the Maieutics files: src/GAMEPLAN.md is the current, countersigned v22 experimental plan; the detailed “what to take” decisions are recorded separately in src/steal/registry.md and the Track A/B/C files. I’m assessing the proposed imports against those decisions, not treating every feature in the two new repositories as automatically in scope.
+
+1. Does the Maieutics gameplan look right?
+
+Yes, directionally. I would keep it intact and resist adding either project as a new workstream at this stage.The strongest feature of v22 is that it has become more selective about what counts as progress:
+
+Phase 1 settles the mechanism, with preregistered comparisons and explicit inconclusive outcomes.
+
+Phase 2 requires a reproducible runner, independent chains, and cross-family testing.
+
+Phase 3 keeps the larger nursery ambition behind a measured re-entry bar.
+
+The Conventions require pre-mortems, nearest-failure references, bounded selection pressure, and sunset reviews.
+
+That is a sensible response to the risk of building infrastructure faster than the research can validate it.The existing Maieutics src/steal/registry.md also records a substantial amount of work already done: plugin imports, 18 research or workflow skills, and trials of candidate tools. It explicitly distinguishes things that were used, adapted, deferred, and rejected.I would not interpret that work as an invitation to keep importing indefinitely. The registry's central question is the right one: what specific capability is missing, and what decision or experiment does adding it improve?Neither new ZIP is currently identified as an approved import in the v22 plan or the existing registry. I would treat both as sources of candidate ideas, not as approved additions.
+
+2. Autonomous AI Research Lab
+
+Assessment: worth borrowing selected design patterns; do not import wholesale.
+
+What I like
+
+The README describes a staged system that has progressed through Stage 1 (project state, task planning, and human-controlled verification), Stage 2A (source retrieval), Stage 2B (evidence-linked analysis), Stage 2C (autonomous research cycles), Stage 2D (multiple research sources and question-aware routing), and Stage 2E (comparing approaches and obtaining explicit approval for decisions). It explicitly says Stage 3, autonomous building and execution, has not started. That restraint is a positive feature.
+
+The controller separates AI suggestions from authoritative state changes. src/controller.js uses run identifiers to discard late AI responses, prevents stale work from being applied after project switches, and keeps verification separate from AI-generated text.
+
+The research-cycle controller includes cycle and runtime budgets, progress based on new evidence rather than text volume, duplicate detection, checkpoints, pause/stop/resume behaviour, and a distinction between lack of evidence and technical failure.
+
+The decision system in src/decisions.js separates research, comparison, recommendation, approval, and proceeding. Approval is version-bound rather than blanket permission, and “more research needed” is an allowed outcome.
+
+Problems I would address
+
+Evidence validation is weaker than its language can suggest.
+
+Finding IDs and exact quotation checks are useful, but they do not establish that a source supports a claim. A quotation may be copied correctly and still be irrelevant or misinterpreted. Relevance tiers are retrieval heuristics, not proof that a source answers the research question. Confidence labels are not calibrated probabilities. Borrow the evidence-recording structure, but retain independent review of whether the source supports the claim.
+
+Academic search is limited.
+
+The source list includes OpenAlex, PubMed, GitHub, RFCs, MDN, Wikipedia, and user-approved URLs. This is useful discovery, but not a comprehensive scholarly search system. It should not be described as systematic literature search without a validated search strategy, inclusion/exclusion procedure, and coverage assessment.
+
+Persistence has a meaningful concern.
+
+In src/store.js, several storage operations catch and suppress errors. A failed write to the primary KV store may be swallowed without a reliable fallback write to local storage. The interface could behave as though a project was saved when the persistent write failed.
+
+The specification is out of date.
+
+src/SPEC.md describes an earlier proposed agent loop involving building artifacts and testing them. The current README describes a later implementation that deliberately stops before autonomous execution. Reconcile the specification before adopting the architecture.
+
+Testing claims are not independently demonstrated by the ZIP.
+
+The README describes stages as implemented and tested, but the supplied ZIP does not include a conventional automated test suite or CI configuration that would let an outside researcher reproduce those claims. This does not prove the author did not test it; it means the evidence is not packaged with this release.
+
+Verdict: a decent prototype for controlled research planning and evidence management. Its strongest contribution is the separation of AI proposals, evidence records, decisions, and human authorization. Consider borrowing decision-versioning, bounded research-cycle, and stale-response safeguards. Do not import the entire controller, UI, research stack, or storage system.
+
+3. Ariadne — Rapid PhD-Level Research Engine
+
+Assessment: several interesting ideas; significant overbuilding.
+
+What I like
+
+Claim atlas.
+
+src/claims.js organises claims by source, including design, sample size, direction, limitations, and confidence, and identifies potential rival claims. This is potentially useful because a research assistant should track what is claimed, which source supports it, under what conditions, with what limitations, and what competing explanations exist.
+
+Falsifier and rival requirements.
+
+Ariadne tries to make hypotheses falsifiable and require alternative explanations. Its review workflow checks assumptions, scope, limitations, citation direction, and the relationship between claims and evidence.
+
+Provenance and review safeguards.
+
+Useful ideas appear in src/review.js, src/tools_audit.js, src/memory.js, and src/autonomy.js. The effort to preserve source snapshots and prevent downstream work from silently referring to a changed source bank is relevant.
+
+Problems
+
+Academic authority is overstated.
+
+The “Rapid PhD-Level Research Engine” framing and features labelled viva, external examination, doctoral training, appointments, grants, and institutional management can make the system feel more authoritative than it is. An AI viva is not an external examination; a generated review is not peer review; a rigour score is not a validated measure of scientific quality. It can help prepare for these processes, not confer their authority.
+
+The review tribunal is not independent peer review.
+
+The README describes three blinded roles using one model, with rule-based checks as an additional floor. This is better than one general review, but does not produce three independent reviewers. They may share blind spots, biases, and framing. Borrow the checklist, not the tribunal as independent confirmation.
+
+The automatic research loop risks internal reinforcement.
+
+The loop can generate questions from accumulated knowledge, search literature, synthesise claims, score runs, and branch into follow-up questions. Human funding/pass mechanisms help, but the loop may still generate questions easy to answer using existing knowledge, score those answers favourably, and branch into related questions. This can grow an internal knowledge bank without producing important or novel research.
+
+The 50 + 50 library is not validated methodology.
+
+The 50 research areas and 50 proposed improvements can be useful references, but a large checklist is not a validated research method. Some entries may be generic, overlapping, or unsuitable for particular disciplines. Do not import them as mandatory requirements.
+
+Concrete technical problems.
+
+src/app.js and src/memory.js use DJB2-style 32-bit hashes for source identity and snapshot integrity. These can detect some accidental changes but are not cryptographic hashes and cannot provide strong tamper evidence. In src/memory.js, individual KV writes in import/merge paths catch errors without propagating them, so an import or merge may be reported complete despite partial writes. In src/spark_rituals.js, the grounded expression resolves to true in both branches, so the associated demand check cannot fail. src/department.js has many empty catch blocks, making optional failures hard to distinguish from broken subsystems. Self-tests do not establish end-to-end correctness with real providers, real literature, interrupted runs, or failed storage writes.
+
+Maintainability.
+
+The application has many interdependent modules. src/department.js, src/autonomy.js, and src/tools_audit.js are substantial. The concern is the number of overlapping state stores, workflows, gates, background processes, and derived records. A self-test and process-audit framework do not eliminate the architectural risk.
+
+The src/PROCESS.md document is candid about defects introduced during development and earlier incomplete reviews. That honesty is a strength, and it also explains why the application needs stronger independent testing.Verdict: Ariadne is an interesting experiment in an AI-supported research environment. Its claim organisation, falsifier requirements, provenance awareness, and structured review workflow are useful. It is too broad to import as a package. Borrow a few underlying ideas, not its academic-department architecture or autonomous research engine.
+
+4. What I would actually bring into Maieutics
+
+<w:tblPr><w:tblStyle w:val="LightShading-Accent1"/><w:tblW w:type="auto" w:w="0"/><w:tblLook w:firstColumn="1" w:firstRow="1" w:lastColumn="0" w:lastRow="0" w:noHBand="0" w:noVBand="1" w:val="04A0"/></w:tblPr><w:tblGrid><w:gridCol w:w="3312"/><w:gridCol w:w="3312"/><w:gridCol w:w="3312"/></w:tblGrid><w:tr><w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Candidate
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Recommendation
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Reason
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>AAR decision versioning
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Consider
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Strong explicit-approval pattern.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>AAR run IDs and stale-response rejection
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Consider
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Protects against late AI responses.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>AAR bounded research cycles
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Consider
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Progress, budget, and stopping discipline.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>AAR evidence-linked analysis
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Adapt carefully
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Finding IDs and quotations are useful; they do not prove support.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>AAR multi-provider search
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Mostly redundant
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Maieutics already has websearch and rabbithole capabilities.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Ariadne claim atlas
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Strong candidate
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Could improve structured claim and rival tracking.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Ariadne falsifier/rival framework
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Keep the ideas
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Consistent with Maieutics' existing research discipline.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Ariadne review checklist
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Adapt
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Useful as a checklist, not as an AI peer-review substitute.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Ariadne portable memory
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Fix before use
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Current hashing and error handling are insufficient.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Ariadne research library
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Curate selectively
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Avoid turning generic advice into mandatory procedure.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Ariadne department and institutional features
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Do not import
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Large scope expansion with no demonstrated need.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Ariadne autonomous research loop
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Do not import now
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Risks duplicating existing workflows and generating activity without external validation.
+
+<w:tc><w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Ariadne Muse Spark
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>Do not import
+
+<w:tcPr><w:tcW w:type="dxa" w:w="3312"/></w:tcPr><w:p><w:r><w:t>The demand check has a concrete bug, and Maieutics already has proposal/selection discipline.
+
+Three priorities
+
+1. Claim atlas, with proper provenance.
+
+Adapt Ariadne's claim/source/rival structure. Each claim should point to its evidence, limitations, and competing explanation. Use a proper cryptographic digest if the record is intended to provide integrity assurance.
+
+2. Version-bound decisions.
+
+Borrow AAR's approval model. An AI recommendation should be tied to the exact version of the evidence and plan that was reviewed. A new recommendation should not inherit old approval automatically.
+
+3. Research-cycle accounting.
+
+Borrow AAR's distinction between progress, no evidence, and technical failure. A cycle should have a budget, a stopping condition, and a record of what changed.
+
+These should be treated as design patterns to adapt, not as three new tools to build immediately.
+
+5. The bigger issue: what is the AI actually missing?
+
+The two new projects have a great deal of functionality, but Maieutics already has memory and continuity; web search and source exploration; fresh-eyes critique and adversarial review; research skills and literature exploration; evidence ledgers and experimental diagnostics; a selection-pressure framework; and a plan for reproducible execution and independent testing.The student should therefore identify a specific failure in the existing AI workflow before adding another system.
+
+If the AI loses track of which claims are supported by which sources, the claim-atlas idea may address a real gap.
+
+If it makes decisions based on an outdated version of a plan, AAR's version-bound approval pattern may help.
+
+If it continues researching after useful information has been exhausted, bounded cycle accounting may help.
+
+If it agrees with its own reviewers too easily, adding Ariadne's tribunal would not solve that; genuinely independent reviewers or empirical tests would be more valuable.
+
+Adding more AI reviewers, more checklists, and more research-management layers does not automatically make an AI more capable of discovering truth. The most important missing capabilities in an autonomous research system are independent grounding, surprise detection, the ability to formulate genuinely discriminating experiments, and reliable verification of results. Neither project has demonstrated that it solves those problems.
+
+6. My recommendation to the student
+
+Keep Maieutics v22 frozen. Do not expand Phase 1 to accommodate either repository.
+
+Do not merge either application into Maieutics.
+
+Create a short candidate assessment for the three strongest patterns: claim atlas, version-bound decisions, and bounded research cycles.
+
+For each candidate, identify the precise existing Maieutics failure it would address.
+
+If no concrete failure can be identified, do not import it.
+
+If one is justified, adapt the smallest possible piece and test it against the existing workflow before retaining it.
+
+There should also be a clear distinction between importing a method and importing code. A method may be useful even if the implementation is not safe or portable enough to reuse.
+
+Final assessment: the student is right to look outside Maieutics for ideas. Both projects contain useful ideas. But their size and sophistication are not evidence that Maieutics needs to become equally large. Maieutics is at the point where it needs to demonstrate that its research process works, not acquire another research-management application. The best additions will be small, directly motivated by a demonstrated weakness, and measurable in their effect.
+
+User
+
+first, can I have a transcript from my question to now?

@@ -284,3 +284,42 @@ remember memory should bring the whole thing into the audit log
 assistant:
 [tools: read memory SKILL.md layer stack (layer 4 = durable log src/CHATLOG.md); filed full borrow-gameplan text into new CHATLOG entry "audit-log rule + full borrow-gameplan filed" with standing rule (durable log carries full content, not pointers); this transcript update per layer-5 update rule]
 Filed the whole gameplan into the audit log (CHATLOG entry with full text embedded, self-sufficient). Standing rule recorded. Unpushed: CHATLOG entry + this transcript update.
+
+assistant:
+[tool: execute_js git-blobs push — parent 0d2ea56 → commit bcc1aed7, scope 894, reused 892 / uploaded 2 (~202KB) / deleted 0, verified ref + commits agree; filed CHATLOG PUSHED receipt]
+Pushed bcc1aed7 on user request. Backlog drained except this receipt. Stopped immediately per user order.
+
+user:
+[attached scratch/message-attachments/Maieutics_AAR_Ariadne_Conversation_Transcript.docx] External review of your import plan
+
+assistant:
+[tools: extracted docx (126 paras, 19,030 chars) via zip.js; copied docx + extract to src/evidence/reviews/2026-11-16-aar-ariadne-external-review.{docx,extract.txt}; filed CHATLOG review entry with reconciliation]
+Review preserved durably. Verdict in chat: plan directionally sound per reviewer, 3 corrections adopted (tribunal→checklist+independent-only; memory annex SHA-256 + error propagation; per-insertion motivating-failure gate), 1 gap found (version-bound decisions missing — proposed 6th micro-item, needs user call). Unpushed: review files + CHATLOG entry + this update.
+
+user:
+If you think this is good for you, run some fresh eyes (keep in mind the review is an outside source and our fresh eyes all run the same AI model) and do what you think is best
+
+assistant:
+[tools: 4 sealed reviewers (R1 failure-mapping, R2 scope, R3 reflexivity, R4 sixth-item trial), shared premise, parallel generateText; all on-brief. Adjudicated ACCEPT/PARTIAL/REJECT per point; filed src/evidence/synthesis/fresh-import-plan-battery.md with raw replies + adjudication; updated scratch sub-plan; CHATLOG battery entry]
+Net decision: ACTIVE = 1 (kernel-only + Zero-UI), 2 (runId/fingerprint, quiet dropped), 4 (flat-file claims.md first), 6 (version-bound decisions ADOPTED); PARKED = 3; 5 = standing rule. New gates: raw-log failure citation per item, Zero-UI on 1 & 4. Best catch: R2's atlas demotion (flat file, not JS tool) + R3's raw-log check. Unpushed: battery file + CHATLOG entry + this update.
+
+user:
+[pasted outside Q&A] Random question. Can ariadne or maieutics call AAR? So instead of the rabbithole skill, would using AAR instead be bad? [outside answer: yes-conceptually; hybrid rabbithole-discovery → AAR-investigation → app-integration; needs integration layer; don't duplicate stores/searches; don't auto-trust evidence links] Thoughts?
+
+assistant:
+[tools: verified rabbithole SKILL (wave loop, 1-direct+1-tangential, state files) — outside characterization accurate. Filed CHATLOG assessment entry.]
+Agree on split + competing-stores warning; diverge on implementation: "replace/call AAR" is a category error for Maieutics (workflow doc vs foreign app, no interface, flagged store bugs; port not call; second store violates one-state-home). Redundancy audit: AAR's portable value already covered by items 2/4/6 + wave rules. Investigation stays in-house; revisit only on demonstrated handoff failure. Ariadne = more plausible consumer, same caveats. No sub-plan change. Unpushed: CHATLOG entry + this update.
+
+user:
+[pasted my sentence back] So this wouldn't be an integration; it'd be a port. And a port means a second evidence store beside our state files — the exact thing the answer warns against. You can't recommend the hybrid and the backend in the same breath without confronting that. Can we delve into greater detail?
+
+assistant:
+[tools: read AAR store.js (all 235 lines), controller runId/stale + line-73 swallow, decisions.js version-binding, our main.pjs imports, rabbithole SKILL slot/loop greps. Filed CHATLOG deep-dive entry.]
+Gave file-level deep dive (chat): no-interface taxonomy, port mechanics + silent-persist audit-trail hazard, outside answer's internal contradiction, redundancy ledger (portable value = 2 metadata rules already in plan), falsifiable revisit triggers. No plan change. Unpushed: CHATLOG entry + this update.
+
+user:
+From the point of view of someone who is talking to both the creator of maieutics and AAR. Does that mean rabbithole is more inclusive than AAR? Does running an investigation with AAR provide better and deeper results than rabbithole?
+
+assistant:
+[tools: none new needed (prior reads stand); filed CHATLOG neutral-assessment entry — after a replaceAll mishap duplicated it 3x, repaired to one. This transcript update.]
+Gave neutral verdict (chat): inclusive-by-design yes (phase distinction, not ranking); depth = convergent-structure edge to AAR on paper but unverified vs production-tested, same model-reads-source floor, visible-vs-invisible failure modes; discovery → rabbithole, convergence → AAR's structure once verified; credit to AAR's restraint/version-binding/more-research-needed. No plan change. Unpushed: CHATLOG entry + this update.
