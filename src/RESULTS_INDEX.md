@@ -1,4 +1,4 @@
-# RESULTS_INDEX — every paper claim → its artifact (2026-11-13)
+# RESULTS_INDEX — every paper claim → its artifact (2026-11-13; §4.4 doubt arc added 2026-11-16)
 
 How to read: each row is one MEASURED claim in `index.html` §§1–8. **Status** grades:
 - **CONFIRMED** — run ledger exists under `src/evidence/`, path verified 2026-11-13, numbers byte-checked against the paper at write time.
@@ -87,3 +87,21 @@ Huginn 2502.05171, Grassmann 2512.19428, Mamba 2312.00752, Coconut 2412.06769, L
 1. F2 + M4 + K battery from tracked `src/tinynn/` (fair slots, seeds 7–9) → ledgers to `src/evidence/arch/` → flip §4.1 rows. This is the milestone-1 reproduction.
 2. H2 answer-only spot check (1 arch × 4 seeds) → confirms the wall cheaply.
 3. Multi-seed SNR (igniter vs memorize-lean × 3 seeds) → firms the mechanism row.
+
+## §4.4 doubt arc (1.d — added 2026-11-16; ix inputs live in scratch/, see caveat)
+
+| Claim | Numbers | Artifacts | Code | Status |
+|---|---|---|---|---|
+| Pointer admissible + overconfidence disclosed | ptrHit\|correct killA 1600/1600 = 1.000 (killHd 1454/1454); errors at 0.70 mean top-1 (n=146), 22.6% ≥ 0.9; s313 0.84, 31/60 ≥ 0.9 | `src/evidence/synthesis/phase-1diii/phase-1diii-verdicts.md` + `phase-1diii-results.json` | dump driver | CONFIRMED |
+| wTarget dead as doubt | alone pooled 0.536; conjunction (top-1 ≥ 0.9 ∧ on-target) precision ~3% | same | same | CONFIRMED (negative) |
+| Energy CUT (pilot-win, full-loss) | s313 0.8306 vs 0.737 → pooled 0.8938 vs 0.9293 | `phase-1dv-pilot-verdicts.md` + `phase-1dv-verdicts.md` (raw rows `scratch/p1dv-full.json`) | re-dump recipe | THIN (verdict durable, rows in scratch) |
+| Committee CUT | split 0.6274 vs suspicion 0.8515 (1600 pairs, 146 err) | `phase-1dvi-verdicts.md` (recompute of iii ledger) | ledger recompute | CONFIRMED (negative) |
+| Laplace FULL-FAIL + post-mortem a–e | s313 0.8916 (pass) → pooled 0.928524 vs 0.929287 (Δ −0.0008); λ=100 on 8/8 | `phase-1dvii-pilot-verdicts.md` + `phase-1dvii-verdicts.md` (rows in scratch/) | vii recipe | THIN (verdict durable, rows in scratch) |
+| ix meta-probe PILOT-FAIL | pooled 0.4936 (bar 0.60), win-rate 0/8 (bar 5/8); suspicion 0.8598 same lines; train 0.809 | `phase-1dix-verdicts.md` (+ W1 0.763 / W3 0.4606 why-diagnostics) | ix-pilot v1.5 frozen | THIN (verdict durable, brains + rows in scratch) |
+| x-ablation HALT → false-trip diagnosis | B-perm 0.6562 trips (99.7% CI excludes 0.5); 200 fresh draws mean 0.496, max 0.6532; old-switch false-trip 0.67; true-B 0.761 | `phase-1dx-verdicts.md` | ix-ablate + slice runner | THIN (verdict durable, seeds in scratch) |
+| Run B: lines dead, strong form | A pooled 0.4851, cluster CI covers chance; Δ(A−A0) −0.060 strict | same doc (`scratch/ix-runb.json`) | `scratch/ix-runb.js` | THIN (verdict durable, ledger + script in scratch — promote on re-run) |
+| Run C: latching DEMONSTRATED | zero-line 0.7585 ≈ W1 0.763; zero-B 0.5465 covers chance; gate 0.7633 == 0.763 | `src/evidence/synthesis/ix-latch.json` + `src/tools/ix-latch.js` | masked forwards | CONFIRMED (results + recipe durable; inputs in scratch/, see header) |
+| Sign-flip: mirror axis, cheap path dead | oracle per-brain ~0.73 (0.13→0.87 etc.), pooled 0.4824; k=10/20/40 → 0.53/0.55/0.42 | `ix-signflip.json` + script | ref-sign flips | CONFIRMED (same input caveat) |
+| Suspicion killHu boundary | pooled 0.5572; 0.32–0.43 where brains systematically wrong, 0.63–0.81 where competent | `ix-susp-hu.json` + script | same lines as W1 | CONFIRMED as quarantined observation (mini-prereg required before paper claims) |
+
+Caveat (applies to every row above whose inputs are scratch-only): the durable record is the verdict/result JSON; re-running needs `scratch/ix-partial.json`, `ix-final-*`, `ix-probe-P*` — re-materialize via the frozen ix-pilot recipe if wiped (headers in `src/tools/ix-*.js` give the exact recipe).

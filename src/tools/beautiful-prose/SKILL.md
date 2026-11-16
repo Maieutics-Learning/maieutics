@@ -1,9 +1,9 @@
-<!-- PROVENANCE: stolen (AI instructions), via skillmd.com (sickn33/beautiful-prose; original SHADOWPR0/beautiful_prose; rootcastleco variant was a stub) (Unlisted upstream — see source). Pulled for Track A: paper prose: style contract against AI tics. Upstream: https://github.com/SHADOWPR0/beautiful_prose -->
+<!-- PROVENANCE: stolen (AI instructions), via skillmd.com (sickn33/beautiful-prose; original SHADOWPR0/beautiful_prose; rootcastleco variant was a stub) (No license declared upstream — GitHub license: null, checked 2026-11-16. All rights reserved by default; used as prose guidance only, replacement candidate.) Pulled for Track A: paper prose: style contract against AI tics. Upstream: https://github.com/SHADOWPR0/beautiful_prose -->
 
 ---
 name: beautiful-prose
 description: A hard-edged writing style contract for timeless, forceful English prose without modern AI tics. Use when users ask for prose or rewrites that must be clean, exact, concrete, and free of AI cadence, f
-license: Unlisted upstream — see source
+license: None declared upstream (GitHub license field null for SHADOWPR0/beautiful_prose, checked 2026-11-16) — all rights reserved by default; prose guidance only, replacement candidate
 ---
 
 

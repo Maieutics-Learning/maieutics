@@ -1,9 +1,9 @@
-<!-- PROVENANCE: stolen (AI instructions), via skillmd.com (affaan-m/benchmark) (Unlisted upstream — see source). Pulled for Track A: G4: repeatable perf baselines + pre/post-PR regression detection. Upstream: https://skillmd.com -->
+<!-- PROVENANCE: stolen (AI instructions), via skillmd.com (affaan-m/benchmark) (No upstream repo located — skillmd.com marketplace entry affaan-m/benchmark only, checked 2026-11-16. Treat as unlicensed; replacement candidate.) Pulled for Track A: G4: repeatable perf baselines + pre/post-PR regression detection. Upstream: https://skillmd.com -->
 
 ---
 name: benchmark
 description: Measure performance baselines, detect regressions before and after PRs, and compare stack alternatives using browser, API, and build benchmarks.
-license: Unlisted upstream — see source
+license: No upstream repo located (skillmd.com marketplace entry affaan-m/benchmark only, checked 2026-11-16) — treat as unlicensed; replacement candidate
 ---
 
 

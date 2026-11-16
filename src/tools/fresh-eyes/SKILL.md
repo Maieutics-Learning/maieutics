@@ -309,6 +309,13 @@ reviewers). Results files carry the version:
   rule), and only runnable evidence retires a priced residual (r3
   convention, now in-skill).
 
+## What reviewers are (three levels — say which level each round reached)
+
+- Level 1 — conceptual criticism: stateless reads of a premise artifact (this skill). Can kill plans, never confirms results. An external academic review is level 1.
+- Level 2 — re-analysis: independent code over filed durable ledgers (`src/evidence/`, never scratch). Can overturn readings, never certifies the pipeline.
+- Level 3 — reproduction: fresh runs from tracked code + recorded seeds, graded against filed numbers (gameplan 2.a). Only this retires a result.
+- Unanimity is not proof: reviewers share a model family and can share a blind spot (see one-provider rule below). Never treat agreement as replication.
+
 ## Honest limitations
 
 - Thin seeds: reviewers rightly flag n=3 seed-means as fragile. Accept it;
