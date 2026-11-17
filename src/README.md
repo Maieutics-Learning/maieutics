@@ -1,4 +1,4 @@
-> **Current plan: `src/GAMEPLAN.md` (v22, 2026-11-15, COUNTERSIGNED FROZEN) — Phase 1 mechanism settlement. The Phase 0–5 block below is archived context: read it as history, not the plan.**
+> **Current plan: `src/GAMEPLAN.md` (v23, 2026-11-17, COUNTERSIGNED FROZEN) — Phase 1 mechanism settlement. The Phase 0–5 block below is archived context: read it as history, not the plan.**
 
 # Teaching Small Models to Learn
 
