@@ -358,3 +358,10 @@ Lets put this into a temporary gameplan (like we did for the machinery one) and 
 assistant:
 [tools: wrote scratch/next-gameplan.md (temp DRAFT: objective, recommended path, ranked alternatives with verdicts, gates, 3-item user checklist); filed CHATLOG handoff entry; this transcript update.]
 Temp gameplan filed + handoff noted (this file + CHATLOG entry + transcript tail = next session's start point). Unpushed: temp plan is scratch; CHATLOG + this update ride the next push.
+
+user:
+lets push
+
+assistant:
+[tools: push parent ec122da → 4d5e31a verified (903 scope, 8 chunks, 901 reused / 2 uploaded — CHATLOG + transcript only; temp plans stay in scratch by design). Filed CHATLOG PUSHED receipt. This transcript update.]
+Pushed 4d5e31a; backlog: only this receipt. Three decisions still owed (prereg countersign, brain budget, path confirmation).

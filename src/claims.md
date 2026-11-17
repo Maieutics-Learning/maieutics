@@ -85,7 +85,7 @@ Cross-check vs RESULTS_INDEX: hand-verified 2026-11-16 at creation (all § rows 
 | Run B: lines dead, strong form | `ix-runb.json` + `src/tools/ix-runb.js` | CONFIRMED (inputs scratch) | Estimator-gap note (fold-avg vs pooled-folds, immaterial) |
 | Run C: latching DEMONSTRATED | `ix-latch.json` + tool | CONFIRMED (inputs scratch) | Close rule met (0.7585 ≈ 0.763; 0.5465 covers chance) |
 | Sign-flip: mirror axis, cheap path dead | `ix-signflip.json` + tool | CONFIRMED (inputs scratch) | Pooled metric blind to per-brain effect — grade per-brain |
-| Suspicion killHu boundary (0.5572) | `ix-susp-hu.json` + tool | CONFIRMED as quarantined observation | Confirmatory prereg v1.0 DRAFT — no paper claims before fresh brains |
+| Suspicion killHu boundary (0.5572 seen) | `ix-susp-hu.json` + `susp-hu-confirm.json` (14 fresh, 0 lost → FAIL-regimes-unfilled) | CONFIRMED as failed-to-test | Fresh recipe yields no lost brains — boundary untested; paper block stays |
 
 ## §8.6 F-singlegen
 

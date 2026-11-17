@@ -1,0 +1,91 @@
+{
+ "runId": "2026-11-16-02",
+ "fingerprint": "in:24b5d260454d+code:90112f0ddb89",
+ "version": "4d5e31a+unpushed(prereg-v1.2,premises-v1v2,R1-R3)",
+ "subject": "susp-hu confirmatory (FAIL-regimes-unfilled)",
+ "gateResults": [
+  {
+   "name": "ledger-present-parse",
+   "kill": true,
+   "pass": true,
+   "detail": "rows=14"
+  },
+  {
+   "name": "validation-gate-holds",
+   "kill": true,
+   "pass": true,
+   "detail": "exam=200:true exclusion:true lineHash:24b5d260454d"
+  },
+  {
+   "name": "loader-agreement",
+   "kill": true,
+   "pass": true,
+   "detail": "200/200 argmax (not accuracy)"
+  },
+  {
+   "name": "per-brain-grained",
+   "kill": true,
+   "pass": false,
+   "detail": "n=14 lost=0 comp=10 (pooled never alone)"
+  },
+  {
+   "name": "verdict-matches-rule",
+   "kill": true,
+   "pass": true,
+   "detail": "filed=FAIL-regimes-unfilled rule=FAIL-regimes-unfilled rho=0.5275 medC=0.8875 medL=null dMed=null"
+  }
+ ],
+ "evaluation": {
+  "verdict": "KILL",
+  "failedKill": [
+   "per-brain-grained"
+  ],
+  "failedSoft": []
+ },
+ "signoff": {
+  "at": "2026-11-16T23:04:00.765Z",
+  "ctxFingerprint": "in:24b5d260454d+code:90112f0ddb89",
+  "version": "4d5e31a+unpushed(prereg-v1.2,premises-v1v2,R1-R3)",
+  "results": [
+   {
+    "name": "ledger-present-parse",
+    "kill": true,
+    "pass": true,
+    "detail": "rows=14"
+   },
+   {
+    "name": "validation-gate-holds",
+    "kill": true,
+    "pass": true,
+    "detail": "exam=200:true exclusion:true lineHash:24b5d260454d"
+   },
+   {
+    "name": "loader-agreement",
+    "kill": true,
+    "pass": true,
+    "detail": "200/200 argmax (not accuracy)"
+   },
+   {
+    "name": "per-brain-grained",
+    "kill": true,
+    "pass": false,
+    "detail": "n=14 lost=0 comp=10 (pooled never alone)"
+   },
+   {
+    "name": "verdict-matches-rule",
+    "kill": true,
+    "pass": true,
+    "detail": "filed=FAIL-regimes-unfilled rule=FAIL-regimes-unfilled rho=0.5275 medC=0.8875 medL=null dMed=null"
+   }
+  ],
+  "evaluation": {
+   "verdict": "KILL",
+   "failedKill": [
+    "per-brain-grained"
+   ],
+   "failedSoft": []
+  },
+  "decision": "KILL",
+  "note": "confirmatory run 2026-11-16-02 (FAIL-regimes-unfilled)"
+ }
+}
