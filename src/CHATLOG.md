@@ -1178,3 +1178,25 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
  - Combined reading (run-1/2 + run-4 + run-5): the tutor's noise partition is LEARNABLE (student +0.25, SHUF-clean) but PRIVATE (twins share finder, not defaults; residue shared component ~0.14). P2 transmitted idiosyncratic content faithfully. The ceiling is in the stimulus, confirmed three ways (train-fit saturation, twin divergence, planted-rule blindness). P3's deliberate teacher patterns are the structural fix, as designed.
  - P2 CLOSED (runs 1-5; no further spend without new cause). NEXT: push run-4/run-5 ledgers + verdicts, then P3-run-1 prereg + candidate-(a) build.
 ## 2026-11-17 - catch-up receipt: f08a1ff (run2 slim, 222KB) verified MATCH on re-read; filed here per receipt-rides-next-push.
+## 2026-11-17 - PUSHED acb7e02 (P2 run-4+run-5 bundle; vault github PAT, parent 3e62182) - 3 up, re-read MATCH.
+## 2026-11-17 — P2-run-6 PREREG (user-corrected question; overrides my VOID framing — filed pre-compute)
+ - QUESTION (user's words, adopted verbatim as the binding question): the unschooled brain's readings are degenerate mush — can it teach students to return the same degenerate mush?
+ - Why this is better than my VOID proposal: the tree's DEGENERATE->VOID routing would have answered "don't ask." The user asks it directly. A VOID-by-rule is not a measurement; this run measures.
+ - Design (single-variable swap vs run-1: ONLY the tutor changes): tutor = N2 (rebuild initSeed 9102; CHECKSUM FIRST: rebuilt N2's step-1 label counts must reproduce [442,252,148,158] exactly or HALT — determinism makes this bit-exact). Student SN fresh init seed 9310, same stages [{3000, attnKeep 0, softW 1, hardW 0}] on N2's cache over the same 1000 train lines (seed 9100). Control SHUF-N seed 9311 (N2 cache permuted across lines, perm RNG 9312).
+ - Forms: same fresh-500 (9500), fresh-1000 (9502), recomb-395. N2 reads recomputed on all forms (cheap forwards).
+ - Readings (measurement, preregistered interpretations):
+   (a) N-train agreement (memorizability of mush; expect moderate 0.4-0.7 — memorization is easy);
+   (b) N-fresh deltas obs-permuted (transmissibility; expect ~0, |delta|<=0.08);
+   VERDICT RULE: (b)~0 AND (a)-(b) gap >= 0.15 -> MUSH-MEMORIZABLE-BUT-NOT-TRANSMISSIBLE (machinery needs learnable content; E's +0.25 required E's confident structure). (b) >= 0.15 -> MUSH TRANSMITS (machinery is content-agnostic mimicry; E result reframed as fidelity). (a) ~chance too -> MUSH UNLEARNABLE EVEN AS MEMORIZATION (random-hash floor; capacity/optimization datum).
+   (c) descriptive: SN fresh marginals vs N2's (profile reproduction — marginals always "transmit" trivially; the permuted baseline is what prices content).
+ - Pre-mortem: strongest objection = N2's near-uniform softs (top-1 0.47) give near-zero gradients, student learns nothing, train ~chance — that IS outcome (c), informative, not a failed run. Most likely failure = N2 rebuild drift (wrong seed/OPTS) — guarded by the bit-exact checksum, which doubles as a determinism audit of the whole stack.
+ - Nearest-failure: subset-index/argmax slips — guards: audited argmax; cache rows indexed i*4+3 as throughout; E-form labels NOT reused (N2 reads fresh).
+ - Ledger: run6-mush.json. Cost: 2 trains + ~7k forwards.
+## 2026-11-17 — P2-run-6 VERDICT (MUSH TRANSMITS — outcome (b), the surprise)
+ - N2 checksum EXACT ([442,252,148,158] reproduced bit-for-bit — determinism audit passes on the whole stack).
+ - SN train 0.872 (expect 0.4-0.7 MISS-high: memorization easier than predicted). Fresh deltas: f500 0.542, recomb 0.536, f1000 0.553 (expect ~0: big MISS — mush transmits, and at DOUBLE E's fidelity). SHUF-N 0.000 on all three forms (obs==perm exactly: SHN collapsed to constant class-0 output, i.e. marginal-mode learning — control perfect, mechanism understood).
+ - Falsifier 7.614 vs 7.815: ns BY 0.2 — nearest call in the program. Flagged, not buried: SN's recomb-vs-fresh distributions are nearly distinguishable; at larger n it may fire. Do not overclaim "identical."
+ - INTERPRETATION (filed): transmission machinery is content-agnostic fidelity, not knowledge transfer. E's +0.25 reframed: lower-fidelity transfer of a HIGHER-complexity function. Leading hypothesis (hypothesis, probe-owed): sharp/confident circuits are HARDER to distill than smooth/mushy ones — sophistication anti-correlates with transmissibility (step-function vs linear-function analogy). Candidate probe: linear-probe complexity of N2-mapping vs E-mapping; not run, noted.
+ - Expectation score this run: 0/2 (train overshoot + fresh surprise) + SHUF descriptive HIT. The miss is the finding.
+ - P2 now COMPLETE through run-6. NEXT: push run-6 ledger + verdict, then P3.
+
