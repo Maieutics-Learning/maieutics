@@ -7,6 +7,18 @@ description: Continuity across compactions and sessions. This skill should be us
 
 # Memory skill — continuity across compactions and sessions
 
+## Core (10 lines — the whole skill in a hurry; details below only when needed)
+1. Working record `src/CURRENT_TASK.md`: newest timestamped entry wins; keep short, link files.
+2. Snapshot `src/gameplan-snapshots/` BEFORE any gameplan rewrite or critique round.
+3. Append to `src/CHATLOG.md` once per session (decisions + MEASURED numbers).
+4. Retractions are struck through, never silently edited; UNKNOWN beats guessing.
+5. After compaction: re-list workspace, re-read working record, reconcile, then continue.
+6. Unpushed `src/` files are sessions at risk: track the list, push by ~20 files / 3 sessions.
+7. `scratch/` is a recycling bin (private, deletable); durability lives in `src/` + git.
+8. Numbers sacred: quote exactly, with source paths. Reviewer scores quoted, then your ruling.
+9. Log batteries as: raw replies file + adjudication (ACCEPT/REJECT/PARTIAL) + patch list.
+10. Secrets live in the vault (`window.__pool.vault`), never in chat/files; PAT never leaves the browser.
+
 ## Dependencies
 
 None — this is the foundational skill. `fresh-eyes` and `rabbithole`
