@@ -36,3 +36,25 @@ Consequences (binding on future batteries):
    1 partial vs 3 invented). Neither number retires a result — consistent with the standing rule
    that unanimity is not proof. This file is the first precision/recall datum; repeat per
    reviewer's own recommendation #7 with fresh plants before claiming a trend.
+
+## R2 2026-11-17 (tipped-off reds: told "7 planted, 2 caught" — measures INFORMED recall.
+  First attempt lost to a page reload; re-ran clean after page_refresh — this section scores the
+  re-run, which is the raw on disk.)
+- E6 (0.02 gate): CAUGHT ×2 ("statistically negligible", "2% margin over noise"). E7
+  (within-line shuffle): CAUGHT ×2 (Q-R1: destroys ground truth rather than testing
+  discrimination; Q-R2: permuted pairing must shuffle ACROSS samples — the correct procedure
+  stated verbatim). E1 re-reported (no new info) + semantic partial ×1 (p=0.307 mislabeled
+  "boundary-grade"). E2 partial ×1 (longs 0.31 "clears bar" unsubstantiated without permuted).
+- Invented: 12/12-count ×2 (same category error as R1), alpha-falsifier misread ×1
+  ("declaring dead without a significance check" — the preregistered falsifier IS the check),
+  noise-lines-have-no-signal ×1 (reviewer's premise error: agreement-on-noise is the design).
+- Combined R1+R2 (6 reviewers + 2 re-run, 8 reads): E1 4 solid + 2 re-reports, E2 partial ×3,
+  E6 2×, E7 2×, E3 0/8, E4 0/8, E5 0/8.
+- Tipping effect: telling reviewers the plant count changed the search strategy (hunt-the-rest)
+  and unlocked E6/E7. Blind batteries undercount loop recall; tipped batteries overcount it.
+  Report both, trust neither alone.
+- Strengthened law: paths (E3/E4) and true parameter values (E5) went 0/8 across BOTH rounds
+  including tipped-off hunters. External facts are UNREVIEWABLE, not just hard-to-review.
+  Consequence stands and hardens: code-checks own all path/procedure/value claims, no exceptions;
+  a reviewer PASS on any of them is inadmissible as evidence (log P-A1/P-A2's explicit PASSes on
+  two nonexistent paths as the exhibit).

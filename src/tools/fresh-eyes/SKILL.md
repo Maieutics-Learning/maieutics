@@ -272,8 +272,8 @@ repetition is the battery.**
    Compare across versions: adoptions-per-round should fall; repeat
    complaints should die. A complaint that survives the patch meant
    to fix it is a finding about YOUR patch, not the document.
-6. **Stop by the stop rule.** Two barren rounds in a row = done; a
-   10/10 steelman = satisfaction declared. Version-tag the finale.
+6. **Stop by the stop rule.** Two barren rounds in a row = done (see loop-closure
+   convention below — RED-TEAM CLOSES LOOPS; the old "unanimous steelman" stop is retired).
 
 Worked example: gameplan v1→v5 — single checks + 10-reviewer
 barrages + blind tests + 14 armed rounds + red-team (9 findings
@@ -297,6 +297,14 @@ reviewers). Results files carry the version:
 
 ## Stop rule
 
+- LOOP-CLOSURE CONVENTION (user-ordered 2026-11-17): RED-TEAM CLOSES LOOPS. A review
+  loop ends on an unopposed red-team round that yields no adoptable finding (barren
+  red), never on steelman. STEELMAN IS RESERVED FOR PLANNED CUTS: when a verdict says
+  CUT/ABANDON X, steelman X first — its HOLD prices what the cut destroys; its BREAK
+  clears the cut. Steelman-as-satisfaction-ritual is RETIRED: a defender cannot find
+  what attackers missed (gameplan v6, 2026-11-17: 16 reviewers incl. 3/3 steelman HOLD,
+  then 4 unopposed reds found the terminology wound + the P4 examiner hole). The old
+  "10/10 steelman = satisfaction" stop above is superseded by this rule.
 - Diminishing returns is a finding: our R11 consolidation round yielded
   almost nothing new ("yield small by design") — that ENDED the attack
   phase; R12+ moved to new layers (diploma criteria), R14 steelman
