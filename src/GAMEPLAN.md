@@ -251,8 +251,11 @@ compare these five fields item-by-item; no weights, no feedback.
    end-to-end (fleet pattern in fresh-eyes SKILL.md). 5. Readouts verify on 100 sample lines
    (all 5 fields populated, no nulls). 6. Parallel arms check: frozen + unfrozen run side by
    side, identical report format, frozen reported first. 7. Noise gate: 1000 vocab19 lines
-   through tutor, entropy ≥1.0. 8. Tutor blob integrity vs filed checksum (blob filename TBD —
-   file before P1 exit). Exit = all 8 green.
+   through tutor, entropy ≥1.0. 8. Tutor blob integrity vs filed checksum: blob =
+   src/evidence/d1a/tutor.json (promoted 2026-11-17 from scratch/d1a-tutor.json for
+   durability; 620692B; curriculum tutor, killA-spelled 0.965 PASS); SHA-256 =
+   ce8b97cfd9507428b0d11a7bd0643507e4896ecd4b19edaf84a9e5c2619ad1b3 (filed 2026-11-17;
+   verify = recompute on load, mismatch = HALT, no fallback blob). Exit = all 8 green.
 
 ## P2 — Experimenter-built tests (scores recorded, never fed back)
 

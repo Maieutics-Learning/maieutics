@@ -1053,3 +1053,16 @@ never "feels faster" — wall time, accuracy, loss, token counts.
 ## 2026-11-17 — Re-verify R9–R28 CLOSED BY BARREN RED (user-ordered; 20 rounds, 60 reviewers, 60/60)
  - R9 opened 3×BREAK-class on the restructured P3–P6 (unmitigated circularity, placeholder interface, unquantified direction, unbounded drift, recipe leak, label origin). R10–R27 all PARTIAL, every round patched same-session (see GAMEPLAN Versioning v7 entry for the full patch roll). R28 3/3 HOLD, no kills, no re-reports standing → LOOP RE-CLOSED. Reviewer-miss log kept per round (answered-design re-reports, misreads earning rewordings, duplicates dismissed with reason). v7 (restructure + full patch roll) is the countersignable text.
  - Unpushed src delta now: GAMEPLAN v23 stage (v7 text) + pre-v23 snapshot + skill amendment + scorecard R2 correction + R9–R28 raws in scratch (private, not pushed) + log entries. Next: user countersigns → push → P1 8-gate exit → P2 compute.
+## 2026-11-17 — PUSHED b814175 (v23 countersigned; vault github PAT, parent f4d5551)
+ - 5 uploaded (GAMEPLAN 80KB countersigned v23 + amendments executed, CHATLOG 201KB, fresh-eyes SKILL loop-closure convention, planted-error scorecard R2 correction, pre-v23 snapshot 29KB), 933 reused, 0 deleted (out-of-scope .github/Dockerfile/k8s/etc. persist via base_tree), secret-scan clean. Ref PATCH 200 + cache-busted re-read match. Push hole closed. Receipt (this entry) rides the next push.
+ - NEXT: P1 8-gate exit → P2 compute.
+## 2026-11-17 — P1 EXIT: all 8 gates green (measured, in-page, deterministic seeds)
+ - G1 cold load: 23/23 src/tools SKILL.md valid frontmatter, 0 errors (frontmatter regex must tolerate leading HTML comments — first attempt false-flagged all 79 incl. scratch copies; gate counts src/tools only).
+ - G2 rerun: self-check 4/4 PASS (4.8e-10, 4.6e-10, 2.8e-7, 5.9e-7 vs 1e-5 bar — matches filed values).
+ - G3 backlog: zero unpushed src/ except this session's own tail (tutor.json + gate-8 text + receipts ride the exit push).
+ - G4 battery loop: demonstrated end-to-end (R9–R28: 20 rounds, 60 reviewers, fleet pattern, all returned).
+ - G5 readouts: 100 sample lines (50 short pool-seed-7001 + 50 long killA-seed-7101) through frozen tutor — top-1/margin/entropy/energy/cited-slot all populated, 0 nulls (attLen 16 both forms).
+ - G6 parallel arms: frozen report FIRST, unfrozen (fresh student, 200 soft-only distill steps on tutor cache, loss 1.1983) second — schemas identical (top1,margin,entropy,energy,cited_slot), unfrozen 0 nulls.
+ - G7 noise gate: 1000 fresh lines (pool-seed-9000) → label counts 225/257/253/265, entropy 1.9973 bits ≥ 1.0 PASS.
+ - G8 blob integrity: src/evidence/d1a/tutor.json (620692B, killA 0.965) SHA-256 recomputed on load = filed ce8b97cf…ad1b3 MATCH; promoted from scratch for durability.
+ - Exit declared. NEXT: exit push → P2 compute (tutor noise reads E vs N).
