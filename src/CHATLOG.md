@@ -1127,4 +1127,4 @@ never "feels faster" — wall time, accuracy, loss, token counts.
  - Expectation (per-seed 0.10-0.30, mean>=0.20, min>=0): all HIT. Finding: train-fit does NOT predict fresh delta (SE3 0.816-train -> 0.216-fresh ~= SE2 0.581-train -> 0.221-fresh) — train variance is memorization depth; the generalizing rule-component is stable ~0.22.
  - P2 OVERALL (run-1 + run-2): educated-tutor to student transmission on experimenter-built noise, input-driven delta ~0.22-0.27, 3/3 student seeds, 2 fresh forms + recombined, falsifier 3/3 ns, SHUF 2/2 clean. Margin thin but replicated (fresh-1000 mean +0.018 over bar — real, small). Tutor side replicates in P3 (crossed E/N contrast). No more P2 spend without new cause.
  - NEXT: push run-2 ledger + this verdict, then P3-run-1 prereg + candidate-(a) build.
-
+## 2026-11-17 - PUSHED 61e6afe (P2-run-2 bundle; vault github PAT, parent bd721d2) - 2 up (src/evidence/p2/run2-seedrep.json, src/CHATLOG.md), re-read MATCH.
