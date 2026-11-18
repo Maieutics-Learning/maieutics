@@ -1,0 +1,21 @@
+{
+ "arm": "frozen",
+ "backbone": 9601,
+ "headInit": 9761,
+ "pool": 9760,
+ "sampling": 9762,
+ "trainSampling": 9780,
+ "steps": 800,
+ "batch": 8,
+ "lr": 0.005,
+ "firstLoss": 3.2122,
+ "lastLoss": 2.9393,
+ "backboneKept": true,
+ "keepers": 0,
+ "noveltyFails": 0,
+ "belowBar": 105,
+ "wrongPile": 95,
+ "pass": false,
+ "trainMs": 232034,
+ "keeperTop1s": []
+}

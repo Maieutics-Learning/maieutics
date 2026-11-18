@@ -1,0 +1,12 @@
+{
+ "steps": 800,
+ "batch": 8,
+ "trainN": 400,
+ "nEx": 2058,
+ "firstLoss": 2.7611,
+ "lastLoss": 2.9264,
+ "naiveBest": 0.8175,
+ "sharpBest": 0.8175,
+ "pass": false,
+ "trainMs": 223150
+}
