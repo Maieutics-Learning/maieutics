@@ -77,6 +77,12 @@ Unsolved:
   caught at audit, never prevented at write — a future session spot-checks.
   (S5's Step 0 is one such checklist step — the compulsion is procedural and
   therefore partial: it binds only a reader who reaches the checklist.)
+  PARTIAL FIX 2026-11-18 (auto-transcript): session-end moved per-turn —
+  transcript stub at session start (no stub = gap), per-turn appends via
+  log.js layer transcript (explicit conversations/ file, speaker user/
+  assistant), unpushed list same-message as every src/ write, per-wave
+  CHATLOG line at checkpoint; session-end is flush not rescue. Stays open
+  until observed holding across compaction.
 - U7 STALE-PREMISE ACTS. Two recorded incidents of reviewers briefed on
   outdated frozen copies (fresh-eyes premise-artifact hygiene). PARTIAL FIX
   R3 2026-11-12: Reconcile Step 1 now requires a timestamp check on every

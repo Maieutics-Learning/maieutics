@@ -13,7 +13,7 @@ REFERENCE file conflict, the REFERENCE file wins until this file is amended.
 
 ## Always read (in order, every session)
 
-1. `agents-augment.md` (repo root) — standing orders.
+1. `src/agents-augment.md` — standing orders.
 2. This file — the checklist below.
 3. `REFERENCE-layers.md` (beside this file) — read IN FULL every session, no skimming; it defines the layers, durability order, and secret handling the checklist enforces.
 4. `REFERENCE-rules.md` (beside this file) — read IN FULL every session, no skimming; snapshot, newest-wins, grounding, epistemic labels, and filing rules.
@@ -38,6 +38,22 @@ REFERENCE file conflict, the REFERENCE file wins until this file is amended.
 8. Numbers sacred: quote exactly, with source paths.
 9. Secrets live in the vault, never in chat/files; PAT never leaves the browser.
 10. After compaction: re-list workspace, re-read working record, reconcile, then continue.
+
+## Session-start checklist (do before any reads or work — Step 0 is blocking)
+
+1. List `src/tools/` + read `src/tools/README.md`.
+2. State "Step 0 done" + which skills apply (or "none relevant" + why) in the first working note.
+3. Then follow Always-read order above. A session that answers before Step 0 logs the miss in CHATLOG same session.
+4. Open (or create) this session's transcript stub FIRST: `src/evidence/conversations/<YYYY-MM-DD>-<label>.md` via log.js layer transcript (file required, speaker user/assistant). No session without a stub — a missing stub is filed as gap, not backlog.
+
+## Turn routine (this is what makes session-end automatic — U5 fix 2026-11-18)
+
+Session-end fails because it runs at the end. Run it per-turn instead:
+
+1. Every assistant turn that follows tool work appends that turn to the session transcript via log.js (layer transcript, explicit file, speaker assistant; user turns appended verbatim when filing). Never batch transcript to session-end.
+2. Every `src/` write updates the standing unpushed list in the working record in the SAME message (Step 4 rule) — never deferred.
+3. Every wave (run / probe / review round) files its results file + CHATLOG line at that checkpoint (checkpoint rule) — never held to session-end.
+4. Session-end is then a flush, not a rescue: working-record line + CHATLOG entry + transcript tail-check + unpushed list + push gate (~20 files / 3 sessions). If the session drops mid-turn, layers 1-4 already hold everything but the last reply.
 
 ## Session-end checklist (do all five before ending — this is what closed the 11-17/18 gap)
 

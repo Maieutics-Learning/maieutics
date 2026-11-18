@@ -23,5 +23,5 @@
   path — they now get the stub; their premises (v7–v10) are frozen records,
   rerun only against `archive/` text if ever needed. CHATLOG history keeps old
   paths verbatim (append-only rule); live pointers were updated 2026-11-18
-  (`src/README.md`, `agents-augment.md`, `src/meta/root-README.md`,
+  (`src/README.md`, `src/agents-augment.md`, `src/meta/root-README.md`,
   `src/docs/TESTING_PROTOCOL.md`, `src/tools/d1a-smoke.js`).

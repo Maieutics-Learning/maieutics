@@ -490,4 +490,4 @@ END OF v23 TEXT (COUNTERSIGNED FROZEN 2026-11-17; amendments (a)–(d) executed)
 v7 done = Phase 1 verdicts in text + Phase 2 stranger-reproducible + v0.15 submitted, with
 3.a decided on data. Every phase exit is a written verdict, never momentum.
 
-<!-- admin pointer (user-ordered 2026-11-18, not a plan change): Always read agents-augment.md first, every session. -->
+<!-- admin pointer (user-ordered 2026-11-18, not a plan change): Always read src/agents-augment.md first, every session. -->

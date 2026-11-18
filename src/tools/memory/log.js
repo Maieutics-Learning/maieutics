@@ -4,7 +4,7 @@
 //   const src = await fs.readTextFile("src/tools/memory/log.js");
 //   const run = new (Object.getPrototypeOf(async function(){}).constructor)("fs","tools","args", src);
 //   return await run(fs, tools, {layer:"record", text:"..."});
-// args: {layer: "record"|"chatlog", text, title?, file?, stamp?}
+// args: {layer: "record"|"chatlog"|"transcript", text, title?, file?, stamp?, speaker?}
 //   record  -> appends timestamped line to src/CURRENT_TASK.md (default;
 //              override with file for U2 two-record tasks); stamp "YYYY-MM-DD
 //              HH:MM" backfills event time (validated, else now).
@@ -12,6 +12,11 @@
 //             (new section if none today, or if title differs from today's
 //             open section — one dated entry per session). Format matches
 //             file convention: "## YYYY-MM-DD — title" + "- bullet" lines.
+//   transcript -> appends speaker turns to src/evidence/conversations/<YYYY-MM-DD>-<label>.md
+//             (stub-created with README header if missing; append-only; secrets
+//             redacted by caller; tool calls noted as [tool: name path], outputs
+//             never embedded). file REQUIRED (no default — prevents misfiled
+//             sessions); speaker "user"|"assistant" (default "assistant").
 // v2 (P2-6 2026-11-12): record default SYNTHESIS->CURRENT_TASK + file/stamp
 // overrides; chatlog missing-file fallback; title-aware sections.
 // Single-writer contract: read-modify-write is not atomic — never run
@@ -64,6 +69,24 @@ return await (async () => {
     else cur += (cur ? "\n" : "") + "## " + day + " — " + title + "\n" + bullets;
     await fs.writeTextFile(p, cur);
     return { ok: true, file: p, bytes: new TextEncoder().encode(cur).length, newSection: !append };
+  }
+  if (layer === "transcript") {
+    const p = String((args && args.file) || "");
+    if (!p || !p.startsWith("src/evidence/conversations/") || !p.endsWith(".md")) return { ok: false, reason: "transcript-requires-conversations-file" };
+    if (fileArg && (/(\.\.|^\/|^[A-Za-z]:)/.test(fileArg))) return { ok: false, reason: "bad-path" };
+    const speaker = String((args && args.speaker) || "assistant");
+    if (speaker !== "user" && speaker !== "assistant" && speaker !== "thinking") return { ok: false, reason: "bad-speaker" };
+    let cur = "";
+    try { cur = await fs.readTextFile(p); } catch (e) { cur = ""; }
+    if (!cur) {
+      cur = "# Transcript " + p.split("/").pop().replace(/\.md$/, "") + "\n\nVerbatim user<->assistant, chronological. Tool calls noted as [tool: name path]; outputs never embedded. Append-only; secrets redacted on filing.\n\n";
+    }
+    if (cur && !cur.endsWith("\n")) cur += "\n";
+    const body = text.split("\n").map(s => s.trimEnd()).join("\n").trim();
+    if (!body) return { ok: false, reason: "empty-text" };
+    cur += "\n" + speaker + ": " + body + "\n";
+    await fs.writeTextFile(p, cur);
+    return { ok: true, file: p, bytes: new TextEncoder().encode(cur).length };
   }
   return { ok: false, reason: "unknown-layer: " + layer };
 })();

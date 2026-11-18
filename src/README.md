@@ -7,7 +7,7 @@ Long-term project: build our own AI inspired by Geiping et al. **arXiv:2502.0517
 
 Start here: `README.md` (root map — results, layout, reproducibility), `src/gameplan/GAMEPLAN.md` (plan, v23 frozen), `src/RESULTS_INDEX.md` (every MEASURED claim → artifact → status), `src/CHATLOG.md` (session log, newest last). The working record (`scratch/CURRENT_TASK.md`) is private scratch, never shipped — never cite it as durable state.
 
-AI orientation (read this first, every session): reusable skills live under `src/tools/` (index at `src/tools/README.md` — websearch, rabbithole, memory, fresh-eyes, eval-harness, paper-compile, and more). Check there BEFORE inventing a procedure. Forgetting that folder exists is a known, repeated failure mode — this line is the reminder. **Always read agents-augment.md first, every session** (standing instructions extracted there from this file).
+AI orientation (read this first, every session): reusable skills live under `src/tools/` (index at `src/tools/README.md` — websearch, rabbithole, memory, fresh-eyes, eval-harness, paper-compile, and more). Check there BEFORE beginning anything. Forgetting that folder exists is a known, repeated failure mode — this line is the reminder. **Always read src/agents-augment.md first, every session** (standing instructions extracted there from this file).
 
 Workspace rule (2026-11-11, user): `scratch/` is a recycling bin, not a sandbox — nothing referenced may live there. Run records, review verdicts, and working data live in `src/evidence/`; pointers in the paper (`index.html`) and track files (`src/steal/`) aim at `src/evidence/`, never at `scratch/`.
 

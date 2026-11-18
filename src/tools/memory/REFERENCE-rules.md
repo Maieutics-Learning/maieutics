@@ -33,10 +33,15 @@
   Labels travel with claims when copied into summaries, handoffs, or
   review briefs; a claim that loses its label on copy is UNKNOWN until
   re-grounded. (Review 2026-11-13.)
-- **Checkpoint after every wave.** Results files (under `src/`) are written incrementally
+- **Checkpoint after every wave (U5 fix 2026-11-18: per-turn, not per-session).** Results files (under `src/`) are written incrementally
   (every run appends + saves), so an interrupted run resumes from the
   file, not from scratch. Scripts filter `done` from the results file on
   start. Proven: an 8-seed wave interrupted mid-run resumed cleanly.
+  Transcript + CHATLOG ride the same checkpoint: append the turn to the
+  session transcript via log.js (layer transcript, explicit file) in the
+  SAME turn, and file the wave's CHATLOG line at that checkpoint — never
+  batched to session-end. Session-end is a flush (tail-check + unpushed
+  list + push gate), not a rescue.
 - **Promote-or-recipe.** (Method-preservation, not run-promotion: the rabbithole skill's "promote" branches a tangent into its own run — different "promote".) A script that produces a MEASURED number is data,
   not scaffolding: it must live in a tracked path (`src/`, committed +
   pushed), or its full recipe (exact config, seeds, and every method delta
