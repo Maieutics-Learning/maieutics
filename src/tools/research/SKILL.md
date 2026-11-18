@@ -128,14 +128,22 @@ from tome.output.report import format_report, format_brief, format_transcript
 # Default to report format
 output = format_report(session)
 
-# Save to docs/research/
-output_path = f"docs/research/{session.id}-{slug}.md"
+<!-- LOCAL AMENDMENT 2026-11-18 (durability: docs/ is not shipped/pushed; upstream untouched) -->
+# Save to src/evidence/research/ (durable; NEVER docs/ or scratch/ alone)
+output_path = f"src/evidence/research/{session.id}-{slug}.md"
 ```
 
 Save the session state:
 ```python
 mgr.save(session)
 ```
+
+### Filing (LOCAL, 2026-11-18)
+
+File the report path + frontier verdict + per-channel outcomes in the
+working record and one CHATLOG line (decisions + MEASURED numbers); rounds
+run inside a session are covered by that session's transcript
+(`src/evidence/conversations/`).
 
 ### Step 7: Present Results
 
@@ -206,7 +214,8 @@ Then offer interactive refinement:
 - [ ] Code and discourse agents always dispatched; academic and triz
       agents dispatched only when their channels are in the plan;
       all eligible agents sent in a single parallel message
-- [ ] Session saved to `docs/research/{session.id}-{slug}.md` after
+- [ ] Session saved to `src/evidence/research/{session.id}-{slug}.md`
+      (LOCAL 2026-11-18: was `docs/`; durable path) after
       synthesis regardless of whether all agents succeeded
 - [ ] Top 3 findings by relevance score displayed to the user with
       the path to the saved report

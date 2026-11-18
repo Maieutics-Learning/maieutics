@@ -1,5 +1,6 @@
 # Gameplan v23 (2026-11-17, COUNTERSIGNED FROZEN) — the standing plan
 <!-- provenance (2026-11-18 reorganization, user-ordered): Conventions + Version-v23 section through Scoreboard extracted byte-verbatim from src/GAMEPLAN.md (pre-move snapshot src/gameplan-snapshots/2026-11-18-pre-gameplan-folder.md). Nothing reworded; only this header added. Superseded texts (v22, D1/D2 detours, v04, scratch drafts) live in archive/. Session history in src/CHATLOG.md.
+v24 DRAFT 2026-11-18 (UNCOUNTERSIGNED, user-ordered taxonomy: labels always tutor-origin, tests tutor-written+interpreted, examiner checkpoint exams + final, P6 world-grounded question/topic + data, never hard labels). Pre-edit snapshot: src/gameplan-snapshots/2026-11-18-pre-v24-p5p6.md. Frozen v23 text otherwise intact; P5 exam-authorship + P6 label-origin/grounding clauses amended, pending countersign. -->
 HOW TO FOLLOW: read top to bottom; Conventions bind every run; P1→P6 in order (P3 is where live compute happens; v0.8 twins spec needs a countersign before compute). No compute on uncountersigned text (version-bound approval). Snapshot before any rewrite. -->
 ## Conventions
 - Statistics: 95% Wilson intervals everywhere; thresholds are preregistered, not tuned.
@@ -335,8 +336,7 @@ across rounds: teach → test → diagnose → adapt policy → teach again, on 
 
 - Round structure: each round = teach from current policy → tutor-authored round test →
   score + diagnose (P2 diagnosis tree) → adapt policy per the P4-validated mechanism →
-  next round. FRESH-PROBE ARM (adopted R21 — continuing students confound accumulation with drift): every round ALSO distills a fresh student on the current policy (single-shot, no loop participation); continuing-minus-fresh margin growing across rounds = cumulative teaching, flat = each round merely re-teaches. CROSS-TUTOR PROBE (adopted R27 — agreement with one tutor may be signal-tracking, not pattern-learning): every round ALSO tests the continuing student on same-family lines from a DIFFERENT tutor (same partition family, foreign emission quirks); collapse on foreign lines = tracking this tutor's signals, not learning the pattern — claim capped at tutor-bound. SELECTION CONTROL (adopted R21 — adaptive selection leaks beliefs through the selection itself: the student can cue on WHICH items were chosen): selected items are interleaved with base-rate items at a fixed preregistered ratio, unpredictably; AND a random-selection control arm (matched item count, random choice) runs every round — adaptive must beat random-selection by a preregistered margin ON A HELD-OUT BINDING PROBE (adopted R24 — V-R3 is right: measured on formative agreement, cherry-picking easy items wins; experimenter-held items, never formative scores), else the "adaptation" is selection theater. Round tests are tutor-internal and NON-BINDING; the EXPERIMENTER authors
-  only the final exam (binding) — the formative/summative discipline, minus hard labels. DETECTION-OVER-PREVENTION (adopted R24 — the program's standing economy, now explicit): the plan corrects by verdict and attribution, never by constraining the tutor's strategy space up front — prevention would pre-select the teaching styles under study. Sabotage, gaming, and theatre are all legal moves; they are all also measured, attributed, and failed in the open.
+  next round. FRESH-PROBE ARM (adopted R21 — continuing students confound accumulation with drift): every round ALSO distills a fresh student on the current policy (single-shot, no loop participation); continuing-minus-fresh margin growing across rounds = cumulative teaching, flat = each round merely re-teaches. CROSS-TUTOR PROBE (adopted R27 — agreement with one tutor may be signal-tracking, not pattern-learning): every round ALSO tests the continuing student on same-family lines from a DIFFERENT tutor (same partition family, foreign emission quirks); collapse on foreign lines = tracking this tutor's signals, not learning the pattern — claim capped at tutor-bound. SELECTION CONTROL (adopted R21 — adaptive selection leaks beliefs through the selection itself: the student can cue on WHICH items were chosen): selected items are interleaved with base-rate items at a fixed preregistered ratio, unpredictably; AND a random-selection control arm (matched item count, random choice) runs every round — adaptive must beat random-selection by a preregistered margin ON A HELD-OUT BINDING PROBE (adopted R24 — V-R3 is right: measured on formative agreement, cherry-picking easy items wins; experimenter-held items, never formative scores), else the "adaptation" is selection theater. Round tests are tutor-written, tutor-interpreted, and NON-BINDING (self-feedback, never verdicts); the EXAMINER authors checkpoint exams (binding checkpoints whose scores + readouts feed back into the tutor via the P4 interface for the next round) and the final exam (binding verdict) — the formative/summative discipline, minus hard labels. Tests never enter the tutor as external scores; only examiner-exam scores do, agreement-based, never our right answers. DETECTION-OVER-PREVENTION (adopted R24 — the program's standing economy, now explicit): the plan corrects by verdict and attribution, never by constraining the tutor's strategy space up front — prevention would pre-select the teaching styles under study. Sabotage, gaming, and theatre are all legal moves; they are all also measured, attributed, and failed in the open.
 - Bars: adaptation demonstrated = student agreement rises across rounds AND the rise
   attributes to policy changes (same-tutor-knowledge × different emission policies →
   different student outcomes = teaching style, empirically — the contrast P6 will reuse
@@ -375,40 +375,33 @@ across rounds: teach → test → diagnose → adapt policy → teach again, on 
   (that continuity is the measurement); ledger tracks brain lineage per round, and any
   unlogged brain voids the round.
 
-## P6 — Hard-label curriculum (right/wrong allowed by definition; was P4, moved down twice 2026-11-17)
+## P6 — World-grounded curriculum (no hard labels ever; was hard-label, redefined user-ordered 2026-11-18; UNCOUNTERSIGNED v24 draft)
 
-1. Tutor gets hard labels + the specified pattern. MECHANISM CARRYFORWARD (adopted R26 — P6 must not re-litigate HOW the tutor adapts): P6's curriculum engine IS the P4-validated mechanism (harness-executed selection under (a), adapted tutor weights under (b)); hard labels change WHAT is taught (experimenter-specified right answers), never HOW adaptation works. A P6 that re-invents the adaptation loop voids its own lineage — cite the P4 validation, run the P6 curriculum. LABEL ORIGIN (adopted R9 — the tutor
-   must never define right): the pattern AND the labels are specified by the EXPERIMENTER —
-   the first experimenter content injection in the program (P2–P5 the tutor's own argmax
-   was the pseudo-class precisely so no one smuggles in right answers). Calibration step:
-   the P6 prereg files the mapping from the specified pattern to the P5 tutor-found
-   patterns (same family / extension / unrelated — stated, not assumed), so P6 claims
-   stay comparable to the P2–P5 line. MAPPING VALIDATION (adopted R17 — a map the brain
-   never agreed to measures the mapmaker): BEFORE P6, the mapping must survive its own test —
+1. Tutor gets a question/topic + a data pool (from us/world, UNLABELED — never hard labels). MECHANISM CARRYFORWARD (adopted R26 — P6 must not re-litigate HOW the tutor adapts): P6's curriculum engine IS the P4-validated mechanism (harness-executed selection under (a), adapted tutor weights under (b)); the posed question/topic changes WHAT is learned, never HOW adaptation works. A P6 that re-invents the adaptation loop voids its own lineage — cite the P4 validation, run the P6 curriculum. LABEL ORIGIN (redefined user-ordered 2026-11-18 — labels always from tutors): the tutor's own outputs are the only labels anywhere; a question/topic is a task spec, never an answer key; raw data is never labelled by us (noise now, files/web later). Calibration step:
+   the P6 prereg files the question/topic + source-selection + seeded draw procedure, and the grounding check (tutor partition tracks source structure above baseline on held-out source items before teaching starts), so P6 claims
+   stay comparable to the P2–P5 line. MAPPING VALIDATION (repurposed — the map is now grounding, not our answers): BEFORE P6, the grounding must survive its own test —
    the tutor's P5-entry partition applied to mapped P6 items must predict above the MAJORITY-class baseline (adopted R27 — raw "chance" with unbalanced classes lets a biased map pass; preregistered baseline from the mapped item distribution); if the
-   mapping doesn't hold pre-P6, the MAP is wrong, not the brain, and continuity verdicts wait
-   for a corrected map. Never adjudicate the brain on an unvalidated map. FROZEN MAP (adopted R19 — a map refit on the probe is circular): the mapping is frozen BEFORE any P6 probe runs, no refit; and it must beat a NEAR-MISS control (adopted R22 — random shuffles of a complex map are trivially beaten): the same mapping with two sibling pseudo-classes swapped must FAIL while the true map passes. A map that can't beat its own near-miss is decoration. CONTINUITY PROBE (adopted R12 — labels must not
+   grounding doesn't hold pre-P6, the SOURCE SELECTION is wrong, not the brain, and continuity verdicts wait
+   for corrected sources. Never adjudicate the brain on unvalidated grounding. FROZEN SOURCES (adopted R19 — refit on the probe is circular): the question/topic + source-selection + draw are frozen BEFORE any P6 probe runs, no refit; and grounding must beat a NEAR-MISS control (adopted R22 — random shuffles of a complex map are trivially beaten): the same mapping with two sibling pseudo-classes swapped must FAIL while the true map passes. A map that can't beat its own near-miss is decoration. CONTINUITY PROBE (adopted R12 — new grounding must not
    silently replace transmission): a P5-form agreement battery runs pre- AND post-P6; if
-   P6 scores high while P5-probes collapse, the curriculum taught fresh labels instead of
-   building on transmitted pattern — claim scoped to "labels work," transmission unproven.
+   P6 scores high while P5-probes collapse, the curriculum taught fresh source patterns instead of
+   building on transmitted pattern — claim scoped to "sources work," transmission unproven.
    MASKED-VS-SUPERSEDED (adopted R14 — the probe must arbitrate, not just flag): on collapse,
-   re-run the P5-form probes with labels REMOVED (pure agreement mode) post-P6. Recovery =
-   MASKED (representations intact, readout shifted by labels — transmission survives, claim
-   stands with the mask noted). Persistent collapse = SUPERSEDED (labels overwrote the
+   re-run the P5-form probes with source context REMOVED (pure agreement mode) post-P6. Recovery =
+   MASKED (representations intact, readout shifted by source grounding — transmission survives, claim
+   stands with the mask noted). Persistent collapse = SUPERSEDED (sources overwrote the
    transmitted pattern — P6 taught fresh, P2–P5 line retires with the number). GREY RECOVERY
    (adopted R17 — no binary): partial recovery (between 50% and 90% of pre-P6 probe score,
    preregistered band) = FRAGILE verdict — representations degraded but present; the teaching
    claim downgrades to "fragile" and requires a P6-repeat or pattern re-grounding before any
    strong claim. Recovery is a spectrum; the verdict reads the dial.
-   2. Tutor generates curriculum AND test
-   (ordering/selection/signal/pacing become tutor policy). 3. Repeat P2 with tutor-specified
-   right/wrong steering teaching: same-tutor-knowledge × different emission policies →
+   2. Tutor generates curriculum AND test (tutor-written, tutor-interpreted; ordering/selection/signal/pacing become tutor policy). 3. Repeat P2 with tutor-partition steering teaching: same-tutor-knowledge × different emission policies →
    different student outcomes = teaching style, empirically. OUTCOME PINNING (adopted R25 — formative agreement cannot evidence style, the tutor authors it): style outcomes are measured on BINDING exams only (finals, held-out probes); formative trajectories are process data (they show what happened, never whether teaching worked). 4. THE FORMATIVE/SUMMATIVE SPLIT
    (user-ordered v6 — REPLACES the v5 hash-commit separation rule: no commit machinery, tutor
    owns MORE of the loop, measurement is cleaner). The tutor SOLELY generates every test inside
    the loop: test → teach → test → teach, all formative tests tutor-authored, tutor-scored,
-   tutor-diagnosed. The EXPERIMENTER authors ONLY the final exam — summative, binding,
-   experimenter-scored. SAMPLING BLINDNESS (adopted R22 — the bias surface is item choice, not scoring, which is mechanical against the key): final items are drawn by a PREREGISTERED sampling procedure (seeded RNG over the blueprint, ledger-verified draw), never hand-picked; the experimenter cannot steer the draw. Guardrails (format, never content): (a) PUBLIC BLUEPRINT — the tutor
+   tutor-interpreted, tutor-diagnosed. The EXAMINER authors checkpoint exams (binding checkpoints feeding the P4 interface) and the final exam — summative, binding,
+   examiner-scored. SAMPLING BLINDNESS (adopted R22 — the bias surface is item choice, not scoring, which is mechanical against the key): final items are drawn by a PREREGISTERED sampling procedure (seeded RNG over the blueprint, ledger-verified draw), never hand-picked; the experimenter cannot steer the draw. Guardrails (format, never content): (a) PUBLIC BLUEPRINT — the tutor
    knows the exam spec (noise family, recombination recipe, length bands, bars, gates) but never
    the items; the final is drawn from the same blueprint the tutor was asked to teach, so failure
    reads as teaching failure, not distribution shift. (b) Formative forms must satisfy structural

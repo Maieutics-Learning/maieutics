@@ -5,6 +5,15 @@ name: fresh-eyes
 description: Stateless AI reviewers on demand. This skill should be used when a second opinion is needed on plans, premises, lab reports, or skill docs — via single checks, sealed answers, barrages, blind tests, armed rounds, red-teams, steelman, tie-breaks, staff audits, retrospective batteries, or tooling self-reviews.
 ---
 
+## Always read (350+ lines — read by map)
+
+1. Memory bootstrap + `REFERENCE-layers.md` + `REFERENCE-rules.md` IN FULL
+   (filing dependency).
+2. This file IN FULL before running rounds: principle + formats + premise
+   artifact + adjudication; prompt patterns verbatim; stop rule to close
+   loops; logging to file (results under `src/evidence`, verdicts to
+   CHATLOG + record + transcript).
+
 # Fresh-eyes skill — stateless reviewers on demand
 
 Purpose: get a second opinion from an AI that has never seen your project.
@@ -128,7 +137,8 @@ surprisingly good at catching what you can't see anymore.
 ## The premise artifact (the thing you hand them)
 
 Reviewers argue from the artifact, so artifact errors become reviewer
-errors. Structure that worked (`scratch/fresh-eyes-premise-10x.md`):
+errors. Structure that worked (durable twin beside the results file; a
+`scratch/` working copy is disposable):
 
 1. Project (2-3 lines: what, scale, what exists vs what is destination).
 2. Scope agreement (numbered, user-confirmed — ability-not-drive, who
@@ -284,7 +294,7 @@ round (premise hygiene).
 Version log: one line per version in the durable log — what changed,
 which round's findings it answers, battery score (adoptions /
 reviewers). Results files carry the version:
-`scratch/fresh-eyes-<topic>-v<k>-<n>x-results.md`.
+`src/evidence/<topic>/fresh-eyes-<topic>-v<k>-<n>x-results.md` (durable; a `scratch/` working copy is disposable).
 
 ## Dependencies
 
@@ -343,13 +353,16 @@ reviewers). Results files carry the version:
   spontaneously and re-proposed an already-run experiment. Explicit
   invocation (the 3-step checklist) or it doesn't happen.
 
-## Logging
+## Logging (durable twins required — nothing referenced lives in scratch/ alone)
 
-- Results files: `scratch/fresh-eyes-<topic>-<n>x-results.md` (raw replies
-  + your adjudication). Premise artifacts kept beside them.
+- Results files: `src/evidence/<topic>/fresh-eyes-<topic>-<n>x-results.md`
+  (raw replies + your adjudication; a `scratch/` working copy may also
+  exist but is disposable). Premise artifacts kept beside the results file.
 - Verdicts filed in the durable log (CHATLOG) + working record
-  (CURRENT_TASK). Numbers sacred: reviewer scores quoted exactly, then
-  your ruling. Verdict records carry the shared fields — claim, status,
+  (authoritative record per handoff note) + session transcript
+  (`src/evidence/conversations/` — rounds run inside a session, the
+  transcript covers them). Numbers sacred: reviewer scores quoted exactly,
+  then your ruling. Verdict records carry the shared fields — claim, status,
   evidence + source locations, challenge, ruling, settler (what would
   change it), next action — so exploration, review, and memory trade the
   same shape (review 2026-11-13).

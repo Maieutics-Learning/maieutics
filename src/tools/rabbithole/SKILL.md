@@ -5,6 +5,16 @@ name: rabbithole
 description: Cautious long-running research in small cheap waves. This skill should be used when running deliberate open-ended research with sealed scouts and primary sources until stopped, capped, or blocked — with state, wave loop, and standing tangential slot.
 ---
 
+## Always read (500+ lines — read by map, all of it before a run)
+
+1. Memory bootstrap + `REFERENCE-layers.md` + `REFERENCE-rules.md` IN FULL
+   (required dependency: checkpointing, newest-wins, filing).
+2. This file IN FULL before starting waves: agenda + command + state + wave
+   loop are procedure; marathon rule + turn-close checklist before any
+   tool-free message; interruptions/scope/problems/dependencies as needed.
+3. Session close files state.json + log.md + working record + transcript +
+   CHATLOG.
+
 # Rabbithole skill — cautious long-running research
 
 Purpose: run deep research ("rabbitholes") under assistant ownership, in small
@@ -70,7 +80,9 @@ User says one of:
   never to force a check-in.
 
 No root question given = default to the standing topic in the durable working
-record (`src/CURRENT_TASK.md`; NEVER `scratch/` alone — scratch is a bin and
+record (authoritative record per handoff note — currently
+`scratch/CURRENT_TASK.md`; `src/CURRENT_TASK.md` is a retired pointer; NEVER
+`scratch/` alone — scratch is a bin and
 may be wiped). If the standing record is empty, default to the most recent
 run's `state.json` root. Slug = short kebab-case of the root (lowercase the root,
 strip non-alphanumerics to hyphens, ≤6 words — e.g. root "Why do teachers
@@ -286,7 +298,7 @@ this turn). Turn length, waves run, and visibility are never justifications
 on their own. System-forced ends (compaction, disconnect) are not decisions
 and need no justification — write the packet anyway. Explicit handoff
 format: "HANDOFF: <cause: compaction | disconnect | user hold> | packet:
-state+log+record written, newest wins | next: <backlog head + exact
+state+log+record+transcript written, CHATLOG line filed, newest wins | next: <backlog head + exact
 action>". Log every mid-run tool-call-free end as an incident in `log.md`
 under a `## Incidents` section (what, backlog size, which exemption claimed) —
 operational incidents, not learning-meta (learning goes in verdicts) —
@@ -430,17 +442,18 @@ Unsolved:
   — no external-fact waves without `websearch`, no multi-wave runs without
   `memory`. (`fresh-eyes` is optional: proceed without it.)
 
-## Memory (why multi-hour runs work — stolen from the memory skill)
+## Memory (required dependency — the slimmed memory skill is canonical, not this summary)
 
-- Four layers, cheapest first: working record (live notebook, short entries,
-  pointers not prose) → run logs (`state.json` + append-only wave log) →
-  verbatim snapshots (exact copies before rewrites) → durable log + pushes
-  (the only layer that survives everything). Anything that matters must
-  climb; log what's unpushed every session so the risk is visible.
-- Newest-wins: after any compaction/disconnect, read handoff note + all
-  layers; newest timestamped entry wins; mark conflicts UNKNOWN and
-  re-derive with one wave rather than guessing. Date everything —
-  undated entries are unorderable.
+- Five layers, cheapest first: working record → run logs (`state.json` +
+  append-only wave log) → verbatim snapshots → durable log (CHATLOG) +
+  pushes → verbatim transcript (filed every session). Anything that
+  matters must climb all the way; log what's unpushed every session so
+  the risk is visible. Full definitions: memory bootstrap +
+  `REFERENCE-layers.md` (read IN FULL).
+- Newest-wins: after any compaction/disconnect, read + run
+  `REFERENCE-reconcile.md` steps 0–4; newest timestamped entry wins; mark
+  conflicts UNKNOWN and re-derive with one wave rather than guessing.
+  Date everything — undated entries are unorderable.
 - Promote-or-recipe: a script that produces a MEASURED number is data —
   it lives in a tracked path or its full recipe sits beside the numbers.
   "Recipe" = the exact config + seeds + every method delta vs checked-in
