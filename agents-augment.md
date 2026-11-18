@@ -11,7 +11,7 @@ file gets amended.
 ## 1. Orientation (from README l.8-10)
 
 - Start here: `src/README.md` (root map — results, layout, reproducibility),
-  `src/GAMEPLAN.md` (the plan, currently v23 frozen), `src/RESULTS_INDEX.md`
+  `src/gameplan/GAMEPLAN.md` (the plan, currently v23 frozen), `src/RESULTS_INDEX.md`
   (every MEASURED claim → artifact → status), `src/CHATLOG.md` (session log,
   newest last).
 - Reusable skills live under `src/tools/` (index at `src/tools/README.md`:

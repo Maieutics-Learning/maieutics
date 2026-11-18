@@ -2,7 +2,7 @@
 
 Single map over four mechanisms that reviewers kept confusing. Each does a different job:
 
-1. **Statistics** — `src/GAMEPLAN.md` Conventions: 95% Wilson CIs everywhere; arm contrasts by
+1. **Statistics** — `src/gameplan/GAMEPLAN.md` Conventions: 95% Wilson CIs everywhere; arm contrasts by
    Fisher exact + Wilson difference-CI with preregistered margin δ (default 0.25, tightened
    where the null is near-deterministic); thresholds tested against MEASURED nulls by exact
    binomial, never against a 0.5 coin; pilots never enter confirmatory counts (fresh seeds +

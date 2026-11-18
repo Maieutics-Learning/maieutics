@@ -1,11 +1,11 @@
-> **Current plan: `src/GAMEPLAN.md` (v23, 2026-11-17, COUNTERSIGNED FROZEN) — Phase 1 mechanism settlement. The Phase 0–5 block below is archived context: read it as history, not the plan.**
+> **Current plan: `src/gameplan/GAMEPLAN.md` (v23, 2026-11-17, COUNTERSIGNED FROZEN) — Phase 1 mechanism settlement. The Phase 0–5 block below is archived context: read it as history, not the plan.**
 
 # Teaching Small Models to Learn
 
 Long-term project: build our own AI inspired by Geiping et al. **arXiv:2502.05171**
 (Huginn 0125) — recurrent-depth latent reasoning ("thinking without tokens").
 
-Start here: `README.md` (root map — results, layout, reproducibility), `src/GAMEPLAN.md` (plan, frozen v22), `src/RESULTS_INDEX.md` (every MEASURED claim → artifact → status), `src/CHATLOG.md` (session log, newest last). The working record (`scratch/CURRENT_TASK.md`) is private scratch, never shipped — never cite it as durable state.
+Start here: `README.md` (root map — results, layout, reproducibility), `src/gameplan/GAMEPLAN.md` (plan, v23 frozen), `src/RESULTS_INDEX.md` (every MEASURED claim → artifact → status), `src/CHATLOG.md` (session log, newest last). The working record (`scratch/CURRENT_TASK.md`) is private scratch, never shipped — never cite it as durable state.
 
 AI orientation (read this first, every session): reusable skills live under `src/tools/` (index at `src/tools/README.md` — websearch, rabbithole, memory, fresh-eyes, eval-harness, paper-compile, and more). Check there BEFORE inventing a procedure. Forgetting that folder exists is a known, repeated failure mode — this line is the reminder. **Always read agents-augment.md first, every session** (standing instructions extracted there from this file).
 

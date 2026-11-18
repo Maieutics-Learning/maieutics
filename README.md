@@ -9,7 +9,7 @@
 1. **The paper:** `index.html` §§1–8 (renders as the generator page; the living bench is Appendices A–H below it). Abstract + §8 intro carry the claim map; every MEASURED tag quotes a run record byte-identically.
 2. **The results map** below — each headline claim → numbers → artifacts → code. The full per-claim ledger (every MEASURED tag, including superseded and prose-only rows with their status) is `src/RESULTS_INDEX.md`.
 3. **`src/CHATLOG.md`** (newest last) — session log: what was decided, what was MEASURED, what failed and why. This + git is how state survives.
-4. **Durable state = this file + `src/RESULTS_INDEX.md` + `src/CHATLOG.md` + `src/GAMEPLAN.md`** (frozen v22). The live working record (`scratch/CURRENT_TASK.md`) is private scratch and never ships — do not cite it as state.
+4. **Durable state = this file + `src/RESULTS_INDEX.md` + `src/CHATLOG.md` + `src/gameplan/GAMEPLAN.md`** (v23, COUNTERSIGNED FROZEN). The live working record (`scratch/CURRENT_TASK.md`) is private scratch and never ships — do not cite it as state.
 5. **`src/tools/`** — reusable methods (memory, fresh-eyes reviewers, rabbithole research, websearch, diagnostics). Full index at `src/tools/README.md`; check there before inventing a procedure.
 6. **`src/pool/`** — Track B: cheap/free outside-model bench (keyed sources + vault + router + decider). Keys live only in the visitor's browser storage, never in this repo.
 

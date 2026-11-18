@@ -3,7 +3,7 @@
 // -> 2 fresh students (trainFaded replica via spelled tutor cache) -> killHu-spelled 200/brain
 // + short/long split + eval-only controls + suspicion readout (1-top1, per-brain AUC).
 // ARTIFACT MAP:
-//   spec ....: src/GAMEPLAN.md Detour D1 v1.1 DRAFT (UNCOUNTERSIGNED; v22 frozen untouched)
+//   spec ....: src/gameplan/archive/v22-frozen-2026-11-15.md Detour D1 v1.1 DRAFT (UNCOUNTERSIGNED; frozen record)
 //   builders : src/tinynn/spelled-keys.js (byte layout frozen: alpha 10-17, SEP 18, ?=8, vocab 19)
 //   pool ....: PART_SEED 7000 (384 train / 128 held — 8^3=512, spec 64-combo text corrected, design unchanged)
 //   ledger ..: src/evidence/synthesis/d1a-smoke.json (resume-safe; runId+fingerprint per 2.d.v)
