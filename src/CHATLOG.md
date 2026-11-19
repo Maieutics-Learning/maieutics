@@ -1449,3 +1449,52 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Miss (owned): status answer + workspace reads before Step 0 this session. User caught it ("did you look there?" -> no).
 - Fix: agents-augment §1 start-gate (Step 0 BLOCKING, first calls = list src/tools + read index, miss logged same session) + memory SKILL session-start checklist. Step 0 done late this session: tools listed + index read; relevant = memory only.
 **Always read agents-augment.md first, every session.**
+
+## 2026-11-18 — transcript auto-fix miss + live repair (user: I thought we fixed this?)
+- Miss owned: log.js transcript layer + SKILL turn routine installed 2026-11-18 but this post-compaction session opened with zero stub and zero per-turn appends — fix on paper, not in motion.
+- Repair this session: new transcript stub src/evidence/conversations/2026-11-19-transcript-fix.md created first, user turn filed verbatim, assistant turns appended same-message going forward.
+- Reconcile: handoff note wins over stale scratch/CURRENT_TASK.md (ends pre-v4.2); src/CURRENT_TASK.md retired pointer confirmed.
+- Unpushed: 2026-11-19 transcript file only (1 file); push gate not tripped.
+
+## 2026-11-18 — v4.2 COUNTERSIGNED + stepwise run authorized
+- User countersigned v4.2 2026-11-19 ("signed, please proceed"). Spec: src/evidence/p3/specs/p3-twins-v08-curriculum-v42-draft.md (36 lines, glossary + single-brain + EAR-BAR + 3 nulls + provenance + seeds 9840-42/9850-52/9860-62, pools 9770/9771/9810, bars chance-calibrated).
+- Authorized: stepwise countersign review completion + driver build + compute per spec (800-step fixed schedules, 3 pairs, integrity gate, quorum 2/3, W tripwire).
+- Prior state: v3 consolidated 3/3 COMPLETE (TH real <2.944, CLAIM1 2/3, CLAIM2 3/3, dialect 0/12, W clean).
+
+## 2026-11-18 — v4.2 pair-0 COMPLETE (countersigned run)
+- Ledger src/evidence/p3/p3-curr-v42-p0.json + bundles c1/c2 (nUniq 100/100, integrity held).
+- MEASURED: S0 tutor 3.2584/3.2401 stud 3.1796/3.2136; TE 2.6287 PASS (<2.744); ear probe PASS deg 0.0000 (head-only, trunk frozen — stability design held).
+- S1 easy 2.9597 FAIL (delta PASS vs 2.9796 but chance floor <2.944 missed by 0.0157 — same p0-miss pattern as v3 2.996); S1 dialect N -0.10 FAIL / E 0.09 FAIL; ear obs 0.8501 Wilson [0.841,0.8587].
+- TH hard 2.7579 HALT (misses <2.744 by 0.014); S2 hard 3.062 FAIL; retention +0.5496 (easy forgotten); dialect N 0.00 / E -0.03 FAIL; ear 0.7467 below 0.80.
+- Null-shuffled ear 0.1825 (teeth held at eval level). W not tripped (gates mixed). Pairs 1-2 pending.
+
+## 2026-11-18 — pre-countersign for two agent experiments (user-ordered)
+- User pre-countersigned two agent-designed experiments (no per-experiment user countersign needed; agent approval + full prereg/verdict docs required, same thoroughness as joint experiments).
+- Each gets: What do I want to find out (prereg) + What did we learn (verdict), spec file, ledger, CHATLOG lines.
+- Frozen work runs first: v4.2 pairs 1-2 (countersigned 2026-11-19). Agent experiments reuse filed bundles where possible (cheap student-only retrains).
+
+## 2026-11-18 — v4.2 pair-1 COMPLETE (countersigned run)
+- Ledger src/evidence/p3/p3-curr-v42-p1.json + bundles c1/c2 (nUniq 100/100).
+- MEASURED: S0 tutor 3.2556/3.2555 stud 3.3535/3.317; TE 2.636 PASS; ear probe PASS deg 0.
+- S1 easy 2.9199 CLAIM1 PASS (<2.944 + delta); dialect N 0.03 / E -0.03 FAIL; ear 0.8559 Wilson [0.8469,0.8644].
+- TH hard 2.7237 PASS (<2.744 — passes where pair-0 2.7579 hairline-HALTED); S2 hard 3.0046 CLAIM2 FAIL (floor); retention +0.6097; dialect N -0.01 / E 0.04 FAIL; ear 0.7228.
+- Null-shuffled 0.2518 (teeth held). 60-min worker timeout hit during pair-2 — pair-2 reruns alone next.
+
+## 2026-11-18 — v4.2 frozen VERDICT 3/3 + two agent preregs (pre-countersigned)
+- Verdict src/evidence/p3/p3-curr-v42-verdict.json: CLAIM1 2/3 (p0 2.9597 floor-miss 0.0157), TH 1/3 (p1 2.7237 PASS; p0/p2 HALT 0.014/0.033 over), CLAIM2 0/3, dialect 0/12, ear probes 3/3 PASS deg 0, retention +0.55/+0.61/+0.62.
+- ExpA prereg src/evidence/p3/specs/p3-curr-v42-expA-prereg.md: What do I want to find out = overfit? (800x8/100 = 64 epochs); lever student steps 800->200 same bundles/inits; bars: S1/S2 vs frozen + ear.
+- ExpB prereg src/evidence/p3/specs/p3-curr-v42-expB-prereg.md: What do I want to find out = forgetting? (retention +0.6, ear slide); lever S2 50/50 replay mix; bars: retention toward 0, S2-hard, ear hold.
+- Both agent-approved under 2026-11-19 user pre-countersign; bundle-only provenance; student-only (cheap).
+
+## 2026-11-18 — expA VERDICT: recipe was the wall (What did we learn)
+- Ledgers src/evidence/p3/p3-curr-v42-expA-p{0,1,2}.json, 3/3 COMPLETE. Same bundles/inits as frozen, only student steps 800->200.
+- MEASURED: S1-easy 2.6461/2.667/2.6335 (frozen 2.9597/2.9199/2.8996, deltas -0.31/-0.25/-0.27); S1-hard 3.3625/3.374/3.3187 (frozen 3.6587/3.7455/3.6881).
+- S2-hard 2.7861/2.7736/2.7758 (frozen 3.062/3.0046/3.0339) — BELOW chance floor 2.944, real hard learning. CLAIM1 3/3, CLAIM2 3/3 at 200 steps (frozen 2/3, 0/3).
+- Retention +0.4526/+0.4566/+0.4216 (frozen +0.55/+0.61/+0.62) — better but still forgets. Ear s1_vs_c1 0.82-0.87, s2_vs_c1 slides to 0.58-0.73 — ear forgets too.
+- What did we learn: overfit confirmed — 64 epochs exploded the test; 16 epochs transmit and generalize. Remaining wall = forgetting (ExpB question).
+
+## 2026-11-18 — expB VERDICT: forgetting is sequencing (What did we learn)
+- Ledgers src/evidence/p3/p3-curr-v42-expB-p{0,1,2}.json, 3/3 COMPLETE. S1 frozen-style 800 (identical: 2.9597/2.9199/2.8996); S2 50/50 replay c1+c2, 800 steps.
+- MEASURED: retention +0.055/+0.0869/+0.0729 (frozen +0.55/+0.61/+0.62) — forgetting eliminated. S2-hard 3.0359/2.9839/3.0321 (frozen 3.062/3.0046/3.0339) — no hard cost, still above floor (800-step overfit retained, as expected).
+- Ear s2_vs_c1 0.8238/0.8045/0.8022 (expA no-replay 0.7261/0.6263/0.5794) — replay holds the tutor's class-1 marks.
+- What did we learn: forgetting is a sequencing artifact, not capacity. Prescription: 200-step + replay combined = claims + retention + ear (third run, needs approval — pre-countersign covered two).
