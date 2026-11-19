@@ -56,3 +56,21 @@ assistant: Exp driver written + fixed (ear-vs-filed metric, bundle-only, no tuto
 assistant: ExpA COMPLETE 3/3: S1 2.63-2.67 (frozen 2.90-2.96), S2-hard 2.77-2.79 BELOW chance (frozen 3.00-3.06), retention +0.42-0.46 (frozen +0.55-0.62), ear s1 0.82-0.87. What did we learn: the wall was epochs (64 -> 16), not the channel — both claims flip to PASS at 200 steps. Ledgers expA-p0/1/2. Running expB (replay).
 
 assistant: ExpB COMPLETE 3/3: retention +0.055/+0.087/+0.073 (frozen +0.55/+0.61/+0.62), S2-hard 3.04/2.98/3.03 (frozen 3.06/3.00/3.03, unchanged), ear-c1 0.80-0.82 (frozen slide to 0.58-0.73 scale). What did we learn: forgetting is sequencing, not capacity — replay rescues easy + ear marks with zero hard cost. Prescription: 200 steps + replay combined (not run — needs approval). Ledgers expB-p0/1/2.
+
+assistant: Push done: tip b59a2ea confirmed live; batch-A 1a134e2 (17 files, 350KB) + batch-B 070b013 (3 bundles, 4.38MB) + batch-C 01d2f57 (3 bundles, 4.45MB); total 9186241B; ref PATCH 200 + cache-busted re-read refMatch true. PAT stayed in worker/page memory. Backlog drained except this receipt.
+
+user: Signed!
+
+assistant: Countersign recorded for v4.3 package (combined 200-step + replay + full-retrain nulls). Writing spec + run code, then pair-by-pair with resume-safe ledgers.
+
+assistant: v4.3 spec + run code done (combined 200+replay, 3 full-retrain nulls, resume-safe). Unpushed grows: v43 spec + exp driver. Running v43 pair-0.
+
+assistant: v43 pair-0 threw: my shuffledBundle permuted tEar across lines (length mismatch -> softmax(undefined)). Owned. Fixed to within-line position shuffle (lengths intact, alignment destroyed); spec wording updated to match. Rerunning pair-0.
+
+assistant: v43 pair-0 COMPLETE: combined S1 2.6461 PASS, S2 2.8097 PASS, retention +0.098, dialect FAIL. Nulls: blind FAIL/FAIL held, synthetic CLEAN (3.07) held, shuffled FIRED as designed — filed bucket marginal is 79% bucket-2 (majority 0.79), real ear 0.8235 (+0.033), shuffled ear 0.788 (learned the marginal). Ear bar VOID per spec's own gap rule; buckets need adaptive quartiles (v4.4). Mouth claims stand. Running pairs 1-2.
+
+assistant: v43 VERDICT filed 3/3 COMPLETE: mouth CLAIM1 3/3 + CLAIM2 3/3, retention +0.08-0.12, dialect 0/12, blind 3/3 held, synthetic 3/3 held, shuffled FIRED 3/3 (ear bar VOID by gap rule; buckets degenerate, marginal 0.79). What did we learn: 200+replay transmits and retains; mouth nulls hold; ear needs adaptive buckets (v4.4). Unpushed grows: 3 v43 ledgers + verdict.
+
+user: How does the training work? The teacher generates 100 lines then?
+
+user: Ok, so what do we know from all of this going forward?

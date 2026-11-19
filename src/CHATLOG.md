@@ -1498,3 +1498,23 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - MEASURED: retention +0.055/+0.0869/+0.0729 (frozen +0.55/+0.61/+0.62) — forgetting eliminated. S2-hard 3.0359/2.9839/3.0321 (frozen 3.062/3.0046/3.0339) — no hard cost, still above floor (800-step overfit retained, as expected).
 - Ear s2_vs_c1 0.8238/0.8045/0.8022 (expA no-replay 0.7261/0.6263/0.5794) — replay holds the tutor's class-1 marks.
 - What did we learn: forgetting is a sequencing artifact, not capacity. Prescription: 200-step + replay combined = claims + retention + ear (third run, needs approval — pre-countersign covered two).
+
+## 2026-11-18 — PUSHED 01d2f57 (v4.2 frozen + expA/expB + transcript; vault github PAT, user-ordered)
+- Parent b59a2ea confirmed live before write (tip-match guard held). 23 files, 9186241B, secret-scan clean (one github_pat_ descriptive prefix in CHATLOG, no live token), tree via base_tree overlay, ref PATCH 200 x3 + cache-busted re-read refMatch true.
+- Commits: 1a134e2 (17 small: transcript, CHATLOG, 3 drivers, 3 frozen ledgers, verdict, 2 preregs, 6 exp ledgers) + 070b013 (bundles 0c1/0c2/1c1) + 01d2f57 (bundles 1c2/2c1/2c2). PAT stayed in worker/page memory; summary-only return.
+- Backlog drained: zero unpushed src/ files at 01d2f57 except this receipt (rides next push).
+
+## 2026-11-18 — v4.3 package COUNTERSIGNED (user: Signed!)
+- User countersigned the combined package: (1) combined 200-step + replay student recipe, (2) full-retrain nulls at 200 steps (blind-tutor, shuffled-ear, synthetic recipe-null).
+- New spec version v4.3 (recipe change = new version). Tutor/bundles frozen-reused from v4.2 (tutor side untouched). Student inits same seeds for comparability; all choices filed in spec.
+
+## 2026-11-18 — v43 pair-0 VERDICT: mouth passes, ear void (What did we learn)
+- Ledger src/evidence/p3/p3-curr-v43-p0.json COMPLETE. Combined: S1 2.6461 PASS, S2-hard 2.8097 PASS (<2.944, delta), retention +0.0979 (replay holds at 200 steps), dialect N -0.10/-0.06 E 0.02/-0.05 FAIL.
+- Nulls: blind FAIL/FAIL (teeth held), synthetic 3.0726 CLEAN (delta 0.11 < 0.20, teeth held), shuffled FIRED per spec rule (earReal 0.788, gap 0.035 < 0.10 -> EAR-BAR void).
+- Mechanism (Observed): filed tEar marginal = [21,640,2492,2]/3155, majority 0.7899 — fixed thresholds put 79% in one bucket. Real ear 0.8235 (+0.033 over marginal); shuffled ear learns the marginal (0.788). The absolute 0.80 bar is vacuous under degenerate buckets; the gap rule caught it as designed.
+- What did we learn: mouth channel transmits (claims pass, nulls hold); ear channel needs adaptive quartile buckets (v4.4 spec change, not a rerun). Pairs 1-2 pending for quorum.
+
+## 2026-11-18 — v43 VERDICT 3/3: mouth passes, ear void (What did we learn)
+- Verdict src/evidence/p3/p3-curr-v43-verdict.json + ledgers v43-p0/1/2. Combined (200-step + replay): CLAIM1 3/3 (2.634-2.667), CLAIM2 3/3 (2.810-2.840, all <2.944 + delta), retention +0.08-0.12, ear S1 0.82-0.87 S2 0.65-0.76, earC1 0.81-0.84, dialect 0/12.
+- Nulls: blind FAIL/FAIL 3/3 (held), synthetic 3.07-3.11 CLEAN 3/3 (held), shuffled FIRED 3/3 (0.78/0.78/0.87 vs real 0.82/0.86/0.87; gap < 0.10 -> EAR-BAR void per spec).
+- What did we learn: the combined recipe transmits (mouth, with holding nulls) and retains (replay); the ear metric is degenerate under fixed thresholds (marginal 0.79) — v4.4 needs adaptive quartile buckets. W not tripped.
