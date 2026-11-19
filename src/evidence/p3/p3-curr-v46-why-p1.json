@@ -1,0 +1,1 @@
+{"pair":1,"spec":"v4.6-WHY","verdict":"COMPLETE","source":{"med":2.4098,"accLo":0.2157,"accHi":0.1641,"gap":0.0516,"nLo":8016,"nHi":8014},"ceiling":{"train":0.4817,"transfer":0.2905},"boundary":{"near":4963,"tot":16030,"frac":0.3096},"soft":{"pearson":0.0859,"spearman":0.0597,"n":6230}}

@@ -46,14 +46,15 @@ REFERENCE file conflict, the REFERENCE file wins until this file is amended.
 3. Then follow Always-read order above. A session that answers before Step 0 logs the miss in CHATLOG same session.
 4. Open (or create) this session's transcript stub FIRST: `src/evidence/conversations/<YYYY-MM-DD>-<label>.md` via log.js layer transcript (file required, speaker user/assistant). No session without a stub — a missing stub is filed as gap, not backlog.
 
-## Turn routine (this is what makes session-end automatic — U5 fix 2026-11-18)
+## Turn routine (this is what makes session-end automatic — U5 fix 2026-11-18; U6 fix 2026-11-19: no-tool turns also file)
 
 Session-end fails because it runs at the end. Run it per-turn instead:
 
-1. Every assistant turn that follows tool work appends that turn to the session transcript via log.js (layer transcript, explicit file, speaker assistant; user turns appended verbatim when filing). Never batch transcript to session-end.
+1. EVERY assistant turn appends to the session transcript via log.js (layer transcript, explicit file, speaker assistant; user turns appended verbatim when filing) — including pure Q&A turns with zero tool work. The old "only turns that follow tool work" wording is what let this evening's explanation chain (learnings / teach / F-fail / competent-tutor / C0-hetero) drift out of layer 5. No-tool turn = still a turn, still filed, same message when possible.
 2. Every `src/` write updates the standing unpushed list in the working record in the SAME message (Step 4 rule) — never deferred.
 3. Every wave (run / probe / review round) files its results file + CHATLOG line at that checkpoint (checkpoint rule) — never held to session-end.
 4. Session-end is then a flush, not a rescue: working-record line + CHATLOG entry + transcript tail-check + unpushed list + push gate (~20 files / 3 sessions). If the session drops mid-turn, layers 1-4 already hold everything but the last reply.
+5. Self-check before ending any reply: transcript stub exists + this turn's user+assistant text is filed or queued in the same message. If the log.js call fails, say so in-chat and carry the turns as debt in the working record — never silently skip.
 
 ## Session-end checklist (do all five before ending — this is what closed the 11-17/18 gap)
 

@@ -1,0 +1,1 @@
+{"pair":1,"spec":"v4.6-T2","verdict":"COMPLETE","tutor":{"TEe":3.2137,"THh":2.7237},"S1":{"easy":2.7087,"hard":3.3588},"guided":{"S2h":2.7682,"meanEnt":2.317562},"random":{"S2h":2.7988},"lift":0.0306,"bar":"FAIL","note":"S2 mouth-only both branches (CHOICE: isolates selection from marks); S1 WITH baseline filed; S1 retrained deterministically per branch"}

@@ -1,0 +1,1 @@
+{"spec":"final5-F4","verdict":"COMPLETE","rows":[{"pair":0,"selective":0.2353,"raw":0.2334,"coverage":0.5175,"lift":0.0019},{"pair":1,"selective":0.2221,"raw":0.2297,"coverage":0.3693,"lift":-0.0076},{"pair":2,"selective":0.232,"raw":0.2362,"coverage":0.3399,"lift":-0.0042}],"promise":"selective>>raw (>=+0.10) at >=50% coverage","pairsMet":0,"met":false}

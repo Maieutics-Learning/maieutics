@@ -1540,3 +1540,57 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Ear: real 0.441-0.544 (+0.19-0.29 over marginal); shuffled 0.329-0.395; gap rule HELD p1 (0.112) + p2 (0.149), p0 0.095 BROKEN by 0.005. Absolute 0.80 unreachable all pairs.
 - Nulls: blind FAIL/FAIL 3/3 held; synthetic CLEAN 3/3 held.
 - What did we learn: fair ruler discriminates (real vs shuffled separated 2/3, near-miss 1/3); the channel is weak-not-zero. The ear question is answered as far as a linear head can answer it: +0.2 over chance, replicable. Next fork: accept ear as auxiliary (mouth is the channel) or train the ear jointly (v4.5, spec change).
+
+## 2026-11-19 — PUSHED c1c606d (v4.4 verdict + weak-not-zero ear; user-ordered "push first")
+- Parent e92777a confirmed live (tip-guard); 14 files, 9247708B, secret-scan clean (sk-pattern + github_pat continuation checks), tree via base_tree overlay, commit c1c606d, ref PATCH 200 + cache-busted re-read refMatch true. PAT in worker/page memory only, never in agent context.
+- Gotcha filed: single-ref endpoint is GET-only — PATCH /git/ref/heads/main 404s; the update endpoint is plural PATCH /git/refs/heads/main. First attempt committed 8da204a (blobs/tree/commit all 201) then 404ed on the wrong ref path; recommitted same content (c1c606d) and patched the plural path. Orphan 8da204a dangles unreferenced, same content, harmless.
+- Backlog drained except this receipt. Next fork (user has not decided): accept ear as auxiliary vs v4.5 joint-ear (needs countersign) + talk-loop prereg point 5.
+
+## 2026-11-19 — v4.5 DRAFT (uncountersigned, no compute)
+- Filed src/evidence/p3/specs/p3-twins-v08-curriculum-v45-draft.md (UNCOUNTERSIGNED): joint trunk+ear tutor (earCE+0.5*mouthCE, frozen mouth head, trunk x0.5, 800 steps, quartile cuts frozen pre-joint) + 0.30 drift cap + new v45 bundles + student combined rerun + nulls rerun. Bars: absolute 0.80 + comparative +0.15 vs v4.4 (>=2/3, gap held) = PARTIAL. Expectation: mouth 3/3, ear 0.60+-0.10, 0/3 reach 0.80, PARTIAL. Pre-mortem: shuffled fires = positional, FAIL; anchor too strong = no gain. Nearest-failures: v4.3 degeneracy, v4.4 p0 near-miss, x-ablation single-draw — all addressed by design.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — v45 pair-0 HALT (spec-gate miss, no student)
+- Ledger src/evidence/p3/p3-curr-v45-p0.json HALT joint-ate-mouth. Joint ear ran 800 steps (firstLoss 1.6896, same init as v44). Cuts [2.0675,2.356,2.5368] match v44-p0 (determinism held). preEar easy 3.2032/hard 2.7579, postEar easy 3.2858/hard 2.8918, deg +0.1339.
+- Miss owned: v4.5 absolute gate (post-ear <2.744) impossible — pre-ear was already 2.7579 HALT (same as v42-p0/v44-p0 TH HALT-by-0.014, which filed HALT yet continued to COMPLETE). Driver halted before student; no bundles written. Fix proposed: v4.5.1 relative-only gate (deg>0.30 HALT; absolute filed diagnostic, never halts), continue to student as v4.2/v4.4 precedent. No compute until countersigned.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — v45 VERDICT 3/3 (countersigned v4.5.1): joint adds nothing, ear closes
+- Ledgers v45-p0/1/2 COMPLETE + 6 v45 bundles + verdict v45-verdict.json. Joint gate PASS 3/3 (deg 0.134/0.118/0.140). Determinism 3/3, cuts match v44.
+- Mouth: CLAIM1 3/3 (2.752/2.773/2.690), CLAIM2 1/3 (p0 hairline delta 0.198 miss by 0.002, p1 PASS delta 0.203, p2 delta 0.127). Absolute S2-hard BETTER than v44 (2.74-2.77 vs 2.82-2.84) but delta bar punishes better S1. Retention +0.08-0.13. Blind FAIL/FAIL 3/3 held, synthetic CLEAN 3/3.
+- Ear: real S1 0.407/0.495/0.444 (mean 0.449 vs v44 0.481); shuffled 0.329/0.444/0.414, gaps 0.078/0.051/0.030 → BROKEN 3/3. Absolute 0/3, comparative +0.15 0/3 → FAIL per spec. Pre-mortem killer CONFIRMED (shuffled fires, real flat = positional).
+- Expectation MISS (predicted PARTIAL/ear 0.60; got FAIL/0.45). What did we learn: trunk plasticity without a better objective just sharpens position-entropy correlation (shuffled rises) without transmitting uncertainty. Ear stays auxiliary-or-closed; mouth is the channel.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — v4.6 DRAFT (uncountersigned, no compute)
+- Filed src/evidence/p3/specs/p3-twins-v08-curriculum-v46-draft.md: ear re-scoped user-ordered instrument-not-transmission; 0.80 bar retired (descriptive only). Base frozen v44 bundles. T1 ablation WITH vs WITHOUT (+0.10, shuffled-WITH confound rule), T2 steering GUIDED vs RANDOM (+0.10), T3 calibration low-high accuracy gap (+0.15). Quorum 2/3, W retires ear on triple-FAIL. Expectation: FAIL/FAIL/FAIL (decorative/theater/flat) → ear retires. Pre-mortem: shuffled-WITH>WITHOUT kills T1 even on pass.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — v46 VERDICT 9/9: ear retires (What did we learn)
+- Ledgers v46-t1/t2/t3-p0/1/2 COMPLETE (9/9) + verdict v46-verdict.json. T1 ablation 0/3 (gains -0.0005/+0.006/+0.008; confounds held — decorative, no confound). T2 steering 0/3 (lifts -0.024/+0.031/+0.008 — theater). T3 calibration 0/3 (gaps +0.004/-0.012/-0.006, bands flat 0.21-0.25 — ear predicts nothing about correctness).
+- W TRIPPED 3/3 → ear retires at this scale; mouth-only curriculum stands (WITH reruns reproduce filed v44 exactly). Expectation HIT (predicted triple-FAIL). Pre-mortem confound rule CLEAN.
+- What did we learn: the ear neither transmits (v4.5) nor helps/steers/calibrates (v4.6). The doubt-readout arc stays detector-only (suspicion ranks within-regime, 1.d) — as an instrument for teaching at bench scale, the ear is closed.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — v46-WHY VERDICT 3/3: why the ear fails (mechanism)
+- Ledgers why-p0/1/2 + verdict why-verdict.json. SOURCE gap +0.044/+0.052/+0.044 (tutor acc 0.20-0.22 low-ent vs 0.156-0.164 high-ent; tutor overall ~0.18 — weak). CEILING train 0.48/0.48/0.52 vs transfer 0.29/0.29/0.30 (caps ~0.50 in-dist, chance novel; mixed-mapping caveat filed). BOUNDARY 0.35/0.31/0.33 near cuts. SOFT Pearson 0.04-0.09, Spearman 0.03-0.07 — zero.
+- Why answered: nearly-void source (weak tutor) + ~0.50 train ceiling + 1/3 boundary flips + zero soft tracking. 'Should help' holds for competent tutors (1.d regime); bench tutor is not one. Ear retires with cause.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — final5 verdict + agent exps
+- Final-5 5/5 pilots 0/5 met (info-only, pair-0; F4 3-pair re-analysis): F1 cross-regime void (gap -0.003, graft NaN, F1c 0.46/0.16), F2 tails worse (0.354), F3 mixed wins (-0.085), F4 flat (~0.00), F5 random wins (-0.035). Ear closes until conversation part.
+- Agent experiments pre-countersigned x3 (my questions): Exp-A within-distribution rule-target ear x3 pairs (is the learned head the lossy step? F1c gap 0.30 motivates); Exp-B cross-pool KL stability sweep (alpha 0.1/0.5/0.9, bounds safe distillation shift for P2/P3); Exp-C filed-numbers meta-analysis (zero compute, what predicts ear transfer?). Preregs filed, running stepwise.
+
+## 2026-11-19 — agent exps verdict
+- Exp-C COMPLETE (n=8 filed rows): trainFit r=0.52 predicts transfer, boundary r=-0.50 anti-predicts, srcGap r=0.21 ~nothing, gap-held driven by targetSharp not source. Exploratory only.
+- Exp-B COMPLETE (pair-0, alphas 0.1/0.5/0.9): NaN all three — cross-pool KL unstable at any alpha; tempering needed, alpha alone insufficient. P2/P3 constraint.
+- Exp-A COMPLETE 3/3: rule 0.360/0.372/0.349, gaps held 3/3 (0.158/0.176/0.159), deltas vs v44 all negative. Learned softs beat one-hots on absolute; rule buys gap-cleanliness. No revival; trade mapped.
+
+## 2026-11-19 — doubt/challenger look-back + memory audit + C0-hetero (this session)
+- Doubt/challenger recap from 2026-11-16-memory-layer5.md: suspicion = 1-top1 (confidence = top1, exact inverse, home-grown names); calibration-vs-discrimination (0.70 on errors yet AUC 0.86-0.93 — thermometer hot but ordering intact); weights rank brains (B 0.761 seen / 0.49 fresh) vs suspicion ranks lines within brain; challenger = modulator P(correct|weights,line,suspicion) graded on calibration gain — UNRUN (U-err retrained instead of judging, wrong mechanism); split adopted detector (suspicion champion) / challenger (calibration gain) / interpreter (vital-signs, coarse). Ear was detector attempt; v4.6 T1/T2/T3 was challenger attempt (all FAIL).
+- C0 correction: pure oracle homoskedastic (~2.45 nats flat, no variation) — vacuous. Amended to C0-hetero (varying-p per line / deterministic-vs-random / lag-ambiguity) for competent+calibrated tutor WITH gap ~0.3-0.5. Tutor-weak cause: lag-1 then lag-2 no-replay (forgets) + undertrained 0.18 vs optimal 0.384. Ladder C0-hetero → C1 replay → C2 scale → C3 simplify-then-scale.
+- Memory audit (Observed): L4 CHATLOG current through exps verdict, missing last ~5 turns before this entry (now repaired); L5 transcript 2026-11-19-final5.md was 20-line stub (now caught up through this turn); L1 scratch/CURRENT_TASK.md was 2-line stub (now updated with evening line). Numbers still live in ledgers, chat numbers provisional.
+- U6 fix 2026-11-19 (user: "put something into it so you always keep this current"): turn routine amended — EVERY assistant turn files to layer 5 including no-tool Q&A (old "only turns following tool work" retired as the drift source) + self-check before ending any reply (stub exists + turn filed/queued, else carry as debt). Ear parked per user; overconfidence Q answered separately (no overconfidence on P3 bench — flat weak calibration, not 1.d-style confident-wrong).
+- F6 rerank pilot COMPLETE (user-confirmed A: X candidates for next token, pair-0, X=4, 30 lines/385 pos): base 0.3195, tutor-greedy 0.1506, V1 self-lookahead 0.1143 (d -0.205), V2 tutor-rerank 0.2156 (d -0.104). Both hurt; self-lookahead hurts most. Doubt-rerank fails single-step choice too. Ledger p3-curr-final5-F6-p0.json + driver p3-curr-final5-f6.js.
+- Ear PARKED (user-confirmed 2026-11-19 night): F6 was the last test; analysis-paralysis reading confirmed with scope correction (never-helps holds on this bench/weak-tutor, not universally — competent+heteroskedastic tutor untested, C0-hetero stays the open upper bound).
+- Notes operating choice (user: "do what you think is best"): direct edits stay the writer (transcript + working record + CHATLOG via default.edit, honoring log.js formatting — timestamped lines, bullet shape, append-only, transcript file+speaker required). Rationale: fewer worker round-trips than log.js bootstrap per turn, same bytes, proven tonight. log.js/search.js stay canonical + fallback.

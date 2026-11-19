@@ -1,0 +1,1 @@
+{"pair":2,"spec":"v4.6-T1","verdict":"COMPLETE","with":{"S0":3.334,"S1e":2.6263,"S2h":2.8416},"without":{"S0":3.334,"S1e":2.6457,"S2h":2.8494},"shuffledWith":{"S2h":2.8442},"gain":0.0078,"confound":0.0052,"bar":"FAIL","note":"WITH rerun (not filed-v44 reuse) for code-version comparability; WITHOUT trunk scale 1.0 mouth-only (CHOICE filed here)"}

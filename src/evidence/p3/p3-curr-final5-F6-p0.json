@@ -1,0 +1,1 @@
+{"pair":0,"spec":"final5-F6-rerank","verdict":"COMPLETE","X":4,"nLines":30,"nPos":385,"base":0.3195,"tutorGreedy":0.1506,"v1SelfLookahead":0.1143,"v2TutorRerank":0.2156,"dV1":-0.2052,"dV2":-0.1039,"candRecall":0.4883,"v1pickRate":0.6727,"v2diffRate":0.5532}

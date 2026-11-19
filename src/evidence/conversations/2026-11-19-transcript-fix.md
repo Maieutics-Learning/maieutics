@@ -86,3 +86,7 @@ assistant: v44 run code done + a .g typo caught by grep before compute (would ha
 assistant: v44 pair-0 COMPLETE: determinism match (TE/TH exact), bands balanced (marginal 0.2502), probe PASS. Mouth S1 2.6524 PASS, S2 2.8197 PASS, retention +0.105, dialect FAIL. Ear under fair ruler: real 0.457 (+0.21 over marginal), shuffled 0.362, gap 0.095 vs 0.10 rule -> BROKEN by 0.005. Blind held, synthetic held. Ruler now works (discriminates); level shows ear is WEAK signal, 0.80 unreachable for linear head. Running pairs 1-2 for quorum.
 
 assistant: v44 VERDICT filed 3/3 COMPLETE: mouth CLAIM1+CLAIM2 3/3 (S1 2.63-2.71, S2 2.82-2.84), retention +0.08-0.12, determinism 3/3 match, dialect 0/12. Ear under fair ruler: real 0.44-0.54 (+0.19-0.29 over 0.25 marginal), shuffled 0.33-0.39; gap rule 2/3 HELD (p0 0.095 BROKEN by 0.005). Blind 3/3 + synthetic 3/3 held. Answer: ear weak-not-zero; 0.80 absolute unreachable for linear head. Unpushed grows: v44 ledgers + bundles + verdict.
+
+user: go ahead and push first
+
+assistant: Push done: tip e92777a confirmed; commit c1c606d (14 files, 9247708B: transcript + CHATLOG + v44 spec + exp driver + 6 v44 bundles + 3 v44 ledgers + v44 verdict); first ref PATCH 404 (singular /git/ref/ endpoint — read-only; update needs plural /git/refs/), recommitted and PATCHED plural endpoint 200 + cache-busted re-read refMatch true; secret-scan clean; PAT in worker/page memory only. Orphan 8da204a from the 404 attempt dangles unreferenced (same content, harmless). Backlog drained except this receipt.

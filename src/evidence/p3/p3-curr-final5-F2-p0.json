@@ -1,0 +1,1 @@
+{"spec":"final5-F2","verdict":"COMPLETE","pair":0,"tail":{"real":0.3539,"n":3060,"shuf":0.1974,"gap":0.1565},"promise":"tail>=0.80 with gap>=0.10 while full-range ~0.45","met":false}
