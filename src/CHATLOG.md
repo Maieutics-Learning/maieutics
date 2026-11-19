@@ -1518,3 +1518,25 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Verdict src/evidence/p3/p3-curr-v43-verdict.json + ledgers v43-p0/1/2. Combined (200-step + replay): CLAIM1 3/3 (2.634-2.667), CLAIM2 3/3 (2.810-2.840, all <2.944 + delta), retention +0.08-0.12, ear S1 0.82-0.87 S2 0.65-0.76, earC1 0.81-0.84, dialect 0/12.
 - Nulls: blind FAIL/FAIL 3/3 (held), synthetic 3.07-3.11 CLEAN 3/3 (held), shuffled FIRED 3/3 (0.78/0.78/0.87 vs real 0.82/0.86/0.87; gap < 0.10 -> EAR-BAR void per spec).
 - What did we learn: the combined recipe transmits (mouth, with holding nulls) and retains (replay); the ear metric is degenerate under fixed thresholds (marginal 0.79) — v4.4 needs adaptive quartile buckets. W not tripped.
+
+## 2026-11-19 — PUSHED e92777a (v4.3 verdict + ear-void; user-ordered) + v4.4 DRAFT (uncountersigned)
+- Parent 01d2f57 confirmed live; 8 files, 337316B, secret-scan clean (descriptive prefix only), tree via base_tree overlay, commit e92777a, ref PATCH 200 + cache-busted re-read refMatch true. PAT in worker/page memory.
+- Backlog drained except this receipt.
+- v4.4 DRAFT filed (UNCOUNTERSIGNED, no compute): adaptive quartile buckets (per-pair q25/q50/q75 from tutor's own entropy, filed), tutor ear retrain + new bundles (mouth untouched, lines reused), student combined rerun, nulls rerun. Tests whether the ear carries signal under a fair ruler.
+
+## 2026-11-19 — v4.4 COUNTERSIGNED (user: point 4 countersign)
+- Spec src/evidence/p3/specs/p3-twins-v08-curriculum-v44-draft.md marked COUNTERSIGNED 2026-11-19.
+- Authorized: tutor mouth retrain (determinism check vs filed v4.2 TE/TH, ABORT on drift), quartile cuts from tutor entropy (filed), ear retrain head-only + probe, new v44 bundles (v4.2 lines reused, tEar recomputed), student combined rerun, nulls rerun.
+
+## 2026-11-19 — v44 pair-0: fair ruler works, ear is weak (What did we learn so far)
+- Ledger v44-p0 COMPLETE. Determinism match (retrain TE 2.6287/TH 2.7579 = filed). Bands [1563,1565,1564,1563], marginal 0.2502. Probe PASS deg 0.
+- Mouth: S1 2.6524 PASS, S1hard 3.2933, S2 2.8197 PASS, retention +0.1048, dialect N -0.08/-0.05 E -0.02/-0.13 FAIL.
+- Ear: real 0.4571 Wilson [0.4397,0.4745] (+0.21 over marginal); shuffled 0.3623; gap 0.095 < 0.10 -> BROKEN by 0.005. Synthetic ear 0.19, blind FAIL/FAIL held.
+- What this says: the ruler discriminates now (0.46 vs 0.36, both far from 0.80); the channel is weak, not zero. 0.80 unreachable for a linear head on a frozen trunk. Pairs 1-2 pending.
+
+## 2026-11-19 — v44 VERDICT 3/3: ear weak-not-zero (What did we learn)
+- Verdict p3-curr-v44-verdict.json + ledgers v44-p0/1/2 + 6 v44 bundles. Determinism 3/3 match. Bands balanced (marginal 0.25).
+- Mouth: CLAIM1 3/3 (2.626-2.709), CLAIM2 3/3 (2.820-2.842 <2.944 + delta), retention +0.08-0.12, dialect 0/12.
+- Ear: real 0.441-0.544 (+0.19-0.29 over marginal); shuffled 0.329-0.395; gap rule HELD p1 (0.112) + p2 (0.149), p0 0.095 BROKEN by 0.005. Absolute 0.80 unreachable all pairs.
+- Nulls: blind FAIL/FAIL 3/3 held; synthetic CLEAN 3/3 held.
+- What did we learn: fair ruler discriminates (real vs shuffled separated 2/3, near-miss 1/3); the channel is weak-not-zero. The ear question is answered as far as a linear head can answer it: +0.2 over chance, replicable. Next fork: accept ear as auxiliary (mouth is the channel) or train the ear jointly (v4.5, spec change).

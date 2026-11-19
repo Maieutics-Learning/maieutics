@@ -74,3 +74,15 @@ assistant: v43 VERDICT filed 3/3 COMPLETE: mouth CLAIM1 3/3 + CLAIM2 3/3, retent
 user: How does the training work? The teacher generates 100 lines then?
 
 user: Ok, so what do we know from all of this going forward?
+
+assistant: Push done: tip 01d2f57 confirmed; commit e92777a (8 files, 337KB); ref PATCH 200 + re-read refMatch true. PAT in worker/page memory. Backlog drained except this receipt. v4.4 DRAFT written (UNCOUNTERSIGNED): adaptive quartile buckets, tutor ear retrain + new bundles + student rerun + nulls; What do I want to find out = does the ear carry signal under a fair ruler.
+
+user: point 4 countersign
+
+assistant: v4.4 COUNTERSIGNED 2026-11-19. Building run: tutor mouth retrain (determinism check vs filed TE/TH) + quartile cuts + ear retrain + new bundles (lines reused) + student combined + 3 nulls. Pair-by-pair.
+
+assistant: v44 run code done + a .g typo caught by grep before compute (would have thrown). Unpushed grows: exp driver. Running v44 pair-0.
+
+assistant: v44 pair-0 COMPLETE: determinism match (TE/TH exact), bands balanced (marginal 0.2502), probe PASS. Mouth S1 2.6524 PASS, S2 2.8197 PASS, retention +0.105, dialect FAIL. Ear under fair ruler: real 0.457 (+0.21 over marginal), shuffled 0.362, gap 0.095 vs 0.10 rule -> BROKEN by 0.005. Blind held, synthetic held. Ruler now works (discriminates); level shows ear is WEAK signal, 0.80 unreachable for linear head. Running pairs 1-2 for quorum.
+
+assistant: v44 VERDICT filed 3/3 COMPLETE: mouth CLAIM1+CLAIM2 3/3 (S1 2.63-2.71, S2 2.82-2.84), retention +0.08-0.12, determinism 3/3 match, dialect 0/12. Ear under fair ruler: real 0.44-0.54 (+0.19-0.29 over 0.25 marginal), shuffled 0.33-0.39; gap rule 2/3 HELD (p0 0.095 BROKEN by 0.005). Blind 3/3 + synthetic 3/3 held. Answer: ear weak-not-zero; 0.80 absolute unreachable for linear head. Unpushed grows: v44 ledgers + bundles + verdict.
