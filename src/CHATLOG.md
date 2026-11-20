@@ -1594,3 +1594,227 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - F6 rerank pilot COMPLETE (user-confirmed A: X candidates for next token, pair-0, X=4, 30 lines/385 pos): base 0.3195, tutor-greedy 0.1506, V1 self-lookahead 0.1143 (d -0.205), V2 tutor-rerank 0.2156 (d -0.104). Both hurt; self-lookahead hurts most. Doubt-rerank fails single-step choice too. Ledger p3-curr-final5-F6-p0.json + driver p3-curr-final5-f6.js.
 - Ear PARKED (user-confirmed 2026-11-19 night): F6 was the last test; analysis-paralysis reading confirmed with scope correction (never-helps holds on this bench/weak-tutor, not universally — competent+heteroskedastic tutor untested, C0-hetero stays the open upper bound).
 - Notes operating choice (user: "do what you think is best"): direct edits stay the writer (transcript + working record + CHATLOG via default.edit, honoring log.js formatting — timestamped lines, bullet shape, append-only, transcript file+speaker required). Rationale: fewer worker round-trips than log.js bootstrap per turn, same bytes, proven tonight. log.js/search.js stay canonical + fallback.
+
+## 2026-11-19 — PUSHED 3c69416 (v45/v46/WHY/final5/Exp-A/B/C/F6 backlog; user-ordered "Lets push")
+- Parent c1c606da confirmed live before write (tip-guard c1c606d held; abort-on-mismatch armed, not triggered). Scope 1207 files (main.pjs + index.html + agents-augment.md + src/** + LICENSE/README root mappings); remote 1159 blobs. Delta: 57 uploaded (~9.3MB: v45/v46/WHY ledgers+verdicts+drivers, final5 F1-F5+F6 ledgers+driver+verdicts, Exp-A/B/C ledgers, C0-hetero/tutor-ladder notes, memory U6 skill fix, CHATLOG, transcripts) / 1150 reused, 0 deleted (remote-only paths persist via base_tree), secret-scan clean.
+- Commit 3c694161cc9f955cf126d2c746c7b2b585101493, plural ref PATCH 200, cache-busted re-read refMatch true. PAT: first paste hit chat then was compaction-dropped before use (nothing uploaded, remote untouched); user rotated, fresh key via temp in-page box (DOM-injected, removed after save), vault hasKey verified. Key stayed in worker/page memory; summary-only return. No rotation owed on the fresh key (never touched chat/files).
+- Backlog drained: zero unpushed src/ files at 3c69416 except this receipt (rides next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — P4 mini-prereg v1.0 DRAFT (user-ordered; UNCOUNTERSIGNED, no compute)
+- Filed src/evidence/p4/p4-mini-prereg.md (new dir). Level (a) inference-time only (recommended, adopted): weights frozen, harness-executed score→selection, system-attributed claims, N2-swap contrast. Mapping table 4 rows (slice deltas → sampling weights; counts → 5% floor; overall → 0.40 stop; tutor labels/readouts → cache). Transform written down (need = max(0, 0.30 − delta) + 0.05 floor, normalized; WITHHELD uniform, SHUFFLED permuted-fed).
+- Toy loop (validation, 2 rounds, no gain bars): E vs N2 tutors, fresh students K=3 seeds each, fresh pools A (adapt) / B (held-out direction) / C (anchor) seeds 10200/10260/10270. Exit = responsiveness operator (perm test, 3/3, W fires at 2+ fails) AND direction (margin agree(S2,E)−agree(S2,S1) ≥ 0.10, 3/3, sensitivity triple) + anchor floor 0.95 + attribution (system gain descriptive, |gain_E − gain_N2| ≥ 0.05).
+- Expectation: operator 3/3 by construction (calibration, not finding), system gain +0.03–0.08, direction 2/3 (thin-margin risk owned), attribution HOLDS. Pre-mortem: harness-does-all priced by swap contrast; reweighting-teaches-noise guarded by floor + descriptive gain readout. Nearest-failure: run-3 saturation (differs: between-round score selection + held-out leg).
+- Binds nothing until countersigned. Unpushed: p4 prereg + this entry ride the next push.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — P4 toy smoke: stack green, N2 checksum exact, 3000-step wall (countersigned v1.0)
+- Driver built (p4/drivers/p4-toy.js: stack shim, pools, guards, cache-distill trains, transform, operator, direction). Exp-D round-3 compounding filed as the pre-countersigned agent-choice follow-up (specs/expD-r3-prereg.md; runs only if toy passes).
+- Smoke (execute_js, no countersigned compute spent): stack loads, pools A/B/C guards PASS (hist exact, SEP 0.053). N2 checksum EXACT [442,252,148,158] at r=4 on rebuilt 9100 pool — P2 builder bit-reproduced, READ_R=4 confirmed, no deviation owed.
+- WALL: 100 steps = 508s wall (~5s/step batch-bound) → 3000-step trains ≈ 4.2h each, unrunnable under the 60-min call cap (trainFaded has no resume). Amendment v1.1 filed UNCOUNTERSIGNED (specs/p4-mini-prereg-v11-amendment.md): calibrate 300/600 steps on E round-1, STEPS = smallest clearing train-agree ≥0.50 + fresh delta ≥0.15, else kill loop. Everything else stands. Needs countersign before any compute.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — P4 calibration VERDICT: loop killed by its own gate (countersigned v1.1)
+- cal-300 (ledger COMPLETE, 4 min — smoke timing was JIT-inflated): train-agree 0.3069 (gate FAIL), fresh-B delta 0.2017 (PASS), loss 1.69→0.92. cal-600 (7 min): train 0.2579 (FAIL, worse — loss ROSE to 1.11, thrash family: LONG12k tail + run-7 fragility), fresh 0.2155 (PASS). Expectation (300: ~0.45–0.55) MISSED low.
+- Verdict filed (p4/cal-verdict.json): STEPS unset, no escalation, toy loop will NOT run. Finding: affordable-step noise carriers too weak to price selection — expected +0.05 selection effect sits at ~1 SE. Fresh rule 0.20–0.22 ≈ run-1's 0.25 at 1/10th steps: run-2 diagnosis confirmed quantitatively (train-fit = memorization depth, rule saturates early). Gate refused correctly.
+- Redirect: selection needs a stronger carrier (spelled lines where students hit 0.9+, or C0-hetero). Next: user call — (a) park P4, (b) C0-hetero prereg, (c) structured-pool P4 variant (new mini-prereg). No compute until countersigned.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — hidden-patterns correction (user Q; calibration verdict refined, no compute)
+- User is right twice over. (1) E's PRIVATE noise partition is a real hidden pattern (learnable-but-private: run-1/2 +0.25 at 3000 steps, partition screen 0.57 vs 0.25 chance, autopsy: pattern entirely in E's readout). But weak: at affordable steps the carrier is ~0.2 and a +0.05 selection effect sits at ~1 SE. Pattern exists; instrument can't resolve changes to it. Killed loop = selection-on-uniform-noise specifically, not selection generally.
+- (2) STRUCTURED pools (Markov p=0.35, lag-1/lag-2) are strong hidden patterns AND already no-labels-clean: v0.8-v2 design had tutor/student on raw structured lines only, tutor outputs the sole labels, apparatus (pools/seeds/bars) openly ours. Mouths learn them (tutor easy 2.6 vs chance 2.94; students 0.9+ on spelled). But they live in the mouth/loss world, not the P2 agreement world — porting selection there changes the score vector, bars, and tutor, i.e. option (c) needs a re-specced mini-prereg.
+- Recommendation updated: (c) structured-pool P4 is now the favored path — the strong patterns exist, are discipline-clean, and the loop machinery (table + transform + operator + direction) ports with new fields. (b) C0-hetero stays the upper-bound question. (a) parking remains available.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — Exp-E generation-chain prereg DRAFT (user-proposed; UNCOUNTERSIGNED, no compute)
+- Idea: chain tutors on uniform noise (student becomes next tutor, 4 generations, 300-step copier — cal-300 beats cal-600) — does the map sharpen, collapse (SHUF-N fate), or drift? Lineage: G-series chained on structured pools WITH ignition; here NO gates (no correctness on noise), outcome is the readout. Pilot = one chain (seed-0 material, Pool B/C readouts: sharpness, fidelity, origin-agreement, fresh rule, collapse watch).
+- Bars: sharpening = top-1 ≥ +0.05 by G3 with origin ≥ 0.50 → replicate; collapse = marginal 0-share/entropy < 0.5 → HALT with floor filed; drift = origin < 0.35 flat entropy → file, no replication. Expectation: drift-toward-collapse 70% (lossy copying compounds 0.3^g; constant output is the attractor), sharpening the 10% surprise. Pre-mortem: one chain = anecdote → pilot buys replication decision only; stillborn-T1 guard (read T1 before training S2).
+- Cost ~20 min one call. Binds nothing until countersigned.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-19 — Exp-E v2 re-spec + G0 STILLBORN (user's generated-lines version, countersigned "lets try it")
+- Re-spec (supersedes fixed-lines v1, never ran): teacher generates 200 lines/gen (uniform-3 prefix, ancestral T=1.0, 100 short + 100 long), 150/50 split, teacher pile labels (r=1), student mouth next-token 800 + pile soft-distill 800, freeze = next teacher; models stored as blobs. E-thermometer hallucination readout (E entropy + E↔teacher agreement across gens) prices the user's Q directly. Pilot G0 + 2 student gens, then read.
+- Driver runP4ExpE (+P4ExpEInit; mouth machinery ported from CurrV42Init with lastLoss-NaN fix filed). Smoke green (50-step mouth 3.58→2.62, gen 10/10 uniq, E grades spread).
+- G0 MEASURED (ledger COMPLETE + mouth blob): M0 3.1838→2.9299, held structured 2.9389 = chance → STILLBORN per guard (≥2.7, filed, chain stopped, no continuation). Generations ARE uniform noise (uni 2.9317, 200/200 uniq) — the user's premise holds; the dialect didn't transfer. E reads them spread (counts 18/56/71/55, eEnt 1.30).
+- Diagnosis (hypothesis): init luck the lead (run-7 fragility precedent: same recipe stalls on some inits; v42 TE hit 2.63 on identical builder). No reseed run (no-shopping rule stands without explicit user exception).
+- Next: user call — (a) kill Exp-E (b) one reseeded M0 as logged exception (c) chain-on-stillborn as generated-noise P2 (deviation: spec says stop). No compute until called.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — fresh-eyes battery + v2.2 lineages + first chains running
+- Battery (4 unarmed, premise v1 frozen, results p4/fresh-eyes-expE-pool-4x-results.md): R1 luck (ACCEPT); R2 n=10 vanity + wants n=50 (PARTIAL: binomial framing adopted, n=50 REJECTED infeasible ~21h, power caveat filed); R3 blind-pick rule (ACCEPT principle, MOOTED — v2.2 runs all lineages, no selection occurs); R4 zero-luck rerun + 8/10-stall kills luck (ACCEPT, both already in design). No patch required.
+- v2.2 (user-ordered, COUNTERSIGNED): 10 lineages × 10 gens, no cross-talk, shared frozen E only; stillborns run as registered lineages (v2 guard lifted by order); per-lineage v2 bars + population counts; no selection ever. Exp-D parked (loop dead).
+- Driver bug (mine, caught same session): saveModel called without opts → blobs unloadable ("arch of undefined"). Fixed (mouth→OPTS19, pile→OPTS4); the two orphan blobs repaired in place (params intact, metadata added). Lesson: blob round-trip smoke-test belongs in every new driver.
+- MEASURED: L1g0 mouth 2.1943 held 2.6012 VIABLE (init lottery confirmed 1/2: luck hypothesis holds on second draw); L0g1 (stillborn lineage!): student mouth test 3.37 (memorized 150, test=chance+), pile fidelity +0.367 — mush transmits even from the dead seed (run-6 redux). L0g0 adopted from filed expE-g0.json.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — breadth batch 1: L2/L3/L4 G0 all VIABLE (luck confirmed 4/5)
+- L2g0 held 2.5923, L3g0 2.6390, L4g0 2.6276 — all VIABLE, all 200/200 uniq. Distribution: 4/5 viable (only L0 stillborn). Pattern: bimodal, not graded — learners cluster tight at held ~2.60 (span 0.05), stallers sit at 2.94. Init lottery decides LEARN vs STALL, not how-well.
+- Viable mouths' generations still unigram ≈ 2.92–2.94 (expected: unigram hides Markov structure; the E-entropy trajectory is the real readout, watched per gen).
+- Running: L5–L9 G0 next, then student gens (L1g1 first — viable lineage's first student).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G0 pool VERDICT: LUCK, 9/10 (bimodal LEARN-vs-STALL)
+- Held: L0 2.9389 (stillborn) vs L1–L9 all 2.5923–2.6407 (span 0.05). Verdict expE-pool-verdict.json: LUCK by the preregistered rule (≥3/10; observed 9/10). Binomial note (R2 adopted): decisive vs chance at any sane prior; n=10 caveat kept for the exact rate only.
+- All 10 lineages run (no selection, v2.2). Student gens next: L1g1 first.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G1 first students: pile transmits (+0.44/+0.47), mouth doesn't (L1g1/L2g1)
+- L1g1: pile fidelity delta +0.4358 (obs 0.69); L2g1 +0.472 (obs 0.73). Pile maps transmit STRONGER than P2's +0.25 (teacher pile on generated lines is more learnable than E's noise partition).
+- Mouth: student test 3.31/3.24 vs teacher test 2.37/2.32 (gap ~0.9 nats) — the dialect does NOT transmit at 800 steps on 150 lines. Split finding, both halves clean.
+- Line structure flat: uni 2.91–2.92; E-entropy 1.36–1.38 (≈ G0 1.31–1.38) — no emergence signal yet. L2 pile loss 0.93 vs L1 0.43 (distill variance, fidelity unaffected).
+- Running: L3g1/L4g1 next, then the rest of G1 across lineages.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G1 across lineages: pile ~+0.47 steady, mouth gap steady (L3g1/L4g1 confirm)
+- L3g1 fid +0.4048, L4g1 +0.556 (obs 0.65/0.78). Four viable lineages: 0.44/0.47/0.40/0.56, mean ~0.47. Mouth test gaps ~0.9–1.1 nats everywhere. E-entropy 1.36–1.38 flat. Pattern replicating, not drifting.
+- Running: L5g1/L6g1 next.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — first transmission failure: L5g1 pile fid +0.06 (distill stalled)
+- L5g1 fid +0.0558 (obs≈perm): pile distill stalled (lastLoss 1.07 vs 0.43–0.62 elsewhere) — same init-fragility family as the G0 mouth stall, now in the pile channel. L6g1 normal (+0.367).
+- Implication (filed, not yet a verdict): transmission is luck-gated PER LINK in both channels. Per-link success ≈ 5/6 → a 9-link chain succeeds end-to-end with p ≈ 0.19 per lineage. Most lineages will break somewhere — the trajectory readouts will show where, which IS the experiment.
+- Running: L7g1/L8g1 next, then L9g1 + G2 starts.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G2: local fidelity holds (+0.63), origin decays (L0g2/L1g2)
+- L9g1 fid +0.5254 (G1 closes 9/9 transmitting except L5's stall: 0.37/0.44/0.47/0.40/0.56/0.06/0.37/0.34/0.45/0.53).
+- L0g2: fidelity-vs-teacher +0.6253 but origin-vs-E +0.1972 (was +0.37). L1g2: fidelity +0.6327, origin +0.1912 (was +0.44). Photocopy dynamic: each link copies well, the chain walks from the root. Drift, not sharpening, not collapse — at G2.
+- Side note: L1's G1 mouth scores 1.91 on G2 test lines (best mouth generalization seen; others ~2.3) while its student still tests 3.2 — mouth quality doesn't transmit either.
+- Running: L2g2/L3g2 next.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G2 confirms photocopy drift (L2g2/L3g2); unigram first dip
+- L2g2 fid +0.6541 / origin +0.1786; L3g2 +0.5463 / +0.1977. Origin G1~0.4 → G2~0.19 across 4 lineages. Unigram 2.88/2.90 (was ~2.92) — first dip below the band; watched, not yet a finding.
+- Running: L4g2/L5g2 next (L5 = the stalled-teacher lineage — does weakness inherit?).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — stalled lineage detaches fully (L5g2 origin +0.04, fidelity +0.47)
+- L4g2 normal (+0.57/+0.19). L5g2: copies its weak teacher at +0.47 while origin-vs-E sits at +0.04 ≈ chance. Fidelity WITHOUT origin — the lineage now preserves noise faithfully (run-6 moral, third vindication: mush begets mush).
+- Running: L6g2/L7g2 next.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G2 origin spread widens (L6g2 +0.23, L7g2 +0.10); L7 unigram falling?
+- L6g2 fid +0.60/origin +0.23; L7g2 +0.66/+0.10. Origin range now 0.04–0.23 — lineages diverging. L7 unigram 2.923→2.921→2.880 across gens (only falling trajectory; E-entropy flat 1.35 — watched, unclaimed).
+- Running: L8g2/L9g2 to close G2, then G3.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G2 CLOSED all 10: origin ~0.2 (8 lineages 0.18–0.23; L5 0.04, L7 0.10)
+- L8g2 +0.56/+0.19, L9g2 +0.59/+0.21. Fidelity holds ~0.6; origin G1~0.4 → G2~0.2 (geometric so far → G3 ≈ 0.1 projected, unfiled). Unigram dips in L7/L8 (2.88) — watched.
+- Running: G3 starts (L0g3/L1g3).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G3: decay slowing? (L0g3 origin 0.16, L1g3 0.20 flat)
+- L0g3 fid +0.58/origin +0.163 (was 0.197); L1g3 +0.64/+0.196 (was 0.191 — flat). Decay G2→G3 much smaller than G1→G2 — possible floor above chance (stable idiosyncratic map) rather than walk-to-chance. Undecided until G4.
+- Running: L2g3/L3g3 next.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G3 surprise: origin RISES, unigram keeps falling (L2g3/L3g3)
+- L2g3 origin +0.249 (was 0.179), L3g3 +0.233 (was 0.198) — decay REVERSED. Unigram 2.858/2.843 (deepening dip, spreading across lineages). Uniq still 200/200 (not collapse). E-entropy flat ~1.36.
+- Reading (hypothesis, unpriced): generated lines structurally narrowing in a way that pulls maps back toward E's partition — the user's emergence hypothesis stirring. Two lineages one step — trend or wobble decided by G3 rest + G4. No claim filed.
+- Running: L4g3/L5g3 next.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G3 rise is lineage-specific (L4 flat 0.17, L5 detached 0.03)
+- L4g3 origin +0.172 (flat vs 0.186), uni 2.905 (no dip). L5g3 origin +0.028 (detached lineage stays detached), fid +0.54 (still copies its teacher).
+- Scoreboard G3 so far: L0 0.16, L1 0.20, L2 0.25↑, L3 0.23↑, L4 0.17→, L5 0.03→. Emergence signal (if real) lives in L2/L3 (+L7 pending) — lineage-specific, which is exactly the shape of either a real find or a wobble. G4 decides.
+- Running: L6g3/L7g3 next (L7 = the other unigram dipper).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G3: risers L2/L3/L6 vs holders, L7 dip was wobble
+- L6g3 origin +0.241 (holds high, was 0.231). L7g3 +0.097 (flat) with uni back to 2.896 (dip gone → wobble, filed as such).
+- G3: L0 .16, L1 .20, L2 .25↑, L3 .23↑, L4 .17→, L5 .03→, L6 .24↑, L7 .10→. Three risers, four holders, one detached. G4 decides whether risers diverge or regress.
+- Running: L8g3/L9g3 to close G3.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G3 CLOSED: 4 risers, 4 holders, 1 faller, 1 detached (L8g3/L9g3)
+- L8g3 origin +0.242 (riser, was 0.186). L9g3 +0.151 (faller, was 0.210) BUT deepest unigram dip 2.831 — mixed signals in one lineage (map moved away while lines narrowed most).
+- G3 final: L0 .16, L1 .20, L2 .25, L3 .23, L4 .17, L5 .03, L6 .24, L7 .10, L8 .24, L9 .15. No clean story — lineage-specific dynamics, as designed. G4 (L0g4/L1g4 next) tests whether risers diverge, regress, or rotate.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G4: risers hold, fallers mixed, unigram dips deepen (L0g4–L3g4)
+- L0g4 origin +0.188 (was 0.163↑), L1g4 +0.228 (was 0.196↑) — former holders rising; L0 eEnt 1.29 (first E-entropy dip). L2g4 +0.241 (holds), uni 2.850 (keeps falling), eEnt 1.31 (dipping). L3g4 +0.180 (FELL from 0.233) with uni 2.820 (deepest) — map moved away while lines narrowed most (L9 pattern repeating).
+- Shape: decay stopped ~G2 and is reversing in most lineages; unigram falling in L2/L3/L9 (2.82–2.86) while E-entropy only just starting to move (1.29–1.31 in L0/L2). Candidate: chains settle into stable idiosyncratic maps, lines narrowing — emergence in slow motion, or structured drift. G4 rest + G5 price it.
+- Running: L4g4/L5g4 next.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G4 rotation, not convergence (L4 falls, L5 at chance, fidelity holds)
+- L4g4 origin +0.146 (fell from 0.172); L5g4 −0.003 (fully detached, chance) with fid +0.54 intact. G4: L0 .19↑ L1 .23↑ L2 .24→ L3 .18↓ L4 .15↓ L5 −.00→ — risers and fallers swapping = oscillation around ~0.15–0.25, not convergence. No lineage collapsed (uniq 200/200, fid 0.54–0.66 everywhere).
+- Running: L6g4/L7g4 next.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G4 big swings: L6 collapses 0.24→0.08, L7 rises again (dip returns)
+- L6g4 origin +0.084 (fell from 0.241); L7g4 +0.154 (up from 0.097) with uni back down to 2.837. Rotation confirmed: no lineage holds its level; origin wanders 0.05–0.25 while fidelity stays ~0.6. Candidate shape: bounded drift (random walk in map-space), not convergence, not walk-to-chance. G4 rest + G5 test stationarity of the band.
+- Running: L8g4/L9g4 to close G4.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G4 CLOSED: L9 unigram in free fall (2.93→2.78), origin flat 0.13
+- L8g4 origin +0.208 (holds); L9g4 +0.134 (flat-ish) with uni 2.777 — monotonic fall across G1–G4 (2.93/2.91/2.83/2.78) while E-entropy flat 1.37 and uniq 200/200. L9 is the emergence lineage: SOMETHING is concentrating in its lines that E's labels don't see.
+- G4 final: L0 .19 L1 .23 L2 .24 L3 .18 L4 .15 L5 −.00 L6 .08 L7 .15 L8 .21 L9 .13. Fidelity 0.54–0.66 everywhere (no collapse anywhere).
+- Next: dissect L9's lines (what's concentrating?) + G5 starts.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — L9 dissection: bigram entropy falls 2.46→2.18 (dialect, not collapse)
+- Regenerated L9's lines from stored mouth blobs (filed seeds, deterministic): unigram top token only 0.068→0.112 (broad throughout); bigram conditional entropy 2.4636/2.3915/2.2653/2.1843 — monotonic fall. Tokens predict each other more each gen (SEP steady 6–10%, uniq 200/200).
+- Reading: L9's mouths converge toward a more predictable sequential pattern — a private hallucinated dialect, invisible to E (E-entropy flat, origin flat). Student mouths only partially internalize it (test ~3.0) yet the narrowing sustains — the user's mechanism with numbers, one lineage. Control owed: L0's bigram trajectory (flat unigram — if its bigram is flat too, emergence is lineage-specific; if falling, generic mouth-narrowing).
+- Running: G5 starts (L0g5/L1g5) + L0 bigram control in the same call.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — control kills lineage-specificity: L0 bigram falls too (generic narrowing)
+- L0 bigram 2.90→2.84→2.84→2.76: same directional narrowing with flat unigram. Emergence is GENERIC to the loop, not L9's lucky find — iterated-learning regularization (transmission bottleneck compresses toward predictability; Kirby-style, filed as the mechanism hypothesis). E-invisible throughout (except L0's eEnt now 1.22, dipping — watched).
+- G5: L0g5 origin +0.186 (flat), L1g5 +0.186 (down from 0.228). L1 student mouth test 2.84 (best yet).
+- Running: L2g5/L3g5 next.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — L2 the star: origin 0.24 five gens straight + student mouth 2.41 (G5)
+- L2g5 origin +0.244 (trajectory .18/.25/.24/.24 — flat at the top), uni 2.78, student mouth test 2.41 (was ~3.2 — first student approaching teacher levels: dialect transmission may finally be happening in L2). L3g5 origin +0.164 (down), uni 2.81.
+- Running: L4g5/L5g5 next.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G5 L4g5 survived the timeout; L5g5/6g5 complete
+- Interrupted batch had finished L4g5 (COMPLETE, origin +0.208, mouth 3.10 vs teacher 1.64) before abort; only L5g5 never ran. Verified on disk, reran safe.
+- L5g5 origin -0.009 (detached again — L5 stall/detach pattern holds at G5), fid +0.48. L6g5 origin +0.12 (rotation band), fid +0.65.
+- Running: L7g5/L8g5 next, then L9g5 closes G5.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G5 COMPLETE (10/10); G6 opened
+- G5 origins: L0 .186 / L1 .186 / L2 .244 / L3 .164 / L4 .208 / L5 -.009 (detached) / L6 .120 / L7 .160 / L8 .150 / L9 .103. Band holds ~0.1-0.25 ex L5; fidelity +0.48-0.66 everywhere. L9 unigram still falling (2.749 at g5); L0 eEnt pinned 1.22.
+- L0g6: origin +0.187 (flat for 6 gens), fid +0.54. Running G6 down the lineages.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G6 mid: L5 detached three gens running
+- L1g6 +0.147, L2g6 +0.193 (still top), L3g6 +0.117, L4g6 +0.134, L6g6 +0.138. L5g6 origin -0.009 (third straight detached gen: g4/fall, g5 -.009, g6 -.009; fid sunk to +0.36) — L5 is the collapse-lineage candidate: private drift decoupled from E. Running L7g6/L8g6.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G6 COMPLETE; G7 opened
+- G6 origins: L0 .187 / L1 .147 / L2 .193 / L3 .117 / L4 .134 / L5 -.009 / L6 .138 / L7 .200 / L8 .196 / L9 .154. L7/L8 rising to ~0.2; L5 detached 3rd gen; fid holds everywhere (+0.36-0.67). L9 uni 2.732 (still narrowing); L0 eEnt 1.19 (dipping).
+- L0g7 +0.172. Running G7.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G7 mid: L5 twitches back toward E
+- L1g7 +0.161 (student mouth 2.47, best yet), L2g7 +0.210 (still top), L3g7 +0.165, L4g7 +0.143, L6g7 +0.130. L5g7 +0.040 — detached run broken (g5/g6 -.009), twitching not trending. Running L7g7/L8g7.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G7 COMPLETE; G8 opened
+- G7 origins: L0 .172 / L1 .161 / L2 .210 / L3 .165 / L4 .143 / L5 .040 / L6 .130 / L7 .203 / L8 .225 / L9 .156. L8 new high .225. L9 uni ROSE 2.732->2.784 (narrowing streak broken — watch g8). L0 eEnt 1.18.
+- L0g8 +0.165. Running G8.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G8 mid: leaders climbing, L5 detached again
+- L1g8 +0.081 (dip), L2g8 +0.226 (new high, uni 2.678 — L2 narrowing while origin climbs), L3g8 +0.185, L4g8 +0.211, L6g8 +0.149. L5g8 -0.028 (g7 twitch over, detached again). Running L7g8/L8g8.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G8 COMPLETE; G9 (final) opened
+- G8 origins: L0 .165 / L1 .081 / L2 .226 / L3 .185 / L4 .211 / L5 -.028 / L6 .149 / L7 .118 / L8 .132 / L9 .199. L9 uni 2.736 (g7 bounce was noise, narrowing resumes). L0 eEnt 1.20.
+- L0g9 +0.190. Running final generation down the lineages.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — G9 final stretch: L3/L4 closed, timeout batch recovered clean
+- Interrupted L3g9/L4g9 batch left NO ledgers on disk (died before first save); resume-safe rerun completed both: L3g9 +0.149, L4g9 +0.147. G9 so far: L0 .190 / L1 .115 / L2 .139 / L3 .149 / L4 .147. L2g9 uni 2.603 + student mouth 2.10 (transmission deepening in L2 even as origin cools).
+- Running: L5g9/L6g9, then L7-L9 to close Exp-E compute.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — Exp-E COMPLETE: all 100 lineage-gens + verdict filed
+- G9 origins: L0 .190 / L1 .115 / L2 .139 / L3 .149 / L4 .147 / L5 .014 / L6 .093 / L7 .187 / L8 .153 / L9 .190. Zero HALTs in 90 student-gens.
+- VERDICT (expE-verdict.json): unigram falls in ALL 10 (generic regularization, L2 -0.31 strongest); fidelity holds 0.42-0.63; 8/9 band lineages cool from E (hallucinated-transmission signature, mild); mouth transmission deepens late (L2/L6 ~2.1); E-entropy flat (no E-visible dreaming); L0 dead seed resurrected (flat +0.19); L5 detached-drift, still copying. Population g9: 0 collapsed / 1 detached / 8 cooling / 1 flat.
+- Next user call: (a) replicate/extend per lineage or global (new countersign) (b) analyze dialect content (what ARE the narrowed patterns?) (c) push backlog (PAT-gated) (d) park.
+**Always read src/agents-augment.md first, every session.**

@@ -1,0 +1,1 @@
+{"steps":600,"spec":"p4-v1.1-cal","verdict":"COMPLETE","wallMs":417450,"train":{"obs":0.536,"perm":0.2781,"agree":0.2579},"freshB":{"obs":0.4725,"perm":0.257,"delta":0.2155},"firstLoss":1.6931,"lastLoss":1.1102,"gate":{"trainAgree":"FAIL","freshDelta":"PASS"}}
