@@ -1,0 +1,1 @@
+{"spec":"p4-structuredmouth-v10","seed":2,"arm":"shuf","verdict":"COMPLETE","w":[0.0851,0.183,0.3888,0.0779,0.1184,0.1468],"mtr":{"firstLoss":3.2924,"lastLoss":0.9398},"wallMs":199731,"held":{"s2loss":3.4782,"s1loss":2.8208,"lossGain":-0.6574}}

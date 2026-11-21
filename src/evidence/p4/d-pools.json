@@ -1,0 +1,1 @@
+{"spec":"p4-dialect-v10","verdict":"COMPLETE","stats":{"strong":{"uni":2.6508,"lag1":0.4014,"uniq":300},"detached":{"uni":2.8445,"lag1":0.1286,"uniq":300},"base":{"uni":2.9425,"lag1":0.3784,"uniq":300}},"sig":"PASS"}

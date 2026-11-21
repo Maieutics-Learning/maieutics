@@ -1,0 +1,1 @@
+{"spec":"p4-c0hetero-v10","seed":1,"arm":"true","verdict":"COMPLETE","w":[0.2676,0.1312,0.1917,0.0759,0.1838,0.1498],"mtr":{"firstLoss":3.3354,"lastLoss":1.1557},"wallMs":36806,"held":{"s2held":3.1221,"s1held":2.7732,"gain":-0.3489,"verdict":"FAIL"},"operator":{"massTrue":0.6432,"p":0.1,"pass":"FAIL"}}

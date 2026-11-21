@@ -1,0 +1,1 @@
+{"spec":"p4-structuredmouth-v11","impl":"v1.2 no-replacement draw, pool n=600","seed":2,"arm":"unif","verdict":"COMPLETE","w":[0.1667,0.1667,0.1667,0.1667,0.1667,0.1667],"cellCounts":[51,49,45,53,60,42],"mtr":{"firstLoss":3.137,"lastLoss":1.9489},"wallMs":262055,"held":{"s2loss":2.8607,"s1loss":2.8208,"lossGain":-0.0399}}

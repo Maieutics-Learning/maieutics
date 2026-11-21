@@ -1,0 +1,1 @@
+{"spec":"p4-c0hetero-v11","impl":"v1.2 no-replacement draw, pool n=600","arm":"weak-L5-true-only","verdict":"COMPLETE","wallMs":258711,"gaps":[-2.9626,-1.554,-3.4618,-2.0399,-4.0239,-3.0749],"s1heldFrom":"c-weak.json","held":{"s2held":2.6625,"s1held":2.7146,"gain":0.0521}}

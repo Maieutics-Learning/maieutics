@@ -1,0 +1,1 @@
+{"spec":"p4-c0flip-v10","seed":0,"arm":"easy","verdict":"COMPLETE","w":[0.1205,0.1602,0.1703,0.2485,0.1275,0.173],"cellCounts":[35,42,65,70,40,48],"mtr":{"firstLoss":3.2955,"lastLoss":1.9006},"wallMs":269070,"held":{"s2held":2.743,"s1held":2.6951,"gain":-0.0479}}

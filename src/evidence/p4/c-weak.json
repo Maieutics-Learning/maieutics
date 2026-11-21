@@ -1,0 +1,1 @@
+{"spec":"p4-c0hetero-v10","arm":"weak-L5-true-only","verdict":"COMPLETE","wallMs":97343,"r1":{"firstLoss":3.3098,"lastLoss":2.252,"gaps":[-2.9626,-1.554,-3.4618,-2.0399,-4.0239,-3.0749]},"r2":{"firstLoss":3.0778,"lastLoss":1.5627},"held":{"s2held":3.1071,"s1held":2.7146,"gain":-0.3925}}

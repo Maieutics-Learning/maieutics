@@ -1,0 +1,1 @@
+{"steps":600,"spec":"p4-structured-v10","verdict":"COMPLETE","wallMs":71108,"eSpread":{"counts":[166,269,316,249],"ent":1.3615},"train":{"obs":0.538,"perm":0.292,"agree":0.246},"freshB":{"obs":0.5175,"perm":0.2864,"delta":0.2311},"firstLoss":1.3234,"lastLoss":1.2602,"gate":{"trainAgree":"FAIL","freshDelta":"PASS"}}

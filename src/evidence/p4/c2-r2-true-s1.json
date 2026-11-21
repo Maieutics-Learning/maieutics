@@ -1,0 +1,1 @@
+{"spec":"p4-c0hetero-v11","impl":"v1.2 no-replacement draw, pool n=600","seed":1,"arm":"true","verdict":"COMPLETE","w":[0.2676,0.1312,0.1917,0.0759,0.1838,0.1498],"cellCounts":[85,34,58,26,56,41],"mtr":{"firstLoss":3.3121,"lastLoss":1.6942},"wallMs":35817,"held":{"s2held":2.699,"s1held":2.7732,"gain":0.0742,"verdict":"FAIL"},"operator":{"massTrue":0.6432,"p":0.1,"pass":"FAIL"}}

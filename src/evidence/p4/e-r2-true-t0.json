@@ -1,0 +1,1 @@
+{"spec":"p4-dialect-r-v10","seed":0,"arm":"true","verdict":"COMPLETE","w":[0.1029,0.4857,0.1029,0.1029,0.1029,0.1029],"mtr":{"firstLoss":3.2006,"lastLoss":1.3004},"wallMs":334218,"held":{"s2loss":2.3064,"s1loss":2.2745,"lossGain":-0.0319},"bigr":{"dTutorS2":0.5713,"dTutorS1":0.698}}

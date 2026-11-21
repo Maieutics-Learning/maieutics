@@ -1,0 +1,1 @@
+{"spec":"p4-c0hetero-v10","seed":1,"arm":"shuf","verdict":"COMPLETE","w":[0.0759,0.1917,0.2676,0.1498,0.1312,0.1838],"mtr":{"firstLoss":3.4144,"lastLoss":2.8008},"wallMs":52380,"held":{"s2held":2.8806,"s1held":2.7732,"gain":-0.1074,"verdict":"FAIL"},"operator":{"massTrue":0.4747,"p":0.75,"pass":"FAIL"}}

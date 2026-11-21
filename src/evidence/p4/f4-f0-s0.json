@@ -1,0 +1,1 @@
+{"spec":"p4-floorsweep-v10","seed":0,"floor":0.05,"verdict":"COMPLETE","w":[0.1403,0.2983,0.1403,0.1403,0.1403,0.1403],"concentration":0.2983,"mtr":{"firstLoss":3.307,"lastLoss":2.0502},"wallMs":288960,"held":{"s2loss":2.3122,"s1loss":2.4063,"lossGain":0.0941}}
