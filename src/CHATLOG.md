@@ -1818,3 +1818,21 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - VERDICT (expE-verdict.json): unigram falls in ALL 10 (generic regularization, L2 -0.31 strongest); fidelity holds 0.42-0.63; 8/9 band lineages cool from E (hallucinated-transmission signature, mild); mouth transmission deepens late (L2/L6 ~2.1); E-entropy flat (no E-visible dreaming); L0 dead seed resurrected (flat +0.19); L5 detached-drift, still copying. Population g9: 0 collapsed / 1 detached / 8 cooling / 1 flat.
 - Next user call: (a) replicate/extend per lineage or global (new countersign) (b) analyze dialect content (what ARE the narrowed patterns?) (c) push backlog (PAT-gated) (d) park.
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — PUSHED ca6232f (parent 3c69416, user: "lets push first")
+- Worker-side git-blobs overlay (PAT vault->worker memory only, summary return): scope 1512 (main.pjs+index.html+src/**+LICENSE/README mappings), 307 uploaded / 1205 reused, 0 deleted (remote-only paths persist). Commit ca6232f, ref PATCH + cache-busted re-read MATCH. Fixes en route: singular /git/ref/ 404 on PATCH (use plural /git/refs/), single 1512-entry tree 422-timeout (incremental bottom-up rebuild), secondary-rate-limit backoff, no Cache-Control header.
+- Covers: P4 mini-prereg v1.0/v1.1 + driver + calibration + gate verdict; Exp-E v2/v2.2 full (G0 pool + verdict, 90 student-gens, pool verdict, final verdict); battery adjudication; CHATLOG + transcripts. Backlog drained except this receipt.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — Exp-F content results: stickiness + symmetry-breaking; F1/F2/F3 in
+- Regenerated teacher lines dissected: narrowers (L1/L2/L6/L8) = lag-1 persistence amplified + lineage-specific favorite-token self-loops (L2 tok8 16%, L6 tok0 19%, L1 tok3/13, L8 tok15/17). L9 = alternation route (ABAB 2x chance, lag-1 flat). L5 = anti-structure (lag-1 0.11, bigram ~max entropy) = why E decoupled. L0 = unstructured-mild.
+- F1 E-VISIBILITY: REFUTED as stated — E entropy flat across lag-1 0-0.7, confidence FALLS with stickiness. Origin cooling is not E changing its mind.
+- F2 AMPLIFIER: REFUTED — one mouth step preserves lag-1 (gain 0.92-1.00). Rise must come from elsewhere (concentration-coupling candidate).
+- F3 TRANSPLANT: PASS — fresh pair on L2g9 lines hits mouth 2.00 / fid +0.64 / origin +0.16 (all within bars). Transmissibility is in the lines, chain history irrelevant.
+- Running: F2b concentration-amplifier + F4 L2 replication branch (attractor vs contingent).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-20 — Exp-F COMPLETE: the ratchet has a mechanism (vector, not scalar)
+- F6: mouth-only chain reproduces L2 digit-for-digit — pile irrelevant to content evolution. F7: per-token freq/self-loop correlation r=0.89 late (leaders 0.6-0.73, rare 0.03-0.2); even uniform-trained mouth r=0.70 slope 5.4. Learner maps small frequency edges into large self-loop edges — compounding crown. Scalar F2 missed it (structure is vector: WHICH tokens repeat).
+- F4: rerun narrows (2.916->2.827) but crowns tok9/8/6 tie, not tok8 — content contingent, process attractor. Full story: sampling noise crowns -> slope>1 compounds -> dialect narrows onto contingent winner. Filed expF-verdict.md. Unpushed: prereg + verdict + F-blobs/ledgers + records.
+**Always read src/agents-augment.md first, every session.**

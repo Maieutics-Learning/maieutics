@@ -1,0 +1,1 @@
+{"which":"L2Rg3","spec":"expE-F-F4","lineage":"L2R","verdict":"COMPLETE","gen":{"n":200,"uniq":200,"unigramEnt":2.8719},"teacher":{"pileCounts":[20,99,65,16]},"student":{"mouthTestLoss":2.9722,"pileLast":0.7687,"fidelity":{"obs":0.94,"perm":0.3644,"delta":0.5756}},"origin":{"agreeVsE":0.2258},"topBi":[["40",0.0403],["160",0.0319],["180",0.0298]]}
