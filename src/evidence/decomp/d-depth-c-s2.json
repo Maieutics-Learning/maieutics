@@ -1,0 +1,1 @@
+{"spec":"depth-v10","seed":2,"verdict":"COMPLETE","R":3,"N":200,"reps":[{"directR3":0.49,"directR1":0.505,"sep":0.0102,"nOk":98},{"directR3":0.5,"directR1":0.495,"sep":0,"nOk":100},{"directR3":0.465,"directR1":0.48,"sep":0,"nOk":93}],"mean":{"directR3":0.485,"directR1":0.4933,"sep":0.0034,"clampDrop":-0.0083}}

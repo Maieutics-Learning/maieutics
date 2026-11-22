@@ -1,0 +1,1 @@
+{"spec":"decomp-scale-v10","seed":1,"verdict":"COMPLETE","tau":3.0618,"n":240,"acc":{"direct":0.6875,"decomp1":0.6292,"switch":0.625,"force":0.6167},"b1":{"sub1midRate":0.2625,"chance":0.25},"b2":{"fired":79,"switchMinusStay":-0.0127,"firedWrongRate":0.519,"firedFixedRate":0.1266},"q1":{"decomp1MinusDirect":-0.0583},"h":48,"mode":"single","slug":"single-h48"}

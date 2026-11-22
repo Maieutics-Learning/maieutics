@@ -1,0 +1,1 @@
+{"spec":"decomp-v10-diag","seed":0,"n":240,"querySensitivity":0.2708,"agreeDirectDecomp1":0.7917,"agreeDirectDecomp1AndRight":0.525,"directAcc":0.6167,"sub1okRate":0.2458,"decomp1okGivenSub1ok":0.7288,"decomp1okGivenSub1bad":0.5801}

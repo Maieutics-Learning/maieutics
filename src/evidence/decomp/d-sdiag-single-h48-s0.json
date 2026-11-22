@@ -1,0 +1,1 @@
+{"spec":"decomp-scale-v10-diag","seed":0,"n":240,"querySensitivity":0.3875,"agreeDirectDecomp1":0.7625,"directAcc":0.7083,"sub1okRate":0.2583,"decomp1okGivenSub1ok":0.8226,"decomp1okGivenSub1bad":0.618,"h":48,"mode":"single","slug":"single-h48","rungPass":false}

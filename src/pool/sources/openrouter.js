@@ -1,14 +1,15 @@
 // Track B pool — OpenRouter source (own code, no steal).
 // Keyed OpenAI-compatible call. Free models (":free" suffix) cost nothing;
-// default is a small fast one (verified on the public model list 2026-11-11:
-// 15 free entries; liquid/lfm-2.5-2.6b:free = 2.6B, 65k ctx). Model is a
+// default is a small fast one (verified on the public model list 2026-11-22:
+// 476 entries; liquid/lfm-3-1.7b:free = same-family successor of the retired
+// lfm-2.5-2.6b:free, POOL-OK ~0.5s). Model is a
 // parameter — switch freely. Key ONLY from the P3 vault (user pastes at
 // openrouter.ai/keys); 401/403 -> vault.markAuthFailure (dead + re-paste).
 (function () {
 "use strict";
 
 var ENDPOINT = "https://openrouter.ai/api/v1/chat/completions";
-var MODEL_DEFAULT = "liquid/lfm-2.5-2.6b:free";
+var MODEL_DEFAULT = "liquid/lfm-3-1.7b:free";
 var PROVIDER_LINK = "https://openrouter.ai/keys";
 var CALL_TIMEOUT_MS = 60000;
 

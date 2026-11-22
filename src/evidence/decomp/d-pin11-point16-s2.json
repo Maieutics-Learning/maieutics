@@ -1,0 +1,1 @@
+{"spec":"pin-v11","seed":2,"arm":"pin11-point16","verdict":"COMPLETE","n":200,"acc":{"b0":0.385,"b1":0.135,"b2":0.605,"b3":0.295,"b4":0.295,"b5":0.295},"b3echoRate":1,"chance":0.25,"train":{"arm":"point16","steps":300,"lastCycleLoss":0.0201,"lastConLoss":0.0061,"wallMs":147702}}

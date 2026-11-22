@@ -1,0 +1,1 @@
+{"spec":"assembly-v10","seed":0,"arm":"ab","verdict":"COMPLETE","n":240,"gates":{"aTest":0.985,"bTest":0.995,"gate":"PASS"},"asm":{"direct":0.3583,"decomp1":0.5167,"sub1mid":0.675,"oracleFollow":0.6417,"decomp1givenSub1ok":0.5864}}

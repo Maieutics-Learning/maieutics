@@ -1,0 +1,1 @@
+{"spec":"decomp-scale-v10","seed":1,"verdict":"COMPLETE","tau":4.1556,"n":240,"acc":{"direct":0.5958,"decomp1":0.5583,"switch":0.575,"force":0.6083},"b1":{"sub1midRate":0.2417,"chance":0.25},"b2":{"fired":80,"switchMinusStay":0.05,"firedWrongRate":0.5,"firedFixedRate":0.1375},"q1":{"decomp1MinusDirect":-0.0375},"h":96,"mode":"dual","slug":"dual-h96"}

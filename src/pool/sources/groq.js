@@ -30,10 +30,14 @@ function vault() {
 }
 
 // generate({prompt, maxTokens, model, temperature}) -> result (never throws).
+// NOTE: gpt-oss-20b reasons before answering, so small caps starve it
+// (measured 2026-11-22: maxTokens 16/32 -> ok:true but EMPTY text, 32/32
+// completion tokens spent thinking). Floor all calls at 256 — verified
+// POOL-OK verbatim at 256 (~0.5-0.8s, ~63 completion tokens).
 function generate(opts) {
   opts = opts || {};
   var prompt = String(opts.prompt == null ? "" : opts.prompt);
-  var maxTokens = opts.maxTokens == null ? 32 : Math.max(1, opts.maxTokens | 0);
+  var maxTokens = opts.maxTokens == null ? 256 : Math.max(256, opts.maxTokens | 0);
   var model = opts.model || MODEL_DEFAULT;
   var temperature = opts.temperature == null ? 0 : +opts.temperature;
   var t0 = nowFn()();

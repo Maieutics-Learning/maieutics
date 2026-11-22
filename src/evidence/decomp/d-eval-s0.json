@@ -1,0 +1,1 @@
+{"spec":"decomp-v10","seed":0,"verdict":"COMPLETE","tau":3.627,"n":240,"acc":{"direct":0.6167,"decomp1":0.6167,"stay":0.6167,"switch":0.6542,"force":0.6583},"b1":{"sub1midRate":0.2458,"chance":0.25},"b2":{"fired":67,"switchMinusStay":0.1343,"firedWrongRate":0.4627,"firedFixedRate":0.1493},"q1":{"decomp1MinusDirect":0}}

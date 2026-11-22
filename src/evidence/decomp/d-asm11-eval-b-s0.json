@@ -1,0 +1,1 @@
+{"spec":"assembly-v11","seed":0,"arm":"b","verdict":"COMPLETE","n":240,"asm":{"direct":0.4833,"decomp1":0.5,"sub1mid":0.225,"oracleFollow":0.6167,"decomp1givenSub1ok":0.6296,"querySensitivity":0.3125}}

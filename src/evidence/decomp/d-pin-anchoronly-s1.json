@@ -1,0 +1,1 @@
+{"spec":"pin-v10","seed":1,"arm":"pin-anchoronly","verdict":"COMPLETE","n":200,"acc":{"b0":0.95,"b1":0.66,"b2":0.69,"b3":0.27,"b4":0.245,"b5":0.23},"b3echoRate":0.79,"chance":0.25,"train":{"arm":"anchoronly","steps":300,"lastCycleLoss":0,"lastSupLoss":0,"wallMs":20826,"nPin":16}}

@@ -1,0 +1,1 @@
+{"spec":"pin-v11","seed":1,"arm":"pin11-distill4","verdict":"COMPLETE","n":200,"acc":{"b0":0.995,"b1":0.755,"b2":0.79,"b3":0.525,"b4":0.35,"b5":0.285},"b3echoRate":0.445,"chance":0.25,"train":{"arm":"distill4","steps":300,"lastCycleLoss":1.3907,"lastConLoss":0.1063,"wallMs":141459}}

@@ -1,0 +1,1 @@
+{"spec":"noveltype-v11","seed":2,"arm":"supmix","verdict":"COMPLETE","n":200,"acc":{"b0":0.86,"b1":0.515,"b2":0.625,"b3":0.68,"b4":0.26,"b5":0.305},"b3echoRate":0.28,"chance":0.25,"train":{"arm":"supmix","steps":"supervised-mixed-256"}}

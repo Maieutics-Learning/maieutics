@@ -1,0 +1,1 @@
+{"spec":"pin-v10","seed":1,"arm":"pin-tutor","verdict":"COMPLETE","n":200,"acc":{"b0":0.385,"b1":0.245,"b2":0.47,"b3":0.27,"b4":0.22,"b5":0.355},"b3echoRate":0.97,"chance":0.25,"train":{"arm":"tutor","steps":300,"lastCycleLoss":0.1091,"lastSupLoss":0.0216,"wallMs":151175,"nPin":16}}

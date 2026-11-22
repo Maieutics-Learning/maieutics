@@ -1,0 +1,1 @@
+{"spec":"noveltype-v11","seed":1,"arm":"scratch","verdict":"COMPLETE","n":200,"acc":{"b0":0.335,"b1":0.24,"b2":0.275,"b3":0.24,"b4":0.22,"b5":0.63},"b3echoRate":1,"chance":0.25,"train":{"arm":"scratch","steps":300,"lastLoss":0.003,"wallMs":127187}}

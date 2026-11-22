@@ -1,0 +1,1 @@
+{"spec":"probe-v11","seed":2,"arm":"b","verdict":"COMPLETE","n":400,"degRateA":0.2375,"degRateC":0.1,"overall":{"baseA":0.4875,"baseC":0.4975,"occA":0.47},"condA":{"baseDeg":0.7474,"baseNon":0.4066,"occDeg":0.7053,"occNon":0.3967},"condC":{"baseDeg":0.6,"baseNon":0.4861}}

@@ -1,0 +1,1 @@
+{"spec":"depth-v10","seed":2,"arm":"r1","verdict":"COMPLETE","R":3,"N":300,"reps":[{"decomp1":0.5233,"path1":0.5267,"lift":0.0033},{"decomp1":0.5367,"path1":0.53,"lift":-0.0067},{"decomp1":0.5267,"path1":0.5233,"lift":-0.0033}],"mean":{"decomp1":0.5289,"path1":0.5267,"lift":-0.0022}}

@@ -1855,3 +1855,108 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - F5 round-3 (true-chain continuation, rebuilds exact 3/3): COLLAPSE quorum 2/3 (g-r3-verdict.json; deltas -0.037/-0.206/-0.385; expectation SATURATE missed). Mechanism = signal exhaustion: all residual gaps < 0.30 -> w3 exactly uniform -> reversion to negative uniform baseline. One round extracts; third round without fresh signal reverts.
 - Bottom line: tutor tailoring works where substrate is learnable-but-unlearned and non-memorizable (D/F1/F4); bounded at ~zero elsewhere (C0 both directions, F3 neutral); does not stack across rounds without fresh signal (F5). 5/5 follow-up budget spent. Unpushed: all src/evidence/p4 2026-11-21 files + tailoring transcript + this entry (no push without explicit user order; no PAT run).
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-21 — PUSHED 29af5a96 (vault github PAT via temp in-page box, removed after; parent b1725c8 tip-match held)
+- Worker-side git-blobs overlay on Maieutics-Learning/maieutics main: 1658 in scope (main.pjs + index.html + agents-augment.md + src/** + LICENSE/README root mappings), 133 uploaded (~9.6MB: full tailoring program — 10 preregs/amendments, p4-toy.js drivers, ~110 ledgers incl. 9 F4 + 3 F5, 10 verdicts, tailoring transcript, CHATLOG) / 1529 reused, 0 deleted (remote-only paths persist via base_tree), secret-scan clean. Ref + commit verify MATCH. PAT stayed in worker/page memory; summary-only return. Temp key box removed from preview. Backlog drained except this receipt (rides next push). Vault was empty pre-push (generator renamed to teaching-small-models-to-learn → new storage partition); user pasted PAT on request.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — decomposition program COMPLETE: tutor does not break down harder puzzles, it pattern-matches (transcript src/evidence/conversations/2026-11-22-decomp.md)
+- User order: multi-step problem, watch it TRY to break down (Q1) + re-break down when the first looks wrong (Q2); solving not required. Puzzle: 2-hop chained recall + distractor chain (mid tokens OOD); tutor = 1-hop-trained attn, gates PASS 3/3 (1.00/1.00/0.995). Arms DIRECT/DECOMP-1/STAY/SWITCH/FORCE; critic = step-1 margin < cal-33rd-pct.
+- Verdict d-verdict.json: FAIL both bars. B1 step-1 resolution 0.246/0.288/0.271 vs 0.25 chance (1/3). B2 switch-stay on flagged +0.134/+0.052/-0.046 (2/3, mean +0.047). Decomp1 vs direct: 0/+0.004/-0.017 (no gain, no loss).
+- Mechanism (diag 3/3): query-sensitivity ~0.27 (sub-queries barely depend on the query key); final right ~55% even when step 1 wrong (the "follow" re-answers, doesn't follow); direct acc 0.56-0.63 vs 0.25 chance = real 2-hop-ish signal without stepwise work. Critic pooled precision 0.474 = coin (half of flagged were actually right) -> unstable B2; FORCE ~= SWITCH (critic adds little beyond a second opinion).
+- Reading: the tutor pattern-matches harder puzzles; it does not break them down. Open: line-heuristic vs compiled-2-hop (3-chain control proposed, not run). Unpushed: src/evidence/decomp/* + transcript + this entry (ride next push; no PAT action needed yet).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — scale staircase COMPLETE: neither simplicity nor 4x width unlocks stepwise decomposition (spec decomp-scale-v10-prereg.md)
+- Ladder R0 single-chain/h48 (eval-only, reused tutors): FAIL 0/3 (sens 0.29-0.40, sub1 ~0.25; expectation missed). Direct rose to 0.69-0.74; decomp1 < direct (wrong step-1 off the only chain hurts).
+- R1 dual-chain/h96 (fresh tutors, gates PASS 3/3, walls 2.6-4.9 min): FAIL 0/3 (sens 0.28-0.35, sub1 0.24-0.27). Width x2 moves nothing.
+- R2 dual-chain/h192 (walls 18.5-23.6 min, inside budget rule): FAIL — sens 0.19/0.15, sub1 0.275/0.208, B2 +0.03/-0.08; s2 tutor gate-ABORT (1-hop 0.275). Width without signal degrades the base skill at fixed steps.
+- Verdict d-scale-verdict.json: LADDER EXHAUSTED. Reading: missing ingredient is training SIGNAL not capacity (R0 fails the trivial puzzle; h192 degrades 1-hop itself). Untested: width + proportional steps (~90 min/train, beyond cap). Proposed next: intermediate-supervised tutor (aux loss on mid token), then v10 rematch. Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — novel-type program COMPLETE: tutor does not figure out new questions; old procedure blocks (spec noveltype-v10-prereg.md)
+- User order: tutor meets a NEW problem type and figures out what to do. Tutors 1-hop attn, gates PASS 3/3. Battery zero-shot: B0 ~1.0, B1 0.78-0.83, B2 0.70-0.85 (format survives); B3 reverse-lookup 0.335/0.19/0.23 (chance), echoRate 0.78-0.86 (systematic old-procedure).
+- Few-shot K16/64/256 tutor-vs-scratch (18 runs): K16 tutor < scratch 3/3 (interference); K64/256 tied ~0.6 (mean +0.02; neither cracks 0.65). Bar A FAIL 0/3, bar B FAIL 0/3.
+- Verdict d-novel-verdict.json: FAIL both bars. Knowing the materials buys nothing for the new question; the old procedure must be unlearned first. Proposed next (not run): mixed-question training, zero-shot on a HELD-OUT question type. Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — cycle-consistency without labels: echo-collapse, replicated 3/3 (amendment noveltype-v11-cycle-amendment.md)
+- User order: no labels. Answer-free round-trip training (soft chaining, 10 forwards/set; tutor anchor; B0 tripwire). Arms cycle-tutor/cycle-scratch/supmix-labels, seeds 0-2.
+- Result: cycle arms collapse 3/3 — echo 1.0, B0 0.24-0.34 (from 1.00), loss ~0.001. C1 FAIL 0/3, C2 TRIPPED 3/3. Supmix works (B3 0.53-0.68, echo chance): reverse learnable WITH answers; collapse specific to answer-free cycles.
+- Verdict d-novel-verdict2.json: the round trip's cheapest satisfier is echo; gradient corrupts forward rather than learning reverse. Proposed (not run): semi-supervised, 16 labeled forward anchors + cycles. Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — pin + assembly pair COMPLETE: pin OVERWHELMED 3/3; assembly FRAGMENT-FAIL + no composition bonus, but step-credit works and composition compiles flat (specs pin-v10-prereg.md + assembly-v10-prereg.md)
+- User order: question + internet agenda; approved pin + assembly pair. Drivers: novel-driver.js += runPinTrain (L_cycle_mean8 + L_sup_mean16, 300 steps); new assembly-driver.js (Pool-A key-valued, Pool-B standard, AB mix; arms a/b/ab x s0-2).
+- PIN: pin-tutor B0 0.435/0.385/0.410 (P1 FAIL 0/3), B3 0.27-0.30, echo 0.97-1.0, sup loss ~0.01 (pin memorized as exceptions, general procedure collapses). Anchor-only B0 0.84/0.95/0.895 (pin alone holds) — cycles destroy it. Verdict d-pin-verdict.json: OVERWHELMED 3/3. Follow-ups: lambda sweep, structural pin (freeze forward).
+- ASSEMBLY: gates PASS 9/9. S0 FAIL (B-only DIRECT 0.533/0.583/0.613 — Pool B alone suffices flat). S1 FAIL 0/3 (AB d1 deltas -0.05/+0.04/+0.02). Credit assignment as designed: A-only sub1 0.90-0.93/oracle chance; B-only oracle 0.76-0.82/sub1 chance; AB both degraded (interference, third replication). Finding: composition compiles FLAT (B-only one-pass bridges both hops); explicit stepping redundant (AB d1 ~= B d1). Verdict d-asm-verdict.json. Proposed next: hard assembly where flat cannot bridge (doubled-token distractors / cross-regime hops).
+- Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — v11 pair COMPLETE (countersigned): distill4 BLOCKS 3/3 (first no-labels PASS); hard assembly FLAT-SURVIVES (specs pin-v11-prereg.md + assembly-v11-prereg.md)
+- Drivers: novel-driver.js += runPin11Train (supPinStepW/distillStep; header-clobber repaired); assembly-driver.js += genHardLine/runAsm11Eval.
+- PIN11: point16 B0 0.425/0.415/0.385 (= weight-1; OVERWHELMED). distill1 B0 0.705/0.715/0.785 partial, B3 chance. distill4 B0 1.00/0.995/1.00 + B3 0.460/0.525/0.510 (BLOCKS 3/3); echo torn 0.44-0.62; cyc loss 1.39-1.48 (no cheap satisfier); B1/B2 retained; B4 0.35-0.46 beats supmix-with-labels. Verdict d-pin11-verdict.json. Reading: coverage is the variable, weight multiplies it — consistency pinned by a frozen prior over the known direction is the label-free verifier in miniature.
+- ASM11: B-only direct 0.483/0.479/0.450 (H0 FAIL 0/3); AB d1 deltas -0.06/0.00/+0.05 (H1 FAIL). A-only sub1 0.83-0.85 holds; AB sub1 0.48-0.58 (interference x4). Verdict d-asm11-verdict.json: FLAT-SURVIVES — promote flat circuit to compiled 2-hop; stepping framing exhausted. Proposed next: probe the compiled circuit (occlusion/mid-swap) or cross-regime hops.
+- Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — circuit probe COMPLETE (countersigned): FULL-2HOP, promote with honors + first-hop puzzle (spec probe-v10-prereg.md)
+- Eval-only on filed v10 tutors (9 batteries). C1 PASS 3/3 (source necessary; A-arm all-chance control). C2 PASS 3/3 (step-1 pair nearly irrelevant to B). C3 FAIL inverted (B decoyQ 0.50-0.52 > AB 0.37-0.42). occDecoy removal helps (+0.08; decoys compete, shift confound dead). Swap holds.
+- Verdict d-probe-verdict.json: FULL-2HOP — compiled query-conditional 2-hop from pure 1-hop training; stepping never the missing piece. Open puzzle: first-hop channel unidentified (C2 + FULL-2HOP tension); query-swap proposed as decisive test. Expectation (READOUT) missed on inverted C3.
+- Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — degeneracy adjudication COMPLETE (countersigned): PUZZLE-STANDS + 2HOP-REAL (spec probe-v11-prereg.md)
+- N=400/seed conditional battery on filed tutors. D1 FAIL both halves (occDeg 0.53-0.71; occNon 0.38-0.43). D2 PASS 3/3 (baseNon 0.41-0.47, genuine 2-hop off-degenerate). Correction filed: degenerate = duplicate-key ambiguous (0.59-0.75), not free — null miscalibrated. AB occDeg > baseDeg (disambiguation exploited via A-skill); symmetry true/decoy.
+- Verdict d-probe11-verdict.json. Expectation (DEMOTION) inverted. Proposed next: white-box attention-trace battery (decisive channel identifier, minutes).
+- Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — repeats + trace COMPLETE (countersigned): all verdicts CONFIRMED (D2 softens 2/3); white-box FINDS the channel (specs repeats-v10-prereg.md + trace-v10-prereg.md)
+- Repeats (27 rollup batteries, R=3): probe C2/FULL-2HOP/C1 CONFIRMED; probe11 D1-FAIL CONFIRMED; D2 means 0.425/0.423/0.387 — s2 flips (lucky roll caught), bar outcome stands by quorum, line softens 3/3->2/3; asm11 H0/H1 CONFIRMED. pin11 out of scope (retrain needed; margins comfortable). Verdict d-repeats-verdict.json.
+- Trace (attention dumps, R=3): W1/W2 quorum-pass (soft) -> READS-SOURCE. Hop-1 = query-pass content match (~45%); depth reads source (~60%, sharp, never Qmark); occ fallback = single-key random pick; AB = short-circuit (emits intermediate). Verdict d-trace-verdict.json. Next: attention-reading stepped protocol.
+- Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — focus-step COMPLETE (countersigned, careful protocol): FOCUS-FAITHFUL-BUT-USELESS (spec focus-v10-prereg.md)
+- F1 FAIL 0/3 (no lift; FOCUS-1 ~= DECOMP-1 ~= DIRECT ~= 0.5). F2 PASS 3/3 (kFaith 0.80-0.90). No-op 0.70-0.81; genuine steps ~= DIRECT (premortem confirmed). Verdict d-focus-verdict.json: headline does not flip; pipeline output-bound (~0.5 ceiling binds all ports).
+- Debug check filed: qTrue/kFaith gap = degenerate-line key ambiguity (agree 0.752 ~= 1-degRate), not a bug; kF coherent; trace bars unaffected.
+- Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — depth program COMPLETE (countersigned + fresh-eyes reviewed): FLAT / NO-TRANSFER / SMEARED+DECORATIVE / SEARCH-TIED (spec depth-v10-prereg.md)
+- Skills checked (memory layers/verbatim, fresh-eyes, eval-harness, train.js API). Single check adjudicated (3 adopts, 3 rejects w/ math). Driver parses clean pre-compute.
+- D-A: A1 FAIL 0/3, ctl 1.0 (FLAT not DRIFT). D-B: gates 6/6; B1 FAIL (r3==r1 on hard); B2 FAIL (retention 0.71-0.76, interference #7). D-C: SEP~0.00 (SMEARED); round-drop 1/3 (DECORATIVE). D-D: all nine tied (SEARCH-TIED).
+- Verdict d-depth-verdict.json. Expectation 1/5, scored openly. Position: depth allocated-never-effective; moves left are representational (bottlenecked recurrence / priced intermediates), not interrogational.
+- Unpushed: decomp/* + transcript + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — pool keys + health (user-driven, no compute on bench)
+- User asked about pool access + vault state: vault NOT cleared (github PAT persisted across the rename-partition refill; groq/gemini/openrouter/huggingface/kaggle absent). Temp 5-box panel injected DOM-only twice (Save->vault.saveKey, Delete, Remove; github skipped).
+- Try-now results: groq LIVE (POOL-OK ~0.5s @256tok; 16/32 caps starve its reasoning -> ok:true but empty text); openrouter LIVE on successor liquid/lfm-3-1.7b:free (old default lfm-2.5-2.6b retired, 404, gone from 476-model list; MODEL_DEFAULT updated in repo, needs refresh to take effect); kaggle LIVE (kernels/list auth ok ~0.9s); huggingface key VALID, inference 402-blocked (credits/PRO gate, known state); gemini first key INVALID (auth-400, marked dead) -> user re-pasted -> LIVE (POOL-OK ~34s, status flipped dead->live). Key material never read/logged (presence-only).
+- Full-stack health (after user-side reload; vault survived, DOM panel did not): keys 6/6 present; OR guard 48/50 remaining; routeLLM short -> groq ok in 763ms (empty-text caveat as above); heartbeat floor 5/5 live + petals front-door 5/5 live (~350-950ms).
+- Finding owed: router groqCall passes maxTokens straight through (short default 32 -> empty outputs on the reasoning model) while orCall floors at 256. Fix: same Math.max floor for groq (filed, not yet run).
+- Unpushed: decomp/* + transcripts + openrouter.js default fix + this entry (ride next push; NO PUSH without explicit user order).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — experiments + training authorized; pool close-out + verifier V1 STACKS (transcript src/evidence/conversations/2026-11-22-pool-verifier.md)
+- Groq floor fix FILED + VERIFIED (groq.js floors all calls at 256, measured note; routeLLM short maxTokens=32 now returns POOL-OK verbatim via groq).
+- Decider rerun (live keys): pool 3/3 correct (groq swept all races, non-empty after fix) in 61.2s vs incumbent generateText 3/3 in 3.9s -> verdict FAIL (0.063x; filed src/evidence/pool/decider-rerun-verdict.json + ledger). P5-era 2.15x pool advantage fully reversed: decider's Promise.all race pays the slowest arm (gemini ~34s tails dominate 2/3 prompts) and the incumbent got much faster. Pool's value is models-not-speed until routing goes first-success-wins.
+- Verifier V1 (spec verifier-v10-prereg.md, user-countersigned + fresh-eyes single check): reviewer REJECTED continuous-600-steps (more-training vs stacking confound) -> ADOPTED re-anchored boundary (fresh Adam + reseeded 16000+s streams at step 300, Exp-E generation semantics). Driver novel-driver.js += runVerifierV1.
+- 3/3 COMPLETE (~5 min/seed): P1 replication 3/3 (R1 B0 0.99/1.00/1.00, |R1B3-filed| <= 0.075); P2 3/3 (R2 B0 ~1.00); P3 3/3 (R2B3-R1B3 +0.155/+0.070/+0.080, mean +0.10); P4 3/3 (B4 holds-or-climbs). Verdict d-ver1-verdict.json: STACKS (unanimous, exceeds HOLDS expectation). R2 B3 mean 0.59 reaches the labeled supmix ceiling without labels; cyc loss stays unsaturated (real work, no cheap satisfier); echo torn further toward reverse.
+- Reading: the verifier is not a one-round trick — persistent distribution-wide constraint makes round 2 productive (contrast F5 collapse unconstranined). Selection + pinning composes across rounds.
+- Unpushed: decomp/* (ver1 spec/driver/ledgers/verdict) + pool/* (decider ledger/verdict, groq+OR fixes) + transcripts + this entry (ride next push; NO PUSH without explicit user order).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — H/R/X program COMPLETE (user: all three tracks + pool materials; transcript src/evidence/conversations/2026-11-22-hrx.md)
+- Specs verifier-h10/r10/x10 filed + fresh-eyes reviewed: H REJECT adopted (held-out b6x/b7x + specialization-vs-robustness split bars); R REJECT adopted (persist params; R-b/c restore filed R-a R2 — no recompute confound); X BOUNDED (probe is from-scratch, no leakage; gate kept + clarified).
+- Pool materials: groq/openrouter reasoning models burned 512-2048 caps thinking with empty output (open-generation unusable); gemini delivered 2 implementable schemas in 5s (cycle-shift, interference parity). Pool routing note: open-ended generation -> gemini; short verifiable answers -> groq @>=256 cap.
+- Probes (X gate): 5/6 FAIL 0.50 bar (0.31-0.39) but same-budget base-reverse control = 0.63 -> probe sound, formats hard-but-valid; readouts stand as bounds.
+- H1 baseline 3/3: dilution ~0.52-0.57, long ~0.50-0.62, flip ~chance, shift ~0.06 (systematic lure — retrieves, never shifts), parity ~chance. Ext-b5 shape bug caught + fixed (genFlip double-query 0.62 vs filed single-fronted 0.29; void s0 ledger deleted + rerun).
+- H2/H3 CORRUPT 3/3: echo ~0.95, B3 ~0.3, trained-regime at chance — interference diet poisons everything including the standard skill. Diet must be clean.
+- R-a STACKS 3/3 at round 3 (B3 +0.045/+0.140/+0.040, B0 ~1.00, echo -> ~0.37). No half-life through 900 steps with pressure on.
+- R-b COLLAPSE 3/3 from filed R2 (B0 -> ~0.3, B3 -> ~0.27; cyc loss -> ~0.01): pinning necessary. R-c BLEED 3/3 (B0 holds 1.00, B3 -35-40%, echo rebounds -> ~0.7): cycles necessary for teaching/keeping. Double dissociation.
+- X1 frontier from H1 (bit-identical protocol, filed cross-use): BOUNDED. X2 VOID: A.gen(rng,5) emits undefined queries (ks=4, qi can be 4) -> NaN poisoning; methods note: filed B1 battery 20%-contaminated program-wide (relative comparisons stand, absolutes understated; repair owed, filed A.gen untouched). X3 FAIL 3/3 (parity R1->R2 flat at chance — format barrier holds).
+- Verdicts d-verH-verdict.json (CORRUPT scope bound) / d-verR-verdict.json (STACKS + dissociation) / d-verX-verdict.json (BOUNDED + VOID + methods note) filed.
+- Unpushed: decomp/* (H/R/X specs/driver/ledgers/probes/verdicts) + pool/* + transcripts + this entry (ride next push; NO PUSH without explicit user order).
+**Always read src/agents-augment.md first, every session.**
