@@ -2006,3 +2006,9 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Verdict d-verS-verdict.json. Reading: verifier = clean lines + attention + real teacher + cycles from step 0; stack lives in distill+cycles loop.
 - Unpushed: decomp/(representational-v10 spec, d-verS-verdict, 3 xteach + 21 verS ledgers, driver) + prior backlog + conversations/(vers) + CHATLOG. NO PUSH without explicit user order.
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — PUSHED 95997978 (vault github PAT, parent 4937366 tip-match held)
+- Worker-side git-blobs overlay (PAT vault->worker memory only, summary return): 1969 in scope, 41 uploaded (~27MB: verS program — spec + 3 spec-battery reviews + 3 xteach + 21 verS ledgers + verdict, B1 repair spec/verdict/6 ledgers, next-step battery, representational + B1 driver additions, whatsnext/nextstep/vers transcripts, CHATLOG) / 1928 reused, 0 deleted, secret-scan clean. Ref + commit verify MATCH. PAT stayed in worker/page memory; never in agent context.
+- Pre-push audit: verS/B1 files all present, 275/275 decomp+pool JSONs parse, 17 conversation files, spec-battery results filed (was the one missing layer). Loader note: Object.getPrototypeOf(async fn).constructor form threw "Unexpected identifier 'Object'" 2x; direct (async fn).constructor form worked — same semantics, filed in case it recurs.
+- Backlog drained except this receipt (rides next push).
+**Always read src/agents-augment.md first, every session.**
