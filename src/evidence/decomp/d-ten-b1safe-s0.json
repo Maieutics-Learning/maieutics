@@ -1,0 +1,1 @@
+{"spec":"ten-v10","block":"B1Safe","seed":0,"verdict":"COMPLETE","states":{"v1r2":{"buggy":{"b0":1,"b1":0.785,"b3":0.655},"safe":{"b0":1,"b1":0.995,"b3":0.655},"alignedB0B3":true,"deltaB1":0.21},"rar3":{"buggy":{"b0":1,"b1":0.765,"b3":0.675},"safe":{"b0":1,"b1":0.97,"b3":0.675},"alignedB0B3":true,"deltaB1":0.205}}}

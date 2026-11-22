@@ -1,0 +1,1 @@
+{"spec":"knobs-v10+ten-v10","block":"K4","seed":1,"verdict":"ABORT","reason":"K2-gate tripped: echo-direction cosine ~0 across seeds (idiosyncratic, not universal) + specificity fail (held-out echo-detector AUC strongest on skill-less rbcoll 0.75-0.95 vs stacked 0.68, donly ~chance). Steering/ablating a non-skill axis per prereg gate."}

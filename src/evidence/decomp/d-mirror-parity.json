@@ -1,0 +1,1 @@
+{"spec":"mirror-v10","verdict":"MIRROR-PARITY","n":400,"xMiss":0,"argMiss":0,"maxLogitDiff":2.930988785010413e-14,"params":"d-novel-tutor-s0.json","streams":"reverse rng(19000) x200 + forward rng(19100) x200"}

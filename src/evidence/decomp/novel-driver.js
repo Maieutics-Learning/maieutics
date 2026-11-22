@@ -958,3 +958,451 @@ globalThis.runVerifierS = async function (fs, log, s, arm) {
   log("verS-" + arm + "-s" + s + " done");
   return body;
 };
+
+// ---- ten-v10: knobs readout + round-4/dose/snr/b1safe (E1-E9). E10 reuses runGenProbe. ----
+// State restorer for filed checkpoints. Collapsed slot uses verR-b R3
+// (cycles-only collapse, has filed params; d-cycle-tutor ledgers are eval-only).
+// ---- ten-v10: knobs readout + round-4/dose/snr/b1safe (E1-E9). E10 reuses runGenProbe. ----
+// State restorer for filed checkpoints. Collapsed slot uses verR-b R3
+// (cycles-only collapse, has filed params; d-cycle-tutor ledgers are eval-only).
+async function tenState(fs, T, G, s, which) {
+  const A = T.TASKS.assocR;
+  const tut = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-novel-tutor-s" + s + ".json"));
+  if (which === "tutor") return { model: novelRestore(T, G, tut), A };
+  const rd = async (p) => JSON.parse(await fs.readTextFile("src/evidence/decomp/" + p));
+  if (which === "v1r1" || which === "v1r2") {
+    // V1 ledgers are eval-only (pre-params-convention); verS-ctl replicates V1
+    // bit-identically (harness zero drift, P1 gate |delta|=0.000) — substitute.
+    const v = await rd("d-verS-ctl-s" + s + ".json");
+    return { model: restoreP(T, G, tut, v.cks[which === "v1r1" ? 0 : 1].params), A };
+  }
+  if (which === "rar1" || which === "rar2" || which === "rar3") {
+    const v = await rd("d-verR-a-s" + s + ".json");
+    return { model: restoreP(T, G, tut, v.cks[{ rar1: 0, rar2: 1, rar3: 2 }[which]].params), A };
+  }
+  if (which === "donly" || which === "shuf") {
+    const v = await rd("d-verS-" + which + "-s" + s + ".json");
+    return { model: restoreP(T, G, tut, v.cks[1].params), A };
+  }
+  if (which === "rbcoll") {
+    const v = await rd("d-verR-b-s" + s + ".json");
+    return { model: restoreP(T, G, tut, v.r3.params), A };
+  }
+  throw new Error("unknown ten state: " + which);
+}
+function tenMeanvec(arrs) {
+  const h = arrs[0].length, m = new Float64Array(h);
+  for (const a of arrs) for (let i = 0; i < h; i++) m[i] += a[i];
+  for (let i = 0; i < h; i++) m[i] /= arrs.length;
+  return Array.from(m);
+}
+function tenNorm(a) { let s = 0; for (const v of a) s += v * v; return Math.sqrt(s); }
+// E1: depth-query attention mass on true-binding pair vs query/recency tokens.
+globalThis.runKnobsK1 = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-knobs-k1-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.NovelInit(fs);
+  const rng = G.makeRng(19000 + s);
+  const lines = [];
+  for (let i = 0; i < 200; i++) lines.push(genReverse(rng, 1 + rng.int(3)));
+  const out = {};
+  for (const st of ["tutor", "v1r2", "rar3", "rbcoll"]) {
+    const { model } = await tenState(fs, T, G, s, st);
+    const buckets = { correct: { pair: [], query: [] }, echo: { pair: [], query: [] }, other: 0 };
+    for (const L of lines) {
+      const fwd = model.forward(L.x, 1);
+      const pred = argmaxOf(Array.from(fwd.logits));
+      const steps = fwd.cache.steps, last = steps[steps.length - 1];
+      if (!last.att) { buckets.other++; continue; }
+      const w = Array.from(last.att.w), flat = L.flat, Lc = L.x.length;
+      let pair = 0;
+      for (let j = 0; j < flat.length; j += 2) {
+        if (flat[j] === L.y && flat[j + 1] === L.x[Lc - 2]) pair += (w[j] || 0) + (w[j + 1] || 0);
+      }
+      const query = (w[Lc - 2] || 0) + (w[Lc - 1] || 0);
+      const b = pred === L.y ? buckets.correct : pred === L.echo ? buckets.echo : null;
+      if (!b) { buckets.other++; continue; }
+      b.pair.push(pair); b.query.push(query);
+    }
+    const avg = (a) => a.length ? +(a.reduce((x, y) => x + y, 0) / a.length).toFixed(4) : null;
+    out[st] = { nCorrect: buckets.correct.pair.length, nEcho: buckets.echo.pair.length,
+      nOther: buckets.other, correctPair: avg(buckets.correct.pair),
+      correctQuery: avg(buckets.correct.query), echoPair: avg(buckets.echo.pair),
+      echoQuery: avg(buckets.echo.query) };
+  }
+  const body = { spec: "knobs-v10+ten-v10", block: "K1", seed: s, verdict: "COMPLETE", n: 200, states: out };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("knobs-k1-s" + s + " done");
+  return body;
+};
+// E2: directions from rC means (100 fit / 100 held-out AUC) on 3 states.
+globalThis.runKnobsK2 = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-knobs-k2-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.NovelInit(fs);
+  const out = {};
+  for (const st of ["v1r2", "donly", "rbcoll"]) {
+    const { model, A } = await tenState(fs, T, G, s, st);
+    const rng = G.makeRng(19000 + s);
+    const revFit = { correct: [], echo: [] }, revHeld = [];
+    for (let i = 0; i < 200; i++) {
+      const L = genReverse(rng, 1 + rng.int(3));
+      const fwd = model.forward(L.x, 1);
+      const pred = argmaxOf(Array.from(fwd.logits));
+      const rc = Array.from(fwd.cache.rC.cache.x); // pre-norm state s
+      if (i < 100) {
+        if (pred === L.y) revFit.correct.push(rc);
+        else if (pred === L.echo) revFit.echo.push(rc);
+      } else revHeld.push({ rc, label: pred === L.y ? 1 : pred === L.echo ? 0 : -1 });
+    }
+    const fwdFit = [];
+    const frng = G.makeRng(19100 + s);
+    for (let i = 0; i < 100; i++) {
+      const ex = A.gen(frng, 1 + frng.int(3));
+      fwdFit.push(Array.from(model.forward(ex.x, 1).cache.rC.cache.x));
+    }
+    const dir = (a, b) => (a.length >= 5 && b.length >= 5)
+      ? tenMeanvec(a).map((v, i) => v - tenMeanvec(b)[i]) : null;
+    const vRev = dir(revFit.correct.concat(revFit.echo), fwdFit);
+    const vEcho = dir(revFit.echo, revFit.correct);
+    const loutClass = (v) => {
+      if (!v) return null;
+      let ss = 0; for (const x of v) ss += x * x;
+      const inv = 1 / Math.sqrt(ss / v.length + 1e-8);
+      const y = v.map((x) => x * inv);
+      const W = model.Lout.W.v, b = model.Lout.b.v, inF = model.Lout.inF;
+      let best = 0, bv = -1e9;
+      for (let o = 0; o < 4; o++) {
+        let t = b[o];
+        for (let i = 0; i < inF; i++) t += W[o * inF + i] * y[i];
+        if (t > bv) { bv = t; best = o; }
+      }
+      return best;
+    };
+    let auc = null;
+    if (vEcho) {
+      const n = tenNorm(vEcho), u = vEcho.map((x) => x / (n + 1e-12));
+      const scores = revHeld.filter((r) => r.label >= 0)
+        .map((r) => ({ s: r.rc.reduce((t, x, i) => t + x * u[i], 0), l: r.label }))
+        .sort((a, b) => a.s - b.s);
+      const P = scores.filter((r) => r.l === 1).length, N = scores.length - P;
+      if (P >= 5 && N >= 5) {
+        let conc = 0, tied = 0;
+        for (const a of scores) for (const b of scores) {
+          if (a.l === 1 && b.l === 0) { if (a.s > b.s) conc++; else if (a.s === b.s) tied++; }
+        }
+        auc = +((conc + 0.5 * tied) / (P * N)).toFixed(4);
+      }
+    }
+    out[st] = { nFitCorrect: revFit.correct.length, nFitEcho: revFit.echo.length,
+      nHeld: revHeld.filter((r) => r.label >= 0).length,
+      vRev, vEcho, loutRev: loutClass(vRev), loutEcho: loutClass(vEcho), aucEcho: auc };
+  }
+  const body = { spec: "knobs-v10+ten-v10", block: "K2", seed: s, verdict: "COMPLETE", states: out };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("knobs-k2-s" + s + " auc=" + [out.v1r2.aucEcho, out.donly.aucEcho, out.rbcoll.aucEcho].join("/"));
+  return body;
+};
+// E3: steering ladder on V1-R1 with K2 stacked direction (gated).
+globalThis.runKnobsK3 = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-knobs-k3-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.NovelInit(fs);
+  const k2 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-knobs-k2-s" + s + ".json"));
+  const v = k2.states.v1r2.vEcho || k2.states.v1r2.vRev;
+  if (!v) {
+    const ab = { spec: "knobs-v10+ten-v10", block: "K3", seed: s, verdict: "ABORT", reason: "K2-gate: no direction" };
+    await fs.writeTextFile(ledgerPath, JSON.stringify(ab)); return ab;
+  }
+  const n = tenNorm(v), u = v.map((x) => x / (n + 1e-12));
+  const { model } = await tenState(fs, T, G, s, "v1r1");
+  const rng = G.makeRng(19000 + s);
+  const lines = [];
+  for (let i = 0; i < 200; i++) lines.push(genReverse(rng, 1 + rng.int(3)));
+  let stateNorm = 0;
+  for (const L of lines.slice(0, 50)) stateNorm += tenNorm(Array.from(model.forward(L.x, 1).cache.rC.cache.x));
+  stateNorm /= 50;
+  const rmsN = (a) => {
+    let ss = 0; for (const x of a) ss += x * x;
+    const inv = 1 / Math.sqrt(ss / a.length + 1e-8);
+    return a.map((x) => x * inv);
+  };
+  const ladder = {};
+  for (const al of [0, 0.5, 1, 2, -0.5, -1, -2]) {
+    let hit = 0, echo = 0;
+    for (const L of lines) {
+      const fwd = model.forward(L.x, 1);
+      const sv = Array.from(fwd.cache.rC.cache.x).map((x, i) => x + al * stateNorm * u[i]);
+      const y = rmsN(sv), W = model.Lout.W.v, b = model.Lout.b.v, inF = model.Lout.inF;
+      let best = 0, bv = -1e9;
+      for (let o = 0; o < 4; o++) {
+        let t = b[o];
+        for (let i = 0; i < inF; i++) t += W[o * inF + i] * y[i];
+        if (t > bv) { bv = t; best = o; }
+      }
+      if (best === L.y) hit++;
+      if (best === L.echo) echo++;
+    }
+    ladder[String(al)] = { b3: +(hit / 200).toFixed(4), echo: +(echo / 200).toFixed(4) };
+  }
+  const body = { spec: "knobs-v10+ten-v10", block: "K3", seed: s, verdict: "COMPLETE",
+    gate: "K2-direction", stateNorm: +stateNorm.toFixed(4), ladder };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("knobs-k3-s" + s + " b3@0=" + ladder["0"].b3 + " b3@+2=" + ladder["2"].b3);
+  return body;
+};
+// E4: echo-ablation on collapsed state (gated). Removes echo-dir from h-outputs
+// of E, Wa, L2 (W'=(I-uu')W, b'=(I-uu')b) and from Lout input-space (W'=W(I-uu')).
+globalThis.runKnobsK4 = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-knobs-k4-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.NovelInit(fs);
+  const k2 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-knobs-k2-s" + s + ".json"));
+  const v = k2.states.rbcoll.vEcho || k2.states.v1r2.vEcho;
+  if (!v) {
+    const ab = { spec: "knobs-v10+ten-v10", block: "K4", seed: s, verdict: "ABORT", reason: "K2-gate: no echo direction" };
+    await fs.writeTextFile(ledgerPath, JSON.stringify(ab)); return ab;
+  }
+  const n = tenNorm(v), u = v.map((x) => x / (n + 1e-12));
+  const { model } = await tenState(fs, T, G, s, "rbcoll");
+  const before = await globalThis.runCycleEval(fs, () => {}, s, "knobs-k4-pre-s" + s, model);
+  const stripOut = (lin) => {
+    const W = lin.W.v, b = lin.b.v, inF = lin.inF, outF = lin.outF;
+    const sW = new Float64Array(inF);
+    for (let i = 0; i < inF; i++) { let t = 0; for (let p = 0; p < outF; p++) t += u[p] * W[p * inF + i]; sW[i] = t; }
+    let tb = 0; for (let p = 0; p < outF; p++) tb += u[p] * b[p];
+    for (let o = 0; o < outF; o++) {
+      for (let i = 0; i < inF; i++) W[o * inF + i] -= u[o] * sW[i];
+      b[o] -= u[o] * tb;
+    }
+  };
+  const h = model.h;
+  { // E rows are h-dim token embeddings: y'=(I-uu')y per row
+    const E = model.E.v, rows = E.length / h, uh = u.slice(0, h);
+    for (let r = 0; r < rows; r++) {
+      let dot = 0; for (let i = 0; i < h; i++) dot += uh[i] * E[r * h + i];
+      for (let i = 0; i < h; i++) E[r * h + i] -= uh[i] * dot;
+    }
+  }
+  stripOut(model.Wa); stripOut(model.L2);
+  { // Lout input-space: W'=W(I-uu')
+    const W = model.Lout.W.v, inF = model.Lout.inF, outF = model.Lout.outF;
+    const uh = u.slice(0, inF);
+    for (let o = 0; o < outF; o++) {
+      let dot = 0; for (let i = 0; i < inF; i++) dot += W[o * inF + i] * uh[i];
+      for (let i = 0; i < inF; i++) W[o * inF + i] -= dot * uh[i];
+    }
+  }
+  const after = await globalThis.runCycleEval(fs, () => {}, s, "knobs-k4-post-s" + s, model);
+  const body = { spec: "knobs-v10+ten-v10", block: "K4", seed: s, verdict: "COMPLETE",
+    before: { b0: before.acc.b0, b3: before.acc.b3, echo: before.b3echoRate },
+    after: { b0: after.acc.b0, b3: after.acc.b3, echo: after.b3echoRate },
+    dEcho: +(before.b3echoRate - after.b3echoRate).toFixed(4),
+    dB0: +(after.acc.b0 - before.acc.b0).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("knobs-k4-s" + s + " dEcho=" + body.dEcho + " dB0=" + body.dB0);
+  return body;
+};
+// E5: projection-gap tracking across rounds + nulls (uses K2 stacked direction).
+globalThis.runKnobsK5 = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-knobs-k5-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.NovelInit(fs);
+  const k2 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-knobs-k2-s" + s + ".json"));
+  const v = k2.states.v1r2.vRev || k2.states.v1r2.vEcho;
+  if (!v) {
+    const ab = { spec: "knobs-v10+ten-v10", block: "K5", seed: s, verdict: "ABORT", reason: "K2-gate: no direction" };
+    await fs.writeTextFile(ledgerPath, JSON.stringify(ab)); return ab;
+  }
+  const n = tenNorm(v), u = v.map((x) => x / (n + 1e-12));
+  const out = {};
+  for (const st of ["rar1", "rar2", "rar3", "donly", "shuf"]) {
+    const { model } = await tenState(fs, T, G, s, st);
+    const rng = G.makeRng(19000 + s);
+    const pc = [], pe = [];
+    for (let i = 0; i < 200; i++) {
+      const L = genReverse(rng, 1 + rng.int(3));
+      const fwd = model.forward(L.x, 1);
+      const pred = argmaxOf(Array.from(fwd.logits));
+      const rc = Array.from(fwd.cache.rC.cache.x);
+      const p = rc.reduce((t, x, ii) => t + x * u[ii], 0);
+      if (pred === L.y) pc.push(p);
+      else if (pred === L.echo) pe.push(p);
+    }
+    const avg = (a) => a.length ? a.reduce((x, y) => x + y, 0) / a.length : null;
+    out[st] = { nCorrect: pc.length, nEcho: pe.length,
+      gap: avg(pc) != null && avg(pe) != null ? +((avg(pc) - avg(pe)).toFixed(4)) : null };
+  }
+  const body = { spec: "knobs-v10+ten-v10", block: "K5", seed: s, verdict: "COMPLETE", gaps: out };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("knobs-k5-s" + s + " done");
+  return body;
+};
+// E6: round-4 — continue filed R-a R3, 300 steps distill4 (streams 18000/18100).
+globalThis.runTenRound4 = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-ten-rd-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.NovelInit(fs);
+  const A = TASKS.assocR;
+  const tut = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-novel-tutor-s" + s + ".json"));
+  const ra = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-verR-a-s" + s + ".json"));
+  const model = restoreP(T, G, tut, ra.cks[2].params);
+  const teacher = novelRestore(T, G, tut);
+  const rng = G.makeRng(18000 + s), drng = G.makeRng(18100 + s);
+  const opt = new G.Adam(5e-3), B = 8, t0 = Date.now();
+  let lastCyc = 0, lastCon = 0;
+  for (let step = 0; step < 300; step++) {
+    model.zeroGrad();
+    let lsum = 0;
+    for (let b = 0; b < B; b++) lsum += cycleStep(T, G, A, model, genCycleSet(rng, A), B);
+    lastCyc = lsum / B;
+    lastCon = distillStep(T, G, A, model, teacher, drng, B, 4, null);
+    opt.step(model.params());
+  }
+  const ev = await globalThis.runCycleEval(fs, log, s, "ten-rd-r4", model);
+  const body = { spec: "ten-v10", block: "Rd", seed: s, verdict: "COMPLETE", wallMs: Date.now() - t0,
+    r3: { acc: ra.cks[2].acc, echo: ra.cks[2].echo },
+    r4: { acc: ev.acc, echo: ev.b3echoRate, params: saveP(model),
+      train: { lastCycleLoss: +lastCyc.toFixed(4), lastConLoss: +lastCon.toFixed(4) } } };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("ten-rd-s" + s + " r3b3=" + ra.cks[2].acc.b3 + " r4b3=" + ev.acc.b3);
+  return body;
+};
+// E7: W8 single round from tutor (dose test vs filed V1-R1).
+globalThis.runTenWDose = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-ten-w8-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.NovelInit(fs);
+  const A = TASKS.assocR;
+  const tut = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-novel-tutor-s" + s + ".json"));
+  const model = novelRestore(T, G, tut);
+  model.__G = G;
+  const teacher = novelRestore(T, G, tut);
+  const rng = G.makeRng(15000 + s), drng = G.makeRng(15100 + s);
+  const opt = new G.Adam(5e-3), B = 8, t0 = Date.now();
+  let lastCyc = 0, lastCon = 0;
+  for (let step = 0; step < 300; step++) {
+    model.zeroGrad();
+    let lsum = 0;
+    for (let b = 0; b < B; b++) lsum += cycleStep(T, G, A, model, genCycleSet(rng, A), B);
+    lastCyc = lsum / B;
+    lastCon = distillStep(T, G, A, model, teacher, drng, B, 8, null);
+    opt.step(model.params());
+  }
+  const ev = await globalThis.runCycleEval(fs, log, s, "ten-w8-r1", model);
+  const v1 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-verS-ctl-s" + s + ".json"));
+  const body = { spec: "ten-v10", block: "W8", seed: s, verdict: "COMPLETE", wallMs: Date.now() - t0,
+    w4r1: { acc: v1.cks[0].acc, echo: v1.cks[0].echo },
+    w8r1: { acc: ev.acc, echo: ev.b3echoRate, params: saveP(model),
+      train: { lastCycleLoss: +lastCyc.toFixed(4), lastConLoss: +lastCon.toFixed(4) } } };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("ten-w8-s" + s + " w4b3=" + v1.cks[0].acc.b3 + " w8b3=" + ev.acc.b3);
+  return body;
+};
+// E9: B1-safe re-eval on filed V1-R2 + R-a-R3 (same stream both gens).
+globalThis.runTenB1Safe = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-ten-b1safe-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.NovelInit(fs);
+  const A = TASKS.assocR;
+  const out = {};
+  for (const st of ["v1r2", "rar3"]) {
+    const { model } = await tenState(fs, T, G, s, st);
+    const fw = (x) => argmaxOf(Array.from(model.forward(x, 1).logits));
+    const batt = (b1gen) => {
+      const rng = G.makeRng(14900 + s);
+      const b0 = [], b1 = [], b3 = [];
+      for (let i = 0; i < 200; i++) b0.push(A.gen(rng, 1 + rng.int(3)));
+      for (let i = 0; i < 200; i++) b1.push(b1gen(rng));
+      for (let i = 0; i < 200; i++) b3.push(genReverse(rng, 1 + rng.int(3)));
+      const acc = (arr) => arr.filter((ex) => fw(ex.x) === ex.y).length / arr.length;
+      return { b0: +acc(b0).toFixed(4), b1: +acc(b1).toFixed(4), b3: +acc(b3).toFixed(4) };
+    };
+    const buggy = batt((rng) => A.gen(rng, 5)), safe = batt((rng) => genSafe5(rng));
+    out[st] = { buggy, safe, alignedB0B3: buggy.b0 === safe.b0 && buggy.b3 === safe.b3,
+      deltaB1: +(safe.b1 - buggy.b1).toFixed(4) };
+  }
+  const body = { spec: "ten-v10", block: "B1Safe", seed: s, verdict: "COMPLETE", states: out };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("ten-b1safe-s" + s + " done");
+  return body;
+};
+// W1 (wseed-v10): within-seed causal steering. State = ctl-R2 (the SAME state the K2
+// direction came from); direction = own-seed filed vEcho; readout-head intervention
+// (same code path as K3). No universality claimed — K2-gate trip does not apply.
+globalThis.runSeedSteer = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-wseed-steer-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.NovelInit(fs);
+  const k2 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-knobs-k2-s" + s + ".json"));
+  const v = k2.states.v1r2.vEcho;
+  if (!v) {
+    const ab = { spec: "wseed-v10", block: "W1", seed: s, verdict: "ABORT", reason: "no own-seed vEcho" };
+    await fs.writeTextFile(ledgerPath, JSON.stringify(ab)); return ab;
+  }
+  const n = tenNorm(v), u = v.map((x) => x / (n + 1e-12));
+  const { model } = await tenState(fs, T, G, s, "v1r2");
+  const rng = G.makeRng(19000 + s);
+  const lines = [];
+  for (let i = 0; i < 200; i++) lines.push(genReverse(rng, 1 + rng.int(3)));
+  let stateNorm = 0;
+  for (const L of lines.slice(0, 50)) stateNorm += tenNorm(Array.from(model.forward(L.x, 1).cache.rC.cache.x));
+  stateNorm /= 50;
+  const rmsN = (a) => {
+    let ss = 0; for (let i = 0; i < a.length; i++) ss += a[i] * a[i];
+    const inv = 1 / Math.sqrt(ss / a.length + 1e-8);
+    return a.map((x) => x * inv);
+  };
+  const ladder = {};
+  for (const al of [0, 0.5, 1, 2, -0.5, -1, -2]) {
+    let hit = 0, echo = 0;
+    for (const L of lines) {
+      const fwd = model.forward(L.x, 1);
+      const sv = Array.from(fwd.cache.rC.cache.x).map((x, i) => x + al * stateNorm * u[i]);
+      const y = rmsN(sv), W = model.Lout.W.v, b = model.Lout.b.v, inF = model.Lout.inF;
+      let best = 0, bv = -1e9;
+      for (let o = 0; o < 4; o++) {
+        let t = b[o];
+        for (let i = 0; i < inF; i++) t += W[o * inF + i] * y[i];
+        if (t > bv) { bv = t; best = o; }
+      }
+      if (best === L.y) hit++;
+      if (best === L.echo) echo++;
+    }
+    ladder[String(al)] = { b3: +(hit / 200).toFixed(4), echo: +(echo / 200).toFixed(4) };
+  }
+  const swing = +((ladder["2"].echo - ladder["-2"].echo).toFixed(4));
+  const body = { spec: "wseed-v10", block: "W1", seed: s, verdict: "COMPLETE",
+    state: "verS-ctl-R2 (same model as direction)", dirNorm: +n.toFixed(4),
+    stateNorm: +stateNorm.toFixed(4), ladder, echoSwingPlus2MinusNeg2: swing };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("wseed-steer-s" + s + " echo(-2)=" + ladder["-2"].echo + " echo(0)=" + ladder["0"].echo + " echo(+2)=" + ladder["2"].echo);
+  return body;
+};

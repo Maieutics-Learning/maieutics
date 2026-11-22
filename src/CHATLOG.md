@@ -2012,3 +2012,28 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Pre-push audit: verS/B1 files all present, 275/275 decomp+pool JSONs parse, 17 conversation files, spec-battery results filed (was the one missing layer). Loader note: Object.getPrototypeOf(async fn).constructor form threw "Unexpected identifier 'Object'" 2x; direct (async fn).constructor form worked — same semantics, filed in case it recurs.
 - Backlog drained except this receipt (rides next push).
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — PUSHED ea7dc6ed (vault github PAT, parent 95997978 tip-match held)
+- Single-file push: the 95997978 receipt (user-ordered). 1969 in scope, 1 uploaded, secret-scan clean. Ref + commit verify MATCH.
+- Backlog fully drained — nothing unpushed.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — Pain-axis readout proposal (user: can their weights-knobs method read our students?)
+- Method transfer only (subject stays out): diff-in-means vectors, unembedding/Lout projection + AUC, steering ladders, Arditi orthogonalization — all inputs verified present in AttnModel cache.
+- Filed knobs-v10-prereg.md (K1 attention readout / K2 vectors on 3 states / K3 steering / K4 echo-ablation / K5 tracking; READABLE / PATTERN-ONLY / OPAQUE) + 3 blind reviews filed (fresh-eyes-knobs-v10-3x-results.md). Adopted: 3-state K2 with specificity bar + K2-gate for K3/K4. No compute — needs user countersign.
+- Transcript: conversations/2026-11-22-knobs.md. Unpushed: knobs spec + battery + transcript + CHATLOG. NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — TEN EXPERIMENTS COMPLETE (user-countersigned 10; transcript src/evidence/conversations/2026-11-22-ten.md)
+- Spec ten-v10-prereg.md (E1–E5 knobs-v10 by reference; E6 round-4 / E7 W8 dose / E8 SNR s3–s5 / E9 B1-safe / E10 shift+parity probes). Pools note: bench is h48 toy (minutes/block in-worker — laptop sufficient; no Kaggle-GPU port, new stack = new program). Driver: novel-driver.js += tenState/K1–K5/round-4/W-dose/B1-safe.
+- Corrections: V1 ledgers eval-only (no params) → substituted verS-CTL R1/R2 (bit-identical replicate, zero drift); collapsed slot uses verR-b R3 (cycle-tutor ledgers eval-only); K2 AUC sign (filed = P(correct>echo), verdict reports 1−filed as echo-detector AUC).
+- KNOBS verdict OPAQUE (d-knobs-verdict.json): K1 attention does NOT read answer (echo lines ≥ pair mass; only collapsed goes diffuse 3/3); K2 within-seed AUC stacked 0.68/rbcoll 0.75–0.95/donly ~chance BUT cross-seed cosine ~0 both directions all states (idiosyncratic, not universal; specificity fails strong-form) → K2-gate TRIPPED → K3/K4 ABORT ×6 filed (pre-commitment honored); K5 erratic gaps (no tracking). Expectation 1/5 scored openly. Compiled/flat story geometrically certified.
+- TEN verdict (d-ten-verdict.json), expectations 5/5: E6 NO-HALF-LIFE (R4 0.795/0.575/0.81 vs R3; B0 1.00; s2 0.81 highest filed); E7 SATURATES-THEN-HURTS (W8 lower 3/3); E8 REPLICATES (fresh tutors s3–s5 PASS 1.00; lifts +0.215/+0.165/+0.06, mean +0.147); E9 REPAIRED (safe B1 0.96–0.995, delta +0.17..+0.27, streams aligned); E10 both-FAIL (shift 0.385, parity 0.325 — already filed, no curriculum owed).
+- Unpushed: decomp/(ten spec, knobs+ten verdicts, 9 K1/K2/K5 + 6 K3/K4-ABORT + 3 Rd + 3 W8 + 3 tutors-s3-5 + 3 V1-s3-5 + 3 B1Safe ledgers, driver) + transcript + CHATLOG. NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — W1 within-seed probe + W2 dual-runtime mirror (user: do what is best, incl. python+js; transcript src/evidence/conversations/2026-11-22-next.md)
+- W1 (wseed-v10 prereg): steered ctl-R2 with its OWN filed echo-direction (same model; K2-gate N/A, no universality claimed). Echo swings -0.11/+0.09/+0.09 (s0 wrong sign, s1/s2 hump; bar monotone |swing|>=0.10 FAILS 0/3); pushing degrades B3 both directions. Verdict EXHAUST (expectation scored): axis separative but causally null — fumes, not machinery; nothing to translate. Option-3 incentive story strengthened.
+- W2 (mirror-v10 prereg): src/port/mirror.py (pure python+numpy, no browser APIs) ports RNG/gens/AttnModel-forward exact. Parity via Pyodide HERE: 400/400 line-int + 400/400 argmax agreement, max|dlogit| = 2.9e-14 → MIRROR-PARITY (expectation scored). Same file runs under CPython (Kaggle lane); torch-GPU training is the sequel, not this spec. Off-laptop port path verified, not assumed.
+- Unpushed: decomp/(wseed+mirror preregs, 3 steer ledgers, 2 verdicts, parity ledger, driver) + src/port/mirror.py + transcript + CHATLOG. NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
