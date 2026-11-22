@@ -1960,3 +1960,23 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Verdicts d-verH-verdict.json (CORRUPT scope bound) / d-verR-verdict.json (STACKS + dissociation) / d-verX-verdict.json (BOUNDED + VOID + methods note) filed.
 - Unpushed: decomp/* (H/R/X specs/driver/ledgers/probes/verdicts) + pool/* + transcripts + this entry (ride next push; NO PUSH without explicit user order).
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — PUSHED 54fb120d (vault github PAT, parent 29af5a96 tip-match held)
+- Worker-side git-blobs overlay (PAT vault->worker memory only, summary return): 1926 in scope, 272 uploaded (~68MB: full decomp program — v10/v11/probe/repeats/trace/focus/depth specs+drivers+ledgers+verdicts, verifier V1/H/R/X specs+drivers+ledgers (params persisted)+probes+verdicts, pool groq floor + OR default + decider rerun, 3 transcripts, CHATLOG) / 1654 reused, 0 deleted (remote-only paths persist via base_tree), secret-scan clean. Ref + commit verify MATCH. PAT stayed in worker/page memory; never in agent context.
+- Pre-push audit: 46/46 expected H/R/X+ver1+pool files present, all verdict JSONs parse, R2 params persisted 3/3, CHATLOG chain complete (14 entries), transcripts filed.
+- Backlog drained except this receipt (rides next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — blind reproducibility battery v1 (user: fresh eyes recreate from scratch? same answer? else log more)
+- 15 blind stateless reviews, specs only (R0 single + R1 9 + R2 3 + R3 2). Round 1 (bare specs, 9/9): NON-REPRODUCIBLE/FRAGILE/Failure — blockers converge (arch? dataset/gens? distill4 loss? B-metric meanings? teacher + filed values? seed set? W meaning?). All accepted; filed src/evidence/decomp/REPRODUCIBILITY.md (§1 stack/load-order/ctor/attnAux/softmax helpers, §2 format, §3 tutor recipe + restore, §4 battery glossary B0-B5/b6-b9 + streams, §5 losses/W4, §6 round streams + re-anchor + reference values, §7 harness bugs, §8 driver→ledger map).
+- Round 2 (spec + REPRO, 3): recipe blockers collapse to "source not in context" (dissolves in-repo — code IS the artifact, now with file+line pointers); all three still predict re-anchor-shock FAILURE. Round 3 (code-level brief, 2): both concede stability (con loss ~0, B0 1.00 — re-anchor is weight-preserving); residual asks are micro-details (patched: ctor roles, attnSupervision, softOf/dSoftmax/cycleStep pointers; `vals` items were reviewer misreads).
+- Calibration (retrospective rule): unanimous blind FAILURE predictions vs filed unanimous STACKS certifies the surprise genuine — reviewer priors (resets destroy, tiny models can't distill) are what the result overturns. Verdict REPRODUCIBLE-IN-REPO; results + adjudication: src/evidence/decomp/fresh-eyes-repro-v1-14x-results.md.
+- Unpushed: decomp/(REPRODUCIBILITY.md, fresh-eyes-repro file) + this entry (ride next push; NO PUSH without explicit user order).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — log-completeness pass (user: log everything down, notes complete)
+- Full audit: 81/81 expected files present (18 specs incl. REPRO, 18 verdicts, 4 drivers, ver1/H/R/X ledgers, 6 probes, pool decider + verdict, 6 session transcripts + README, CHATLOG). After repair: 0 bad JSON across all decomp + pool files. 16 entries today, 4 transcripts today (decomp / pool-verifier / hrx / repro).
+- Repair: src/evidence/decomp/d-depth-verdict.json had 2 extra `}` (after C section + after D) — valid object prefixes, dangling tail; file never parsed. Removed exactly the 2 premature closers, byte-content otherwise untouched; now parses, schema {expectation, expectationResult, threads:{A}, B, C, D, reading, spec, verdict}, all verdict strings intact (A FLAT / BASE-WOUNDED / SEARCH-TIED / 1-of-5 scored openly). Pre-existing corruption (pushed that way in 54fb120d; earlier audits didn't cover depth verdict). Fix rides next push.
+- Blind-reply preservation: all 15 verbatim blind replies now in fresh-eyes-repro appendix (were context-only = at-risk). Count corrected 14 -> 15 (R0 motivating check) with filename note (keeps 14x for R1–R3).
+- Unpushed src: decomp/(REPRODUCIBILITY.md, fresh-eyes-repro-v1-14x-results.md, d-depth-verdict.json repair) + conversations/(2026-11-22-repro.md, 2026-11-22-logcheck.md) + CHATLOG (repro + this entry). NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
