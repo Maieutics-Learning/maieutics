@@ -385,22 +385,34 @@ function supPinStepW(T, G, A, model, pinSet, W) {
   return lsum / pinSet.length;
 }
 // KL(teacher||student) mean-gradient pass over B fresh forward lines.
-// Teacher is frozen (forward only). Filed: no aux on distill lines.
-function distillStep(T, G, A, student, teacher, rng, B, W, pairN) {
+// Teacher is frozen (forward only). Filed default: no aux on distill lines.
+// opts (representational-v10): {pi (permute teacher probs), aux (bindLabels auxList or null), auxScale}.
+function distillStep(T, G, A, student, teacher, rng, B, W, pairN, opts) {
   let lsum = 0;
   for (let b = 0; b < B; b++) {
     const ex = pairN ? A.gen(rng, pairN) : A.gen(rng, 1 + rng.int(3));
     const fs = student.forward(ex.x, 1);
     const ft = teacher.forward(ex.x, 1);
     const ps = softOf(Array.from(fs.logits));
-    const pt = softOf(Array.from(ft.logits));
+    let pt = softOf(Array.from(ft.logits));
+    if (opts && opts.pi) pt = opts.pi.map((i) => pt[i]);
     let L = 0;
     for (let i = 0; i < 4; i++) L += pt[i] * Math.log(pt[i] / (ps[i] + 1e-12) + 1e-12);
     lsum += L;
     const g = ps.map((s, i) => -pt[i] / (s + 1e-12));
     const dz = dSoftmax(ps, g);
     for (let i = 0; i < dz.length; i++) dz[i] *= W / B;
-    student.backward(dz, fs, null, null, null);
+    let auxList = null;
+    if (opts && opts.aux) {
+      auxList = auxFor(student, A, B, ex.x, fs);
+      if (auxList && opts.auxScale && opts.auxScale !== 1) {
+        for (let t = 0; t < auxList.length; t++) {
+          if (auxList[t] == null) continue;
+          for (let i = 0; i < auxList[t].length; i++) auxList[t][i] *= opts.auxScale;
+        }
+      }
+    }
+    student.backward(dz, fs, auxList, null, null);
   }
   return lsum / B;
 }
@@ -801,5 +813,148 @@ globalThis.runGenProbe = async function (fs, log, name) {
     gate: acc >= 0.50 ? "PASS" : "FAIL", acc: +acc.toFixed(4), wallMs: Date.now() - t0, chance: 0.25 };
   await fs.writeTextFile(ledgerPath, JSON.stringify(body));
   log("probe-" + name + " acc=" + body.acc + " " + body.gate);
+  return body;
+};
+
+// ---- b1repair-v10: safe wrapper + calibration (filed A.gen untouched). ----
+function genSafe5(rng) {
+  const keys = [0, 1, 2, 3];
+  for (let i = keys.length - 1; i > 0; i--) { const j = rng.int(i + 1), t = keys[i]; keys[i] = keys[j]; keys[j] = t; }
+  const ks = keys.slice(0, 5); // 4 keys, same as filed A.gen(rng,5)
+  const x = [], vals = [];
+  for (const k of ks) { const v = rng.int(4); vals.push(v); x.push(k, 4 + v); }
+  const qi = rng.int(4); // CLAMPED (filed: rng.int(5), undefined at 4)
+  x.push(ks[qi], 8);
+  return { x, y: vals[qi] };
+}
+globalThis.runB1RepairCalib = async function (fs, log, s, which) {  const ledgerPath = "src/evidence/decomp/d-b1repair-calib-" + which + "-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const src = which === "verR-a" ? "src/evidence/decomp/d-verR-a-s" + s + ".json"
+                                 : "src/evidence/decomp/d-verH-h1-s" + s + ".json";
+  const filed = JSON.parse(await fs.readTextFile(src));
+  if (!filed || filed.verdict !== "COMPLETE" || !filed.cks || !filed.cks[1] || !filed.cks[1].params) {
+    throw new Error(src + " R2 params missing");
+  }
+  const { G, T, TASKS } = await globalThis.NovelInit(fs);
+  const A = TASKS.assocR;
+  const tut = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-novel-tutor-s" + s + ".json"));
+  const model = restoreP(T, G, tut, filed.cks[1].params);
+  const fw = (x) => argmaxOf(Array.from(model.forward(x, 1).logits));
+  const batt = (rng, b1gen) => {
+    const b0 = [], b1 = [], b3 = [];
+    for (let i = 0; i < 200; i++) b0.push(A.gen(rng, 1 + rng.int(3)));
+    for (let i = 0; i < 200; i++) b1.push(b1gen(rng));
+    for (let i = 0; i < 200; i++) b3.push(genReverse(rng, 1 + rng.int(3)));
+    const acc = (arr) => arr.filter((ex) => fw(ex.x) === ex.y).length / arr.length;
+    return { b0: +acc(b0).toFixed(4), b1: +acc(b1).toFixed(4), b3: +acc(b3).toFixed(4) };
+  };
+  const buggy = batt(G.makeRng(14900 + s), (rng) => A.gen(rng, 5));
+  const safe = batt(G.makeRng(14900 + s), (rng) => genSafe5(rng));
+  const aligned = buggy.b0 === safe.b0 && buggy.b3 === safe.b3;
+  const body = { spec: "b1repair-v10", seed: s, which, verdict: "COMPLETE",
+    aligned, buggy, safe, deltaB1: +(safe.b1 - buggy.b1).toFixed(4),
+    filedB1: filed.cks[1].acc ? filed.cks[1].acc.b1 : null };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("b1repair-" + which + "-s" + s + " buggyB1=" + buggy.b1 + " safeB1=" + safe.b1 + " aligned=" + aligned);
+  return body;
+};
+
+// ---- representational-v10: cross-teacher tutors + S-battery. ----
+globalThis.runXTeachTutor = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-xteach-tutor-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log("d-xteach-tutor-s" + s + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.NovelInit(fs);
+  const A = TASKS.assocR;
+  const rng = G.makeRng(15000 + s);
+  const train = [];
+  for (let i = 0; i < 500; i++) train.push(A.gen(rng, 1 + rng.int(3)));
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: 15100 + s, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train, steps: 1200, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => A.bindLabels(x), auxW: 1.0 });
+  const wallMs = Date.now() - t0;
+  const test = [];
+  const trng = G.makeRng(15200 + s);
+  for (let i = 0; i < 200; i++) test.push(A.gen(trng, 1 + trng.int(3)));
+  const acc = T.evaluate(out.model, test, 1).acc;
+  const params = out.model.params().map((p) => Array.from(p.v !== undefined ? p.v : p));
+  const ledger = { spec: "representational-v10", seed: s, verdict: acc >= 0.60 ? "COMPLETE" : "ABORT",
+    gate: acc >= 0.60 ? "PASS" : "FAIL", testAcc: +acc.toFixed(4), wallMs,
+    arch: { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 }, trainSeed: 15100 + s, params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(ledger));
+  log("d-xteach-tutor-s" + s + " acc=" + ledger.testAcc + " " + ledger.gate);
+  return ledger;
+};
+globalThis.runVerifierS = async function (fs, log, s, arm) {
+  const ledgerPath = "src/evidence/decomp/d-verS-" + arm + "-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const cfg = {
+    xteach: { teacherFrom: "xteach" },
+    shuf: { pi: [2, 0, 3, 1] },
+    donly: { cycles: false, W: 4 },
+    rec: { studentArch: "seq" },
+    aux8: { aux: true, auxScale: 8 },
+    aux1: { aux: true, auxScale: 1 },
+    ctl: {},
+  }[arm];
+  if (!cfg) throw new Error("unknown S arm: " + arm);
+  const { G, T, TASKS } = await globalThis.NovelInit(fs);
+  const A = TASKS.assocR;
+  const tutLedger = cfg.teacherFrom === "xteach" ? "d-xteach-tutor-s" + s + ".json" : "d-novel-tutor-s" + s + ".json";
+  const tut = JSON.parse(await fs.readTextFile("src/evidence/decomp/" + tutLedger));
+  if (tut.verdict !== "COMPLETE") {
+    const ab = { spec: "representational-v10", seed: s, arm, verdict: "ABORT", reason: "tutor gated" };
+    await fs.writeTextFile(ledgerPath, JSON.stringify(ab)); return ab;
+  }
+  const teacher = novelRestore(T, G, tut);
+  let model;
+  if (cfg.studentArch === "seq") {
+    model = T.makeModel(G.makeRng(14100 + s), { arch: "seq", vocab: 9, h: 48, m: 96, classes: 4 });
+  } else {
+    model = novelRestore(T, G, tut);
+  }
+  model.__G = G;
+  const t0 = Date.now();
+  const cks = [];
+  const halves = [{ rng: 15000, drng: 15100 }, { rng: 16000, drng: 16100 }];
+  for (let h = 0; h < halves.length; h++) {
+    const H = halves[h];
+    const rng = G.makeRng(H.rng + s), drng = G.makeRng(H.drng + s);
+    const opt = new G.Adam(5e-3);
+    const B = 8;
+    let lastCyc = 0, lastCon = 0;
+    for (let step = 0; step < 300; step++) {
+      model.zeroGrad();
+      if (cfg.cycles !== false) {
+        let lsum = 0;
+        for (let b = 0; b < B; b++) lsum += cycleStep(T, G, A, model, genCycleSet(rng, A), B);
+        lastCyc = lsum / B;
+      }
+      if ((cfg.W === undefined ? 4 : cfg.W) > 0) {
+        lastCon = distillStep(T, G, A, model, teacher, drng, B,
+          cfg.W === undefined ? 4 : cfg.W, null,
+          { pi: cfg.pi || null, aux: !!cfg.aux, auxScale: cfg.auxScale || 1 });
+      }
+      opt.step(model.params());
+    }
+    const ev = await globalThis.runCycleEval(fs, log, s, "verS-" + arm + "-r" + (h + 1), model);
+    const ext = await globalThis.runExtEval(fs, log, s, "verS-" + arm + "-r" + (h + 1), model);
+    cks.push({ acc: ev.acc, echo: ev.b3echoRate, ext: ext.acc,
+      train: { lastCycleLoss: +lastCyc.toFixed(4), lastConLoss: +lastCon.toFixed(4) },
+      params: saveP(model) });
+  }
+  const body = { spec: "representational-v10", seed: s, arm, verdict: "COMPLETE",
+    wallMs: Date.now() - t0, cks };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("verS-" + arm + "-s" + s + " done");
   return body;
 };

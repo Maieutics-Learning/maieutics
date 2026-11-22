@@ -1980,3 +1980,29 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Blind-reply preservation: all 15 verbatim blind replies now in fresh-eyes-repro appendix (were context-only = at-risk). Count corrected 14 -> 15 (R0 motivating check) with filename note (keeps 14x for R1–R3).
 - Unpushed src: decomp/(REPRODUCIBILITY.md, fresh-eyes-repro-v1-14x-results.md, d-depth-verdict.json repair) + conversations/(2026-11-22-repro.md, 2026-11-22-logcheck.md) + CHATLOG (repro + this entry). NO PUSH without explicit user order.
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — PUSHED 4937366 (vault github PAT, parent 54fb120d tip-match held)
+- Worker-side git-blobs overlay (PAT vault->worker memory only, summary return): 1930 in scope, 6 uploaded (~405KB: REPRODUCIBILITY.md, fresh-eyes-repro-v1-14x-results.md, d-depth-verdict.json brace repair, transcripts repro + logcheck, CHATLOG) / 1924 reused, 0 deleted, secret-scan clean. Ref + commit verify MATCH. PAT stayed in worker/page memory; never in agent context.
+- Backlog drained except this receipt (rides next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — what's-next review (user: assess from memory, log everything, transcript in conversations)
+- Reviewed working record + CHATLOG tail + RESULTS_INDEX/claims + decomp verdicts + REPRO. No compute this turn (assessment only).
+- Banked: tailoring STEERS (CLOSED); verifier BLOCKS + STACKS thru round 3 + double dissociation; methods (prereg/fresh-eyes/blind-repro → REPRODUCIBLE-IN-REPO); pool 4/5 live.
+- Bounds: interrogation exhausted (decomp/scale/novel/cycle/pin/asm/focus/depth all ~flat or collapse); verifier diet-fragile + teaches-its-question-only; F5 no-stacking-without-constraint; B1 20%-contaminated (relatives stand).
+- Debts queued: (1) B1 repair OWED — recommended first (cheap, de-risks all B1); (2) round-4 half-life; (3) representational spec (bottlenecked recurrence / priced intermediates — needs countersign); (4) re-ledger queue (paper milestone-1); (5) teaching-new-operations question. Full menu + rationale: src/evidence/conversations/2026-11-22-whatsnext.md. Awaiting user pick.
+- Unpushed: conversations/2026-11-22-whatsnext.md + CHATLOG (this entry). NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — next-step reasoning session + B1 repair EXECUTED (user: reason, fresh-eyes, discover, decide)
+- 6 blind reviews (lane barrage 3 + red-team 3), raw + adjudication: src/evidence/decomp/fresh-eyes-nextstep-6x-results.md. Convergence: representations = load-bearing lane; round-4 parked unanimously. Adopted: cross-teacher ablation + shuffled-teacher null (with demotion teeth) + distill-only-rounds-1-2 as gates for the representational spec. Reviewer errors logged (prompting-paradigm imports). Key rebuttal now stated: R-c already answers "do cycles add anything" for round 3.
+- B1 repair per owed spec b1repair-v10-prereg.md: genSafe5 wrapper (filed A.gen untouched) + eval-only calibration on filed R-a/H1 R2 params × 3 seeds. 6/6 stream-aligned; B0/B3 byte-identical; B1 understated by mean +0.217 (buggy ~0.69-0.82 → safe ~0.96-1.00); seed-order noise only. Bonus: R-a R2 ≡ H1 R2 bit-identical (exact replication free). Verdict REPAIRED (d-b1repair-verdict.json); 6 calib ledgers filed.
+- Unpushed: decomp/(fresh-eyes-nextstep, b1repair spec/verdict/6 ledgers, novel-driver.js wrapper) + conversations/(whatsnext, nextstep) + CHATLOG (this entry). NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — representational program COMPLETE (user: multiple experiments; transcript src/evidence/conversations/2026-11-22-vers.md)
+- Spec representational-v10 (7 arms) + 3 blind reviewers: adopted AUX1 dose + CTL concurrent replication; rejected non-anchored control (filed round semantics).
+- 3 xteach tutors PASS (acc 1.00); 21 seed-runs complete. CTL bit-identical to filed V1 (zero drift). XTEACH REPLICATES+exceeds (R2B3 0.815/0.67/0.67). SHUF NULL, teeth not tripped (STACKS stands). DONLY BOUND (cycles needed from step 0). REC BOUND (attention-substrate skill; echo 1.0). AUX1/AUX8 replicate, no dose effect (aux inert). Expectations 4.5/5.
+- Verdict d-verS-verdict.json. Reading: verifier = clean lines + attention + real teacher + cycles from step 0; stack lives in distill+cycles loop.
+- Unpushed: decomp/(representational-v10 spec, d-verS-verdict, 3 xteach + 21 verS ledgers, driver) + prior backlog + conversations/(vers) + CHATLOG. NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**

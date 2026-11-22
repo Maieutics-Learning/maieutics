@@ -1,0 +1,1 @@
+{"spec":"b1repair-v10","seed":0,"which":"verH-h1","verdict":"COMPLETE","aligned":true,"buggy":{"b0":1,"b1":0.785,"b3":0.655},"safe":{"b0":1,"b1":0.995,"b3":0.655},"deltaB1":0.21,"filedB1":0.785}
