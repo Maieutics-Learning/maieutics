@@ -234,7 +234,9 @@ function cycleStep(T, G, A, model, P, B) {
   for (const j of jobs) {
     const dz = dSoftmax(softOf(Array.from(j.f.fw.logits)), j.g);
     for (let i = 0; i < dz.length; i++) dz[i] /= B;
-    model.backward(dz, j.f.fw, auxFor(model, A, B, j.x, j.f.fw), null, null);
+    const aux = (typeof globalThis.NOAUX !== "undefined" && globalThis.NOAUX)
+      ? null : auxFor(model, A, B, j.x, j.f.fw);
+    model.backward(dz, j.f.fw, aux, null, null);
   }
   return loss;
 }
@@ -1404,5 +1406,96 @@ globalThis.runSeedSteer = async function (fs, log, s) {
     stateNorm: +stateNorm.toFixed(4), ladder, echoSwingPlus2MinusNeg2: swing };
   await fs.writeTextFile(ledgerPath, JSON.stringify(body));
   log("wseed-steer-s" + s + " echo(-2)=" + ladder["-2"].echo + " echo(0)=" + ladder["0"].echo + " echo(+2)=" + ladder["2"].echo);
+  return body;
+};
+// P1 (torchport-p1): canonical first-step grad dump. One full round-step on fixed
+// streams (rng 15000+s: 8 cycle sets; drng 15100+s: distill B=8 W=4), tutor-start.
+globalThis.runP1GradDump = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-p1-js-grad-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.NovelInit(fs);
+  const A = TASKS.assocR;
+  const tut = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-novel-tutor-s" + s + ".json"));
+  const model = novelRestore(T, G, tut);
+  model.__G = G;
+  const teacher = novelRestore(T, G, tut);
+  const rng = G.makeRng(15000 + s), drng = G.makeRng(15100 + s);
+  const B = 8;
+  model.zeroGrad();
+  let cycSum = 0;
+  for (let b = 0; b < B; b++) cycSum += cycleStep(T, G, A, model, genCycleSet(rng, A), B);
+  const con = distillStep(T, G, A, model, teacher, drng, B, 4, null);
+  const grads = model.params().map((p) => Array.from(p.g !== undefined ? p.g : p));
+  const body = { spec: "torchport-p1", block: "P1a-js", seed: s, verdict: "COMPLETE",
+    streams: { rng: 15000 + s, drng: 15100 + s }, B, W: 4,
+    cycLoss: +(cycSum / B).toFixed(10), conLoss: +con.toFixed(10), grads };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("p1-grad-s" + s + " cyc=" + body.cycLoss + " con=" + body.conLoss);
+  return body;
+};
+// P1a-aux-off: same canonical step with bindLabels aux disabled (NOAUX guard).
+globalThis.runP1GradDumpNoAux = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-p1-js-grad-noaux-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.NovelInit(fs);
+  const A = TASKS.assocR;
+  const tut = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-novel-tutor-s" + s + ".json"));
+  const model = novelRestore(T, G, tut);
+  model.__G = G;
+  const teacher = novelRestore(T, G, tut);
+  const rng = G.makeRng(15000 + s), drng = G.makeRng(15100 + s);
+  const B = 8;
+  globalThis.NOAUX = true;
+  let body;
+  try {
+    model.zeroGrad();
+    let cycSum = 0;
+    for (let b = 0; b < B; b++) cycSum += cycleStep(T, G, A, model, genCycleSet(rng, A), B);
+    const con = distillStep(T, G, A, model, teacher, drng, B, 4, null);
+    const grads = model.params().map((p) => Array.from(p.g !== undefined ? p.g : p));
+    body = { spec: "torchport-p1", block: "P1a-js-noaux", seed: s, verdict: "COMPLETE",
+      streams: { rng: 15000 + s, drng: 15100 + s }, B, W: 4,
+      cycLoss: +(cycSum / B).toFixed(10), conLoss: +con.toFixed(10), grads };
+    await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+    log("p1-grad-noaux-s" + s + " cyc=" + body.cycLoss + " con=" + body.conLoss);
+  } finally {
+    globalThis.NOAUX = false;
+  }
+  return body;
+};
+// P1b: 10 full round-steps on fixed streams, per-step losses + final params.
+globalThis.runP1Traj = async function (fs, log, s) {
+  const ledgerPath = "src/evidence/decomp/d-p1-js-traj-s" + s + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.NovelInit(fs);
+  const A = TASKS.assocR;
+  const tut = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-novel-tutor-s" + s + ".json"));
+  const model = novelRestore(T, G, tut);
+  model.__G = G;
+  const teacher = novelRestore(T, G, tut);
+  const rng = G.makeRng(15000 + s), drng = G.makeRng(15100 + s);
+  const opt = new G.Adam(5e-3), B = 8, t0 = Date.now();
+  const steps = [];
+  for (let step = 0; step < 10; step++) {
+    model.zeroGrad();
+    let cycSum = 0;
+    for (let b = 0; b < B; b++) cycSum += cycleStep(T, G, A, model, genCycleSet(rng, A), B);
+    const con = distillStep(T, G, A, model, teacher, drng, B, 4, null);
+    opt.step(model.params());
+    steps.push({ cyc: +(cycSum / B).toFixed(10), con: +con.toFixed(10) });
+  }
+  const body = { spec: "torchport-p1", block: "P1b-js", seed: s, verdict: "COMPLETE",
+    wallMs: Date.now() - t0, steps, finalParams: saveP(model) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("p1-traj-s" + s + " done");
   return body;
 };

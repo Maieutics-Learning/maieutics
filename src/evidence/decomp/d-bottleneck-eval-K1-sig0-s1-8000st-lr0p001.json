@@ -1,0 +1,1 @@
+{"spec":"bottleneck-v10","arm":"T-frozen","verdict":"COMPLETE","K":1,"sigma":0,"seed":1,"tutorSeed":0,"steps":8000,"lr":0.001,"n":200,"accIntact":0.585,"accScrambled":0.24,"chance":0.25}

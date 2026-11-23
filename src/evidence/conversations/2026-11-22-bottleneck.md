@@ -1,0 +1,12 @@
+# Transcript 2026-11-22 — bottleneck game v10 (STEP 2, pre-countersigned; in-worker JS only)
+
+user (standing pre-countersignature): STEP 2 = bottleneck spec + bench-scale laptop prototype + verdict.
+assistant:
+- Wrote src/evidence/decomp/bottleneck-driver.js (MiniMLP [message(K)+onehot(query,9)]->96 silu->4, linear projection of teacher final state + Gaussian noise, manual backward, G.Adam; grad-checked vs central differences: worst rel 1.1e-7 over 36 sampled grads across all 6 param blocks, h=1e-6).
+- Recipe search (kept as superseded pilots, distinct tags): 300st/2000st showed K=48 control stuck at ~0.7. Root causes found and fixed: (1) filed tutor s0 is an assoc-ECHO tutor (own B3 0.27/echo 0.835) — fine, student learns lookup from state, not from teacher's answer; (2) genReverse-with-replacement leaves ~62% of lines AMBIGUOUS (duplicate values; probe11) — switched to distinct-values lines (documented distribution change); (3) 3-pair subspace needs ~6 epochs (by-nPairs at 2000st: 1.00/0.87/0.61) — recipe set to 8000st/B8/lr1e-3 (~2 min/train in-worker).
+- Dose (frozen tutor s0, 48 trains + 48 evals + 3 wide-clean controls): K=48 0.94/0.93/0.905 (scr ~0.25); K=8 .82/.81/.74/.71; K=4 .77/.74/.72/.66; K=2 .67/.62/.60/.60; K=1 .54/.54/.53/.46 (sigma 0/0.5/1/2 means). Scrambled ALL cells 0.18-0.30.
+- Verdict d-bottleneck-verdict.json: COMPRESSES (K=4 sigma>=0.5 quorum 3/3 >= 0.60; sharp K=4->K=2 cliff at sigma=0.5). Expectation scored as MISS (prereg leaned FAIL 40/60). Caveats filed: teacher carries bindings not answers; distinct-values distribution; single tutor; recipe pilots superseded; K=48 control 0.905-0.94 not 1.00. T-joint arm deferred (not verdict-relevant).
+- Position: first setup where the rule demonstrably passes through a narrow noisy channel — contrasts AUX (priced but ignored) and REC (substrate removed). Multi-tutor generality + T-joint are follow-ups (need fresh orders only if outside STEP 2 scope — spec's follow-ups; no compute on them now).
+
+Unpushed (STEP 2 new): decomp/(bottleneck-driver.js, 6 recipe-pilot trains + 6 evals, 48 dose trains + 48 evals, 3 K48 trains + 3 evals, d-bottleneck-verdict.json) + this transcript + CHATLOG. Cumulative unpushed (both steps): + P1 files (torch_bench.py training section carried, d-p1-js-*-s0.json carried, d-torch-p1a/b-kaggle.json, d-torch-p1-parity.json, torchp1 transcript). NO PUSH without explicit user order (pre-countersignature excludes push).
+**Always read src/agents-augment.md first, every session.**

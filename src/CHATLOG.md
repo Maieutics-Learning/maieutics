@@ -2037,3 +2037,49 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - W2 (mirror-v10 prereg): src/port/mirror.py (pure python+numpy, no browser APIs) ports RNG/gens/AttnModel-forward exact. Parity via Pyodide HERE: 400/400 line-int + 400/400 argmax agreement, max|dlogit| = 2.9e-14 → MIRROR-PARITY (expectation scored). Same file runs under CPython (Kaggle lane); torch-GPU training is the sequel, not this spec. Off-laptop port path verified, not assumed.
 - Unpushed: decomp/(wseed+mirror preregs, 3 steer ledgers, 2 verdicts, parity ledger, driver) + src/port/mirror.py + transcript + CHATLOG. NO PUSH without explicit user order.
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — PUSHED ecd0c1d2 (vault github PAT, parent ea7dc6ed tip-match held)
+- Worker-side git-blobs overlay (PAT vault->worker memory only, summary return): 2015 in scope, 48 uploaded (~6MB: ten program — spec + knobs/ten verdicts + 9 K1/K2/K5 + 6 K3/K4-ABORT + 3 Rd + 3 W8 + 3 V1-s3-5 + 3 tutors-s3-5 + 3 B1Safe ledgers, W1 prereg + 3 steer + verdict, mirror prereg + mirror.py + parity ledger, W2 driver additions, ten/next transcripts, CHATLOG) / 1967 reused, 0 deleted, secret-scan clean. Ref + commit verify MATCH. PAT stayed in worker/page memory; never in agent context.
+- Pre-push audit: 2013 src files, 1123/1123 JSONs parse, 0 bad.
+- Backlog drained except this receipt (rides next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — torch-port P0 COMPLETE on Kaggle CPU (user: "lets try it"; transcript src/evidence/conversations/2026-11-22-torchp0.md)
+- Spec torchport-v10 (P0 forward / P1 training / P2 GPU scale, gated chain) + src/port/torch_bench.py (torch float64 forward + JS-order loader).
+- P0 job (CPU, zero quota): v1 import bug (single-file bundle takes no imports) → lane quirks mapped (version push needs user/slug; title resubmit 409s) → v3 COMPLETE torch 2.11.0+cpu: 400/400 lines, 400/400 argmax, max|dlogit| = 1.15e-14 → FORWARD-PARITY (expectation scored). Quota untouched (GPU 0/108000s, refresh 11-28).
+- Next: P1 training parity (own prereg), last gate before GPU scale.
+- Unpushed: decomp/(torchport spec, p0 xs, p0 ledger) + src/port/torch_bench.py + transcript + CHATLOG. NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — research-direction assessment (no compute; transcript src/evidence/conversations/2026-11-22-direction.md)
+- User asked where the research should lead. Assessment: program = fenced negative atlas + one real positive (transmission stacks); scale objection must die before any conclusion counts (stated prior: bounds likely hold — failures look structural, not capacity — but priors aren't results).
+- Recommended endgame: lane 1 settle scale (P1->P2) + lane 2 bottleneck game (only setup where rule beats data in the loss); converge to paper core either way; re-ledgers at the end. Offered P1 + bottleneck spec in parallel, awaiting go-ahead.
+- Unpushed: + direction transcript + CHATLOG. NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — PRE-COUNTERSIGNATURE + P1/bottleneck preregs (transcripts: direction + next steps below)
+- User: "pre-countersign the next couple steps". Recorded scope: STEP 1 = P1 training parity (CPU only, zero GPU); STEP 2 = bottleneck spec + laptop prototype. EXCLUDED: P2 GPU scale, any push.
+- Filed: torchport-p1-prereg.md (P1a grad parity <=1e-6, P1b 10-step traj parity; torch.optim.Adam defaults match nn.js; JS-equivalence note for cycle/distill scalars) + bottleneck-v10-prereg.md (VIB noisy K-dim channel, frozen/joint teacher arms, MiniMLP student, novel-pair test, COMPRESSES/DISTRIBUTED/FLAT-FAIL). Repaired stray non-ASCII in P1 ledger line.
+- Unpushed: + 2 specs + CHATLOG. NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — P1 TRAIN-PARITY on Kaggle CPU (user pre-countersign STEP 1; transcript src/evidence/conversations/2026-11-22-torchp1.md)
+- Dropped-context P1 torch story was unfiled = undone: re-ran from scratch. Verified port semantics by read (stream order, aux 1/(B*n), distill torch-scalar=4x-JS-con, Adam updates identical), built two 660KB single-file CPU bundles (exact base64-f64 params + JS arrays), submitted p1a-grad-cpu + p1b-traj-cpu.
+- v1 both ERROR (np.frombuffer '<f8' rejected by Kaggle numpy; v1 logs superseded) -> v2 np.float64 guard, both COMPLETE torch 2.11.0+cpu, zero quota (no machineShape).
+- Measured: P1a grads 16/17 maxRel <= 1.03e-7, main-loss rel 4.6e-12; P1b main-traj worst rel 1.2e-11 (10 steps), conPerW worst rel 1.0e-8, aux step-3 spike 2.5 live, finals non-Wk.b worst abs 6.4e-12. Wk.b degenerate dust direction (grads both ~0 absDiff 3.1e-16; final diff 5.8e-10 on ~2e-9 values via Adam-eps amplification). Numeric top-8: torch==numeric==JS to 1e-8.
+- Verdict d-torch-p1-parity.json: TRAIN-PARITY (expectation scored). Bar note: P1a maxRel bar needs an abs floor for zero-gradient directions. P2 GPU scale NOT authorized (fresh order required).
+- Session notes: Step 0 late (status reads before src/tools + README); v1 local logs overwritten by v2 (verbatim TypeError filed in verdict attempts; canonical v1 record = Kaggle kernel version history at filed refs).
+- Unpushed (carried): src/port/torch_bench.py training section + d-p1-js-*-s0.json. New: d-torch-p1a/b-kaggle.json + d-torch-p1-parity.json + transcript + CHATLOG. NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — Bottleneck COMPRESSES (STEP 2 DONE; transcript src/evidence/conversations/2026-11-22-bottleneck.md)
+- Driver bottleneck-driver.js (MiniMLP + noisy K-dim channel, grad-check 1.1e-7) + recipe search: filed tutor s0 echoes (B3 0.27, carries bindings not answers); genReverse ambiguity (~62% lines, duplicate values) fixed with distinct-values lines; 8000st/B8/lr1e-3 recipe (~2 min/train).
+- Dose T-frozen, tutor s0, 48 trains + 51 evals: K48 0.94/0.93/0.905 control; K8 .82/.81/.74/.71; K4 .77/.74/.72/.66; K2 .67/.62/.60/.60; K1 .54/.54/.53/.46 (sigma means). Scrambled 0.18-0.30 everywhere.
+- Verdict d-bottleneck-verdict.json: COMPRESSES (K=4 sigma>=0.5 3/3 quorum; K-dose monotone; K=4->K=2 cliff). Expectation MISS (leaned FAIL). Caveats + deferred T-joint/multi-tutor filed. First setup where the rule passes a narrow noisy channel.
+- Unpushed (both steps): P1 (torch_bench training section carried, d-p1-js-*, d-torch-p1a/b-kaggle, d-torch-p1-parity, torchp1 transcript) + bottleneck (driver, 54 trains, 57 evals incl. pilots, verdict, transcript) + CHATLOG. NO PUSH without explicit user order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — Fresh-eyes logging-traceability round (3x sealed; results src/evidence/decomp/fresh-eyes-logging-3x-results.md)
+- Automated audit first: every verdict/transcript reference resolves (102/102 bottleneck cell ledgers match filed numbers, 0 mismatches; all P1 chain files parse; CHATLOG entries present). One audit-script artifact bug (JSON.parse on a .md), zero real gaps.
+- Reviewers converged 3/3 on one gap: v1 ERROR logs not locally preserved. Adjudicated ACCEPT (patched: verbatim error + Kaggle-history provenance in verdict + transcript) / PARTIAL on R3's wider custody point (dropped span was declared unfiled=undone and re-run; no ghost numbers cited). 1 patch, 0 open gaps.
+**Always read src/agents-augment.md first, every session.**
