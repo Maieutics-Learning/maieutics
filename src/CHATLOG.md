@@ -2322,3 +2322,35 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Audit: 894/894 decomp JSONs parse, 0 bad; specs 6/6, verdicts+closeout 7/7, batteries 6/6 present. Transcript + prior CHATLOG already complete through R5 closeout; this turn appends the audit record only. No file repairs needed.
 - Backlog: + compose transcript turn + CHATLOG (this entry) (ride next push).
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — PUSHED 2c267a79 (parent 3636960e, 130 uploaded / 2533 reused, secret-scan clean, verified; backlog: batch3+R1-R5 specs/batteries/drivers/ledgers/verdicts/closeout + transcripts). Backlog FULLY drained except the PUSHED receipt (rides next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — O1/O2/O3 CLOSED (agent-chosen next direction; NO PUSH without order)
+- O1 autopsy: obo pooled 0.54; interior bias 0.45 MIXED (z=-0.54); margin-AUC 0.60/0.69/0.64 → calibration CLOSED → REPRESENTATION route. No label-marginal bias. Expectation double-MISS filed.
+- O2a ERRMINE MINES: oracle 0.985/0.975/0.99 (McNemar p 0.0075/0.0106/~0); fwd distortion flagged s1 (-0.15). O2b WRAPDOSE POISONS: 0.62/0.765/0.66. Expectation INVERTED, filed.
+- O3 CEILING-MOVED 3/3: composed 0.91/0.91/0.765 (mean 0.862, best 0.91); product gaps ≤0.002. Wall now s2 retriever (0.775). O4 queued.
+- Unpushed: off1/o2/o3 specs + 3 batteries + driver exts + 3 diag + 9 o2 + 3 o3base + 3 o3 + 3 verdicts + transcript + CHATLOG (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — O4a/O4b/SP1 CLOSED (pre-countersigned; NO PUSH without order)
+- O4a: LEN/NOISE ROBUST, PREFIXQ FRAGILE (~0.2) — mined add is a suffix rule. Expectation LEN-FRAIL missed; DELIM-vacuity caught pre-compute → PREFIXQ.
+- O4b: s2 repaired (+0.165, comp 0.93 new best; reseed 0.80 diet-hard), s0/s1 collapsed (poison #3). Bars HOLDS/HOLDS-AT-0.86; best-single 0.93.
+- SP1: NO-SLOT 3/3 (composed 0.44-0.59) BUT pos8 decodes v 0.84-0.88 low-entropy → SLOT-WRITTEN-BUT-UNREAD. Wall = single readout can't consume staged content.
+- Unpushed: o4a/o4b/sp1 specs + 3 batteries + amendments + driver exts + 3 o4a + 4 o4b + 6 sp1 + 3 verdicts + transcript + CHATLOG (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — O5a/O5b/O6 CLOSED (user: run all three; NO PUSH without order)
+- O5a SPLIT: holds s0, s1 -0.07, s2 collapse confounded by non-convergence (0.064); v1-harvest bug (y-vs-v) caught+fixed, both filed; true-errors ~15/300 padding-dominated; retriever-mining unstable vs add-mining clean.
+- O5b FAILS: prefix ≤0.47, suffix →0.5-0.6 — positional interference, not unification. s1 underconverged.
+- O6 FLAT: depth adds nothing (decode frozen); second pass needs new evidence, not more ticks.
+- Unpushed: o5a/o5b/o6 specs + 3 batteries + amendments + driver exts + 3 o5a-v1 + 3 o5a + 3 o5b(+eval) + 3 o6 + 3 verdicts + transcript + CHATLOG (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — progress/next assessment answered (no compute)
+- Reconciled scratch/CURRENT_TASK.md (ends O5a/O5b/O6) with handoff note: match, no mismatch. Answered in chat: steering yes / self-learning not yet; ceilings + walls; next controls then arch change. Unpushed: + o5o6 transcript turn + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — LOG AUDIT CLOSED (946/946 parse; 3 fresh-eyes iterations; NO PUSH without order)
+- User verbatim: "lets make sure everything is completely logged (so a contextless version of yourself can get to where you are now, feel free to use iterations of fresh eyes to patch up holes in log)". Pass 1: 946/946 decomp JSONs parse, 0 bad; 62 verdicts, 884 ledgers; 15/15 recent spec+battery+verdict. Pass 2: batteries verbatim 3+adjudication; ledgers COMPLETE 100% (o5a 7/7, o5b 7/7, o6 4/4, o4a 4/4, o4b 5/5, sp1 7/7, o3 4/4, o2 10/10, off1 4/4); amendments inline. Pass 3: O3 rounding only, O4b 0.93 match, O2 McNemar all sig, O6 flat, O5a split; driver 13/13 fns; transcripts+CHATLOG cover all waves (PROGRAM COMPLETE string = CLOSE-OUT wording). No repairs. Unpushed: 65 decomp + driver ext + 3 transcripts + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**

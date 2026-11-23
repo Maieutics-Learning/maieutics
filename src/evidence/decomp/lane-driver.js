@@ -3405,3 +3405,594 @@ globalThis.runFQ2 = async function (fs, log, seed) {
   log("fq2 s=" + seed + " flats=" + body.accFlats);
   return body;
 };
+globalThis.runOFF1Diag = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-off1-diag-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r2-add4-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("add4 train missing s" + seed);
+  const m = T.makeModel(G.makeRng(tr.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = m.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = tr.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const srng = G.makeRng(52500 + seed);
+  const hist = { "-2": 0, "-1": 0, "0": 0, "+1": 0, "+2": 0, other: 0 };
+  const predMarg = [0, 0, 0, 0], trueMarg = [0, 0, 0, 0];
+  const perK = { 1: [0, 0, 0], 2: [0, 0, 0], 3: [0, 0, 0] };
+  let inWrong = 0, inOver = 0, edgeN = 0, edgeWrong = 0;
+  const margOK = [], margOBO = [], margOther = [];
+  for (let i = 0; i < 200; i++) {
+    const e = composeGenShiftScr(srng);
+    const l = Array.from(m.forward(e.flat.concat([e.qk, e.k, e.v, 8]), 1).logits);
+    let b = 0, s2 = -1e30;
+    for (let j = 0; j < 4; j++) { if (l[j] > l[b]) { s2 = l[b]; b = j; } else if (l[j] > s2) s2 = l[j]; }
+    const margin = l[b] - s2, err = b - e.y;
+    trueMarg[e.y]++; predMarg[b]++;
+    if (perK[e.k]) { perK[e.k][2]++; if (b === e.y) perK[e.k][0]++; else if (Math.abs(err) === 1) perK[e.k][1]++; }
+    const key = err === 0 ? "0" : (err === 1 ? "+1" : (err === -1 ? "-1" : (err === 2 ? "+2" : (err === -2 ? "-2" : "other"))));
+    hist[key]++;
+    if (err === 0) margOK.push(margin);
+    else if (Math.abs(err) === 1) margOBO.push(margin);
+    else margOther.push(margin);
+    if (e.y === 1 || e.y === 2) { if (err !== 0) { inWrong++; if (err > 0) inOver++; } }
+    else { edgeN++; if (err !== 0) edgeWrong++; }
+  }
+  const med = (a) => { if (!a.length) return null; const s = a.slice().sort((x, y) => x - y); return +s[Math.floor(s.length / 2)].toFixed(4); };
+  const auc = (pos, neg) => {
+    if (!pos.length || !neg.length) return null;
+    let w = 0; for (const p of pos) for (const n of neg) { if (p > n) w++; else if (p === n) w += 0.5; }
+    return +(w / (pos.length * neg.length)).toFixed(4);
+  };
+  const wrong = 200 - hist["0"], obo = hist["+1"] + hist["-1"];
+  const medOK = med(margOK);
+  const lowShare = margOBO.length && medOK !== null ? +(margOBO.filter((x) => x < medOK).length / margOBO.length).toFixed(4) : null;
+  const body = { spec: "off1-v10.1", arm: "off1diag", verdict: "COMPLETE", seed, n: 200,
+    errHist: hist, oboShare: wrong > 0 ? +(obo / wrong).toFixed(4) : null,
+    interior: { nWrong: inWrong, overshoot: inOver, bias: inWrong > 0 ? +(inOver / inWrong).toFixed(4) : null },
+    edge: { n: edgeN, wrong: edgeWrong, rate: edgeN > 0 ? +(edgeWrong / edgeN).toFixed(4) : null },
+    interiorRate: (200 - edgeN) > 0 ? +((inWrong) / (200 - edgeN)).toFixed(4) : null,
+    predMarginal: predMarg, trueMarginal: trueMarg,
+    perK: { k1: perK[1][2] ? { acc: +(perK[1][0] / perK[1][2]).toFixed(4), obo: (perK[1][2] - perK[1][0]) ? +(perK[1][1] / (perK[1][2] - perK[1][0])).toFixed(4) : null } : null,
+           k2: perK[2][2] ? { acc: +(perK[2][0] / perK[2][2]).toFixed(4), obo: (perK[2][2] - perK[2][0]) ? +(perK[2][1] / (perK[2][2] - perK[2][0])).toFixed(4) : null } : null,
+           k3: perK[3][2] ? { acc: +(perK[3][0] / perK[3][2]).toFixed(4), obo: (perK[3][2] - perK[3][0]) ? +(perK[3][1] / (perK[3][2] - perK[3][0])).toFixed(4) : null } : null },
+    margins: { medCorrect: medOK, medOBO: med(margOBO), medOther: med(margOther), lowMarginShare: lowShare },
+    marginAUC: auc(margOK, margOBO) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("off1 s=" + seed + " oboShare=" + body.oboShare + " inBias=" + body.interior.bias + " auc=" + body.marginAUC);
+  return body;
+};
+function o2FiledDiet(G, TASKS, seed) {
+  const A = TASKS.assocR;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 150; i++) {
+    const e = composeGenShiftScr(drng);
+    if (((e.v + e.k) % 4 + 4) % 4 !== e.y) throw new Error("add semantics broken");
+    a.push({ x: e.flat.concat([e.qk, e.k, e.v, 8]), y: e.y });
+  }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  return { A, all };
+}
+function o2Restore(T, G, o) {
+  const m = T.makeModel(G.makeRng(o.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  const ps = m.params();
+  for (let i = 0; i < ps.length; i++) {
+    const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+    const src = o.params[i];
+    for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+  }
+  return m;
+}
+function o2EvalBody(m, G, seed) {
+  const srng = G.makeRng(52500 + seed), frng = G.makeRng(52400 + seed);
+  const orc = []; for (let i = 0; i < 200; i++) { const e = composeGenShiftScr(srng); orc.push({ x: e.flat.concat([e.qk, e.k, e.v, 8]), y: e.y }); }
+  const am = (x) => { const l = Array.from(m.forward(x, 1).logits); let b = 0; for (let j = 1; j < 4; j++) if (l[j] > l[b]) b = j; return b; };
+  let hitsO = 0, obo = 0, wrong = 0; const preds = [];
+  for (const e of orc) { const b = am(e.x); preds.push(b); if (b === e.y) hitsO++; else { wrong++; if (Math.abs(b - e.y) === 1) obo++; } }
+  return { n: 200, accOracle: +(hitsO / 200).toFixed(4), oboShare: wrong > 0 ? +(obo / wrong).toFixed(4) : null, preds, am };
+}
+globalThis.runO2Mine = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o2a-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const stage1 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r2-add4-s" + seed + ".json"));
+  if (stage1.verdict !== "COMPLETE") throw new Error("add4 missing s" + seed);
+  const m1 = o2Restore(T, G, stage1);
+  const hrng = G.makeRng(53700 + seed);
+  const hard = [], pad = [];
+  for (let i = 0; i < 300; i++) {
+    const e = composeGenShiftScr(hrng);
+    const x = e.flat.concat([e.qk, e.k, e.v, 8]);
+    const l = Array.from(m1.forward(x, 1).logits);
+    let b = 0; for (let j = 1; j < 4; j++) if (l[j] > l[b]) b = j;
+    if (b !== e.y) { if (hard.length < 100) hard.push({ x, y: e.y }); }
+    else pad.push({ x, y: e.y });
+  }
+  while (hard.length < 100) hard.push(pad.pop());
+  const { A, all } = o2FiledDiet(G, TASKS, seed);
+  const diet = all.slice();
+  for (let i = 0; i < 100; i++) diet[i] = hard[i];
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: 54200 + seed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: diet, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const m2 = out.model;
+  const ev = o2EvalBody(m2, G, seed);
+  const fwdT = []; const frng = G.makeRng(52400 + seed);
+  for (let i = 0; i < 200; i++) fwdT.push(A.gen(frng, 1 + frng.int(3)));
+  let hF = 0; for (const e of fwdT) if (ev.am(e.x) === e.y) hF++;
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "o2-v10.1", arm: "errmine", verdict: "COMPLETE", seed, trainSeed: 54200 + seed,
+    nHarvestWrong: hard.length, wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4),
+    accOracle: ev.accOracle, oboShare: ev.oboShare, accFwd: +(hF / 200).toFixed(4), preds: ev.preds, params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o2a s=" + seed + " orc=" + body.accOracle + " obo=" + body.oboShare + " fwd=" + body.accFwd);
+  return body;
+};
+globalThis.runO2Wrap = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o2b-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed), wrng = G.makeRng(53800 + seed);
+  const oracle = [];
+  while (oracle.filter((e) => e.v + e.k >= 4).length < 113) {
+    const e = composeGenShiftScr(wrng);
+    if (((e.v + e.k) % 4 + 4) % 4 !== e.y) throw new Error("add semantics broken");
+    if (e.v + e.k >= 4) oracle.push(e);
+  }
+  while (oracle.length < 150) {
+    const e = composeGenShiftScr(wrng);
+    oracle.push(e);
+  }
+  const wrapRate = oracle.filter((e) => e.v + e.k >= 4).length / 150;
+  const fwd = []; for (let i = 0; i < 150; i++) fwd.push(A.gen(frng, 1 + frng.int(3)));
+  const diet = oracle.map((e) => ({ x: e.flat.concat([e.qk, e.k, e.v, 8]), y: e.y })).concat(fwd);
+  for (let i = diet.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = diet[i]; diet[i] = diet[j]; diet[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: 54300 + seed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: diet, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const ev = o2EvalBody(out.model, G, seed);
+  const fwdT = []; const frng2 = G.makeRng(52400 + seed);
+  for (let i = 0; i < 200; i++) fwdT.push(A.gen(frng2, 1 + frng2.int(3)));
+  let hF = 0; for (const e of fwdT) if (ev.am(e.x) === e.y) hF++;
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "o2-v10.1", arm: "wrapdose", verdict: "COMPLETE", seed, trainSeed: 54300 + seed,
+    wrapRate: +wrapRate.toFixed(4), wallMs: Date.now() - t0, firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4),
+    accOracle: ev.accOracle, oboShare: ev.oboShare, accFwd: +(hF / 200).toFixed(4), preds: ev.preds, params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o2b s=" + seed + " orc=" + body.accOracle + " obo=" + body.oboShare + " fwd=" + body.accFwd);
+  return body;
+};
+globalThis.runO2Base = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o2base-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r2-add4-s" + seed + ".json"));
+  const ev = o2EvalBody(o2Restore(T, G, tr), G, seed);
+  const body = { spec: "o2-v10.1", arm: "add4base-preds", verdict: "COMPLETE", seed,
+    accOracle: ev.accOracle, oboShare: ev.oboShare, preds: ev.preds };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o2base s=" + seed + " orc=" + body.accOracle + " obo=" + body.oboShare);
+  return body;
+};
+globalThis.runO3Harness = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o3-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const cb = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch2-cb-s" + seed + ".json"));
+  const ad = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-o2a-s" + seed + ".json"));
+  if (cb.verdict !== "COMPLETE") throw new Error("cb train missing s" + seed);
+  if (ad.verdict !== "COMPLETE") throw new Error("o2a train missing s" + seed);
+  const m1 = o2Restore(T, G, cb), m2 = o2Restore(T, G, ad);
+  const a2 = (x) => { const l = Array.from(m2.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let vhits = 0, hits = 0, orc = 0;
+  const byK = { k1: [0, 0], k2: [0, 0], k3: [0, 0] };
+  for (const e of shT) {
+    const fw1 = m1.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    if (vhat === e.v) vhits++;
+    if (a2(e.flat.concat([e.qk, e.k, vhat, 8])) === e.y) { hits++; byK["k" + e.k][0]++; }
+    byK["k" + e.k][1]++;
+    if (a2(e.flat.concat([e.qk, e.k, e.v, 8])) === e.y) orc++;
+  }
+  const byKacc = {};
+  for (let k = 1; k <= 3; k++) byKacc["k" + k] = +(byK["k" + k][0] / byK["k" + k][1]).toFixed(4);
+  const accRet = vhits / shT.length, accOrc = orc / shT.length;
+  const body = { spec: "o3-v10.1", arm: "o3", verdict: "COMPLETE", seed, n: 200,
+    accRetrieve: +accRet.toFixed(4), accComposed: +(hits / shT.length).toFixed(4),
+    accOracle: +accOrc.toFixed(4), product: +(accRet * accOrc).toFixed(4), byK: byKacc };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o3 s=" + seed + " ret=" + body.accRetrieve + " comp=" + body.accComposed + " orc=" + body.accOracle);
+  return body;
+};
+globalThis.runO5aMine = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o5a-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const cb = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch2-cb-s" + seed + ".json"));
+  if (cb.verdict !== "COMPLETE") throw new Error("cb missing s" + seed);
+  const m1 = o2Restore(T, G, cb);
+  const hrng = G.makeRng(54400 + seed), trng = G.makeRng(55400 + seed);
+  const hardD = [], padD = [], hardT = [], padT = [];
+  for (let i = 0; i < 300; i++) {
+    const e = composeGenShiftScr(hrng);
+    if (o4Vhat(m1, e.x) !== e.v) { if (hardD.length < 60) hardD.push({ x: e.x, y: e.y }); }
+    else padD.push({ x: e.x, y: e.y });
+  }
+  for (let i = 0; i < 300; i++) {
+    const e = composeGenShiftScr(trng);
+    const x = e.flat.concat([e.qk, e.k, e.v, 8]);
+    if (o4Vhat(m1, x) !== e.v) { if (hardT.length < 40) hardT.push({ x: x, y: e.y }); }
+    else padT.push({ x: x, y: e.y });
+  }
+  while (hardD.length < 60) hardD.push(padD.pop());
+  while (hardT.length < 40) hardT.push(padT.pop());
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed), crng = G.makeRng(53500 + seed);
+  const dum = [], tru = [], fwd = [];
+  for (let i = 0; i < 150; i++) {
+    const e = composeGenShiftScr(drng);
+    if (crng.int(2) === 0) tru.push({ x: e.flat.concat([e.qk, e.k, e.v, 8]), y: e.y });
+    else dum.push({ x: e.x, y: e.y });
+  }
+  for (let i = 0; i < 150; i++) fwd.push(A.gen(frng, 1 + frng.int(3)));
+  for (let i = 0; i < 60 && i < dum.length; i++) dum[i] = hardD[i];
+  for (let i = 0; i < 40 && i < tru.length; i++) tru[i] = hardT[i];
+  const diet = dum.concat(tru).concat(fwd);
+  for (let i = diet.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = diet[i]; diet[i] = diet[j]; diet[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: 55500 + seed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: diet, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const m2 = out.model;
+  const ad = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-o2a-s" + seed + ".json"));
+  const mA = o2Restore(T, G, ad);
+  const a2 = (x) => { const l = Array.from(mA.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let vh = 0, hits = 0;
+  for (const e of shT) {
+    const vhat = o4Vhat(m2, e.x);
+    if (vhat === e.v) vh++;
+    if (a2(e.flat.concat([e.qk, e.k, vhat, 8])) === e.y) hits++;
+  }
+  const fr2 = G.makeRng(52400 + seed);
+  const fwdT = []; for (let i = 0; i < 200; i++) fwdT.push(A.gen(fr2, 1 + fr2.int(3)));
+  const amF = (x) => { const l = Array.from(m2.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  let hF = 0; for (const e of fwdT) if (amF(e.x) === e.y) hF++;
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "o5a-v10.1", arm: "retmine-prop", verdict: "COMPLETE", seed, trainSeed: 55500 + seed,
+    nHarvestD: hardD.length, nHarvestT: hardT.length,
+    nDum: dum.length, nTru: tru.length, wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4),
+    accRetrieve: +(vh / 200).toFixed(4), accComposed: +(hits / 200).toFixed(4), accFwd: +(hF / 200).toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o5a s=" + seed + " ret=" + body.accRetrieve + " comp=" + body.accComposed + " fwd=" + body.accFwd + " hD/T=" + hardD.length + "/" + hardT.length);
+  return body;
+};
+globalThis.runO5bTrain = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o5b-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [];
+  for (let i = 0; i < 100; i++) { const e = composeGenShiftScr(drng); a.push({ x: e.flat.concat([e.qk, e.k, e.v, 8]), y: e.y }); }
+  for (let i = 0; i < 100; i++) { const e = composeGenShiftScr(drng); a.push({ x: [e.qk, e.k, e.v, 8].concat(e.flat), y: e.y }); }
+  for (let i = 0; i < 100; i++) a.push(A.gen(frng, 1 + frng.int(3)));
+  for (let i = a.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = a[i]; a[i] = a[j]; a[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: 55600 + seed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: a, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "o5b-v10.1", arm: "jit", verdict: "COMPLETE", seed, trainSeed: 55600 + seed,
+    diet: "100 suffix + 100 prefix + 100 fwd", wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o5b-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+globalThis.runO5bEval = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o5b-eval-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-o5b-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("o5b train missing s" + seed);
+  const m = o2Restore(T, G, tr);
+  const am = (x) => { const l = Array.from(m.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed), prng = G.makeRng(54700 + seed);
+  let hS = 0, hP = 0;
+  for (let i = 0; i < 200; i++) {
+    const e = composeGenShiftScr(srng);
+    if (am(e.flat.concat([e.qk, e.k, e.v, 8])) === e.y) hS++;
+  }
+  for (let i = 0; i < 200; i++) {
+    const e = composeGenShiftScr(prng);
+    if (am([e.qk, e.k, e.v, 8].concat(e.flat)) === e.y) hP++;
+  }
+  const body = { spec: "o5b-v10.1", arm: "jiteval", verdict: "COMPLETE", seed, n: 200,
+    accSuffix: +(hS / 200).toFixed(4), accPrefix: +(hP / 200).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o5b-eval s=" + seed + " suf=" + body.accSuffix + " pre=" + body.accPrefix);
+  return body;
+};
+globalThis.runO6Sweep = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o6-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-sp1-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("sp1 train missing s" + seed);
+  const m = o2Restore(T, G, tr);
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  const perR = [];
+  for (const r of [1, 2, 4, 8]) {
+    let hits = 0;
+    const dec = [];
+    for (let p = 0; p <= 9; p++) dec.push([0, 0]);
+    for (const e of shT) {
+      const fw = m.forward(e.x, r);
+      const l = Array.from(fw.logits);
+      let b = 0; for (let j = 1; j < 4; j++) if (l[j] > l[b]) b = j;
+      if (b === e.y) hits++;
+      for (let p = 0; p <= 9; p++) {
+        let pl = null;
+        try { pl = fw.cache.posOut[p].logits; } catch (err) { pl = null; }
+        if (!pl || pl.length < 4) continue;
+        const a = Array.from(pl);
+        let bb = 0; for (let j = 1; j < a.length; j++) if (a[j] > a[bb]) bb = j;
+        dec[p][1]++;
+        if (bb === e.v) dec[p][0]++;
+      }
+    }
+    let best = 0, bestD = -1;
+    for (let p = 0; p <= 9; p++) {
+      if (dec[p][1] === 0) continue;
+      const d = dec[p][0] / dec[p][1];
+      if (d > bestD) { bestD = d; best = p; }
+    }
+    perR.push({ r: r, composed: +(hits / 200).toFixed(4), bestPos: best, bestDecode: +bestD.toFixed(4) });
+  }
+  const body = { spec: "o6-v10.1", verdict: "COMPLETE", seed, n: 200, perR: perR };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o6 s=" + seed + " " + perR.map((o) => "r" + o.r + "=" + o.composed + "/d" + o.bestDecode).join(" "));
+  return body;
+};
+function o4CbDiet(G, TASKS, seed) {
+  const A = TASKS.assocR;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed), crng = G.makeRng(53500 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 150; i++) {
+    const e = composeGenShiftScr(drng);
+    const useTrue = crng.int(2) === 0;
+    a.push({ x: useTrue ? e.flat.concat([e.qk, e.k, e.v, 8]) : e.x, y: e.y });
+  }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  return { A, all };
+}
+function o4Vhat(m, x) {
+  const fw = m.forward(x, 1);
+  return scratchArgmax(Array.from(fw.cache.posOut[8].logits));
+}
+globalThis.runO4Perturb = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o4a-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-o2a-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("o2a missing s" + seed);
+  const m = o2Restore(T, G, tr);
+  const am = (x) => { const l = Array.from(m.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const acc = (lines) => lines.filter((e) => am(e.x) === e.y).length / lines.length;
+  const l2r = G.makeRng(54500 + seed), l4r = G.makeRng(54600 + seed);
+  const len2 = [], len4 = [];
+  for (let i = 0; i < 200; i++) { const e = composeGenShiftScr(l2r, 2); len2.push({ x: e.flat.concat([e.qk, e.k, e.v, 8]), y: e.y }); }
+  for (let i = 0; i < 200; i++) { const e = composeGenShiftScr(l4r, 4); len4.push({ x: e.flat.concat([e.qk, e.k, e.v, 8]), y: e.y }); }
+  const pqr = G.makeRng(54700 + seed);
+  const preq = [];
+  for (let i = 0; i < 200; i++) { const e = composeGenShiftScr(pqr); preq.push({ x: [e.qk, e.k, e.v, 8].concat(e.flat), y: e.y }); }
+  const nrng = G.makeRng(54900 + seed);
+  const noise = [];
+  for (let i = 0; i < 200; i++) {
+    const e = composeGenShiftScr(nrng);
+    const others = [];
+    for (let j = 0; j < 50 && others.length < e.flat.length / 2 - 1; j++) {
+      const k = nrng.int(4), v = nrng.int(4);
+      if (k !== e.qk) others.push([k, v + 4]);
+    }
+    const flat = [e.qk, e.v + 4].concat(others.slice(0, e.flat.length / 2 - 1).flat());
+    noise.push({ x: flat.concat([e.qk, e.k, e.v, 8]), y: e.y });
+  }
+  const body = { spec: "o4a-v10.2", verdict: "COMPLETE", seed, n: 200,
+    accLen2: +acc(len2).toFixed(4), accLen4: +acc(len4).toFixed(4),
+    accPrefixQ: +acc(preq).toFixed(4), accNoise: +acc(noise).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o4a s=" + seed + " " + JSON.stringify(body));
+  return body;
+};
+globalThis.runO4RetMine = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-o4b-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const cb = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch2-cb-s" + seed + ".json"));
+  if (cb.verdict !== "COMPLETE") throw new Error("cb missing s" + seed);
+  const m1 = o2Restore(T, G, cb);
+  const hrng = G.makeRng(54400 + seed);
+  const hard = [], pad = [];
+  for (let i = 0; i < 300; i++) {
+    const e = composeGenShiftScr(hrng);
+    if (o4Vhat(m1, e.x) !== e.v) { if (hard.length < 100) hard.push({ x: e.x, y: e.y }); }
+    else pad.push({ x: e.x, y: e.y });
+  }
+  while (hard.length < 100) hard.push(pad.pop());
+  const { A, all } = o4CbDiet(G, TASKS, seed);
+  const diet = all.slice();
+  for (let i = 0; i < 100; i++) diet[i] = hard[i];
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: 55000 + seed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: diet, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const m2 = out.model;
+  const ad = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-o2a-s" + seed + ".json"));
+  const mA = o2Restore(T, G, ad);
+  const a2 = (x) => { const l = Array.from(mA.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let vh = 0, hits = 0, orc = 0;
+  for (const e of shT) {
+    const vhat = o4Vhat(m2, e.x);
+    if (vhat === e.v) vh++;
+    if (a2(e.flat.concat([e.qk, e.k, vhat, 8])) === e.y) hits++;
+    if (a2(e.flat.concat([e.qk, e.k, e.v, 8])) === e.y) orc++;
+  }
+  const frng = G.makeRng(52400 + seed);
+  const fwdT = []; for (let i = 0; i < 200; i++) fwdT.push(A.gen(frng, 1 + frng.int(3)));
+  const amF = (x) => { const l = Array.from(m2.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  let hF = 0; for (const e of fwdT) if (amF(e.x) === e.y) hF++;
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "o4b-v10.1", arm: "retmine", verdict: "COMPLETE", seed, trainSeed: 55000 + seed,
+    nHarvest: hard.length, wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4),
+    accRetrieve: +(vh / 200).toFixed(4), accComposed: +(hits / 200).toFixed(4),
+    accAddOracle: +(orc / 200).toFixed(4), product: +((vh / 200) * (orc / 200)).toFixed(4),
+    accFwd: +(hF / 200).toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o4b s=" + seed + " ret=" + body.accRetrieve + " comp=" + body.accComposed + " fwd=" + body.accFwd + " nH=" + hard.length);
+  return body;
+};
+globalThis.runO4Reseed = async function (fs, log) {
+  const seed = 2;
+  const ledgerPath = "src/evidence/decomp/d-o4b-reseed-s2.json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const { A, all } = o4CbDiet(G, TASKS, seed);
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: 55200, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const m = out.model;
+  const srng = G.makeRng(52500 + seed);
+  let vh = 0;
+  for (let i = 0; i < 200; i++) { const e = composeGenShiftScr(srng); if (o4Vhat(m, e.x) === e.v) vh++; }
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "o4b-v10.1", arm: "reseed-control", verdict: "COMPLETE", seed, trainSeed: 55200,
+    wallMs: Date.now() - t0, accRetrieve: +(vh / 200).toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("o4b-reseed s2 ret=" + body.accRetrieve);
+  return body;
+};
+globalThis.runSP1Train = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-sp1-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 150; i++) { const e = composeGenShiftScr(drng); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: 55100 + seed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "sp1-v10.1", arm: "sp1", verdict: "COMPLETE", seed, trainSeed: 55100 + seed,
+    diet: "dummy-only (no true-v lines)", wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("sp1-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+globalThis.runSP1Eval = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-sp1-eval-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-sp1-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("sp1 train missing s" + seed);
+  const m = o2Restore(T, G, tr);
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  const am = (x) => { const l = Array.from(m.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  let hits = 0;
+  for (const e of shT) if (am(e.x) === e.y) hits++;
+  const perPos = [];
+  for (let p = 0; p <= 9; p++) {
+    let ok = 0, tot = 0, ent = 0, nE = 0;
+    for (const e of shT) {
+      let l;
+      try { l = Array.from(m.forward(e.x, 1).cache.posOut[p].logits); } catch (err) { continue; }
+      if (l.length < 4) continue;
+      tot++;
+      let b = 0; for (let j = 1; j < l.length; j++) if (l[j] > l[b]) b = j;
+      if (b === e.v) ok++;
+      const mx = Math.max.apply(null, l);
+      const ex = l.map((v) => Math.exp(v - mx));
+      const s = ex.reduce((x, y) => x + y, 0);
+      let h = 0; for (const v of ex) { const q = v / s; h -= q * Math.log(q + 1e-12); }
+      ent += h; nE++;
+    }
+    perPos.push({ p: p, n: tot, decode: tot > 0 ? +(ok / tot).toFixed(4) : null, meanEntropy: nE > 0 ? +(ent / nE).toFixed(4) : null });
+  }
+  let best = perPos[0];
+  for (const r of perPos) if (r.decode !== null && best.decode !== null && r.decode > best.decode) best = r;
+  const body = { spec: "sp1-v10.1", arm: "sp1eval", verdict: "COMPLETE", seed, n: 200,
+    accComposed: +(hits / 200).toFixed(4), perPos: perPos, bestPos: best.p, bestDecode: best.decode, bestEntropy: best.meanEntropy };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("sp1-eval s=" + seed + " comp=" + body.accComposed + " bestPos=" + best.p + " dec=" + best.decode + " ent=" + best.meanEntropy);
+  return body;
+};

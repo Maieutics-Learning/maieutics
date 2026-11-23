@@ -1,0 +1,1 @@
+{"spec":"o3-v10.1","arm":"o3","verdict":"COMPLETE","seed":0,"n":200,"accRetrieve":0.925,"accComposed":0.91,"accOracle":0.985,"product":0.9111,"byK":{"k1":0.8438,"k2":0.9672,"k3":0.92}}
