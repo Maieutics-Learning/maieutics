@@ -1,0 +1,1 @@
+{"spec":"adapt-v10","seed":0,"K":64,"arm":"tutor","verdict":"COMPLETE","acc":0.56,"curve":[{"steps":25,"acc":0.455},{"steps":50,"acc":0.505},{"steps":100,"acc":0.565},{"steps":200,"acc":0.56}]}

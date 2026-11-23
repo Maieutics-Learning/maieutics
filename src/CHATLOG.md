@@ -2083,3 +2083,40 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Automated audit first: every verdict/transcript reference resolves (102/102 bottleneck cell ledgers match filed numbers, 0 mismatches; all P1 chain files parse; CHATLOG entries present). One audit-script artifact bug (JSON.parse on a .md), zero real gaps.
 - Reviewers converged 3/3 on one gap: v1 ERROR logs not locally preserved. Adjudicated ACCEPT (patched: verbatim error + Kaggle-history provenance in verdict + transcript) / PARTIAL on R3's wider custody point (dropped span was declared unfiled=undone and re-run; no ghost numbers cited). 1 patch, 0 open gaps.
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — PUSHED fd98eef1 (vault github PAT, parent ecd0c1d2 tip-match held)
+- Worker-side git-blobs overlay (PAT vault->worker memory only, summary return): 2017 in scope, 136 uploaded (~6.8MB: torchport-p1 spec + torch_bench.py training section + d-p1-js-* + d-torch-p1a/b-kaggle + d-torch-p1-parity, bottleneck spec/driver/54 trains/57 evals/verdict, fresh-eyes logging round, torchp1/bottleneck transcripts, CHATLOG) / reused rest, 0 deleted, secret-scan clean. Ref + commit verify MATCH. PAT stayed in worker/page memory; never in agent context.
+- Pre-push audit: automated traceability (102/102 cells, all refs resolve) + 3x fresh-eyes (1 adopted patch) + JSONs parse. Backlog drained except this receipt (rides next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — Research question REFRAMED by user (scope clarification, no compute)
+- User correction: the question is no longer "can a tutor tailor a curriculum." It is: whether a machine can LEARN HOW TO LEARN, proved through TEACHING. Side note: whether AI can do independent research (conclusions, experiments of its own).
+- Agent reading filed alongside: this moves the bar from performance to TRANSMISSION. Retrospective revaluation: F5/g-r3 reversion (one-round extraction, no stacking) becomes the first give-side datum — and it is a FAILURE of teaching-proof (the student cannot re-transmit what it gained). XTEACH (stronger teachers stack higher) stays consistent: tutor knowledge-state modulates receipt. Stacking + bottleneck stay receive-side positives. Nothing overturned; lens changed.
+- Agent-designed share of program noted factually (F1-F5, direction memo, bottleneck spec): all under version-bound approval + preregs + user countersigns. Independence is bounded by design; the discipline is the point.
+- Next: capstone spec (chain-conservation teaching-proof test) proposed; user countersign required before any compute.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-22 — Memory-check: rung-2/rung-3 precedent sweep (user-ordered triple-check; record in 2026-11-22-learning.md)
+- Method: memory skill order; greps for meta/few-shot/active/self-directed/transfer/multi-task/speed precedents.
+- Nearest prior RUN: noveltype few-shot barB (tutor-vs-scratch K16/64/256, 200 steps; FAIL, K16 interference). Filed next step PROPOSED NOT RUN (mixed-question base -> held-out question type). Rung 2 = that follow-up extended (clean holdout, matched scratch, steps-to-bar speed metric — no precedent — interference demotion). Not a duplicate.
+- Cousin SPEC ONLY: gap-declaration-spec autonomy gap (no ledgers; different paradigm). Distinguished: P4-mini is harness-side frozen-weight adaptation, not weight learning. External 86%/19% few-shot claim (outside-review) conflicts with our ledgers; not adopted.
+- Novel confirmed: multi-task-base held-out adaptation with speed metric; learner-chosen data (all historical selection was experimenter-side).
+- Logging failures: Q&A chain unfiled until now (fixed by learning transcript); Step-0 miss + v1 wording already logged. No reconstruction from outside durable layers.
+- Unpushed: + this transcript + CHATLOG (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — rung-2 + 5 experiments COMPLETE (countersigned 2026-11-23; each R=3, quorum 2/3)
+- Step 0 done (src/tools + README; skills: memory, eval-harness, pytorch-training; no websearch/pool calls — no external facts needed; pool health 4/5 live carried from prior session).
+- Specs filed pre-compute (agent approval + user countersign): adapt-v10 (rung-2), multitutor-v10 (E1), kcliff-v10 (E2), msglesion-v10 (E3 eval-only), selfdir-v10 (E4 rung-3 pilot), hygiene-v10 (E5 eval-only + 1 train). Driver learn-driver.js (new; reuses bottleneck/novel recipes, COMPLETE-gated). Fixed 2 driver bugs pre-verdict: runBnVariantEval stray msg[jj] write (removed) + dead accOf block (removed); runSelfDir self-arm batch 8 vs B=16 undefined-x (fixed to 16 cands top8+8 random). Re-ran affected cells only.
+- MEASURED: adapt base 0.975/0.920/0.965 PASS 3/3; few K64 tutor 0.560/0.630/0.640 vs scratch 0.620/0.600/0.605 (curves 25/50/100/200 filed) -> NO-ADVANTAGE (replicates barB; expectation HIT). Multitutor K4/sig0.5 t1 0.755/0.690/0.730 (mean 0.725) t2 0.750/0.785/0.710 (mean 0.748) scr chance -> GENERALIZES (HIT). Kcliff sig0.5 K3 0.685/0.695/0.715 (0.698) K6 0.680/0.800/0.775 (0.752); sequence K2 0.623<K3 0.698<K4 0.737<K6 0.752<K8 0.813 -> GRADUAL (expectation CLIFF-AT-3/FLAT MISS). Msglesion s0 intact 0.715 lesions 0.580/0.605/0.590/0.555; s1 0.770/0.680/0.605/0.660/0.665; s2 0.760/0.670/0.665/0.540/0.720 -> DISTRIBUTED 2/3 (s2 k3 drop 0.040 misses 0.05 by 0.010; HIT). Selfdir random vs self identical per seed (s0 1.000/0.745, s1 1.000/0.825, s2 1.000/0.885; code paths distinct, ceiling noted) -> NO-DIFFERENCE (HIT). Hygiene ambig-eval tax 0.000/0.045/0.030 (distinct 0.725/0.785/0.700 vs ambig 0.725/0.740/0.670); ambig-train s0 0.730 vs distinct-train 0.725 (+0.005) -> DISCOUNT-OVERCAUTIOUS (expectation TAXED MISS).
+- Expectations 4/6 HIT (adapt, multitutor, msglesion, selfdir), 2/6 MISS (kcliff gradual-not-cliff, hygiene robust-not-taxed) — both misses filed openly. Ledgers: 3 adapt-base + 6 adapt-few + 6 selfdir + 12 multitutor train/eval + 12 kcliff train/eval + 3 msglesion + 3 hygiene-ambigeval + 2 hygiene-ambigtrain + 6 verdicts. Transcript 2026-11-23-learnset.md.
+- Pool/skills: memory + eval-harness used throughout; fresh-eyes not re-run (countersigned bench follow-ups; open to blind pass on request); pool untouched (no external facts).
+- Unpushed: 6 specs + learn-driver.js (amended) + all ledgers/verdicts above + transcript + CURRENT_TASK + CHATLOG (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — document + practice proposal (pre-push flush)
+- Step 0 done (tools + README; skills memory/fresh-eyes/rabbithole/eval-harness).
+- Filed learnset-README.md (index + reproduce + caveats + position) + practice-v10.md PROPOSED (Lanes: 1 representational fade, 2 ledger-augmented memory, 3 verifier-gated auto-curriculum; skill→brain ports ModelLedger/SecondHead/AutoCurriculum; honest assessment + push-back; no compute, countersign owed for Lane 2).
+- Assessment: memory YES w/ receipts (compaction/interruption/retread/retraction) but U5 open (prompts = forcing function); fresh-eyes good interrogator, not verifier (no code-run, provider blind spots, framing inheritance, no self-call); rabbithole breadth w/ weight problem (U1/U4; queue+marathon+resume-YES are patches). Checkable + broad, not autonomous.
+- Transcript turn filed. Push next (vault github hasKey true confirmed live).
+**Always read src/agents-augment.md first, every session.**
