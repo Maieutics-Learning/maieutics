@@ -1,0 +1,1 @@
+{"spec":"intrinsic-v11.1","arm":"CpopDiv","seed":1,"steps":3000,"verdict":"COMPLETE","n":200,"accPop":0.78,"accSingle":0.745,"accWide":0.285,"accExt":0.76,"gapPopSingle":0.035,"gapPopWide":0.495,"gapPopExt":0.02,"meanDisagree":0.041,"divCos":0.9998,"calTop":0.7,"calBot":0.82,"calGap":0.12,"chance":0.25}

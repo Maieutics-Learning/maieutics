@@ -2353,4 +2353,80 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-23 — LOG AUDIT CLOSED (946/946 parse; 3 fresh-eyes iterations; NO PUSH without order)
 - User verbatim: "lets make sure everything is completely logged (so a contextless version of yourself can get to where you are now, feel free to use iterations of fresh eyes to patch up holes in log)". Pass 1: 946/946 decomp JSONs parse, 0 bad; 62 verdicts, 884 ledgers; 15/15 recent spec+battery+verdict. Pass 2: batteries verbatim 3+adjudication; ledgers COMPLETE 100% (o5a 7/7, o5b 7/7, o6 4/4, o4a 4/4, o4b 5/5, sp1 7/7, o3 4/4, o2 10/10, off1 4/4); amendments inline. Pass 3: O3 rounding only, O4b 0.93 match, O2 McNemar all sig, O6 flat, O5a split; driver 13/13 fns; transcripts+CHATLOG cover all waves (PROGRAM COMPLETE string = CLOSE-OUT wording). No repairs. Unpushed: 65 decomp + driver ext + 3 transcripts + CHATLOG (this entry) (ride next push).
+## 2026-11-23 — PUSHED 267eda86 (parent 2c267a79 tip-match held)
+- Worker-side git-blobs overlay (PAT vault->worker memory only, summary return): 2731 in scope, 76 uploaded (~14.3MB: off1/o2/o3/o4a/o4b/sp1/o5a/o5b specs+batteries+drivers+ledgers+verdicts, assessments, audit, transcripts off1/o4scratch/o5o6) / rest reused, 0 deleted, secret-scan clean. Ref + commit verify MATCH. Backlog drained except this receipt (rides next push).
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — skills read: memory + fresh-eyes + rabbithole (no compute; pushback + closer plan in chat)
+- User: push, then read the three skills, state what each tries to achieve and why it exists, push back conceptually, figure out how to get closer. Push done first (267eda86). Full SKILL.md read for all three + memory REFERENCE layers/rules/reconcile/problems. Transcript stub src/evidence/conversations/2026-11-23-skills.md. Unpushed: + skills transcript + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — self-call Q answered + always-running proposal queued (no compute)
+- User verbatim on invocation (filed in skills transcript): self-calling agent is the goal; proposes always-running memory, constantly-calling fresh-eyes, self-calling rabbithole (part always-running); human never stops thinking; asks about "send now" as interrupt/opening. Prior turn filed condensed (agent-level no-learn-in-harness, bench-level learnable as gated policy). Unpushed: + skills transcript + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — full-log read-up + left-off (no compute; Step-0 miss repaired)
+- Step 0 done this turn (agents-augment + tools list + README). Skills relevant: memory (working-record/CHATLOG/transcript discipline for read-up), fresh-eyes + rabbithole (user asked to read all three last turn), eval-harness (if bench reruns). Miss: prior turn ("Where are we at?") answered before Step 0 — filed here per start-gate.
+- Verified left-off: CHATLOG tail = self-call Q + always-running proposal queued; skills transcript = src/evidence/conversations/2026-11-23-skills.md (9 lines, ends with send-now Q); PUSHED 267eda86 drained backlog except receipt; unpushed = skills transcript + CHATLOG. No compute this session.
+- Unpushed: + skills transcript + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — always-running affirmed (no compute)
+- User: always-running is the point; automatic learning/curiosity depend on it. Agreed in chat: continuity is the precondition. Filed skills-transcript turn (assistant vs bench distinction, no send-now interrupt, marathon vs generator-loop paths, spec next).
+- Unpushed: + skills transcript + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — last-lines check (no compute)
+- User taxonomy: memory always-there / fresh-eyes constantly-running-not-always-there / rabbithole call-on-command. Asked what memory's last lines say.
+- Answered from REFERENCE-problems U5 + fresh-eyes limitations + rabbithole queue/marathon + live tails (CHATLOG 2374-2377, CURRENT_TASK 168, skills transcript 9-11): U5 NO FORCING FUNCTION, self-calling NOT automatic, rabbithole self-calls within-run only. Taxonomy = target, not current mechanism.
+- Unpushed: + skills transcript + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — inbuilt constraint + intrinsic-v10 PROPOSED (no compute; awaiting countersign)
+- User verbatim (skills transcript): "It should also not be tools being used by the brain but inbuilt (all of it)". Accepted: M = recurrent carry, C = second-head gated extra tick, E = prediction-error bonus command-gated; tool analogues kept as controls (re-fed input / external re-query / random explores).
+- Spec: src/evidence/decomp/intrinsic-v10-prereg.md (bars: M parity -0.05 + ablated-to-chance; C gain >=+0.05 fire-rate 0.1-0.9 + within 0.03 of ext; E <=0.7x pulls at accuracy floor; R=3 quorum 2/3; blind battery before driver; CPU/in-worker only).
+- Unpushed: + intrinsic spec + skills transcript + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — no-commands + multi-head + intrinsic-v11 PROPOSED (no compute; awaiting countersign)
+- User verbatim (skills transcript): not commands being called but genuinely part of itself; fresh-eyes should spawn multiple heads, not a second head. Accepted: v10 gate/token/single-critic retired as tool-smelling; v11 = M never-reset slow state + learned forget, C K=5 always-on population (answer = vote, uncertainty = disagreement, no extra tick), E disagreement appetite (no command token).
+- Spec: src/evidence/decomp/intrinsic-v11-prereg.md (bars: M >=twin +0.10 + forget-ablation; C >=single +0.05 + calibration 0.10 + diversity 0.05-0.90 + within 0.03 of ext; E <=0.7x rand at floor; R=3 quorum 2/3; blind battery before driver; CPU/in-worker only).
+- Unpushed: + intrinsic v10+v11 specs + skills transcript + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — INTRINSIC PROGRAM CLOSED (PARTIAL; pre-countersigned 4 steps + intermediates; CPU only; NO PUSH without order)
+- Battery: math FAIL (quorum-thin, N>30 rejected as infeasible) / impl NEEDS-PATCH (in-run persistence + top-k + twin-matching adopted) / rival PARTIAL (C-wide killer adopted). v11.1 amended. Raw: fresh-eyes-intrinsic-v11-3x-results.md.
+- M HOLD 3/3: carry 0.685/0.69/0.685 vs reset 0.47/0.545/0.52 (gaps +0.215/+0.145/+0.165); ablation 0.55/0.505/0.475 in twin band.
+- C v11.0 COLLAPSED: pop==single 0.78/0.78/0.70, divCos 0.9997, calGap ~0. Repair CpopDiv (fixed subspaces, lam4): calGap 0.38/0.12/0.22 HOLD 3/3, parity-vs-ext HOLD 3/3, gain 0/0.035/0.005 FAIL 0/3, divCos still 0.9997 (wrong metric — weights clone, masked functions differ; meanDisagree 0.035-0.049). Native Csingle/Cwide == pop exactly (task too easy for gain).
+- E FAIL 0/3 on clones (recall 0/4, firstHit 37 vs rand ~8); HOLD 2/3 on Div (recall 2/2/0, ratios 0.137/0.238/4.205, taken-acc 0.75/0.75/1.0).
+- Verdict: d-intrinsic11-verdict.json = PARTIAL (M HOLD + E HOLD-2/3 + C calibration-and-parity without gain). Driver intrinsic-driver.js (MLP-trunk deviation filed). After-series owed: harder gain task, functional-diversity metric, per-head bootstraps.
+- Unpushed: + battery + v11.1 + driver + trains/evals/verdict + transcript + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — three-skills full read + synthesis (no compute)
+- Read every line: memory SKILL.md + REFERENCE-layers/rules/reconcile/problems (+ log.js/search.js indexed), fresh-eyes SKILL.md 1-368, rabbithole SKILL.md 1-518.
+- Synthesis filed in chat: through-line = harness stops at breakpoints + model never self-invokes (memory U5, fresh-eyes self-calling note, rabbithole sign-off machinery are one problem in three costumes); per-skill purpose/architecture/incident→rule maps + philosophy + costs.
+- Unpushed: + skills transcript (this turn) + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — owned next decision: A1 closed-loop ownership (no compute yet)
+- User: the made AI must own its decisions; asked what I want next. Owned call: A1 disagreement-selected rehearsal into carry with delayed-query payoff — ownership must have consequences, not static vote parity.
+- Why not first: harder static gain still averages (no arbitration); metric-only fix changes measurement not mechanism; per-head bootstraps become A1 repair if selection audit shows heads cover the same items.
+- Next artifact: A1 prereg + blind battery before any compute (standing version-bound rule; pre-countersigned after-series scope). CPU/in-worker only; NO PUSH without order.
+- Unpushed: + skills transcript (this turn) + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — pool look + full logging (no pool compute spent)
+- User: remember pools; log everything for a contextless self. Checked static src/pool code + live presence-only status; stored/shown zero key material.
+- Measured: wired sources petals/groq/openrouter/huggingface/kaggle/gemini/githubActions; hasKey true for all keyed sources, false petals; only filed live mark is gemini ("POOL-OK retest 2026-11-22"); OR guard fresh 50/50/0; floor live 2/2 p50~1.53ms; petals front-door live 1/1 p50~3369.82ms; lastHeartbeat/lastDecider null after page reload. Keyed generation not re-probed (no spend).
+- Durable: src/evidence/decomp/pool-health-2026-11-23.json; raw scratch JSON disposable. Unpushed: + pool snapshot + skills transcript (this turn) + CHATLOG (this entry) (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+## 2026-11-23 — A1 closed-loop ownership CLOSED (COMPUTE-ONLY)
+- Pool instruction honored (user 2026-11-23): pools = 3 sealed reviewer calls only; mechanism stays inbuilt (forward-pass ranking owns the write, same trunk, no pool signal/labels/capacity). Panacea-by-resources explicitly refused.
+- A1 v1.1 (battery-adjudicated): episode 6 observe + B_reh=2 rehearse (same trunk) + 1 delayed cue-only query of 1/6 uniform; arms own/rand/none/oracle/shuf twin-matched (3000st/B16/lr5e-3, R=3, Div fixed masks); bars GAIN own>=rand+0.05 / AUDIT retained>=pool+0.10 / SHUFFLE |shuf-rand|<=0.03 (teeth) / FLOOR own>=0.35.
+- MEASURED (N=200 evals): own 0.65/0.66/0.595; rand 0.5/0.555/0.58; shuf 0.545/0.52/0.575; none 0.65/0.625/0.665; oracle 0.6/0.535/0.555. GAIN 2/3 (s2 +0.015); AUDIT 2/3 (s1 0.0933); SHUFFLE 1/3 (0.045/0.035/0.005); FLOOR 3/3. Overlap ~0.10 (no clones, bootstraps not triggered); topQEnrich own 4.0 perfect; divCos 0.999+ retired again; oracle lossN ~2.0 destabilized.
+- Verdict COMPUTE-ONLY: selection beats random but ties no-rehearsal (gaps 0/+0.035/-0.07) and shuffle doesn't collapse — extra passes are harm avoided, not help created. Oracle<harm surprise (confidently-wrong items poison carry). Files: prereg + battery + driver ext + 30 ledgers + verdict (paths in CURRENT_TASK). NO PUSH without order.
+## 2026-11-23 — logcheck triple-check CLOSED (fresh-eyes log battery + repairs) + PUSH NEXT
+- Self-audit: 1830 src JSONs parse, 0 bad; key files 9/9 present; v11 18 trains + 21 evals all COMPLETE; A1 15 trains + 15 evals all COMPLETE; CHATLOG/task/skills tails carry A1 verdict + pool boundary + numbers.
+- Fresh-eyes log battery (3 sealed parallel, reviewer labor only, raw disposable scratch/a1-logcheck-battery.json): R1 NEEDS-PATCH (hardware/lockfile/timestamps/seed-map) / R2 FAIL (seed-to-value mapping) / R3 Sloppy (tail-as-pointer). Adjudication: 3 PARTIAL -> repairs filed in d-intrinsic-a1-seedmap.md (explicit seed x arm table with loss0/lossN/wallMs/acc/gap/enrich/overlap/divCos, optimizer Adam named, wallMs perf-only, resume order verdict > prereg > battery > seedmap > task > CHATLOG > transcript-tail, enrich tie-note, none-N/A). No verdict change.
+- Push ordered by user ("triple check ... and then push"). Unpushed set rides below; NO new src writes after this line before push except the PUSHED receipt.
