@@ -1,0 +1,1 @@
+{"spec":"r5-v10","arm":"t8","verdict":"COMPLETE","seed":0,"n":200,"accRetrieve":0.46,"accComposed":0.46,"accOracle":0.925,"product":0.4255,"byK":{"k1":0.4375,"k2":0.459,"k3":0.48}}

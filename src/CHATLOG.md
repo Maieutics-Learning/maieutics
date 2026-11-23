@@ -2264,3 +2264,61 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Verdict d-batch2-verdict.json (programmatic + roundtrip-verified). Expectations 1.5/4 (T5 HIT, COMBO PARTIAL, AUX8 HIT-no-distortion, LENMIX SPLIT). Ceiling: T4 s1 0.815 stands.
 - Unpushed: + decomp/(lane-driver batch2 ext, 9 trains, 21 evals, verdict) + transcript + CHATLOG (this entry) (ride next push).
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — PUSHED 3636960e (vault github PAT, parent 41a77321 tip-match held)
+- Worker-side git-blobs overlay (PAT vault->worker memory only, summary return): 2533 in scope, 320 uploaded (~33MB: full backlog since 41a77321 — practice/compose/composex/composer2/scratch/audit/batch1/batch2 trains+evals+verdicts+specs+batteries+driver exts+transcripts) / 2213 reused, 0 deleted, secret-scan clean (320 text files). Ref + commit verify MATCH.
+- Backlog FULLY drained — nothing unpushed.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — batch3 + 5x5 ROUNDS COUNTERSIGNED (user order, pre-compute; NO PUSH without order)
+- User: "I'll countersign batch 3 and 5 rounds of 5 experiments (remember to run each one multiple times to minimize luck). Be sure to log everything. Each subsequent wave should be based on questions of the previous wave."
+- Interpretation filed: batch 3 (10 units: T6 + DLx3 + D2x3 + D12x3; C6 deferred to R1 to hold 10) + rounds R1-R5 (5 units each, each round specced AFTER the previous verdict = adaptive). Every train at R=3 seeds (anti-luck rule); quorum 2/3; battery/prereg/CPU-only/NO-PUSH unchanged; full ledger+verdict+transcript+CHATLOG discipline per wave.
+- R1 queued (5 units): C6-unity + LC-clean-x3 + FQ fwd-format query. R2-R5 TBD by wave results (adapter points: DL-MEMORIZED -> delimiter-robustness; T6-wins -> round-2 stacking; dose-knee -> fine bracket).
+- Unpushed: + batch3 spec + this entry (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — BATCH 3 CLOSED (4/4 bars; 10/10; R1 adapted; NO PUSH without order)
+- Battery 3xCONDITIONAL → adjudicated (positional-shift rejected w/ mechanism; R1c loss lens; R2 pins; R3 rules stand) + spec v10.1, all filed.
+- T6 0.70/0.825/0.585 HIT 2/3 (new best single s1 0.825; product holds; add binds). DL INVARIANT-AT-COST 2/3 (surprise vs blind BREAK; gaps -0.38/-0.28/-0.175). D2 monotone 3/3, saturates at 8x. D12 3/3, fwd 0.94-0.99, converged (saturation not instability).
+- Verdict d-batch3-verdict.json (programmatic + roundtrip). Expectations 3/4 + 1 surprise.
+- R1 adapted: C6 + LM4x3 + FQ (AUX8-lenmix/add-side → R2 pool). LC-clean redefined (was AUX4-identical; now lenmix-diet@4x).
+- Unpushed: + batch3 spec/battery/driver-ext/9 trains/21 evals/verdict + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — R1 CLOSED (2/3 bars; 5/5; R2 specced; NO PUSH without order)
+- C6 sanity 0.000x3 + strict-pipeline profile (re-derivation 13-15%); LM4-RESCUE FAIL 1/3 (scratch lifts 3/3, composition doesn't); FQ SERVES 2/3.
+- Reading: unity = pipeline only; add binds everywhere (even given perfect vhat: 0.44-0.66). Verdict d-r1-verdict.json.
+- R2 adapted: ADD4x3 + R2H-consensus (pre-routes R3) + K3P profile. AL8/delim-robust/paper -> R3.
+- Unpushed: + r1 spec/battery/driver-ext/3 trains/12 evals/verdict + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — R2 CLOSED (3/3 bars; 5/5; R3 = retriever work; NO PUSH without order)
+- ADD4 HIT 3/3 (oracle 0.925/0.91/0.825; surprise vs blind MISS); R2H RETRIEVER-route 3/3 (gaps ~0.4); K3P k3-weak + 44-64% off-by-one.
+- Driver: K3P key bug fixed. Verdict d-r2-verdict.json (programmatic + roundtrip).
+- R3: K3R-x3 + ENS + DLR. AL8/delim-robust-full/paper -> R4.
+- Unpushed: + r2 spec/battery/driver-ext/3 trains/12 evals/verdict + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — R3 CLOSED (1/3 bars; 5/5; R4 specced; NO PUSH without order)
+- K3R FAIL 0/3 (skew poisons all bins — H2 seconded); ENS FAIL 1/3 (rescue 35-43%, disagreements minority); DLR SYMMETRIC 3/3 exact (surprise — variability costs, not collision).
+- Verdict d-r3-verdict.json. R4: AL8-x3 + T7 + ADD4P. R5 pool: K3AUX spot-pressure, round-2 add, paper.
+- Unpushed: + r3 spec/battery/driver-ext/3 trains/18 evals/verdict + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — R4 CLOSED (2/3 bars; 5/5; new ceiling; R5 specced; NO PUSH without order)
+- AL8 FAIL 0/3 (dilution closed: pressure-inert at 4x+8x); T7 HIT 3/3 (0.85/0.85/0.655, ceiling mean 0.785/single 0.85); ADD4P HIT 2/3 (dose fixes weakest first).
+- Verdict d-r4-verdict.json. R5 (final): K3AUX-x3 + T8 + FQ2.
+- Unpushed: + r4 spec/battery/driver-ext/3 trains/15 evals/verdict + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — R5 CLOSED (1/3 bars; 5/5) + PROGRAM CLOSE-OUT (35/35 units; NO PUSH without order)
+- K3AUX FAIL 0/3 + guard violated (sparse aux starves — density lesson); T8 FAIL 0/3; FQ2 UNIFIES 3/3 (0.74-0.80; dose transfers backwards — surprise).
+- Verdict d-r5-verdict.json + d-program-closeout.json (ceilings T7 0.785/0.85; 8 laws; wave tally 4/4-2/3-3/3-1/3-2/3-1/3).
+- Full authorization discharged: batch3 + R1-R5 = 35/35 units, every train R=3, every wave battery+verdict+logs.
+- Unpushed: + r5 spec/battery/driver-ext/3 trains/15 evals/verdict/closeout + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — LOG AUDIT CLEAN + synthesis answered (user: log-first-then-explain; NO PUSH without order)
+- Audit: 894/894 decomp JSONs parse, 0 bad; specs 6/6, verdicts+closeout 7/7, batteries 6/6 present. Transcript + prior CHATLOG already complete through R5 closeout; this turn appends the audit record only. No file repairs needed.
+- Backlog: + compose transcript turn + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**

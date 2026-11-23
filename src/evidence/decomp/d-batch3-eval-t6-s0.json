@@ -1,0 +1,1 @@
+{"spec":"batch3-v10.1","arm":"t6","verdict":"COMPLETE","seed":0,"n":200,"accRetrieve":0.925,"accComposed":0.7,"accOracle":0.75,"product":0.6938,"byK":{"k1":0.6719,"k2":0.8033,"k3":0.64}}

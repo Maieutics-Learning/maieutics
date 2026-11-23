@@ -1,0 +1,1 @@
+{"spec":"batch3-v10.1","arm":"d2","verdict":"COMPLETE","seed":0,"n":200,"accFwd":0.765,"accScratch":0.66,"accOne":0.42,"accTwo":0.32,"accOracle":0.3}

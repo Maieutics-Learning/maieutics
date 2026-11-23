@@ -2316,3 +2316,1092 @@ globalThis.runHarnessT5 = async function (fs, log, seed) {
   log("harness-t5 s=" + seed + " ret=" + body.accRetrieve + " comp=" + body.accComposed + " orc=" + body.accOracle);
   return body;
 };
+function batch3DlMap(line, d) { return line.map((t) => (t === 8 ? d : t)); }
+globalThis.runDLTrain = async function (fs, log, seed) {
+  const arm = "dl";
+  const ledgerPath = "src/evidence/decomp/d-batch3-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const trainSeed = 53200 + seed * 13;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed), erng = G.makeRng(53600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 150; i++) { const e = composeGenShiftScr(drng); const d = erng.int(2) === 0 ? 8 : 7; a.push({ x: batch3DlMap(e.x, d), y: e.y }); }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: trainSeed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "batch3-v10.1", arm, verdict: "COMPLETE", seed, trainSeed, nTrain: all.length,
+    steps: 800, batch: 16, lr: 5e-3, auxW: 4.0, delim: "per-line coin 8/7 shift-only", wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("dl-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+globalThis.runD2Train = async function (fs, log, seed) {
+  const arm = "d2";
+  const ledgerPath = "src/evidence/decomp/d-batch3-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const trainSeed = 53200 + seed * 13;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 150; i++) { const e = composeGenShiftScr(drng); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: trainSeed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 2.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "batch3-v10.1", arm, verdict: "COMPLETE", seed, trainSeed, nTrain: all.length,
+    steps: 800, batch: 16, lr: 5e-3, auxW: 2.0, wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("d2-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+globalThis.runD12Train = async function (fs, log, seed) {
+  const arm = "d12";
+  const ledgerPath = "src/evidence/decomp/d-batch3-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const trainSeed = 53200 + seed * 13;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 150; i++) { const e = composeGenShiftScr(drng); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: trainSeed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 12.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "batch3-v10.1", arm, verdict: "COMPLETE", seed, trainSeed, nTrain: all.length,
+    steps: 800, batch: 16, lr: 5e-3, auxW: 12.0, wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("d12-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+globalThis.runBatch3Eval = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-batch3-eval-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch3-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("batch3 train missing " + arm + " s" + seed);
+  const model = T.makeModel(G.makeRng(tr.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = model.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = tr.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const dl = arm === "dl";
+  const erng = dl ? G.makeRng(53600 + seed) : null;
+  const M = (line) => (dl ? batch3DlMap(line, erng.int(2) === 0 ? 8 : 7) : line);
+  const fwF = (x) => Array.from(model.forward(M(x), 1).logits);
+  const frng = G.makeRng(52400 + seed), srng = G.makeRng(52500 + seed);
+  const fwdT = []; for (let i = 0; i < 200; i++) fwdT.push(A.gen(frng, 1 + frng.int(3)));
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let fF = 0;
+  for (const e of fwdT) if (scratchArgmax(fwF(e.x)) === e.y) fF++;
+  let scr = 0, one = 0, two = 0, orc = 0;
+  for (const e of shT) {
+    const d = dl ? (erng.int(2) === 0 ? 8 : 7) : 8;
+    const xm = dl ? batch3DlMap(e.x, d) : e.x;
+    const fw1 = model.forward(xm, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    if (vhat === e.v) scr++;
+    if (scratchArgmax(Array.from(fw1.logits)) === e.y) one++;
+    const x2 = batch3DlMap(e.flat.concat([e.qk, e.k, vhat, 8]), d);
+    if (scratchArgmax(fwF(x2)) === e.y) two++;
+    const xo = batch3DlMap(e.flat.concat([e.qk, e.k, e.v, 8]), d);
+    if (scratchArgmax(fwF(xo)) === e.y) orc++;
+  }
+  const body = { spec: "batch3-v10.1", arm, verdict: "COMPLETE", seed, n: 200,
+    accFwd: +(fF / fwdT.length).toFixed(4), accScratch: +(scr / shT.length).toFixed(4),
+    accOne: +(one / shT.length).toFixed(4), accTwo: +(two / shT.length).toFixed(4), accOracle: +(orc / shT.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("batch3-eval " + arm + " s=" + seed + " " + JSON.stringify(body));
+  return body;
+};
+globalThis.runBatch3Len = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-batch3-eval-" + arm + "len-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch3-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("batch3 train missing " + arm + " s" + seed);
+  const model = T.makeModel(G.makeRng(tr.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = model.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = tr.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const dl = arm === "dl";
+  const erng = dl ? G.makeRng(53600 + seed) : null;
+  const fwF = (x) => Array.from(model.forward(x, 1).logits);
+  function twoPass(e) {
+    const d = dl ? (erng.int(2) === 0 ? 8 : 7) : 8;
+    const xm = dl ? batch3DlMap(e.x, d) : e.x;
+    const scrIdx = xm.length - 2;
+    const fw1 = model.forward(xm, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[scrIdx].logits));
+    const x2 = xm.slice();
+    x2[scrIdx] = vhat;
+    return scratchArgmax(fwF(x2)) === e.y;
+  }
+  const r2 = G.makeRng(52800 + seed), r4 = G.makeRng(52900 + seed);
+  const t2 = []; for (let i = 0; i < 200; i++) t2.push(composeGenShiftScr(r2, 2));
+  const t4 = []; for (let i = 0; i < 200; i++) t4.push(composeGenShiftScr(r4, 4));
+  const body = { spec: "batch3-v10.1", arm, verdict: "COMPLETE", seed, n: 200,
+    accTwo2: +(t2.filter(twoPass).length / t2.length).toFixed(4),
+    accTwo4: +(t4.filter(twoPass).length / t4.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("batch3-len " + arm + " s=" + seed + " 2p=" + body.accTwo2 + " 4p=" + body.accTwo4);
+  return body;
+};
+globalThis.runHarnessT6 = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-batch3-eval-t6-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const cb = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch2-cb-s" + seed + ".json"));
+  const t2 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-scratch-t2-s" + seed + ".json"));
+  if (cb.verdict !== "COMPLETE") throw new Error("cb train missing s" + seed);
+  if (t2.verdict !== "COMPLETE") throw new Error("t2 train missing s" + seed);
+  const m1 = T.makeModel(G.makeRng(cb.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = m1.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = cb.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const m2 = T.makeModel(G.makeRng(t2.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = m2.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = t2.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const a2 = (x) => { const l = Array.from(m2.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let vhits = 0, hits = 0, orc = 0;
+  const byK = { k1: [0, 0], k2: [0, 0], k3: [0, 0] };
+  for (const e of shT) {
+    const fw1 = m1.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    if (vhat === e.v) vhits++;
+    if (a2(e.flat.concat([e.qk, e.k, vhat, 8])) === e.y) { hits++; byK["k" + e.k][0]++; }
+    byK["k" + e.k][1]++;
+    if (a2(e.flat.concat([e.qk, e.k, e.v, 8])) === e.y) orc++;
+  }
+  const byKacc = {};
+  for (let k = 1; k <= 3; k++) byKacc["k" + k] = +(byK["k" + k][0] / byK["k" + k][1]).toFixed(4);
+  const accRet = vhits / shT.length, accOrc = orc / shT.length;
+  const body = { spec: "batch3-v10.1", arm: "t6", verdict: "COMPLETE", seed, n: 200,
+    accRetrieve: +accRet.toFixed(4), accComposed: +(hits / shT.length).toFixed(4),
+    accOracle: +accOrc.toFixed(4), product: +(accRet * accOrc).toFixed(4), byK: byKacc };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("harness-t6 s=" + seed + " ret=" + body.accRetrieve + " comp=" + body.accComposed + " orc=" + body.accOracle);
+  return body;
+};
+globalThis.runLM4Train = async function (fs, log, seed) {
+  const arm = "lm4";
+  const ledgerPath = "src/evidence/decomp/d-r1-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const trainSeed = 53200 + seed * 13;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 50; i++) { const e = composeGenShiftScr(drng, 2); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 50; i++) { const e = composeGenShiftScr(drng, 3); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 50; i++) { const e = composeGenShiftScr(drng, 4); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: trainSeed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "r1-v10", arm, verdict: "COMPLETE", seed, trainSeed, nTrain: all.length,
+    steps: 800, batch: 16, lr: 5e-3, auxW: 4.0, diet: "50x2p+50x3p+50x4p", wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("lm4-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+globalThis.runR1Eval = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r1-eval-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r1-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r1 train missing " + arm + " s" + seed);
+  const model = T.makeModel(G.makeRng(tr.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = model.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = tr.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const fwF = (x) => Array.from(model.forward(x, 1).logits);
+  const frng = G.makeRng(52400 + seed), srng = G.makeRng(52500 + seed);
+  const fwdT = []; for (let i = 0; i < 200; i++) fwdT.push(A.gen(frng, 1 + frng.int(3)));
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let fF = 0;
+  for (const e of fwdT) if (scratchArgmax(fwF(e.x)) === e.y) fF++;
+  let scr = 0, one = 0, two = 0, orc = 0;
+  for (const e of shT) {
+    const fw1 = model.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    if (vhat === e.v) scr++;
+    if (scratchArgmax(Array.from(fw1.logits)) === e.y) one++;
+    const x2 = e.flat.concat([e.qk, e.k, vhat, 8]);
+    if (scratchArgmax(fwF(x2)) === e.y) two++;
+    const xo = e.flat.concat([e.qk, e.k, e.v, 8]);
+    if (scratchArgmax(fwF(xo)) === e.y) orc++;
+  }
+  const body = { spec: "r1-v10", arm, verdict: "COMPLETE", seed, n: 200,
+    accFwd: +(fF / fwdT.length).toFixed(4), accScratch: +(scr / shT.length).toFixed(4),
+    accOne: +(one / shT.length).toFixed(4), accTwo: +(two / shT.length).toFixed(4), accOracle: +(orc / shT.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r1-eval " + arm + " s=" + seed + " " + JSON.stringify(body));
+  return body;
+};
+globalThis.runR1Len = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r1-eval-" + arm + "len-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r1-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r1 train missing " + arm + " s" + seed);
+  const model = T.makeModel(G.makeRng(tr.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = model.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = tr.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const fwF = (x) => Array.from(model.forward(x, 1).logits);
+  function twoPass(e) {
+    const scrIdx = e.x.length - 2;
+    const fw1 = model.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[scrIdx].logits));
+    const x2 = e.x.slice();
+    x2[scrIdx] = vhat;
+    return scratchArgmax(fwF(x2)) === e.y;
+  }
+  const r2 = G.makeRng(52800 + seed), r4 = G.makeRng(52900 + seed);
+  const t2 = []; for (let i = 0; i < 200; i++) t2.push(composeGenShiftScr(r2, 2));
+  const t4 = []; for (let i = 0; i < 200; i++) t4.push(composeGenShiftScr(r4, 4));
+  const body = { spec: "r1-v10", arm, verdict: "COMPLETE", seed, n: 200,
+    accTwo2: +(t2.filter(twoPass).length / t2.length).toFixed(4),
+    accTwo4: +(t4.filter(twoPass).length / t4.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r1-len " + arm + " s=" + seed + " 2p=" + body.accTwo2 + " 4p=" + body.accTwo4);
+  return body;
+};
+globalThis.runHarnessC6 = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r1-eval-c6-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const cb = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch2-cb-s" + seed + ".json"));
+  if (cb.verdict !== "COMPLETE") throw new Error("cb train missing s" + seed);
+  const m = T.makeModel(G.makeRng(cb.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = m.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = cb.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const aF = (x) => { const l = Array.from(m.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let vhits = 0, hits = 0, orc = 0, cr_r = 0, n_r = 0, cr_w = 0, n_w = 0;
+  const byK = { k1: [0, 0], k2: [0, 0], k3: [0, 0] };
+  for (const e of shT) {
+    const fw1 = m.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    const okV = vhat === e.v;
+    if (okV) vhits++;
+    const p = aF(e.flat.concat([e.qk, e.k, vhat, 8]));
+    if (p === e.y) { hits++; byK["k" + e.k][0]++; if (okV) cr_r++; else cr_w++; }
+    else if (okV) n_r++;
+    else n_w++;
+    byK["k" + e.k][1]++;
+    if (aF(e.flat.concat([e.qk, e.k, e.v, 8])) === e.y) orc++;
+  }
+  const byKacc = {};
+  for (let k = 1; k <= 3; k++) byKacc["k" + k] = +(byK["k" + k][0] / byK["k" + k][1]).toFixed(4);
+  const accRet = vhits / shT.length, accOrc = orc / shT.length;
+  const pCorrGivenVhat = n_r + cr_r > 0 ? +((cr_r) / (cr_r + n_r)).toFixed(4) : null;
+  const pCorrGivenNoVhat = n_w + cr_w > 0 ? +((cr_w) / (cr_w + n_w)).toFixed(4) : null;
+  const body = { spec: "r1-v10", arm: "c6", verdict: "COMPLETE", seed, n: 200,
+    accRetrieve: +accRet.toFixed(4), accComposed: +(hits / shT.length).toFixed(4),
+    accOracle: +accOrc.toFixed(4), product: +(accRet * accOrc).toFixed(4),
+    pCorrGivenVhat, pCorrGivenNoVhat, byK: byKacc };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("harness-c6 s=" + seed + " comp=" + body.accComposed + " pC|v=" + pCorrGivenVhat + " pC|~v=" + pCorrGivenNoVhat);
+  return body;
+};
+globalThis.runFQ = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r1-eval-fq-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const a4 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch1-a4-s" + seed + ".json"));
+  if (a4.verdict !== "COMPLETE") throw new Error("a4 train missing s" + seed);
+  const m = T.makeModel(G.makeRng(a4.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = m.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = a4.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const srng = G.makeRng(52500 + seed);
+  const flT = []; for (let i = 0; i < 200; i++) { const e = composeGenShiftScr(srng); flT.push({ x: e.flat.concat([e.qk, 8]), y: e.v }); }
+  let hits = 0;
+  for (const e of flT) { const l = Array.from(m.forward(e.x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; if (b === e.y) hits++; }
+  const body = { spec: "r1-v10", arm: "fq", verdict: "COMPLETE", seed, n: 200, accFlats: +(hits / flT.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("fq s=" + seed + " flats=" + body.accFlats);
+  return body;
+};
+globalThis.runADD4Train = async function (fs, log, seed) {
+  const arm = "add4";
+  const ledgerPath = "src/evidence/decomp/d-r2-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const trainSeed = 53200 + seed * 13;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 150; i++) {
+    const e = composeGenShiftScr(drng);
+    const x = e.flat.concat([e.qk, e.k, e.v, 8]);
+    a.push({ x, y: e.y });
+  }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: trainSeed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "r2-v10", arm, verdict: "COMPLETE", seed, trainSeed, nTrain: all.length,
+    steps: 800, batch: 16, lr: 5e-3, auxW: 4.0, wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("add4-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+globalThis.runR2Eval = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r2-eval-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r2-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r2 train missing " + arm + " s" + seed);
+  const model = T.makeModel(G.makeRng(tr.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  { const ps = model.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = tr.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    } }
+  const aF = (x) => { const l = Array.from(model.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const frng = G.makeRng(52400 + seed), srng = G.makeRng(52500 + seed);
+  const fwdT = []; for (let i = 0; i < 200; i++) fwdT.push(A.gen(frng, 1 + frng.int(3)));
+  const orcT = []; for (let i = 0; i < 200; i++) { const e = composeGenShiftScr(srng); orcT.push({ x: e.flat.concat([e.qk, e.k, e.v, 8]), y: e.y }); }
+  const accFwd = fwdT.filter((e) => aF(e.x) === e.y).length / fwdT.length;
+  const accOracle = orcT.filter((e) => aF(e.x) === e.y).length / orcT.length;
+  const body = { spec: "r2-v10", arm, verdict: "COMPLETE", seed, n: 200,
+    accFwd: +accFwd.toFixed(4), accOracle: +accOracle.toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r2-eval " + arm + " s=" + seed + " fwd=" + body.accFwd + " orc=" + body.accOracle);
+  return body;
+};
+globalThis.runHarnessR2H = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r2-eval-r2h-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const cb = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch2-cb-s" + seed + ".json"));
+  const a4 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch1-a4-s" + seed + ".json"));
+  const t2 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-scratch-t2-s" + seed + ".json"));
+  for (const [n, o] of [["cb", cb], ["a4", a4], ["t2", t2]]) if (o.verdict !== "COMPLETE") throw new Error(n + " missing s" + seed);
+  function restore(o) {
+    const m = T.makeModel(G.makeRng(o.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+    const ps = m.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = o.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    }
+    return m;
+  }
+  const mA = restore(cb), mB = restore(a4), m2 = restore(t2);
+  const a2 = (x) => { const l = Array.from(m2.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let nag = 0, cag = 0, ndis = 0, cdis = 0;
+  for (const e of shT) {
+    const va = scratchArgmax(Array.from(mA.forward(e.x, 1).cache.posOut[8].logits));
+    const vb = scratchArgmax(Array.from(mB.forward(e.x, 1).cache.posOut[8].logits));
+    const ok = a2(e.flat.concat([e.qk, e.k, va, 8])) === e.y;
+    if (va === vb) { nag++; if (ok) cag++; } else { ndis++; if (ok) cdis++; }
+  }
+  const accAgree = nag > 0 ? cag / nag : null, accDis = ndis > 0 ? cdis / ndis : null;
+  const body = { spec: "r2-v10", arm: "r2h", verdict: "COMPLETE", seed, n: 200,
+    agreeRate: +(nag / shT.length).toFixed(4),
+    accAgree: accAgree === null ? null : +accAgree.toFixed(4),
+    accDisagree: accDis === null ? null : +accDis.toFixed(4),
+    gap: (accAgree === null || accDis === null) ? null : +(accAgree - accDis).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r2h s=" + seed + " agree=" + body.agreeRate + " aA=" + body.accAgree + " aD=" + body.accDisagree + " gap=" + body.gap);
+  return body;
+};
+globalThis.runK3P = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r2-eval-k3p-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const t2 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-scratch-t2-s" + seed + ".json"));
+  const cb = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch2-cb-s" + seed + ".json"));
+  for (const [n, o] of [["t2", t2], ["cb", cb]]) if (o.verdict !== "COMPLETE") throw new Error(n + " missing s" + seed);
+  function restore(o) {
+    const m = T.makeModel(G.makeRng(o.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+    const ps = m.params();
+    for (let i = 0; i < ps.length; i++) {
+      const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+      const src = o.params[i];
+      for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+    }
+    return m;
+  }
+  const mT = restore(t2), mC = restore(cb);
+  function prof(m) {
+    const srng = G.makeRng(52500 + seed);
+    const perK = { 1: [0, 0], 2: [0, 0], 3: [0, 0] };
+    const conf = {};
+    let offByOne = 0, wrong = 0;
+    for (let i = 0; i < 200; i++) {
+      const e = composeGenShiftScr(srng);
+      const x = e.flat.concat([e.qk, e.k, e.v, 8]);
+      const l = Array.from(m.forward(x, 1).logits);
+      let b = 0; for (let j = 1; j < 4; j++) if (l[j] > l[b]) b = j;
+      perK[e.k][1]++;
+      if (b === e.y) perK[e.k][0]++;
+      else {
+        wrong++;
+        const key = e.y + "->" + b;
+        conf[key] = (conf[key] || 0) + 1;
+        if (Math.abs(b - e.y) === 1) offByOne++;
+      }
+    }
+    const acc = {};
+    for (let k = 1; k <= 3; k++) acc["k" + k] = +(perK[k][0] / perK[k][1]).toFixed(4);
+    return { perK: acc, offByOneShare: wrong > 0 ? +(offByOne / wrong).toFixed(4) : null, confusion: conf };
+  }
+  const body = { spec: "r2-v10", arm: "k3p", verdict: "COMPLETE", seed, n: 200, t2: prof(mT), cbOracle: prof(mC) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("k3p s=" + seed + " t2=" + JSON.stringify(body.t2.perK) + " obo=" + body.t2.offByOneShare + " cb=" + JSON.stringify(body.cbOracle.perK) + " obo=" + body.cbOracle.offByOneShare);
+  return body;
+};
+globalThis.runK3RTrain = async function (fs, log, seed) {
+  const arm = "k3r";
+  const ledgerPath = "src/evidence/decomp/d-r3-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const trainSeed = 53200 + seed * 13;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 150; i++) {
+    const e = composeGenShiftScr(drng);
+    if (i < 75) {
+      const k2 = 3, y2 = (e.v + k2) % 4;
+      a.push({ x: e.flat.concat([e.qk, k2, 0, 8]), y: y2 });
+    } else a.push({ x: e.x, y: e.y });
+  }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: trainSeed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 4.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "r3-v10", arm, verdict: "COMPLETE", seed, trainSeed, nTrain: all.length,
+    steps: 800, batch: 16, lr: 5e-3, auxW: 4.0, diet: "k3-forced-75 + random-75", wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("k3r-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+function r3Restore(T, G, o) {
+  const m = T.makeModel(G.makeRng(o.trainSeed), { arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4 });
+  const ps = m.params();
+  for (let i = 0; i < ps.length; i++) {
+    const dst = ps[i].v !== undefined ? ps[i].v : ps[i];
+    const src = o.params[i];
+    for (let j = 0; j < dst.length; j++) dst[j] = src[j];
+  }
+  return m;
+}
+globalThis.runR3Eval = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r3-eval-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r3-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r3 train missing " + arm + " s" + seed);
+  const model = r3Restore(T, G, tr);
+  const fwF = (x) => Array.from(model.forward(x, 1).logits);
+  const frng = G.makeRng(52400 + seed), srng = G.makeRng(52500 + seed);
+  const fwdT = []; for (let i = 0; i < 200; i++) fwdT.push(A.gen(frng, 1 + frng.int(3)));
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let fF = 0;
+  for (const e of fwdT) if (scratchArgmax(fwF(e.x)) === e.y) fF++;
+  let scr = 0, one = 0, two = 0, orc = 0;
+  for (const e of shT) {
+    const fw1 = model.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    if (vhat === e.v) scr++;
+    if (scratchArgmax(Array.from(fw1.logits)) === e.y) one++;
+    const x2 = e.flat.concat([e.qk, e.k, vhat, 8]);
+    if (scratchArgmax(fwF(x2)) === e.y) two++;
+    const xo = e.flat.concat([e.qk, e.k, e.v, 8]);
+    if (scratchArgmax(fwF(xo)) === e.y) orc++;
+  }
+  const body = { spec: "r3-v10", arm, verdict: "COMPLETE", seed, n: 200,
+    accFwd: +(fF / fwdT.length).toFixed(4), accScratch: +(scr / shT.length).toFixed(4),
+    accOne: +(one / shT.length).toFixed(4), accTwo: +(two / shT.length).toFixed(4), accOracle: +(orc / shT.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r3-eval " + arm + " s=" + seed + " " + JSON.stringify(body));
+  return body;
+};
+globalThis.runR3Len = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r3-eval-" + arm + "len-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r3-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r3 train missing " + arm + " s" + seed);
+  const model = r3Restore(T, G, tr);
+  const fwF = (x) => Array.from(model.forward(x, 1).logits);
+  function twoPass(e) {
+    const scrIdx = e.x.length - 2;
+    const fw1 = model.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[scrIdx].logits));
+    const x2 = e.x.slice();
+    x2[scrIdx] = vhat;
+    return scratchArgmax(fwF(x2)) === e.y;
+  }
+  const r2 = G.makeRng(52800 + seed), r4 = G.makeRng(52900 + seed);
+  const t2 = []; for (let i = 0; i < 200; i++) t2.push(composeGenShiftScr(r2, 2));
+  const t4 = []; for (let i = 0; i < 200; i++) t4.push(composeGenShiftScr(r4, 4));
+  const body = { spec: "r3-v10", arm, verdict: "COMPLETE", seed, n: 200,
+    accTwo2: +(t2.filter(twoPass).length / t2.length).toFixed(4),
+    accTwo4: +(t4.filter(twoPass).length / t4.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r3-len " + arm + " s=" + seed + " 2p=" + body.accTwo2 + " 4p=" + body.accTwo4);
+  return body;
+};
+globalThis.runR3Perk = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r3-eval-" + arm + "perk-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r3-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r3 train missing " + arm + " s" + seed);
+  const model = r3Restore(T, G, tr);
+  const srng = G.makeRng(52500 + seed);
+  const perK = { 1: [0, 0], 2: [0, 0], 3: [0, 0] };
+  for (let i = 0; i < 200; i++) {
+    const e = composeGenShiftScr(srng);
+    const x = e.flat.concat([e.qk, e.k, e.v, 8]);
+    const l = Array.from(model.forward(x, 1).logits);
+    let b = 0; for (let j = 1; j < 4; j++) if (l[j] > l[b]) b = j;
+    perK[e.k][1]++;
+    if (b === e.y) perK[e.k][0]++;
+  }
+  const acc = {};
+  for (let k = 1; k <= 3; k++) acc["k" + k] = +(perK[k][0] / perK[k][1]).toFixed(4);
+  const body = { spec: "r3-v10", arm, verdict: "COMPLETE", seed, n: 200, perK: acc };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r3-perk " + arm + " s=" + seed + " " + JSON.stringify(acc));
+  return body;
+};
+globalThis.runHarnessENS = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r3-eval-ens-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const cb = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch2-cb-s" + seed + ".json"));
+  const a4 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch1-a4-s" + seed + ".json"));
+  const t2 = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-scratch-t2-s" + seed + ".json"));
+  for (const [n, o] of [["cb", cb], ["a4", a4], ["t2", t2]]) if (o.verdict !== "COMPLETE") throw new Error(n + " missing s" + seed);
+  const mA = r3Restore(T, G, cb), mB = r3Restore(T, G, a4), m2 = r3Restore(T, G, t2);
+  const a2 = (x) => { const l = Array.from(m2.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let hits = 0, ndis = 0, cdis = 0;
+  for (const e of shT) {
+    const va = scratchArgmax(Array.from(mA.forward(e.x, 1).cache.posOut[8].logits));
+    const vb = scratchArgmax(Array.from(mB.forward(e.x, 1).cache.posOut[8].logits));
+    const vuse = va === vb ? va : vb;
+    if (a2(e.flat.concat([e.qk, e.k, vuse, 8])) === e.y) {
+      hits++;
+      if (va !== vb) cdis++;
+    }
+    if (va !== vb) ndis++;
+  }
+  const body = { spec: "r3-v10", arm: "ens", verdict: "COMPLETE", seed, n: 200,
+    accComposed: +(hits / shT.length).toFixed(4),
+    disagreeRate: +(ndis / shT.length).toFixed(4),
+    rescueRate: ndis > 0 ? +(cdis / ndis).toFixed(4) : null };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("ens s=" + seed + " comp=" + body.accComposed + " dis=" + body.disagreeRate + " rescue=" + body.rescueRate);
+  return body;
+};
+globalThis.runDLR = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r3-eval-dlr-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const dl = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch3-dl-s" + seed + ".json"));
+  if (dl.verdict !== "COMPLETE") throw new Error("dl train missing s" + seed);
+  const model = r3Restore(T, G, dl);
+  const srng = G.makeRng(52500 + seed);
+  const lines = []; for (let i = 0; i < 200; i++) lines.push(composeGenShiftScr(srng));
+  function accWith(d) {
+    let hits = 0;
+    for (const e of lines) {
+      const xm = e.x.map((t) => (t === 8 ? d : t));
+      const fw1 = model.forward(xm, 1);
+      if (scratchArgmax(Array.from(fw1.cache.posOut[8].logits)) === e.v) hits++;
+    }
+    return hits / lines.length;
+  }
+  const a8 = accWith(8), a7 = accWith(7);
+  const body = { spec: "r3-v10", arm: "dlr", verdict: "COMPLETE", seed, n: 200,
+    acc8: +a8.toFixed(4), acc7: +a7.toFixed(4), gap: +Math.abs(a8 - a7).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("dlr s=" + seed + " acc8=" + body.acc8 + " acc7=" + body.acc7 + " gap=" + body.gap);
+  return body;
+};
+globalThis.runAL8Train = async function (fs, log, seed) {
+  const arm = "al8";
+  const ledgerPath = "src/evidence/decomp/d-r4-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const trainSeed = 53200 + seed * 13;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 50; i++) { const e = composeGenShiftScr(drng, 2); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 50; i++) { const e = composeGenShiftScr(drng, 3); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 50; i++) { const e = composeGenShiftScr(drng, 4); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: trainSeed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => scratchLabelsT(A, x), auxW: 8.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "r4-v10", arm, verdict: "COMPLETE", seed, trainSeed, nTrain: all.length,
+    steps: 800, batch: 16, lr: 5e-3, auxW: 8.0, diet: "50x2p+50x3p+50x4p", wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("al8-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+globalThis.runR4Eval = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r4-eval-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r4-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r4 train missing " + arm + " s" + seed);
+  const model = r3Restore(T, G, tr);
+  const fwF = (x) => Array.from(model.forward(x, 1).logits);
+  const frng = G.makeRng(52400 + seed), srng = G.makeRng(52500 + seed);
+  const fwdT = []; for (let i = 0; i < 200; i++) fwdT.push(A.gen(frng, 1 + frng.int(3)));
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let fF = 0;
+  for (const e of fwdT) if (scratchArgmax(fwF(e.x)) === e.y) fF++;
+  let scr = 0, one = 0, two = 0, orc = 0;
+  for (const e of shT) {
+    const fw1 = model.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    if (vhat === e.v) scr++;
+    if (scratchArgmax(Array.from(fw1.logits)) === e.y) one++;
+    const x2 = e.flat.concat([e.qk, e.k, vhat, 8]);
+    if (scratchArgmax(fwF(x2)) === e.y) two++;
+    const xo = e.flat.concat([e.qk, e.k, e.v, 8]);
+    if (scratchArgmax(fwF(xo)) === e.y) orc++;
+  }
+  const body = { spec: "r4-v10", arm, verdict: "COMPLETE", seed, n: 200,
+    accFwd: +(fF / fwdT.length).toFixed(4), accScratch: +(scr / shT.length).toFixed(4),
+    accOne: +(one / shT.length).toFixed(4), accTwo: +(two / shT.length).toFixed(4), accOracle: +(orc / shT.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r4-eval " + arm + " s=" + seed + " " + JSON.stringify(body));
+  return body;
+};
+globalThis.runR4Len = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r4-eval-" + arm + "len-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r4-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r4 train missing " + arm + " s" + seed);
+  const model = r3Restore(T, G, tr);
+  const fwF = (x) => Array.from(model.forward(x, 1).logits);
+  function twoPass(e) {
+    const scrIdx = e.x.length - 2;
+    const fw1 = model.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[scrIdx].logits));
+    const x2 = e.x.slice();
+    x2[scrIdx] = vhat;
+    return scratchArgmax(fwF(x2)) === e.y;
+  }
+  const r2 = G.makeRng(52800 + seed), r4 = G.makeRng(52900 + seed);
+  const t2 = []; for (let i = 0; i < 200; i++) t2.push(composeGenShiftScr(r2, 2));
+  const t4 = []; for (let i = 0; i < 200; i++) t4.push(composeGenShiftScr(r4, 4));
+  const body = { spec: "r4-v10", arm, verdict: "COMPLETE", seed, n: 200,
+    accTwo2: +(t2.filter(twoPass).length / t2.length).toFixed(4),
+    accTwo4: +(t4.filter(twoPass).length / t4.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r4-len " + arm + " s=" + seed + " 2p=" + body.accTwo2 + " 4p=" + body.accTwo4);
+  return body;
+};
+globalThis.runHarnessT7 = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r4-eval-t7-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const cb = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-batch2-cb-s" + seed + ".json"));
+  const ad = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r2-add4-s" + seed + ".json"));
+  if (cb.verdict !== "COMPLETE") throw new Error("cb train missing s" + seed);
+  if (ad.verdict !== "COMPLETE") throw new Error("add4 train missing s" + seed);
+  const m1 = r3Restore(T, G, cb), m2 = r3Restore(T, G, ad);
+  const a2 = (x) => { const l = Array.from(m2.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let vhits = 0, hits = 0, orc = 0;
+  const byK = { k1: [0, 0], k2: [0, 0], k3: [0, 0] };
+  for (const e of shT) {
+    const fw1 = m1.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    if (vhat === e.v) vhits++;
+    if (a2(e.flat.concat([e.qk, e.k, vhat, 8])) === e.y) { hits++; byK["k" + e.k][0]++; }
+    byK["k" + e.k][1]++;
+    if (a2(e.flat.concat([e.qk, e.k, e.v, 8])) === e.y) orc++;
+  }
+  const byKacc = {};
+  for (let k = 1; k <= 3; k++) byKacc["k" + k] = +(byK["k" + k][0] / byK["k" + k][1]).toFixed(4);
+  const accRet = vhits / shT.length, accOrc = orc / shT.length;
+  const body = { spec: "r4-v10", arm: "t7", verdict: "COMPLETE", seed, n: 200,
+    accRetrieve: +accRet.toFixed(4), accComposed: +(hits / shT.length).toFixed(4),
+    accOracle: +accOrc.toFixed(4), product: +(accRet * accOrc).toFixed(4), byK: byKacc };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("harness-t7 s=" + seed + " ret=" + body.accRetrieve + " comp=" + body.accComposed + " orc=" + body.accOracle);
+  return body;
+};
+globalThis.runADD4P = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r4-eval-add4p-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const ad = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r2-add4-s" + seed + ".json"));
+  if (ad.verdict !== "COMPLETE") throw new Error("add4 train missing s" + seed);
+  const m = r3Restore(T, G, ad);
+  const srng = G.makeRng(52500 + seed);
+  const perK = { 1: [0, 0], 2: [0, 0], 3: [0, 0] };
+  const conf = {};
+  let offByOne = 0, wrong = 0;
+  for (let i = 0; i < 200; i++) {
+    const e = composeGenShiftScr(srng);
+    const x = e.flat.concat([e.qk, e.k, e.v, 8]);
+    const l = Array.from(m.forward(x, 1).logits);
+    let b = 0; for (let j = 1; j < 4; j++) if (l[j] > l[b]) b = j;
+    perK[e.k][1]++;
+    if (b === e.y) perK[e.k][0]++;
+    else {
+      wrong++;
+      const key = e.y + "->" + b;
+      conf[key] = (conf[key] || 0) + 1;
+      if (Math.abs(b - e.y) === 1) offByOne++;
+    }
+  }
+  const acc = {};
+  for (let k = 1; k <= 3; k++) acc["k" + k] = +(perK[k][0] / perK[k][1]).toFixed(4);
+  const body = { spec: "r4-v10", arm: "add4p", verdict: "COMPLETE", seed, n: 200,
+    perK: acc, offByOneShare: wrong > 0 ? +(offByOne / wrong).toFixed(4) : null, confusion: conf };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("add4p s=" + seed + " " + JSON.stringify(acc) + " obo=" + body.offByOneShare);
+  return body;
+};
+function r5SpotLabels(A, x) {
+  if (x.length === 10 && x[9] === 8 && x[8] === 0) {
+    if (x[7] === 3) return scratchLabelsT(A, x);
+    return new Array(x.length).fill(null);
+  }
+  return A.bindLabels(x);
+}
+globalThis.runK3AUXTrain = async function (fs, log, seed) {
+  const arm = "k3aux";
+  const ledgerPath = "src/evidence/decomp/d-r5-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const trainSeed = 53200 + seed * 13;
+  const drng = G.makeRng(52200 + seed), frng = G.makeRng(52300 + seed), sh = G.makeRng(52600 + seed);
+  const a = [], b = [];
+  for (let i = 0; i < 150; i++) { const e = composeGenShiftScr(drng); a.push({ x: e.x, y: e.y }); }
+  for (let i = 0; i < 150; i++) b.push(A.gen(frng, 1 + frng.int(3)));
+  const all = a.concat(b);
+  for (let i = all.length - 1; i > 0; i--) { const j = sh.int(i + 1), t = all[i]; all[i] = all[j]; all[j] = t; }
+  const t0 = Date.now();
+  const out = await T.trainModel({ seed: trainSeed, arch: "attn", vocab: 9, h: 48, m: 96, d: 16, classes: 4,
+    train: all, steps: 800, batch: 16, lr: 5e-3, attnAux: true, attnAuxW: 1.0,
+    prefixLabels: (x) => r5SpotLabels(A, x), auxW: 4.0 });
+  const params = out.model.params().map((pl) => Array.from(pl.v !== undefined ? pl.v : pl));
+  const body = { spec: "r5-v10", arm, verdict: "COMPLETE", seed, trainSeed, nTrain: all.length,
+    steps: 800, batch: 16, lr: 5e-3, auxW: 4.0, diet: "uniform-clean spot-aux-k3", wallMs: Date.now() - t0,
+    firstLoss: +out.firstLoss.toFixed(4), lastLoss: +out.lastLoss.toFixed(4), params };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("k3aux-train s=" + seed + " loss=" + body.firstLoss + "->" + body.lastLoss);
+  return body;
+};
+globalThis.runR5Eval = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r5-eval-" + arm + "-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T, TASKS } = await globalThis.LaneInit(fs);
+  const A = TASKS.assocR;
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r5-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r5 train missing " + arm + " s" + seed);
+  const model = r3Restore(T, G, tr);
+  const fwF = (x) => Array.from(model.forward(x, 1).logits);
+  const frng = G.makeRng(52400 + seed), srng = G.makeRng(52500 + seed);
+  const fwdT = []; for (let i = 0; i < 200; i++) fwdT.push(A.gen(frng, 1 + frng.int(3)));
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let fF = 0;
+  for (const e of fwdT) if (scratchArgmax(fwF(e.x)) === e.y) fF++;
+  let scr = 0, one = 0, two = 0, orc = 0;
+  for (const e of shT) {
+    const fw1 = model.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    if (vhat === e.v) scr++;
+    if (scratchArgmax(Array.from(fw1.logits)) === e.y) one++;
+    const x2 = e.flat.concat([e.qk, e.k, vhat, 8]);
+    if (scratchArgmax(fwF(x2)) === e.y) two++;
+    const xo = e.flat.concat([e.qk, e.k, e.v, 8]);
+    if (scratchArgmax(fwF(xo)) === e.y) orc++;
+  }
+  const body = { spec: "r5-v10", arm, verdict: "COMPLETE", seed, n: 200,
+    accFwd: +(fF / fwdT.length).toFixed(4), accScratch: +(scr / shT.length).toFixed(4),
+    accOne: +(one / shT.length).toFixed(4), accTwo: +(two / shT.length).toFixed(4), accOracle: +(orc / shT.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r5-eval " + arm + " s=" + seed + " " + JSON.stringify(body));
+  return body;
+};
+globalThis.runR5Len = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r5-eval-" + arm + "len-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r5-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r5 train missing " + arm + " s" + seed);
+  const model = r3Restore(T, G, tr);
+  const fwF = (x) => Array.from(model.forward(x, 1).logits);
+  function twoPass(e) {
+    const scrIdx = e.x.length - 2;
+    const fw1 = model.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[scrIdx].logits));
+    const x2 = e.x.slice();
+    x2[scrIdx] = vhat;
+    return scratchArgmax(fwF(x2)) === e.y;
+  }
+  const r2 = G.makeRng(52800 + seed), r4 = G.makeRng(52900 + seed);
+  const t2 = []; for (let i = 0; i < 200; i++) t2.push(composeGenShiftScr(r2, 2));
+  const t4 = []; for (let i = 0; i < 200; i++) t4.push(composeGenShiftScr(r4, 4));
+  const body = { spec: "r5-v10", arm, verdict: "COMPLETE", seed, n: 200,
+    accTwo2: +(t2.filter(twoPass).length / t2.length).toFixed(4),
+    accTwo4: +(t4.filter(twoPass).length / t4.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r5-len " + arm + " s=" + seed + " 2p=" + body.accTwo2 + " 4p=" + body.accTwo4);
+  return body;
+};
+globalThis.runR5Perk = async function (fs, log, arm, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r5-eval-" + arm + "perk-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r5-" + arm + "-s" + seed + ".json"));
+  if (tr.verdict !== "COMPLETE") throw new Error("r5 train missing " + arm + " s" + seed);
+  const model = r3Restore(T, G, tr);
+  const srng = G.makeRng(52500 + seed);
+  const perK = { 1: [0, 0], 2: [0, 0], 3: [0, 0] };
+  for (let i = 0; i < 200; i++) {
+    const e = composeGenShiftScr(srng);
+    const x = e.flat.concat([e.qk, e.k, e.v, 8]);
+    const l = Array.from(model.forward(x, 1).logits);
+    let b = 0; for (let j = 1; j < 4; j++) if (l[j] > l[b]) b = j;
+    perK[e.k][1]++;
+    if (b === e.y) perK[e.k][0]++;
+  }
+  const acc = {};
+  for (let k = 1; k <= 3; k++) acc["k" + k] = +(perK[k][0] / perK[k][1]).toFixed(4);
+  const body = { spec: "r5-v10", arm, verdict: "COMPLETE", seed, n: 200, perK: acc };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("r5-perk " + arm + " s=" + seed + " " + JSON.stringify(acc));
+  return body;
+};
+globalThis.runHarnessT8 = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r5-eval-t8-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const ka = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r5-k3aux-s" + seed + ".json"));
+  const ad = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r2-add4-s" + seed + ".json"));
+  if (ka.verdict !== "COMPLETE") throw new Error("k3aux train missing s" + seed);
+  if (ad.verdict !== "COMPLETE") throw new Error("add4 train missing s" + seed);
+  const m1 = r3Restore(T, G, ka), m2 = r3Restore(T, G, ad);
+  const a2 = (x) => { const l = Array.from(m2.forward(x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; return b; };
+  const srng = G.makeRng(52500 + seed);
+  const shT = []; for (let i = 0; i < 200; i++) shT.push(composeGenShiftScr(srng));
+  let vhits = 0, hits = 0, orc = 0;
+  const byK = { k1: [0, 0], k2: [0, 0], k3: [0, 0] };
+  for (const e of shT) {
+    const fw1 = m1.forward(e.x, 1);
+    const vhat = scratchArgmax(Array.from(fw1.cache.posOut[8].logits));
+    if (vhat === e.v) vhits++;
+    if (a2(e.flat.concat([e.qk, e.k, vhat, 8])) === e.y) { hits++; byK["k" + e.k][0]++; }
+    byK["k" + e.k][1]++;
+    if (a2(e.flat.concat([e.qk, e.k, e.v, 8])) === e.y) orc++;
+  }
+  const byKacc = {};
+  for (let k = 1; k <= 3; k++) byKacc["k" + k] = +(byK["k" + k][0] / byK["k" + k][1]).toFixed(4);
+  const accRet = vhits / shT.length, accOrc = orc / shT.length;
+  const body = { spec: "r5-v10", arm: "t8", verdict: "COMPLETE", seed, n: 200,
+    accRetrieve: +accRet.toFixed(4), accComposed: +(hits / shT.length).toFixed(4),
+    accOracle: +accOrc.toFixed(4), product: +(accRet * accOrc).toFixed(4), byK: byKacc };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("harness-t8 s=" + seed + " ret=" + body.accRetrieve + " comp=" + body.accComposed + " orc=" + body.accOracle);
+  return body;
+};
+globalThis.runFQ2 = async function (fs, log, seed) {
+  const ledgerPath = "src/evidence/decomp/d-r5-eval-fq2-s" + seed + ".json";
+  try {
+    const prev = JSON.parse(await fs.readTextFile(ledgerPath));
+    if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
+  } catch (e) {}
+  const { G, T } = await globalThis.LaneInit(fs);
+  const ad = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-r2-add4-s" + seed + ".json"));
+  if (ad.verdict !== "COMPLETE") throw new Error("add4 train missing s" + seed);
+  const m = r3Restore(T, G, ad);
+  const srng = G.makeRng(52500 + seed);
+  const flT = []; for (let i = 0; i < 200; i++) { const e = composeGenShiftScr(srng); flT.push({ x: e.flat.concat([e.qk, 8]), y: e.v }); }
+  let hits = 0;
+  for (const e of flT) { const l = Array.from(m.forward(e.x, 1).logits); let b = 0; for (let i = 1; i < 4; i++) if (l[i] > l[b]) b = i; if (b === e.y) hits++; }
+  const body = { spec: "r5-v10", arm: "fq2", verdict: "COMPLETE", seed, n: 200, accFlats: +(hits / flT.length).toFixed(4) };
+  await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+  log("fq2 s=" + seed + " flats=" + body.accFlats);
+  return body;
+};

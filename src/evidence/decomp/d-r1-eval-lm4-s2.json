@@ -1,0 +1,1 @@
+{"spec":"r1-v10","arm":"lm4","verdict":"COMPLETE","seed":2,"n":200,"accFwd":0.825,"accScratch":0.5,"accOne":0.36,"accTwo":0.255,"accOracle":0.185}

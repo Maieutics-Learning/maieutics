@@ -1,0 +1,1 @@
+{"spec":"r3-v10","arm":"k3r","verdict":"COMPLETE","seed":2,"n":200,"accFwd":0.93,"accScratch":0.945,"accOne":0.435,"accTwo":0.285,"accOracle":0.3}
