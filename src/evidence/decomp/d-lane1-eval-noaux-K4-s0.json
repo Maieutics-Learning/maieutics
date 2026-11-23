@@ -1,0 +1,1 @@
+{"spec":"lane1-v10","arm":"noaux","verdict":"COMPLETE","K":4,"sigma":0.5,"seed":0,"n":200,"accIntact":0.765,"accScrambled":0.24,"lesions":[0.62,0.585,0.65,0.7],"maxDrop":0.18}

@@ -1,0 +1,1 @@
+{"spec":"lane1-v10","arm":"const","verdict":"COMPLETE","K":4,"sigma":0.5,"seed":2,"n":200,"accIntact":0.7,"accScrambled":0.17,"lesions":[0.67,0.52,0.625,0.545],"maxDrop":0.18}

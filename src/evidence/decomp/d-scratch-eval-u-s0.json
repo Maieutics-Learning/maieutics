@@ -1,0 +1,1 @@
+{"spec":"scratch-v10","arm":"u","verdict":"COMPLETE","seed":0,"n":200,"accFwd":0.71,"accScratch":0.295,"accOne":0.375,"accTwo":0.26,"accOracle":0.26,"byK":{"k1":0.2188,"k2":0.3115,"k3":0.2533}}

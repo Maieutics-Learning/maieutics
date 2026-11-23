@@ -1,0 +1,1 @@
+{"spec":"lane3x-v10-x3rand","seed":1,"arm":"rand","verdict":"COMPLETE","wallMs":31055,"r1Steps":50,"r2Steps":350,"r3Steps":800,"accIn":0.27,"accFlong":0.31,"accRev":0.92,"accRevLong":0.665}

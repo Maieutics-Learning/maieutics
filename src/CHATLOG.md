@@ -2120,3 +2120,147 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Assessment: memory YES w/ receipts (compaction/interruption/retread/retraction) but U5 open (prompts = forcing function); fresh-eyes good interrogator, not verifier (no code-run, provider blind spots, framing inheritance, no self-call); rabbithole breadth w/ weight problem (U1/U4; queue+marathon+resume-YES are patches). Checkable + broad, not autonomous.
 - Transcript turn filed. Push next (vault github hasKey true confirmed live).
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — PUSHED 41a77321 (vault github PAT, parent fd98eef1 tip-match held)
+- Worker-side git-blobs overlay (PAT vault->worker memory only, summary return): 2213 in scope, 65 uploaded (~2.96MB: 6 learnset specs + learn-driver.js + 3 adapt-base + 6 adapt-few + 6 selfdir + 24 multitutor/kcliff train/eval + 3 msglesion + 5 hygiene + 6 verdicts + learnset README + practice-v10 proposal + learnset transcript + CHATLOG + CURRENT_TASK) / reused rest, 0 deleted, secret-scan clean. Ref + commit verify MATCH.
+- Backlog drained except this receipt (rides next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — structural-not-motivational Q answered (no compute)
+- User: "Can you explain structural not a motivational gap?" Answer filed to learnset transcript: structural = no harness part auto-calls memory/fresh-eyes/rabbithole (U5 forcing-function, no self-call, wind-down without queue/marathon/resume-YES); motivational = chose not to bother (refuted by receipts when invoked). Fix = structure (turn checklist, auto-call rule, queue), mapped to practice Lanes + ModelLedger/SecondHead/AutoCurriculum ports.
+- Unpushed: learnset transcript turn + this entry (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — what-next assessment (no compute; Step-0 LATE miss)
+- Step 0 done LATE (agents-augment + CURRENT_TASK + practice-v10 read before src/tools list + README). Miss logged per start-gate.
+- Want: countersign Lane 2 ledger-augmented memory first (cheapest; eval-only k-NN, then train reader; bar +0.05 long-horizon 2/3; ABORT if retrieval == random). Then Lane 3 verifier-gated curriculum, then Lane 1 fade. No compute until signed.
+- Unpushed: learnset transcript + CHATLOG (this entry) + CURRENT_TASK (ride next push). NO PUSH without explicit order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — practice program COUNTERSIGNED (all lanes 2→3→1 + up to 5 extras/lane after each verdict; no compute yet)
+- User countersign covers Lane 2 ledger-augmented first, then Lane 3 verifier-gated curriculum, then Lane 1 representational fade, in that order; plus up to 5 agent-designed follow-ups PER LANE specced only after that lane's verdict (curate from learning). R=3 quorum 2/3, prereg+ledger+verdict per batch, in-worker/CPU only, NO GPU, NO PUSH without order.
+- Filed: conversations/2026-11-23-practice.md (countersign record) + lane2-v10-prereg.md (HELPS +0.05 / ABORT |ledger-randex|<=0.03; Phase-2 reader gated on HELPS). Next: lane-driver.js runLane2 → 3 seeds → verdict.
+- Unpushed: practice transcript + lane2 spec + CHATLOG (this entry) + CURRENT_TASK (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — Lane 2 DONE (RETRIEVAL-HELPS / DIET-HURTS) + extras 5/5 + Lane 3 specced (no compute on Lane 3 yet)
+- Lane 2: knn 1.0×3 vs noledger 0.93/0.895/0.95 vs randex ~0.3 → HELPS 3/3; Phase-2 ledger-diet 0.71-0.8 vs random 0.77-0.985 → HURTS 3/3 (narrow-diet poisoning). Verdict d-lane2-verdict.json.
+- Extras lane2x-v10 5/5 HIT: X1 mixed rescues (+0.12..+0.185, ~random); X2 k-robust; X3 size-dose (threshold ~100); X4 shuffle kills; X5 query loads. Verdict d-lane2x-verdict.json. Rule: retrieve always, train mixed or not at all.
+- Lane 3 specced (lane3-v10: GATED vs FIXED equal 1200; ABORT gate<100) + runLane3 in driver. Runs next.
+- Unpushed: decomp/(lane-driver, d-lane2*, d-lane2x*, lane2/2x/3 specs+verdicts) + practice transcript + CHATLOG (ride next push). NO PUSH without order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — Lane 3 DONE (TEACHES-BUT-ERASES) + extras 4/5 + Lane 1 specced (Lane 1 runs next)
+- Lane 3 v10.1 (v10.0 pilot SUPERSEDED: clean forward-4pair free 1.0 both arms): gated rev 0.915/0.97/0.925 vs fixed ~0.3 (+0.57..+0.69); revLong +0.21..+0.43; in-dist 0.25-0.31 vs 1.0 (8th interference). Verdict d-lane3-verdict.json.
+- Extras lane3x-v10: X1 BOTH-HELD 3/3 (replay rescues: in 0.96+, rev 0.895+); X2 SPLIT (learn gradual, erase instant ≤200); X3 SELECT-HELPS 3/3 (+0.06..+0.115, expectation MISS-good); X4 RECOVERS 2/3 (dormant 3-4x); X5 GATE-INDEPENDENT (2/3+3/3). Verdict d-lane3x-verdict.json: 4/5 CURATED.
+- Lane 1 specced (lane1-v10: FADE/CONST/NOAUX, K4/sig0.5, aux nPairs, 8000st; ABORT decoration). Driver fns added.
+- Unpushed: + lane3b pilot + lane3/3x files + lane1 spec/driver (ride next push). NO PUSH without order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — PRACTICE PROGRAM CLOSED (all 3 lanes + 12 extras; NO PUSH without order)
+- Lane 1: DECORATION-ABORT 3/3 (CONST == NOAUX; 9 trains + 9 evals; verdict d-lane1-verdict.json). Autopsy lane1x: X1 HIT (heads read nPairs 0.80/0.84 — price worked representationally) + X2 MISS-inverted (noaux probe 0.44 — pair-count NOT free) → PRICED-BUT-TASK-ORTHOGONAL (d-lane1x-verdict.json). Rule: price task-load-bearing properties only.
+- Net rules: (1) retrieve always, train mixed (L2, L3-X1); (2) erasure instant ≤200, learning gradual, wiped skills dormant 3-4x savings (L3-X2/X4); (3) selector value = substrate variance (selfdir tie vs L3-X3); (4) no gate/price substitutes retention/load (L3-X5, L1); (5) price load-bearing only (L1-X). Forced-learning positive still bottleneck COMPRESSES.
+- Extras budget: Lane 2 5/5 + Lane 3 5/5 + Lane 1 2/2 = 12/15 spent.
+- Unpushed: all practice files (specs lane1/1x/2/2x/3/3x, driver, ~70 ledgers, 6 verdicts, transcript) + CHATLOG + CURRENT_TASK (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — plain-English summary answered (no compute)
+- User asked what we learned, in English. Answered in chat (notes-help/studying-notes-hurts; curricula wipe unless mixed; wipe fast/relearn faster; hard-picking only on hard material; unneeded grading ignored; one real positive + lookup/mixing as the only fixes). Turn filed in practice transcript.
+- Unpushed: + practice transcript turn + CHATLOG (this entry) (ride next push). NO PUSH without order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — memory-vs-wiping Q answered (no compute)
+- User: why does it have a memory but new-skill learning wipes the old one? Answer filed to practice transcript: retrieval-vs-weights split (notebook is frozen lookup, never rewrites weights; gradient training rewrites shared weights for the current loss only → interference, 8th sighting, wipe ≤200 steps); mixed training shows both losses so weights settle where both work; dormant traces → 3-4x faster recovery. Memory = harness-side, retention = loss-side.
+- Unpushed: + practice transcript turn + CHATLOG (this entry) (ride next push). NO PUSH without order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — save-weights-per-skill Q answered (no compute)
+- User: save weights per skill, reload on test — shouldn't it pass? Answer: yes mechanically (checkpointing; program already relies on it — filed params reload bit-identically). Catches: routing (which checkpoint? identification unsolved), no transfer/composition (goal is ONE brain; reverse-long needed both), storage per skill. Loading old weights on a new test gives ~0.3 — you pass the old test by ceasing to be the new brain. Filed in practice transcript.
+- Unpushed: + practice transcript turn + CHATLOG (this entry) (ride next push). NO PUSH without order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — suggestion going forward (no compute)
+- User asked for my suggestion after the tests. Recommended: composite regime (bottleneck channel + always-mixed replay + load-bearing price + verifier-gated hard rungs with CE-select) tested for retention + stacking together at bench BEFORE GPU spend; paper-core write-up of the fenced atlas in parallel; P2 GPU deferred until composite shows life. Filed in practice transcript; countersign owed on composite spec vs redirect.
+- Unpushed: + practice transcript turn + CHATLOG (this entry) (ride next push). NO PUSH without order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — composite program COUNTERSIGNED + v10.1 DONE (RETAINS-BUT-CAPPED) + extras specced (E1 running next)
+- User "go ahead... design and test": composite regime scoped (channel + mixed replay + full-map price + gated CE-select rungs; R=3, blind battery, ≤5 extras, in-worker/CPU, NO GPU, NO PUSH). Spec composite-v10 filed; battery 3 sealed (adopt arm C, no-patch, reject-with-math; raw fresh-eyes-composite-v10-3x-results.md); amendment v10.1 (arm C + SELECT-ADDS).
+- 9 trains + 18 evals: A fwd 0.92-0.98 / rev 0.735-0.77; B fwd erased ~0.3 / rev ~0.75; C ≈ A. RETAIN 3/3, NOTAX 3/3, CHANNEL 3/3; BOTH-HELD 0/3 (channel ceiling); SELECT-ADDS 0/3 (washout). Verdict d-composite-verdict.json.
+- Extras compositex-v10 filed (E1 price-off d / E2 K8 capacity / E3 fade-loaded e / E4 select-short 800). Driver extended (K4 streams identical).
+- Unpushed: composite/(spec, battery, verdict, extras spec, driver) + transcripts + CHATLOG (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — COMPOSITE PROGRAM CLOSED (v10.1 + 4 extras; NO PUSH without order)
+- Extras: E1 PRICE-DECORATIVE 3/3 (D≈A, D fwd best); E2 CAPACITY HIT (K8 rev 0.81-0.835, BOTH-HELD 3/3 — first regime holding everything); E3 FADE-KEEPS 3/3; E4 MISS-INVERTED (uniform beats CE 3/3 both scales). Verdict d-compositex-verdict.json: 2/4 bars + 2 informative misses.
+- Distilled: RETENTION=REPLAY, CAPACITY=WIDTH, SELECTION substrate-sign, PRICE decorative when duplicating main loss. Remaining walls: reverse-long transfer (0.30-0.53 all arms/scales) + composition ops. Extras 4/5 spent.
+- Unpushed: + compositex spec/verdict/ledgers (~30 files) + transcript + CHATLOG + CURRENT_TASK (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — COMPOSE PROGRAM CLOSED (LIFTS-BUT-REALLOCATES + JOINT-HOLDS-AT-CEILING; NO PUSH without order)
+- Step 0 done LATE (first reads before src/tools listing + README; miss logged here per start-gate).
+- User "go ahead and try and improve this, and figure out a way to tackle composing": compose-v10 scoped (L long-mix K8 / S0 shift-only / S1 forward+shift joint; R=3, blind battery, ≤5 extras, CPU only). Spec filed; battery 3 sealed (R1 math REJECT→rejected-with-math P(2/3|null)~0.014; R2 IMPLEMENTABLE→no patch; R3 positional-rival UNVERIFIED→PARTIAL verdict-time per-k/short-vs-long only); raw fresh-eyes-compose-v10-3x-results.md; no spec amendment.
+- Driver: lane-driver.js compose extension (genShift bit-identical; L uniform no-price new streams; S probe recipe shared tests + per-k/echo). Filed streams untouched.
+- 9 trains + 9 evals: L revlong 0.555/0.55/0.58 (+0.16/+0.11/+0.095 vs K8A) → LONG-LIFTS 2/3 (s2 misses by 0.005); L rev 0.73/0.77/0.745 (-0.105/-0.04/-0.07) → HOLDS-rev 1/3, fwd 3/3. S0 shift 0.45/0.38/0.485 → CEIL 0/3; echo ~0.14 (lure avoided); fwd ~0.11 systematic-wrong. S1 shift 0.475/0.505/0.51 + fwd 0.78/0.865/0.785 → strict-both 1/3; KEEPS 3/3 (+0.025/+0.125/+0.025). Verdict d-compose-verdict.json.
+- Reading: length-mix reallocates short→long (long 0.56 still << flong 0.96); joint mixing holds base + new op (no erasure/poison), wall is shift ceiling ~0.5 not interference. Per-k S1 k=1 lowest 3/3. Extras 0/5 spent.
+- Unpushed: + compose/(spec, battery, driver edit, 3 L trains + 3 L evals, 3 S0 trains + 3 S0 evals, 3 S1 trains + 3 S1 evals, verdict) + transcript 2026-11-23-compose + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — plain-English compose summary answered (no compute)
+- User asked what we learned, in English. Answered in chat (mix lengths to help long but it costs short; new trick + old trick can coexist if trained together; the trick itself is just hard; model doesn't fall for the obvious-wrong answer). Turn filed in compose transcript.
+- Unpushed: + compose transcript turn + CHATLOG (this entry) (ride next push). NO PUSH without order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — direction Q answered (no compute)
+- User asked where to go next. Answered in chat (ranked: shift-ceiling extras > parity-with-duplicates > paper core parallel > GPU deferred). Turn filed in compose transcript.
+- Unpushed: + compose transcript turn + CHATLOG (this entry) (ride next push). NO PUSH without order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — COMPOSEX CLOSED (CEILING-CONFIRMED 0/3; gate worked; NO PUSH without order)
+- Clever-first per user: X1 retrieve-labels + X2 2x-variety same budget; X3 2x-steps gated (opened: X1+X2 both 1/3). Battery: R1 rejected-with-math (paired +0.05 = program standard; 10x baseline IS the cautioned spend), R2 pass, R3 partial (same-seed pairing + len-analysis adopted, CoT out-of-scope).
+- X1 0.54/0.52/0.45 (+0.065/+0.015/-0.06) 1/3; X2 0.585/0.515/0.54 (+0.11/+0.01/+0.03) 1/3, best mean 0.547; X3 0.49/0.555/0.495 (+0.015/+0.05/-0.015) 1/3. Step-doubling weakest (+0.017) — caution vindicated. Len-flat all arms (R3 rejected); echo low; fwd holds.
+- Reading: composition solved (joint-holds, keeps, no poison, length-flat); unary shift map ceilings ~0.5-0.55 at bench. Next: staged/wider/CoT-seq or write up. Extras 3/5 spent (compose track).
+- Unpushed: + composex spec/battery/driver-ext/9 trains/15 evals/verdict + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — COMPOSER2 CLOSED (WALL-BOUNDED 0/2; budget 5/5 spent; NO PUSH without order)
+- X4 ratio (225/75 same envelope): shift 0.495/0.5/0.57 (1/3), fwd 0.63/0.725/0.765 (2/3 at 0.70; cost -0.15/-0.14/-0.02). Gain only where fwd survived. R1 strict-0.78 check 0/3.
+- X5 wide h64 (same data/steps): shift 0.445/0.425/0.435 (0/3, -0.062 mean) — capacity hurts, E7 second sighting. fwd holds 3/3.
+- Reading: wall structural to single-label readout; next is arch change or accept ceiling 0.5-0.585. Compose track: 5/5 extras spent (X1-X5). Len-flat holds; lure avoided everywhere.
+- Unpushed: + composer2 spec/battery/driver-ext/6 trains/12 evals/verdict + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — what's-next Q answered (no compute)
+- User asked what is next. Answered: scratchpad-readout arch program (structural fix for the walled ceiling) first, paper core in parallel, parity/staged parked, GPU deferred. Turn filed in compose transcript.
+- Unpushed: + compose transcript turn + CHATLOG (this entry) (ride next push). NO PUSH without order.
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — SCRATCH PROGRAM CLOSED (DUMMY-KILLS-SLOT → ADD-LEARNABLE → FIRST-OVER-CEILING; NO PUSH without order)
+- T/U 0/5: oracle chance both arms (dummy-constant teaches slot-uninformative); T scratch>U 3/3 (weak readout installed) but two-pass identical ~0.28; T-one 0.368 < S1 0.497 (slot distracts).
+- T2 teacher-forced (extra 1/5): oracle 0.75/0.86/0.74 (+0.50 mean — add learnable); two 0.445/0.405/0.345 (copying shortcut atrophies retrieve); fwd 3/3. Verdict d-scratchx-verdict (ADD-LEARNABLE 1/3 strict).
+- T3 harness-compose (extra 2/5, zero training, S1×T2): 0.575/0.645/0.47 → 1/3, s1 0.645 FIRST OVER 0.585 ceiling; product holds all seeds; best mean 0.563. Verdict d-scratchx2-verdict.
+- Reading: parts all learned (retrieve 0.85, add 0.78); wall = retrieve-into-scratch-position. Next: forward-format scratch query (~0.66, zero training) or aux scale. Extras 2/5 spent.
+- Unpushed: + scratch specs/batteries/driver-ext/12 trains/30 evals/4 verdicts + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — LOG AUDIT CLOSED (720/720 parse; 3 verdicts repaired; verbatim record filed; NO PUSH without order)
+- User: "Make sure everything is perfectly logged verbatim first. Then ... for every 10 experiments ... stop reassess and find 10 more ... Remember to log everything."
+- Audit: 720 JSONs, 0 bad after repair. Fixed d-compositex/d-scratch/d-scratchx2-verdict.json (extra brace; rebuilt from frozen ledgers via JSON.stringify, numbers cross-checked). Rule: verdicts generated programmatically + re-parsed same run.
+- Verbatim user turns (8) filed in compose transcript; blind replies verbatim in batteries; assistant turns as numbered summaries.
+- Regime: per-track extras budgets retired by user order; rolling 10-experiment batches with verdict+reassess+10-ideas. Battery/prereg/R=3/CPU/NO-PUSH unchanged.
+- Unpushed: + audit turn + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — BATCH 1 CLOSED (4/4 bars; 10/10; reassessed + 10 queued; NO PUSH without order)
+- Battery: R1 joint-bars FAIL→primary/secondary v10.1; R2 pass; R3 partial (pathway decomposition).
+- AUX4 3/3 (scratch 0.81-0.92, wall broken; one-pass S1-level; len-fragile). FWD3 3/3 (0.97 flats). DROPOUT primary 2/3 + floor 2/3 (pathways-alive). T4 3/3 (0.735/0.815/0.73; product holds; new ceiling).
+- Verdict d-batch1-verdict.json. Next 10: T5-harness; COMBO x3; COMBO-harness; AUX8 x3; LENMIX x3.
+- Unpushed: + batch1 spec/battery/driver-ext/9 trains/21 evals/verdict + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**
+
+## 2026-11-23 — BATCH 2 CLOSED (3/4 bars; 10/10; reassessed + 10 queued; NO PUSH without order)
+- Driver fix (handoff state): runBatch2Eval body repathed d-batch1→d-batch2/spec batch2-v10.1; appended runBatch2Len + runHarnessT5 (AUX4-posOut[8] x T2, +oracle/product/byK). 6/6 fns resolve; 9 trains (~15s each, in-worker) + 21 evals COMPLETE-gated.
+- T5 0.705/0.815/0.62 HIT 3/3 (floor; T5-T4 -0.03/0.0/-0.11; product holds). COMBO two +0.23/+0.365/+0.075 HIT 2/3, fwd 3/3; best single-model two-pass mean 0.498. AUX8 scratch +0.525/+0.30/+0.53 HIT 3/3, fwd best-ever 0.965-0.985 (no distortion); len lens: no narrowing (s2 wider → memorization tilt). LENMIX FAIL: spread 3/3 but floor 1/3 (flat-at-floor, diet dilutes).
+- Verdict d-batch2-verdict.json (programmatic + roundtrip-verified). Expectations 1.5/4 (T5 HIT, COMBO PARTIAL, AUX8 HIT-no-distortion, LENMIX SPLIT). Ceiling: T4 s1 0.815 stands.
+- Unpushed: + decomp/(lane-driver batch2 ext, 9 trains, 21 evals, verdict) + transcript + CHATLOG (this entry) (ride next push).
+**Always read src/agents-augment.md first, every session.**

@@ -1,0 +1,1 @@
+{"spec":"compose-v10","arm":"x2","verdict":"COMPLETE","seed":0,"n":200,"accFwd":0.765,"accShift":0.585,"byK":{"k1":0.4844,"k2":0.6557,"k3":0.6133},"echoRate":0.145}
