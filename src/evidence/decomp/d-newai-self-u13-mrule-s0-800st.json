@@ -1,0 +1,1 @@
+{"spec":"self-u13-p2conf-prereg","track":"U13","arm":"u13-mrule","seed":0,"steps":800,"stage1":200,"params":"none-fixed-rule","rule":"pick argmax mN(ad,baseMean); retrieval borrows p2learn RPr at eval (same seed)","verdict":"COMPLETE","wallMs":0,"curve":[],"curve1":[]}

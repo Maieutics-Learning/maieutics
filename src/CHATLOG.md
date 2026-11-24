@@ -2725,3 +2725,10 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 ## 2026-11-24 — Turn-81 U12 CLOSED (STILL-SHUT) + PUSHED (push-after-each-model order)
 - Battery 3x NEEDS-PATCH → v1.1 REPORTS-ONLY (STE honesty pin, gc-dist/entropy/agreement reports, STABILITY-FAIL trigger, bars strict). Grad-check 9.70e-10 PASS.
 - Stage-1 BCE flat at chance 6/6 (repair learned nothing); hard pick collapses to always-head (pick 0.87/1.0/0.945 vs std 0.92/1.0/0.94, gc∈[0.5,0.6) near=1.0, gcVar 1e-5 — R2 quantization rival CONFIRMED); betaGap 0.011-0.028 (CRITIC 0/3); wm≈0-negative; SEL 3/3 same levels; STD 2/3; ABLATE fail (decide identically). Next U13 pass-2-confidence routing.
+
+## 2026-11-24 — PUSHED 3faf6b72 (parent 521ed1bf, 18 uploaded / 608KB, secret-scan clean, verified)
+- Backlog drained (U12 arc + logs). Receipt rides next.
+
+## 2026-11-24 — Turn-82 U13 CLOSED (SEALED-SHUT) + PUSHED (push-after-each-model order)
+- Battery 3x NEEDS-PATCH → v1.1 REPORTS+PINS. Grad-check 7.80e-9 PASS flips=0 (re-run after argmax fix).
+- EVAL BUG (a[i]>b typo in 2 new fns, trains unaffected) caught by blend-sweep diagnostic; fixed + force-rerun 6E. Rule < always-head 3/3, selective 0/3; blend monotone in head weight (dominance); wDm>0 3/3 first right-sign yet VITAL fail. Next U14 cross-symmetry diet.
