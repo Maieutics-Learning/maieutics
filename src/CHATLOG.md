@@ -2718,3 +2718,10 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — Turn-80 U11 CLOSED (STILL-SHUT) + PUSHED (push-after-each-model order)
 - wY 2.0 opens gate +0.07, routes nothing (wm<0, corr decoupled, cmp==ablate); STD 2/3 no tax; grad-check surgery miss caught+repaired pre-train; uncomputed-number draft header struck. Next U12 hard-routing + critic-repair.
+
+## 2026-11-24 — PUSHED 521ed1bf (parent 5b51f93c, 160 uploaded / 3.2MB, secret-scan clean, verified)
+- Backlog drained (U5-U11 arc + logs). Receipt rides next.
+
+## 2026-11-24 — Turn-81 U12 CLOSED (STILL-SHUT) + PUSHED (push-after-each-model order)
+- Battery 3x NEEDS-PATCH → v1.1 REPORTS-ONLY (STE honesty pin, gc-dist/entropy/agreement reports, STABILITY-FAIL trigger, bars strict). Grad-check 9.70e-10 PASS.
+- Stage-1 BCE flat at chance 6/6 (repair learned nothing); hard pick collapses to always-head (pick 0.87/1.0/0.945 vs std 0.92/1.0/0.94, gc∈[0.5,0.6) near=1.0, gcVar 1e-5 — R2 quantization rival CONFIRMED); betaGap 0.011-0.028 (CRITIC 0/3); wm≈0-negative; SEL 3/3 same levels; STD 2/3; ABLATE fail (decide identically). Next U13 pass-2-confidence routing.
