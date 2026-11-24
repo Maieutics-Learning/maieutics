@@ -1,0 +1,1 @@
+{"spec":"newai-v10.1","arm":"newai-none","seed":2,"steps":3000,"verdict":"COMPLETE","n":400,"acc":0.57,"chance":0.25,"meanPoolDisagree":0.1024,"meanRetainedDisagree":0,"auditGap":-0.1024,"topQEnrich":0,"meanHeadOverlap":0.1345,"divCos":0.9999}

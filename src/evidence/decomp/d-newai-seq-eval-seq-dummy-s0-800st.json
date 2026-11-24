@@ -1,0 +1,1 @@
+{"spec":"newai-v10.2","track":"SEQ","arm":"seq-dummy","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"accScratch":0.16,"accOne":0.56,"accTwo":0.57,"accOracle":0.575,"accFwd":0.515}

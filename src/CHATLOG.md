@@ -2477,4 +2477,102 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — LOG AUDIT + PUSH ORDERED (user: "lets log and push")
 - Audit: 1959 JSONs 0 bad, src 2955 files; backlog since 0bd8a52c (A2, teach v10/v11, audits, miss, reflections v1/v2/v3 + transcripts + this log). Commit msg updated. Pushing now; receipt rides next. NO new compute.
+
+## 2026-11-24 — PUSHED 9a0ee865 (parent 0bd8a52c, 147 uploaded / 28.3MB, secret-scan clean, verify MATCH via ref+commit)
+- Backlog drained except the PUSHED receipt (this entry rides next push). Covers A2, teach v10/v11, audits, miss, reflections v1/v2/v3 + batteries + transcripts + CHATLOG.
+
+## 2026-11-24 — DIRECTION FROM REVIEWS (user: "where do we go from here?", no compute)
+- Synthesis of 23 reviewers: unanimous DIRECTED-EXECUTION; prescription = intrinsic objective + persistent state + self-triggered verify + write-access log; best way Verification-First. Proposed next: self-invocation probe + Verification-First spec + graduation setters (24h no-prompt, corruption, tool-before-answer, self-steered ceiling). Prereg + battery before compute, awaiting countersign. Transcript Turn 8. Unpushed: + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — TOOLS-VS-INNATE (user: read memory + for/against tools, no compute)
+- Sources: U5 NO FORCING FUNCTION + v10/v11 preregs + skills transcript + reflections. For = parity controls + throughput + auditability; Against = directed-only + duplication + 24h/corruption/tool-before-answer gaps. Transcript Turn 9. Unpushed: + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — NEW-AI ROADMAP (user: for the new AI where next, no compute)
+- New AI = bench learner owning decisions. Path: probe → Verification-First core → continuity/population → graduation setters; tools as training controls only. Prereg + battery before compute, awaiting countersign. Transcript Turn 10. Unpushed: + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — NEWAI v10.1 CLOSED PARTIAL (user: run it + record-search incl weights)
+- Record-search (already-run v11/A1/A2/bottleneck/teach/lane1/knobs/verS/compose; nearest prior A1/A2; differs = self-invocation probe + verify-first + N=400 paired): weights lesson = cos 0.9997 retired, functional meanDisagree/overlap/enrich/cal survive; no hardest-first (oracle harm); task-load-bearing price; within-seed only; distinct-values; twin-matched + paired.
+- Battery 3x PARTIAL → v10.1 pins-only (enrich tie-soft, mini-quorum = in-run compute, seed-swap parked). Driver newai-driver.js + probe COMPLETE (external gate). Waves 15T+15E COMPLETE (3000st/B16/lr5e-3, N=400 paired): own 0.5475/0.6075/0.6275 vs rand 0.6125/0.4975/0.5775 (2/3) vs none 0.52/0.5375/0.57 (2/3); audit 0.0924/0.0851/0.1069 (1/3); shuf 2/3; floor 3/3; cal UNMEASURED; oracle < own 3/3 (harm repeats). Verdict d-newai-verdict.json = PARTIAL. Transcript Turn 11. Unpushed: + spec + battery + driver + probe + 15T + 15E + verdict + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — PAIN-AXIS → NEXT (user: use pain-axis learning to decide next, no compute)
+- Re-read knobs transcript/prereg/verdict + W1 EXHAUST. Pain-axis toolkit = eval-only controls now, not mechanism. Universal knob hunt CLOSED (OPAQUE + EXHAUST); remaining within-seed move already lives in NewAI selection. Worth doing: per-item quartile CAL repair + functional readout probes; not worth: new universal direction/steer. Transcript Turn 12. Unpushed: + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — TRANSLATOR EXHAUST (user: explain translator not worth it, no compute)
+- Translator = per-model dictionary IF W1 CAUSAL-WITHIN-SEED (private address, shared machinery). Got EXHAUST 0/3 (swings -0.11/+0.09/+0.09, wrong-sign/hump, B3 degrades both directions) → nothing causal to translate; option-3 incentive story stands. Transcript Turn 13. Unpushed: + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — PRIVATE SCRATCHPAD HISTORY (user: was it ever done, no compute)
+- Yes: SP1 SLOT-WRITTEN-BUT-UNREAD + scratch DUMMY-KILLS-SLOT + scratchx ADD-LEARNABLE + scratchx2 FIRST-OVER-CEILING; private-scratch = CURRENT_TASK (never ships) vs brain-tools sketch (no training). Transcript Turn 14. Unpushed: + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — CONSOLIDATED NEXT FOR NEW AI (user: where next, no compute)
+- From NewAI PARTIAL + OPAQUE/EXHAUST + translator EXHAUST + scratchpad wall: v10.2 = CAL quartile repair + sequence-output arch (fix retrieve-into-position wall) + graduation setters; pain-axis controls only. Prereg + battery before compute, awaiting countersign. Transcript Turn 15. Unpushed: + this entry (ride next push). NO PUSH without order.
 **Always read src/agents-augment.md first, every session.**
+
+## 2026-11-24 — NEWAI v10.2 CLOSED PARTIAL (user: go ahead + next item)
+- Record-search (NewAI PARTIAL + scratch wall + knobs OPAQUE/EXHAUST + teach no-distillation + lane1 task-load-bearing). Spec newai-v102-prereg.md (Track A CAL eval-only frozen v10.1 + Track B SEQ len-10 own-vhat, no scheduled-sampling) + battery 3x (R1 PASS/R2 IMPLEMENTABLE/R3 CONTAINED → v10.2.1 pins-only, scheduled-sampling REJECTED as copying-shortcut) + driver newai-v102-driver.js.
+- Track A 15 evals COMPLETE (N=400 paired, per-item quartile): own gaps 0.10/-0.06/0.10 → CAL-REPAIR HOLD 2/3 (UNMEASURED closed; all arms 0-0.17, not ownership-specific). Track B 9T+9E COMPLETE (800st/B16/lr5e-3): own scr 0.57/0.57/0.585 (RETRIEVE FAIL 0/3), two 0.56/0.49/0.545 (COMPOSE FAIL 0/3), control -0.01/+0.01/-0.03 (FAIL 0/3), fwd 0.46-0.53 (FAIL); teacher orc 1.0/1.0/1.0 (ORACLE HOLD 3/3), teacher scr <= own 2/3 (NO-COPY HOLD 2/3), teacher fwd 0.21-0.425 (base wound). Verdict d-newai-v102-verdict.json = PARTIAL (CAL+ORACLE+NO-COPY hold; RETRIEVE-WALLED). Graduation setters BLOCKED (need SELF-LEARNING/strong PARTIAL). Unpushed: + spec + battery + raw + driver + 15 CAL + 9T + 9E + verdict + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — WHAT-WE-LEARNED SYNTHESIS (user: what did we learn, no compute)
+- v10.1 PARTIAL + v10.2 PARTIAL + scratch/knobs controls. Selection 2/3, audit 1/3, CAL 2/3 global, SEQ retrieve 0.57 wall, oracle 1.0, harness 0.645 only composer. Graduation blocked. Transcript Turn 17. Unpushed: + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — NEXT-STEPS SYNTHESIS (user: next steps + log everything, no compute)
+- Record-search: tried M/C/E, A1 selection, A2 load, teach distill dead, bottleneck dose, verS/XTEACH, verifier STACKS, compose ceilings, scratch wall, knobs OPAQUE/EXHAUST, NewAI PARTIALs. Missed: forced-read bottleneck, real recurrence, functional-diversity loss + bootstraps, self-curriculum, harder gain task, causality probes, graduation setters. Ordered 1-7 cheapest-first in chat. Transcript Turn 18. Unpushed: + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — SEVEN-STEP AUTHORIZATION (user: do all 7 in order, pool ok, 10/step + 10 final pre-countersigned, evolving)
+- Accepted: 7 steps, ≤10 exps/step evolving + 10 final, pool reviewer-labor only, CPU only, NO GPU, NO PUSH. Discipline: record-search + prereg + battery before compute each step. Starting Step 1 forced-read. Transcript Turn 19. Unpushed: + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — STEP 1 CLOSED STILL-WALLED (5/10 spent, evolving)
+- fr-force scr 0.605/0.53/0.565 FAIL, two 0.495/0.425/0.41 FAIL; control 2/3 HOLD (0.24/0.155/0.135), mask-check 3/3 (0.995+), carry-zero deltas -0.025/-0.095/-0.11 (explicit dominates); H96 scr flat, two worse 2/3 (capacity dead). Verdict STILL-WALLED — wall representational, needs recurrence. 5/10 unspent. Transcript Turn 20. Unpushed: + verdict + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — STEP 2 CLOSED STILL-WALLED (2/10 spent)
+- rec-full scr 0.62/0.56/0.61 (delta +0.015/+0.03/+0.045 FAIL), two 0.385-0.475 FAIL; cd16 flat; oracle s0 collapse 0.665→0.37. Verdict STILL-WALLED. 8/10 unspent. Next Step 3 diversity. Transcript Turn 21. Unpushed: + verdict + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — STEP 3 CLOSED (2/10; SPREAD-WITHOUT-GAIN + BOOTSTRAPS-HELP)
+- div-func explosion (loss 31+, spread 5e8, scr ~0.3) vs div-boot healthy (dis 0.21-0.29, scr 0.625/0.57/0.61 best-yet, control 3/3). Disagree-NaN bug filed + rechecked. Verdict filed. 8/10 unspent. Next Step 4 self-curriculum. Transcript Turn 22. Unpushed: + verdict + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — STEP 4 CLOSED MIXED (3/10)
+- pick two > rand two 3/3 (+0.035-0.135) but scr FAIL + diverse FAIL (0.16-0.178); rand best scr 0.67; easy diverse but worst two. Verdict CURRICULUM-MIXED. 7/10 unspent. Next Step 5 harder task. Transcript Turn 23. Unpushed: + verdict + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — STEP 5 CLOSED HARD-WON (2/10 eval-only)
+- Robust 2/3 (best-step drops < baseline, noisy≥clean twice), time holds, floor holds, warm≈double. Verdict HARD-WON. 8/10 unspent. Next Step 6 causality. Transcript Turn 24. Unpushed: + verdict + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — STEP 6 CLOSED CAUSAL-CLEAN (3/10 eval-only)
+- Swap 9/9, order holds (addressable), label 9/9 bound (P3 bug fixed). Verdict CAUSAL-CLEAN. 7/10 unspent. Next Step 7 gate + final 10. Transcript Turn 25. Unpushed: + verdict + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — STEPS 5-7 + FINAL CLOSED (evolving)
+- S5 HARD-WON + S6 CAUSAL-CLEAN (P3 bug fixed) + S7 BLOCKED (G1/G2 unrun, G3 done) + F1 isolates retrieve (cond-orc ~0.78) + F5 hybrid best single 0.615 (1/3). Dose dead, attention owed. Transcript Turn 26. Unpushed: + verdicts + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — SYNTHESIS + NEXT STEPS (no compute)
+- Learned: mask forces read but retrieve walled (H96 dead = not width); recurrence credit/time dead in MLP carry; unbounded spread explodes, bootstraps teach; pick helps compose not retrieve; robustness + double-query hold; causality clean (swap/order/label). Final: explicit 2-head composes ~0.78 conditional, retrieve caps ~0.6; bests scr 0.67 / two 0.615. Wall = retrieval-into-position. Next: real attention/2-head where final must read slot; keep mask+bootstraps+truncated BPTT, drop spread/full-BPTT/width; keep noisy/double/causality gates; graduation still scr 0.70 + two 0.60 + 24h + corrupted-ledger. Concrete: F2 C=8, F3 1200-step, F4 auxW 2.0, more F5 hybrids, E1 mask-swap, attention prototype (prereg+battery first). Transcript Turn 27. Unpushed: + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — FULL LOG + PRE-COUNTERSIGNATURE (no compute)
+- Full-log audit (in-worker): src 3203 files; decomp 1370 JSONs 0 bad (1276 COMPLETE, 7 ABORT, 87 verdict/probe-schema); 77 preregs + 41 batteries + 75 verdicts (9 newai verdicts: v102/fr/rec/div/cur/hard/cause/final/v10). 7-step program + final fully filed (specs + batteries + drivers + trains/evals + verdicts + transcript Turns 19-28 + CHATLOG + working record). Unpushed since 9a0ee865: all v102/fr/rec/div/cur/hard/cause/final specs + batteries + drivers + trains/evals + verdicts + memory transcript + CHATLOG + this record.
+- PRE-COUNTERSIGNATURE accepted (user: "pre-countersigning everything"; logged before any compute). Scope: (a) attention / explicit 2-head prototype where final must read slot; (b) F2 C=8 appetite dose, F3 1200-step div-boot, F4 auxW 2.0, more F5-style hybrids, E1 mask-swap, E2 double-swap, E3 warm-swap, E6 confidence-threshold pick; (c) graduation G1 24h no-prompt + G2 corrupted-ledger ONLY after a single model clears scr 0.70 + two 0.60 with control/robustness/causality; (d) evolving intermediates capped at 10/step + 10 final pattern, unspent returned with reason. Rules kept: CPU/in-worker JS only; NO GPU spend; NO PUSH without explicit order; pool = sealed reviewer labor only (never training signal/labels/capacity); every step = record-search + prereg + blind battery + adjudication + R=3 quorum 2/3 + COMPLETE-gated ledgers + append-only corrections. Transcript Turn 28. Unpushed: + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — COMPUTE-ALL CLOSED (F2/F3/F4 + E1/E2/E3 + F6/F7)
+- F2 C=8: scr 0.585/0.6/0.59, two 0.47/0.53/0.495 — dose HURTS/FLAT. F3 1200st: scr 0.62/0.6/0.555, two 0.585/0.55/0.545 — longer HELPS compose 3/3. F4 auxW2.0: two 0.44/0.445/0.43 — dose HURTS. E1 9/9 HOLD (masks interchangeable); E2 HOLDS; E3 HOLDS-LOWER rank kept. F6 (cur-rand+f3): two 0.615/0.525/0.57. F7 (f3+pick): two 0.63/0.475/0.495 NEW BEST SINGLE. Verdicts final2 + cause-evolvers filed. Budgets: final 7/10 (3 for attention), cause 6/10. Attention needs prereg+battery before compute — next. Transcript Turn 29. Unpushed: + 18 trains/evals + 33 evolver/hybrid evals + 2 verdicts + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — PROBE-SPEED Q (no compute)
+- Probes eval-only frozen forwards (N=200, no grads/Adam/candidate-scoring, tiny JSONs) vs trains 800-1200st x B16 full forward+backward+Adam + Div/candidates (F2 C=8 ~10.5s, F3 ~6.7s, F4 ~4.5s). Transcript Turn 30. Unpushed: + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — 30X CLOSED (30/30: B10 + A10 + C10)
+- B hybrids: b1 s0 0.625, b2 F5 re-read 0.615, b3 0.595/0.545/0.56 solid, b9 0.595. A longer: a4 2000st 0.625/0.59/0.57 solid; a6 aux1.5 s0 0.65/0.605; a7 lam2 0.66 scr best; a9 lr2.5e-3 collapses two. C pick: c1 C=6 0.65/0.63 + 0.575/0.55 mean 0.585; c7 auxW0.5 0.61/0.565/0.605 FIRST single-trunk 2/3 HOLD on two 0.60; c10 noboot 0.59/0.5/0.555; c9 collapses. Verdict 30x filed. Absolute scr 0.70 stands; wall now at 0.60-edge. Transcript Turn 31. Unpushed: + 60 trains + 90 evals + prereg + verdict + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — 30X LEARNINGS + SPEED Q (no compute)
+- Learned: c7 auxW0.5 pick first 2/3 HOLD on 0.60; C=6 best dose; longer saturates (~1400≈2000); low LR kills compose; bootstraps optional for pick; median/easy fail; hybrids still lead. Speed: tiny MLP, in-worker, no GPU/pool, ~5-10s/train. Transcript Turn 32. Unpushed: + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — NEXT Q (no compute)
+- Proposal: winner-combine (c7 + C6 + 1400st) then attention prototype (prereg + battery first). Graduation gated on 0.70. Transcript Turn 33. Unpushed: + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — BOTH DONE (W1-W5 frozen + attention battery + ATT trains)
+- W1-W5 (15T+15E frozen for testing): stacking hurts retrieve (W1 0.515 vs parents 0.6+); W4 800st best balanced (0.615/0.57/0.6 + 0.58/0.57/0.57); W5 lam2 s0 0.615/0.6. Verdict w filed. Attention: battery 3x NEEDS-PATCH → v1.1, trains att-full 0.62/0.605/0.575 + two 0.59/0.565/0.57 vs ctl 0.605/0.525/0.53 (delta +0.015/+0.08/+0.045, 1/3); att-only 0.615/0.52/0.49 HOLDS. Verdict ATTENTION-HELPS-BUT-WALLED. Transcript Turn 34. Unpushed: + 2 preregs + battery + 21 trains + 24 evals + 2 verdicts + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — CONTINUED (W6 + ATT-temp)
+- W6 (C6+aux0.5+800st+lam2, frozen): scr 0.635/0.595/0.585, two 0.63/0.595/0.55 — best mean 0.592. ATT-temp: tau 1.10/1.19/1.13 (softens), scr 0.615/0.585/0.58, two 0.59/0.56/0.485 (no gain). Verdicts w + att updated. Transcript Turn 35. Unpushed: + 6 trains + 6 evals + 2 verdict updates + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — CONTINUED (W6 sweep SWEEP-FAILS + ATT-MH HEADS-HELP-BUT-WALLED)
+- W6 sweep (same recipe C6/auxW0.5/800st/lam2, seeds 3-5, newai-winner-driver.js; config+loss/divCos cross-checked vs filed W6): scr 0.54/0.60/0.555, two 0.495/0.57/0.50 — fresh-seed quorum 0/3, combined 6-seed 1/6. Verdict SWEEP-FAILS (2/3 was lucky draw; seed-fragile, bimodal). Unpushed: + driver + prereg-note + 3 trains + 3 evals + verdict update + transcript + this entry (ride next push). NO PUSH without order.
+- ATT-MH (battery 3x IMPLEMENTABLE → v1.1 pins-only; fresh backward grad-exact 0.00e+0 after typo/check/truncation fixes): mh scr 0.66/0.61/0.575 two 0.62/0.595/0.495; mh-only 0.63/0.605/0.575 (att-alone reads); ctl 0.61/0.57/0.59. Delta 1/3 (+0.05/+0.04/-0.015); compose 1/3; only 3/3. Head disagree 0.11-0.135, clone 0.64-0.69. Verdict HEADS-HELP-BUT-WALLED (best-attention-retrieve 0.66; absolutes stand; retrieve attention-carried). Unpushed: + prereg + battery + driver + 6 trains + 9 evals + verdict + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — ATT-MH-LONGER INVERTS + CHAMPION HARDENING
+- Longer (mh+ctl 1400st, 6T+9E): mh-1400 two 0.525/0.565/0.535 FAIL (longer hurts 5-head 3/3); ctl-1400 two 0.64/0.53/0.595 (s0 best single-head compose). Single-head beats 5-head 3/3 at 1400st — capacity memorizes pick diet faster (s1 lossN 1.32 + worse eval). Verdict extended. Driver repair (clobbered header restored, skip-path regression green).
+- Hardening (frozen champions, eval-only): mh-s0 graceful under noisy+double; ctl-s0-1400 compose collapses q2 (0.64→0.47). mh retrieve robust-not-lucky. Unpushed: + prereg amendment + driver ext + 6 trains + 13 evals/probes + verdict + transcript + this entry (ride next push). NO PUSH without order.

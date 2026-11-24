@@ -1,0 +1,1 @@
+{"spec":"cause-v10.1","probe":"p2","model":"div-boot","weightsSeed":2,"streamsSeed":2,"maskSeed":2,"perm":"reverse-flat-pairchunks","seedMap":"t=(s+1)%3","labelShift":"none","seed":2,"verdict":"COMPLETE","n":200,"accScratch":0.625,"accTwo":0.525}

@@ -1,0 +1,1 @@
+{"spec":"newai-v10.2","track":"CAL-repair","arm":"newai-shuf","seed":0,"steps":3000,"verdict":"COMPLETE","n":400,"accBotQ":0.64,"accTopQ":0.47,"calQuartGap":0.17,"bar":"bot-top >= 0.10","hold":true}

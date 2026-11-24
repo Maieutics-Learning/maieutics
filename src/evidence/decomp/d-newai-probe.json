@@ -1,0 +1,1 @@
+{"spec":"newai-v10.1","verdict":"COMPLETE","checks":[{"name":"prereg-record-search","pass":true},{"name":"battery-present","pass":true},{"name":"battery-raw","pass":true}],"note":"EXTERNAL-GATE: code-enforced record-search + battery presence. Procedural scaffolding, not inbuilt self-invocation."}

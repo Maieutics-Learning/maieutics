@@ -1,0 +1,1 @@
+{"spec":"force-v10","track":"FORCED-READ","arm":"fr-dummy","seed":1,"steps":800,"H":48,"carryZero":false,"verdict":"COMPLETE","n":200,"accScratch":0.205,"accOne":0.28,"accTwo":0.27,"accOracle":0.285,"accFwd":0.3}
