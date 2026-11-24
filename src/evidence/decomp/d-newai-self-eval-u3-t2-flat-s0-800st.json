@@ -1,0 +1,1 @@
+{"spec":"self-u3-teeth-prereg","track":"U3","arm":"u3-t2-flat","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"frozenBase":"U2-anch-gate-s0","accScratch":0.565,"accTwo":0.565,"adaptY":0.205,"adaptV":0.205,"meanGateAdapt":0,"meanGateStd":0,"meanGateWrong1":0,"meanGateRight1":0,"gateWeights":{"we":0,"wb":0,"wd":0,"b":0}}

@@ -1,0 +1,1 @@
+{"spec":"self-u2-anchored-prereg","track":"U2","arm":"u2-anch-flat","seed":2,"steps":800,"verdict":"COMPLETE","n":200,"unfrozen":true,"anchored":true,"lam":1,"slowLr":0.0005,"fastLr":0.005,"accScratch":0.43,"accTwo":0.455,"adaptY":0.21,"adaptV":0.17,"meanGateAdapt":0,"meanGateStd":0,"meanGateWrong1":0,"meanGateRight1":0,"gateWeights":{"we":0,"wb":0,"wd":0,"b":0}}

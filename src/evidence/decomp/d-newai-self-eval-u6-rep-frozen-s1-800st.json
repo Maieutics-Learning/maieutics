@@ -1,0 +1,1 @@
+{"spec":"self-u6-repair-prereg","track":"U6-eval","arm":"u6-rep-frozen","seed":1,"steps":800,"N":200,"forceG":null,"verdict":"COMPLETE","scr":0.6,"two":0.585,"adaptY":0.265,"adaptV":0.16,"gAdapt":0,"gStd":0,"gWrong":0,"gRight":0,"we":0.4007721358338276,"wb":-1.0624112248157958,"wd":-1.8602222765145295,"b":0.2610475626409365,"critAcc":0.625}

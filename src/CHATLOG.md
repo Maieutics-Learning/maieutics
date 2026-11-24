@@ -2652,3 +2652,69 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — Turn-58 next-steps proposed (no compute; NO PUSH)
 - U2 anchored-unfreeze first (keeps U1 compose win, restores STD), then teeth (two-stage gate on stable trunk), then modular split; memory/rabbithole setters after mechanism holds.
+
+## 2026-11-24 — PUSHED 5b51f93c (parent fc8966ee, 143 uploaded / 6.1MB, secret-scan clean, verified)
+- Backlog FULLY drained except the PUSHED receipt (rides next push). Doc-audit: decomp 1798 JSONs 0 bad / 1694 COMPLETE; U1 6T+6E COMPLETE; Turns 53-58 transcript+CHATLOG filed; R2 NEEDS-PATCH adopted as REBUILD doc only (no rerun).
+
+## 2026-11-24 — Turn-60 U2 DONE (anchored unfreeze 6T+6E; ANCHOR-FAILED; NO PUSH)
+- Battery 3x NEEDS-PATCH → v1.1 PINS. Grad-check 2.01e-6 PASS. SEL 3/3, FIX 3/3, GAP ≥0.88, STD 0/3, VITAL 0/3 inverted.
+
+## 2026-11-24 — Turn-61 U3 DONE (teeth two-stage 6T+6E; STILL-BLIND; NO PUSH)
+- Battery 3x NEEDS-PATCH → v1.1. Grad-check 1.69e-7 PASS. SEL 3/3, STD-on-U2 3/3, VITAL 0/3 (drift exonerated).
+
+## 2026-11-24 — Turn-62 U4 DONE (modular split 6T+6E; HEAD-FAILS+GATE-HURTS; NO PUSH)
+- Battery 3x NEEDS-PATCH → v1.1 AMENDMENT (head 5e-3/RP 1e-3). Grad-check 1.73e-7 PASS. SEL 3/3, STD 1/3, VITAL 0/3 with wb>0 sign-flip 3/3, HEAD open 0.47/0.57/0.45 (linear insufficient).
+
+## 2026-11-24 — Turn-63 setters DONE (S1+S2+S3 PASS; S4 24h QUEUED; NO PUSH)
+- Corruption probe + tool-before-answer + write-log PASS; 24h + Verification-First queued (needs order).
+
+## 2026-11-24 — Turn-64 next-steps answered (no compute; NO PUSH)
+- U5 delta-prereg+battery next, then push (needs order), then S4 24h (needs order). Graduation BLOCKED.
+
+## 2026-11-24 — Turn-65 wound explained (no compute; NO PUSH)
+- U1 STD 0.365/0.405/0.39 vs W6 0.63/0.595/0.55 FAIL 0/3; VITAL inverted wb/wd negative 0/3; U2 same with slower bleed.
+
+## 2026-11-24 — Turn-66 recovery Q answered (no compute; NO PUSH)
+- Wound-recovery testable; U6 sketch: wounded-init + gate-frozen standard repair + explicit wrong supervision; needs prereg+battery.
+
+## 2026-11-24 — Turn-67 U6 CLOSED (STILL-WOUNDED partial-recovery-taxes-compose; NO PUSH)
+- Battery 3x NEEDS-PATCH → v1.1 PINS; grad-check 4.91e-7 PASS; 6T+6E+3E COMPLETE; REC 2/3 boundary, TELL 1/3, adapt TAXED.
+
+## 2026-11-24 — Turn-68 U5+U7+U8 CLOSED (NO PUSH)
+- U5 HEAD-WORKS-GATE-BLIND (nonlinear open 0.715/0.73/0.595 HEAD 2/3; gate always-open; grad 9.08e-7). U7 THINK-WALL (RP-only clean head still blind). U8 COMPARE-USED-WRONG-SIGN (selective-shut, STD 3/3 holds, SEL fails, wm<0; deviation: no-retrieval evals, U9 must restore read). Next: U9 read+comparative with adapt-weighted objective.
+
+## 2026-11-24 — Turn-69 synthesis answered (no compute; NO PUSH)
+- Wound sticky; compose solved unfrozen-free; think needs comparison with right sign; U9 queued.
+
+## 2026-11-24 — Turn-70 model-rules answered (no compute; NO PUSH)
+- Slow/fast split, comparative router, taxed repair, discipline stands.
+
+## 2026-11-24 — Turn-71 frozen explained (no compute; NO PUSH)
+- Frozen = no gradient step this run; learning in unfrozen modules; per-phase not forever.
+
+## 2026-11-24 — Turn-72 frozen-vs-slow corrected (no compute; NO PUSH)
+- Frozen zero movement; slow = small LR still moves (U2 still wounded).
+
+## 2026-11-24 — Turn-73 trade explained (no compute; NO PUSH)
+- Shared trunk overwrite; standard-only repair +0.2 base, adapt 0.99→0.25.
+
+## 2026-11-24 — Turn-74 plain-English trade (no compute; NO PUSH)
+- One notebook two subjects; second notebook fixes it.
+
+## 2026-11-24 — Turn-75 both-at-once answered (no compute; NO PUSH)
+- Mixed needs base+head+router; routing is the wall; U9 queued.
+
+## 2026-11-24 — Turn-76 many-heads answered (no compute; NO PUSH)
+- K+1 comparative router, diversity pressure; binary U9 first.
+
+## 2026-11-24 — Turn-77 spawning answered (no compute; NO PUSH)
+- Trigger → warmup → router grows pair → prune; self-trigger queued.
+
+## 2026-11-24 — Turn-78 U9 CLOSED (ORDER-FAILS; NO PUSH)
+- Equal-weight control clean; vhat_base fatal to compose pass; U10 split-router queued.
+
+## 2026-11-24 — Turn-79 U10 CLOSED (SPLIT-HEALS-LEVELS/COMPARISON-DECORATIVE; NO PUSH)
+- SEL 3/3 levels restored, VITAL fail, wm<0, cmp==ablate; pre-compute transcript claim corrected to actuals. Next U11 adapt-weighted split.
+
+## 2026-11-24 — Turn-80 U11 CLOSED (STILL-SHUT) + PUSHED (push-after-each-model order)
+- wY 2.0 opens gate +0.07, routes nothing (wm<0, corr decoupled, cmp==ablate); STD 2/3 no tax; grad-check surgery miss caught+repaired pre-train; uncomputed-number draft header struck. Next U12 hard-routing + critic-repair.

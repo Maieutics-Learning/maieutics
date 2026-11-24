@@ -1,0 +1,1 @@
+{"spec":"self-u4-modular-prereg","track":"U4","arm":"u4-mod-gate","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"frozenBase":"W6-s0+M2-nb-s0","accScratch":0.58,"accTwo":0.54,"adaptY":0.41,"adaptV":0.575,"meanGateAdapt":0.7074,"meanGateStd":0.7052,"meanGateWrong1":0.7039,"meanGateRight1":0.7099,"gateWeights":{"we":0.3403,"wb":0.4553,"wd":-0.0631,"b":0.4482}}
