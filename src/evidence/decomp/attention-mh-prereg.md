@@ -37,3 +37,10 @@ COMPLETE-gated, twin-matched seed-only streams, paired evals.
 - What differs: steps 800 -> 1400 only (recipe, init streams, twin-matching unchanged). No new mechanism → no battery (F3 precedent covers longer axis).
 - Bars: LONGER-COMPOSE mh-1400 two >= 0.60 quorum 2/3; LONGER-DELTA mh-1400 - mh-800 >= +0.03 paired descriptive; retrieve/only bars as in att2 verdict.
 - Ledgers d-newai-att2-{arm}-s{seed}-1400st.json + evals; verdict update in d-newai-att2-verdict.json.
+
+## ATT-MH SEED-SWEEP amendment (same recipe, fresh seeds; no battery — no new mechanism)
+- Record-search: W6 sweep SWEEP-FAILS 1/6 (fresh-seed fragility is the open question for EVERY champion). att-mh-800 s0 0.66/0.62 is the best-attention champion; robustness holds on s0. Untested: fresh seeds.
+- What differs: NOTHING in mechanism — att-mh 800st recipe (5-head + trunk, C6/auxW0.5/lam2/boot) on seeds 3,4,5 (arm att-mh, same armCode 84 + seed offset → fresh init streams; twin train/eval streams per seed identical).
+- Runs: 3 trains + 3 ensemble evals + 3 att-only evals (3T+6E). Ledgers d-newai-att2-{,eval-}att-mh-s{3,4,5}-800st[.json,-only.json].
+- Bars: SWEEP2-COMPOSE two >= 0.60 quorum 2/3 fresh; SWEEP2-RETRIEVE scr >= 0.70 (report); SWEEP2-ONLY att-only >= 0.40.
+- Verdicts: SWEEP2-HOLDS / SEED-FLAT (champion seed-fragile like W6) — filed in d-newai-att2-verdict.json. NO PUSH.

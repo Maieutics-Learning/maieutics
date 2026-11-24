@@ -1,0 +1,1 @@
+{"spec":"self-m2r2-prereg","track":"R2","arm":"r2-gate","seed":1,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"accScratch":0.595,"accTwo":0.595,"accOracle":0.73,"accFwd":0.56,"meanGate":0.1505,"meanGateWrong2":0.1448,"meanGateRight2":0.1544,"calGap":0.2358}

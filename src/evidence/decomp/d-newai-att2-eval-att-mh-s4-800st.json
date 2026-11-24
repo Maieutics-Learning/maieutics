@@ -1,0 +1,1 @@
+{"spec":"attention-mh-prereg","track":"ATT2","arm":"att-mh","seed":4,"steps":800,"readout":"ensemble","verdict":"COMPLETE","n":200,"frozenTest":true,"accScratch":0.58,"accOne":0.565,"accTwo":0.555,"accOracle":0.73,"accFwd":0.52,"headDisagree":0.145,"headCloneFrac":0.605}

@@ -1,0 +1,1 @@
+{"spec":"self-u1-unfreeze-prereg","track":"U1","arm":"u1-unf-gate","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"unfrozen":true,"accScratch":0.36,"accTwo":0.365,"adaptY":0.99,"adaptV":0.99,"meanGateAdapt":0.5334,"meanGateStd":0.5211,"meanGateWrong1":0.4333,"meanGateRight1":0.5344,"gateWeights":{"we":0.4729,"wb":-1.0559,"wd":-1.7003,"b":0.2784}}

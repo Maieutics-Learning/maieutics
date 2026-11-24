@@ -2583,3 +2583,72 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 ## 2026-11-24 — TRIPLE-CHECK CLOSED (mechanical + 3x retrace battery + repairs)
 - Mechanical: 41/41 ledgers COMPLETE; all verdict numbers == ledgers; caught+fixed 2 budget lines (w 27+27→21+21, att2 21→18+4); verbatim battery appended.
 - Battery 3x NEEDS-PATCH → 1 ACCEPT (seedOrder+ledgerPattern+armMap in both verdicts) + rest REJECT (packet shorthand; repo code exact). Filed trace battery. Retrace chain complete: prereg→driver→ledgers→verdict→battery→push. Unpushed: + 2 verdict annotations + battery + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — PUSHED fc8966ee (parent 924a35a7, 6 uploaded / 503KB, secret-scan clean, verified)
+- Backlog drained except the PUSHED receipt (rides next push). Covers triple-check block: budget fixes, seedOrder/ledgerPattern/armMap annotations, trace battery, verbatim replies, Turn 39 + receipt. Outside-change notice (hard/cause-era files) checked: local audit 1674/0 bad, my files intact, remote tip unmoved — push clean.
+
+## 2026-11-24 — SELF-TOOLS TRACK F CLOSED (CALIBRATED-BUT-INVERTED → INVERT-FIXED-BUT-HOLLOW) + SWEEP2 SEED-FLAT
+- Prereg (F/M/R staged) + battery 3x IMPLEMENTABLE → v1.1 (bias-0 pin; rest rejected with coverage). Sweep2: att-mh fresh seeds 0.585/0.58/0.59 + 0.57/0.555/0.575 — 0/3, combined 1/6 SEED-FLAT.
+- Grad-check saga: 4 check-bugs fixed (auxW omission, truncation→central, vhat1-stability skip, carry-drop scope) + 1 REAL 4x BCE bug fixed pre-train; both graphs exact.
+- F: critic |gap| 0.42-0.60 3/3 but inverted use (prereg sign error). F2 flip: deltas -0.01/+0.04/+0.03 (noise); vhat2 probe 9/9 chance (0.415-0.545). Lesson: DETECTION WITHOUT CORRECTION — critic senses, no actuator; licenses M (notebook as corrective channel). Verdicts self + att2 filed. Unpushed: + prereg + battery + driver + 12 trains + 15 evals/probes + 2 verdicts + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — Turn-42 intermediate: M/R drivers + grad-checks PASS (numeric noise only), M trains next
+- Driver newai-selfmr-driver.js (M 198 / R 2 params, deviations filed). Init bug fixed. m worstRel 2.41e-05 (abs 5e-14), r 9.54e-07 (abs 1.8e-10) — PASS by abs-guard. No compute beyond checks. NO PUSH.
+
+## 2026-11-24 — Turn-42 M DONE: NOTEBOOK-DEAD pattern (adapt chance, vitality 0/3)
+- 6T+6E COMPLETE. m-nb scr 0.64/0.565/0.565 two 0.625/0.54/0.555; ctl 0.605/0.57/0.595 + 0.58/0.55/0.59. adaptY nb 0.195/0.19/0.225 vs ctl 0.215/0.195/0.2 (deltas -0.02/-0.005/+0.025, 0/3). gSup==gRand 3/3 (blind). Gate ~0.44 open-but-useless. R next. NO PUSH.
+
+## 2026-11-24 — Turn-42 R DONE + SELF M/R CLOSED (NOTEBOOK-DEAD + RABBITHOLE-DEAD)
+- R 6T+6E COMPLETE. gate two 0.53/0.54/0.565 vs ctl 0.615/0.585/0.525 (deltas -0.085/-0.045/+0.04, 1/3). Vitality inverted 0/3 (gW<gR 3/3). Compose 0/3. Verdict RABBITHOLE-DEAD. Self verdict extended (18T+18E+9P). Lessons: disagree≠address, missing-answer probe load-bearing, FLOPs-ONLY detector, frozen-trunk needed. Next needs new prereg+battery. NO PUSH.
+
+## 2026-11-24 — Turn-43 why-M/R-died + fixes (no compute)
+- M: harmful diet (learns ignore) + confidence≠address (gSup==gRand) + honest probe. R: same-input depth (ctl<W6 3/3) + dis predicts backwards (gW<gR) + joint damages base. Fixes: M2 write-all + mixed diet + frozen trunk; R2 critic-gate + differing pass3 + frozen trunk. Next: delta-preregs + batteries. NO PUSH.
+
+## 2026-11-24 — Turn-44 M2/R2 battery 3x IMPLEMENTABLE → v1.0 stands (no amend; driver next; NO PUSH)
+
+## 2026-11-24 — Turn-44 M2 DONE: READS (mass 0.84, adaptV 0.8, adaptY deltas +0.165/+0.08/+0.155 2/3) but compose lags (carry poison); R2 next. NO PUSH.
+
+## 2026-11-24 — Turn-44 M2/R2 CLOSED: M2-READS (ADAPT 2/3, VITAL 3/3, STD 3/3; compose lags carry-poison) + R2-AVOIDS (SEL 3/3 by avoidance, VITAL inverted, COMPOSE 1/3; complementary hurts). Verdict filed (12T+15E). Next: carry repair + useful third view (new delta-preregs). NO PUSH.
+
+## 2026-11-24 — Turn-45 synthesis asked (plain English, no compute; NO PUSH)
+
+## 2026-11-24 — Turn-46 memory-vs-context check (no compute; NO PUSH)
+- Yes: same flats/supports, write is the delta (nb adaptV 0.78-0.81 mass 0.84 vs ctl/W6 chance ~0.2 mass ~0.5). Internal = learned Wq/Watt + 4 slots outside the 10-token flat; context = flat tokens via frozen hv (fails missing-answer).
+
+## 2026-11-24 — Turn-47 R2 plain-English (no compute; NO PUSH)
+
+## 2026-11-24 — Turn-48 heads + taxonomy (no compute; NO PUSH)
+- Heads: 5x (H->4) on masked h, mean + vote-disagree; R2 is fresh-eyes (critic WHEN) not rabbithole (curiosity) — agreed.
+
+## 2026-11-24 — Turn-49 rabbithole redefined (no compute; NO PUSH)
+- True R = don't-know-gated outside read (notebook), not disagree-gated same-input depth. R3 proposal: gate M2 read by ignorance (critic+entropy). Needs prereg+battery.
+
+## 2026-11-24 — Turn-50 fixed-5 vs generate-at-will (no compute; NO PUSH)
+- 5 = bench odd-ensemble cheap + measurable; dynamic = gated spawn under cap (R3-like), needs ignorance criterion + FLOPs control + rng discipline.
+
+## 2026-11-24 — Turn-51 think-gated second opinion (no compute; NO PUSH)
+- Think = don't-know scalar gating different-context head under cap; always-spawn control proves selectivity.
+
+## 2026-11-24 — Turn-52 F-check/M3/R3 battery 3x IMPLEMENTABLE → v1.0 stands; Stage 1 next (NO PUSH)
+
+## 2026-11-24 — Turn-52 Stage 1 DONE: F3 SENSOR-HOLDS (gap 0.5/0.5/0.46) + M3 CARRY-POISON (zero +0.275/+0.215/+0.28, Y 0.3→0.58); R3 GO (NO PUSH)
+
+## 2026-11-24 — Turn-52 M3/R3 CLOSED: F3-SENSOR-HOLDS + M3-CARRY-POISON (zero +0.275/+0.215/+0.28) + R3-LOOKS-OUTSIDE-BUT-GATE-BLIND (SEL 2/3, VITAL 1/3+1/3, open ~0.9). Verdict filed. Next: teeth + clean-carry stack. NO PUSH.
+
+## 2026-11-24 — Turn-53 carry-poison explained (no compute; NO PUSH)
+- Same vhat, only carry swapped: zero beats cNew +0.275/+0.215/+0.28 3/3; frozen compose head never learned missing-flat carries.
+
+## 2026-11-24 — Turn-54 carry-poison deeper+simpler explained (no compute; NO PUSH)
+- Two-pass story + confused-mood analogy + twin proof + why zero helps but V gap remains.
+
+## 2026-11-24 — Turn-55 U1 checkpoints-not-freezers DONE (6T+6E; NO PUSH)
+- Battery 3x IMPLEMENTABLE → v1.0 STANDS. Grad-check 2.94e-5 PASS (H/dis detached + vhat fixed + full carry→h). Verdict UNFREEZE-HURTS (compose-fixed-at-cost): SEL 3/3 (+0.79), FIX 3/3 (+0.62-0.71), GAP 1.0 (0.99 = V), VITAL 0/3 inverted (wb/wd neg), STD 0/3 (two 0.37-0.41 vs 0.55-0.63).
+
+## 2026-11-24 — Turn-56 why-unfreeze-breaks explained (no compute; NO PUSH)
+- Shared trunk + adapt gradients dominate + no anchor + tiny capacity: plasticity wins, stability loses. Live = unfrozen + protection (replay/anchor/modularity), not naive joint tune.
+
+## 2026-11-24 — Turn-57 protection deep-dive explained (no compute; NO PUSH)
+- 5 protections mapped to U1 failure (STD broken, VITAL inverted): anchor-loss, weight-penalty, modularity, two-speeds, trust-region. U2 = STD-anchored unfreeze sketched (prereg+battery next before compute).
+
+## 2026-11-24 — Turn-58 next-steps proposed (no compute; NO PUSH)
+- U2 anchored-unfreeze first (keeps U1 compose win, restores STD), then teeth (two-stage gate on stable trunk), then modular split; memory/rabbithole setters after mechanism holds.

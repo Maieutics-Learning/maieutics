@@ -1,0 +1,1 @@
+{"spec":"self-tools-prereg","track":"R","arm":"r-ctl","seed":1,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"accScratch":0.595,"accTwo":0.585,"accOracle":0.85,"accFwd":0.6,"meanGate":1,"meanGateWrong2":1,"meanGateRight2":1}

@@ -1,0 +1,1 @@
+{"spec":"self-tools-prereg","track":"R","arm":"r-gate","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"accScratch":0.595,"accTwo":0.53,"accOracle":0.68,"accFwd":0.49,"meanGate":0.1707,"meanGateWrong2":0.1652,"meanGateRight2":0.1756}

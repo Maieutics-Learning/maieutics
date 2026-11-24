@@ -1,0 +1,1 @@
+{"spec":"self-tools-prereg","track":"M","arm":"m-nb","seed":1,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"accScratch":0.565,"accOne":0.545,"accTwo":0.54,"accOracle":0.62,"accFwd":0.58,"adaptV":0.175,"adaptY":0.19,"meanGateSupport":0.389,"meanGateRandom":0.3888}

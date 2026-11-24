@@ -1,0 +1,1 @@
+{"spec":"self-m3r3-prereg","track":"R3","arm":"r3-gate","seed":1,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"accScratch":0.5,"accTwo":0.58,"adaptY":0.27,"adaptV":0.66,"meanGateAdapt":0.8835,"meanGateStd":0.8851,"meanGateWrong1":0.8877,"meanGateRight1":0.8814,"gateWeights":{"we":0.5546,"wb":1.3538,"wd":-1.3082,"b":1.3383}}

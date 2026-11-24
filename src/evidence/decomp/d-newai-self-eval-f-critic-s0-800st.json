@@ -1,0 +1,1 @@
+{"spec":"self-tools-prereg","track":"SELF-F","arm":"f-critic","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"accScratch":0.575,"accVhat1":0.605,"accOne":0.575,"accTwo":0.58,"accOracle":0.715,"accFwd":0.52,"calBotQ":0.84,"calTopQ":0.34,"calGap":-0.5,"meanBeta":0.4599,"vitalFrac":0.94}
