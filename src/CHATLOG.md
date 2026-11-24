@@ -2576,3 +2576,10 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 ## 2026-11-24 — ATT-MH-LONGER INVERTS + CHAMPION HARDENING
 - Longer (mh+ctl 1400st, 6T+9E): mh-1400 two 0.525/0.565/0.535 FAIL (longer hurts 5-head 3/3); ctl-1400 two 0.64/0.53/0.595 (s0 best single-head compose). Single-head beats 5-head 3/3 at 1400st — capacity memorizes pick diet faster (s1 lossN 1.32 + worse eval). Verdict extended. Driver repair (clobbered header restored, skip-path regression green).
 - Hardening (frozen champions, eval-only): mh-s0 graceful under noisy+double; ctl-s0-1400 compose collapses q2 (0.64→0.47). mh retrieve robust-not-lucky. Unpushed: + prereg amendment + driver ext + 6 trains + 13 evals/probes + verdict + transcript + this entry (ride next push). NO PUSH without order.
+
+## 2026-11-24 — PUSHED 924a35a7 (parent 9a0ee865, 565 uploaded / 30.8MB, secret-scan clean, verified)
+- Backlog drained except the PUSHED receipt (rides next push). Covers: W6 sweep (SWEEP-FAILS) + att-mh battery/driver/gradcheck/trains/evals (HEADS-HELP-BUT-WALLED) + longer (LONGER-INVERTS) + champion hardening + attention-mh/winner-sweep preregs + transcripts + CHATLOG. Push note: single 565-entry tree POST timed out (422); rebuilt as 6 chained base_tree batches of <=100 — keep batched builder in scratch/git-push.js.
+
+## 2026-11-24 — TRIPLE-CHECK CLOSED (mechanical + 3x retrace battery + repairs)
+- Mechanical: 41/41 ledgers COMPLETE; all verdict numbers == ledgers; caught+fixed 2 budget lines (w 27+27→21+21, att2 21→18+4); verbatim battery appended.
+- Battery 3x NEEDS-PATCH → 1 ACCEPT (seedOrder+ledgerPattern+armMap in both verdicts) + rest REJECT (packet shorthand; repo code exact). Filed trace battery. Retrace chain complete: prereg→driver→ledgers→verdict→battery→push. Unpushed: + 2 verdict annotations + battery + transcript + this entry (ride next push). NO PUSH without order.
