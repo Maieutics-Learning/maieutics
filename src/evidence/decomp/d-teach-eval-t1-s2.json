@@ -1,0 +1,1 @@
+{"spec":"teach-v10.1","arm":"t1","verdict":"COMPLETE","seed":2,"n":200,"accFwd":0.725,"accScratch":0.315,"accOne":0.245,"accTwo":0.28,"accOracle":0.255,"byK":{"k1":0.1864,"k2":0.3171,"k3":0.322},"harness":{"accRetrieve":0.315,"accComposed":0.265,"accOracle":0.825,"product":0.2599,"byK":{"k1":0.2712,"k2":0.2927,"k3":0.2203}}}

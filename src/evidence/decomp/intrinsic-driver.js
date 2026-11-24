@@ -553,25 +553,35 @@ function inA1PickRandom(selRng, n, k) {
   return idx.slice(0, k);
 }
 
+function inA1ArmCode(arm) {
+  // selection-lesion code only (init/data/target streams are seed-only twin-matched since A2 v1.2;
+  // A1 used arm-confounded streams — filed limitation, A1 ledgers COMPLETE and untouched).
+  if (typeof arm !== "string") return 11;
+  if (arm.endsWith("own")) return 11; if (arm.endsWith("rand")) return 12;
+  if (arm.endsWith("none")) return 13; if (arm.endsWith("oracle")) return 14;
+  if (arm.endsWith("shuf")) return 15; return 11;
+}
+
 globalThis.runA1Train = async function (fs, log, opts) {
   const { arm, seed } = opts;
   const steps = opts.steps || 3000, B = opts.B || 16, lr = opts.lr || 5e-3;
-  const K = 5, lamDiv = 4.0, B_REH = 2, N_OBS = 6;
+  const K = 5, lamDiv = 4.0, B_REH = opts.bReh || 2, N_OBS = opts.nObs || 6;
+  const ledgerPrefix = opts.prefix || "d-intrinsic-a1", specTag = opts.specTag || "intrinsic-a1.1";
   const tag = arm + "-s" + seed + "-" + steps + "st";
-  const ledgerPath = "src/evidence/decomp/d-intrinsic-a1-train-" + tag + ".json";
+  const ledgerPath = "src/evidence/decomp/" + ledgerPrefix + "-train-" + tag + ".json";
   try {
     const prev = JSON.parse(await fs.readTextFile(ledgerPath));
     if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; }
   } catch (e) {}
   const G = await globalThis.IntrinsicInit(fs);
-  const armOff = { A1own: 11, A1rand: 12, A1none: 13, A1oracle: 14, A1shuf: 15 }[arm] || 11;
-  const rng = G.makeRng(21000 + seed * 7919 + armOff * 131);
+  const armCode = inA1ArmCode(arm);
+  const rng = G.makeRng(21000 + seed * 7919 + 7); // init twin-matched (seed-only since A2 v1.2)
   const M = inMakeModel(rng, K);
   const params = inParams(M, false);
   const opt = new G.Adam(lr);
-  const dataRng = G.makeRng(22000 + seed * 104729 + tag.length * 101);
-  const selRng = G.makeRng(23000 + seed * 99991 + armOff * 17);
-  const targetRng = G.makeRng(24000 + seed * 31337);
+  const dataRng = G.makeRng(22000 + seed * 104729 + 99); // experience stream twin-matched (seed-only)
+  const selRng = G.makeRng(23000 + seed * 99991 + armCode * 17); // selection lesion only
+  const targetRng = G.makeRng(24000 + seed * 31337); // query targets identical across arms
   let fixedMasks = null;
   { const fr = G.makeRng(91000 + seed); fixedMasks = [];
     for (let k = 0; k < K; k++) { const m = new Float64Array(48); for (let i = 0; i < 48; i++) m[i] = fr.int(10) < 5 ? 2 : 0; fixedMasks.push(m); } }
@@ -588,10 +598,10 @@ globalThis.runA1Train = async function (fs, log, opts) {
       // ranking (computed in ALL rehearsal arms for compute-matching; discarded by rand/shuf)
       const ownRank = inA1RankOwn(obsFws);
       let sel = [];
-      if (arm === "A1own") sel = ownRank.slice(0, B_REH);
-      else if (arm === "A1rand") sel = inA1PickRandom(selRng, N_OBS, B_REH);
-      else if (arm === "A1none") sel = [];
-      else if (arm === "A1oracle") {
+      if (arm.endsWith("own")) sel = ownRank.slice(0, B_REH);
+      else if (arm.endsWith("rand")) sel = inA1PickRandom(selRng, N_OBS, B_REH);
+      else if (arm.endsWith("none")) sel = [];
+      else if (arm.endsWith("oracle")) {
         // hardest-first by current model: incorrect first, then highest head-mean loss
         const scored = obsFws.map((fw, i) => {
           const mean = inMeanLogits(fw); const p = inSoftmax(mean);
@@ -599,7 +609,7 @@ globalThis.runA1Train = async function (fs, log, opts) {
           return { i, ok, loss: -Math.log(p[binds[i].y] + 1e-12), d: fw.disagree };
         }).sort((a, b) => ((a.ok - b.ok) || (b.loss - a.loss) || (b.d - a.d)));
         sel = scored.slice(0, B_REH).map((o) => o.i).sort((x, y) => x - y);
-      } else if (arm === "A1shuf") { void ownRank; sel = inA1PickRandom(selRng, N_OBS, B_REH); }
+      } else if (arm.endsWith("shuf")) { void ownRank; sel = inA1PickRandom(selRng, N_OBS, B_REH); }
       const target = targetRng.int(N_OBS);
       const query = inQueryLine(dataRng, binds[target].key, binds[target].val);
       // rehearsal forwards
@@ -637,7 +647,7 @@ globalThis.runA1Train = async function (fs, log, opts) {
     if (step % 100 === 0 || step === steps - 1) curve.push({ step, loss: +(lsum / B).toFixed(6) });
   }
   const save = (o) => Array.from(o.v);
-  const body1 = { spec: "intrinsic-a1.1", arm, seed, steps, B, lr, K, B_REH, N_OBS, verdict: "COMPLETE", wallMs: Date.now() - t0,
+  const body1 = { spec: specTag, arm, seed, steps, B, lr, K, B_REH, N_OBS, verdict: "COMPLETE", wallMs: Date.now() - t0,
     curve, divCos: +inMeanCos(M).toFixed(4),
     P: { E: save(M.E), W1: save(M.W1), b1: save(M.b1), Wf: save(M.Wf), bf: save(M.bf), Wc: save(M.Wc), bc: save(M.bc),
       Wh: M.Wh.map(save), bh: M.bh.map(save), Ww1: save(M.Ww1), bw1: save(M.bw1), Ww2: save(M.Ww2), bw2: save(M.bw2) } };
@@ -649,12 +659,13 @@ globalThis.runA1Train = async function (fs, log, opts) {
 globalThis.runA1Eval = async function (fs, log, opts) {
   const { arm, seed } = opts;
   if (!opts.steps) throw new Error("A1 eval needs steps for train tag");
-  const steps = opts.steps, K = 5, B_REH = 2, N_OBS = 6, N = 200;
+  const steps = opts.steps, K = 5, B_REH = opts.bReh || 2, N_OBS = opts.nObs || 6, N = opts.nEval || 200;
+  const ledgerPrefix = opts.prefix || "d-intrinsic-a1", specTag = opts.specTag || "intrinsic-a1.1";
   const tag = arm + "-s" + seed + "-" + steps + "st";
-  const ledgerPath = "src/evidence/decomp/d-intrinsic-a1-eval-" + tag + ".json";
+  const ledgerPath = "src/evidence/decomp/" + ledgerPrefix + "-eval-" + tag + ".json";
   try { const prev = JSON.parse(await fs.readTextFile(ledgerPath)); if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); return prev; } } catch (e) {}
   const G = await globalThis.IntrinsicInit(fs);
-  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/d-intrinsic-a1-train-" + tag + ".json"));
+  const tr = JSON.parse(await fs.readTextFile("src/evidence/decomp/" + ledgerPrefix + "-train-" + tag + ".json"));
   if (tr.verdict !== "COMPLETE") throw new Error("A1 train ledger missing for " + tag);
   const rng0 = G.makeRng(1); const M = inMakeModel(rng0, K);
   const load = (dst, src) => { for (let i = 0; i < dst.v.length; i++) dst.v[i] = src[i]; };
@@ -663,7 +674,9 @@ globalThis.runA1Eval = async function (fs, log, opts) {
   for (let k = 0; k < K; k++) { load(M.Wh[k], tr.P.Wh[k]); load(M.bh[k], tr.P.bh[k]); }
   let evalMasks = null; { const fr = G.makeRng(91000 + seed); evalMasks = []; for (let kk = 0; kk < K; kk++) { const m = new Float64Array(48); for (let i = 0; i < 48; i++) m[i] = fr.int(10) < 5 ? 2 : 0; evalMasks.push(m); } }
   const testRng = G.makeRng(54000 + seed * 13);
-  const selRng = G.makeRng(63000 + seed * 77 + ({ A1own: 0, A1rand: 1, A1none: 2, A1oracle: 3, A1shuf: 4 }[arm] || 0));
+  // paired eval selection (seed-only, shared across arms since A2 v1.2): rand-vs-shuf differ by training only
+  const selRng = opts.sharedEvalSel ? G.makeRng(63000 + seed * 77)
+    : G.makeRng(63000 + seed * 77 + inA1ArmCode(arm));
   const targetRng = G.makeRng(64000 + seed * 31337);
   const argmax4 = (a) => { let b = 0; for (let i = 1; i < a.length; i++) if (a[i] > a[b]) b = i; return b; };
   let hit = 0, poolD = 0, retD = 0, overlapSum = 0, topQEnrich = 0;
@@ -673,13 +686,13 @@ globalThis.runA1Eval = async function (fs, log, opts) {
     for (let i = 0; i < N_OBS; i++) { const fw = inForward(M, binds[i].x, c, evalMasks); c = fw.cNew; obsFws.push(fw); }
     const ownRank = inA1RankOwn(obsFws);
     let sel = [];
-    if (arm === "A1own") sel = ownRank.slice(0, B_REH);
-    else if (arm === "A1rand") sel = inA1PickRandom(selRng, N_OBS, B_REH);
-    else if (arm === "A1none") sel = [];
-    else if (arm === "A1oracle") {
+    if (arm.endsWith("own")) sel = ownRank.slice(0, B_REH);
+    else if (arm.endsWith("rand")) sel = inA1PickRandom(selRng, N_OBS, B_REH);
+    else if (arm.endsWith("none")) sel = [];
+    else if (arm.endsWith("oracle")) {
       const scored = obsFws.map((fw, i) => { const mean = inMeanLogits(fw); const p = inSoftmax(mean); const ok = argmax4(mean) === binds[i].y ? 1 : 0; return { i, ok, loss: -Math.log(p[binds[i].y] + 1e-12), d: fw.disagree }; }).sort((a, b) => ((a.ok - b.ok) || (b.loss - a.loss) || (b.d - a.d)));
       sel = scored.slice(0, B_REH).map((o) => o.i).sort((x, y) => x - y);
-    } else if (arm === "A1shuf") { void ownRank; sel = inA1PickRandom(selRng, N_OBS, B_REH); }
+    } else if (arm.endsWith("shuf")) { void ownRank; sel = inA1PickRandom(selRng, N_OBS, B_REH); }
     let pd = 0; for (const fw of obsFws) pd += fw.disagree; pd /= N_OBS;
     let rd = 0; for (const s of sel) rd += obsFws[s].disagree; rd = sel.length ? rd / sel.length : 0;
     poolD += pd; retD += rd;
@@ -702,7 +715,7 @@ globalThis.runA1Eval = async function (fs, log, opts) {
     const fwQ = inForward(M, query.x, c, evalMasks);
     if (argmax4(inMeanLogits(fwQ)) === query.y) hit++;
   }
-  const body2 = { spec: "intrinsic-a1.1", arm, seed, steps, verdict: "COMPLETE", n: N,
+  const body2 = { spec: specTag, arm, seed, steps, verdict: "COMPLETE", n: N,
     acc: +(hit / N).toFixed(4), chance: 0.25,
     meanPoolDisagree: +(poolD / N).toFixed(4), meanRetainedDisagree: +(retD / N).toFixed(4),
     auditGap: +((retD - poolD) / N).toFixed(4), topQEnrich: +((topQEnrich / N)).toFixed(3),

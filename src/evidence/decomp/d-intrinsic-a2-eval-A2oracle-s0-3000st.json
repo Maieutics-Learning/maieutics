@@ -1,0 +1,1 @@
+{"spec":"intrinsic-a2.2","arm":"A2oracle","seed":0,"steps":3000,"verdict":"COMPLETE","n":400,"acc":0.495,"chance":0.25,"meanPoolDisagree":0.2801,"meanRetainedDisagree":0.4188,"auditGap":0.1387,"topQEnrich":2.975,"meanHeadOverlap":0.0332,"divCos":0.998}
