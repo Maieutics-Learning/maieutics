@@ -2732,3 +2732,13 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 ## 2026-11-24 — Turn-82 U13 CLOSED (SEALED-SHUT) + PUSHED (push-after-each-model order)
 - Battery 3x NEEDS-PATCH → v1.1 REPORTS+PINS. Grad-check 7.80e-9 PASS flips=0 (re-run after argmax fix).
 - EVAL BUG (a[i]>b typo in 2 new fns, trains unaffected) caught by blend-sweep diagnostic; fixed + force-rerun 6E. Rule < always-head 3/3, selective 0/3; blend monotone in head weight (dominance); wDm>0 3/3 first right-sign yet VITAL fail. Next U14 cross-symmetry diet.
+
+## 2026-11-24 — PUSHED e4b42b0f (parent 3faf6b72, 18 uploaded / 598KB, secret-scan clean, verified)
+- Backlog drained (U13 arc + logs). Receipt rides next.
+
+## 2026-11-24 — Turn-83 plain-English synthesis answered (no compute; NO PUSH)
+- Unfreezing breaks; gates blind x7; U13 reframes (head dominance, no route); wDm>0 first right-sign. Transcript + working record filed.
+
+## 2026-11-24 — Turn-84 U14 CLOSED (S-TIGHT) + PUSHED (push-after-each-model order)
+- Battery 3x NEEDS-PATCH → v1.1 (N=400, λ ratio-guarded, align-cosine, S-TIGHT added). Grad-check 2.94e-5 abs-guarded PASS.
+- Plain replicates wound 3/3 (align negative); ewc chains (drift 1e-7 vs 8e-3, STD 2/3, GAP 3/3) but compose collapses (0.3 vs 0.99, retrieval free at 0.8+). Shared-capacity unfrozen closed both sides; resolution = structural separation (U5 pattern).
