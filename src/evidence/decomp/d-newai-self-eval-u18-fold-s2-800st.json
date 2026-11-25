@@ -1,0 +1,1 @@
+{"spec":"self-u18-headfold-prereg","track":"U18","arm":"u18-fold","seed":2,"steps":800,"verdict":"COMPLETE","n":200,"noLinkerAtEval":true,"accScratch":0.395,"accTwo":0.48,"adaptY":0.675,"adaptV":0.975,"adaptYablated":0.58,"ablateDrop":0.095,"meanHfAbsStd":0.8891,"meanHfAbsAdapt":0.8589,"frozenDriftTrain":0}

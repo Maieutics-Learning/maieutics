@@ -2767,3 +2767,6 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — Turn-92 U17 GATED-WORKS + PUSH NEXT
 - Prereg + 3x IMPLEMENTABLE battery (v1.0 stands) + driver (grad 3.65e-5 PASS) + 6T+6E COMPLETE (drift 0.0): gated adaptY 0.785/0.64/0.69 vs shuf 0.685/0.515/0.535 (SEL 3/3); two 0.585/0.575/0.5 vs W6 (STD 3/3); ablation 3/3; parity 3/3 vs U16. Verdict GATED-WORKS. Transcript Turn 92 filed.
+
+## 2026-11-24 — PUSHED a0ece725 (parent 178f216f, 18 uploaded / 815KB, secret-scan clean, verified)
+- Backlog drained (U17 arc). Receipt rides next.
