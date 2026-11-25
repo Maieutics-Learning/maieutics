@@ -2782,3 +2782,9 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — PUSHED a60389fd (parent 7949f575, 18 uploaded / 753KB, secret-scan clean, verified)
 - Backlog drained (U19 arc). Receipt rides next.
+
+## 2026-11-24 — Turn-95 U20 MID-PARTIAL + PUSHED (push-after-each-model order)
+- Prereg (wStd 1.5) + 3x IMPLEMENTABLE battery (health 4/4) + driver (grad 2.89e-7 PASS) + 6T+6E COMPLETE (drift 0.0): midfold adaptY 0.775/0.625/0.67 vs shuf (SEL 3/3); two 0.585/0.575/0.5 vs W6 (STD 3/3); parity 3/3 vs U17; ablate 2/3 (s2 0.09 miss by 0.01); |HF| 0.49/0.56/0.63 Goldilocks. Verdict MID-PARTIAL.
+
+## 2026-11-24 — PUSHED 52f6e739 (parent a60389fd, 18 uploaded / 750KB, secret-scan clean, verified)
+- Backlog drained (U20 arc). Receipt rides next.

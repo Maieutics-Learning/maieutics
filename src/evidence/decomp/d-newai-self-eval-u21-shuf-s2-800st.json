@@ -1,0 +1,1 @@
+{"spec":"self-u21-gatedhead-prereg","track":"U21","arm":"u21-shuf","seed":2,"steps":800,"verdict":"COMPLETE","n":200,"gatedEval":true,"accScratch":0.535,"accTwo":0.5,"adaptY":0.595,"adaptV":0.82,"adaptYablated":0.58,"ablateDrop":0.015,"meanHfAbsStd":0.1944,"meanHfAbsAdapt":0.1909,"frozenDriftTrain":0}
