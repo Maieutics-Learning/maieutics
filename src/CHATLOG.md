@@ -2886,3 +2886,9 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-25 — Turn-122 U27 FULL BUILD CLOSED (verdict DETACHED-PARTIAL; PUSH NEXT)
 - Prereg + 3x battery (v1.0 STANDS) + driver + grad-check (ceZero, worstCE 1.09e-5, worstHinge 1.57e-7; phantom full-loss gap diagnosed as stop-gradient by design, all priors exonerated) + stage-1 (oracle 0.855 viable) + 6T/6E COMPLETE drift 0.0. SELECT-HARD 0/3 (0.355/0.335/0.22), COMPETE 0/3 (margins negative), INHIB-USE 2/3 (0.07/0.01/0.195), INHIB-SEPARATES 2/3 (+0.505/+0.057/+0.593), SEL 2/3, HARD 3/3, GAP 0/3, SUMMARY 2/3, STD 3/3. Interference confirmed (INH off-constant, load-bearing); wall localized to means-vs-max + teacher-binding. Transcript Turn 122 filed.
+
+## 2026-11-25 — PUSHED 7f2e6238 (parent 3b417978, 18 uploaded / 859055B, secret-scan clean, verified)
+- Backlog drained except the PUSHED receipt (rides next push).
+
+## 2026-11-25 — Turn-123 U28 FULL BUILD CLOSED (verdict MAX-PARTIAL; PUSH NEXT)
+- Prereg + 3x battery (v1.0 STANDS) + driver (surgery + guard fix) + grad-check (ceZero, worstCE 1.09e-5, worstHinge 1.46e-7) + stage-1 (oracle 0.855 viable) + 6T/6E COMPLETE drift 0.0. SELECT-HARD 0/3 (0.235/0.07/0.36), COMPETE 0/3 (margins -0.022 to -0.028 unmoved), INHIB-USE 2/3 (0.155/0.045/0.10), INHIB-SEPARATES 2/3 (+0.681/-0.090/+0.697), SEL 2/3, HARD 3/3 (hardV 1.0), GAP 0/3, SUMMARY 3/3, STD 3/3. Max-pressure installs selective use without exclusion (Kim max-prediction WHY filed). Transcript Turn-123 filed.
