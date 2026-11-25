@@ -2770,3 +2770,9 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — PUSHED a0ece725 (parent 178f216f, 18 uploaded / 815KB, secret-scan clean, verified)
 - Backlog drained (U17 arc). Receipt rides next.
+
+## 2026-11-24 — Turn-93 U18 FOLD-PARTIAL + PUSHED (push-after-each-model order)
+- Prereg + 3x IMPLEMENTABLE battery (v1.0 stands) + driver (grad 9.8e-7 PASS) + 6T+6E COMPLETE (drift 0.0): fold adaptY 0.785/0.63/0.675 vs shuf 0.715/0.555/0.595 (SEL 3/3); parity 3/3 vs U17; two 0.555/0.565/0.48 vs W6 (STD 1/3 leaks); ablate 2/3 (s2 0.095); |HF| std>adapt — mse0 too weak. Verdict FOLD-PARTIAL. Keep U17 linker for serving. Next U19 gated-head repair.
+
+## 2026-11-24 — PUSHED 7949f575 (parent a0ece725, 18 uploaded / 751KB, secret-scan clean, verified)
+- Backlog drained (U18 arc). Receipt rides next.

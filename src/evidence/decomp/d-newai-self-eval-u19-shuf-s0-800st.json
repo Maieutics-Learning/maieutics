@@ -1,0 +1,1 @@
+{"spec":"self-u19-gatedhead-prereg","track":"U19","arm":"u19-shuf","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"gatedEval":true,"accScratch":0.52,"accTwo":0.585,"adaptY":0.665,"adaptV":0.83,"adaptYablated":0.65,"ablateDrop":0.015,"meanHfAbsStd":0.1036,"meanHfAbsAdapt":0.0977,"frozenDriftTrain":0}
