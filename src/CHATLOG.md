@@ -2815,3 +2815,20 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — Turn-103 U22a/b/c DESIGNED + batteries CLOSED (no trains; NO PUSH)
 - Filed 3 delta-preregs (scope-parity / bottleneck-funnel / 1000-stress) with record-search. Batteries: U22a 2x IMPL + NEEDS-PATCH → v1.0 STANDS + pins (capacity-report, |HFW| bounds, s2 hedge); U22b 3x IMPL STANDS; U22c 3x IMPL STANDS (STE pin). Verbatim in 3 battery files. Drivers + trains need order. Transcript Turn 103 filed.
+
+## 2026-11-24 — Turn-104 U22a/b/c FULL BUILD CLOSED + PUSHED x3 (242a7e6b, c939aa54, 358dc12d)
+- U22a: grad 5.46e-8 + 6T+6E drift 0.0 → SCOPE-PARTIAL (ABLATE 3/3 s2 recovered, PARITY exact, SEL 0/3; capacity rival open). Pushed 242a7e6b.
+- U22b: grad 4.81e-7 + 6T+6E+probes drift 0.0 → FUNNEL-PARTIAL (parity exact, SUMMARY 0/3 decorative, SEL 0/3). Pushed c939aa54.
+- U22c: soft-pool deviation + grad 3.45e-6 + 6T+6E drift 0.0 (twin-match bug repaired, 6E re-run) → SCALES-PARTIAL (parity exact, ABLATE 3/3, SELECT 0/3 ~chance, SEL 1/3). Pushed 358dc12d. Transcript Turn 104 filed.
+
+## 2026-11-24 — Turn-105 plain-English U22a/b/c (no compute; NO PUSH)
+- User: explain in simple english? Answered: score recovers, mechanism hollow — control matches (capacity?), straw decorative, finder never finds; h-path absorbs credit; scaling free, selection unproven. Transcript Turn 105 filed.
+
+## 2026-11-24 — Turn-106 pressure-not-wiring (no compute; NO PUSH)
+- User: point of memory is using it — how? Answered: shortcut learning, only pressure installs use (E5/T2/U22b-c history); U23 sketch (blocked-h / SELECT-signal / lying-h diets) + bars. Transcript Turn 106 filed.
+
+## 2026-11-24 — Turn-107 hard-task mining (no compute; NO PUSH)
+- User: allow h fully, make task unsolvable on h alone? Agreed: h-failure mining (train on episodes h-only fails, 50/50 standard mix, held-out mined test); same U22c wiring; bars incl SELECT ≥0.80 + SUMMARY-drop. Transcript Turn 107 filed.
+
+## 2026-11-24 — Turn-108 U23 prereg + battery CLOSED (no trains; NO PUSH)
+- User: go for it. Filed U23 prereg (identical wiring, miner-rejection diet, held-out + OOD control). Battery R1+R2 IMPL, R3 NEEDS-PATCH → v1.0 STANDS + pins (hard-rate/seed, per-half curves, 0.10 stretch). Verbatim filed. Driver + trains need order. Transcript Turn 108 filed.
