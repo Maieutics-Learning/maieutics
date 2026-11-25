@@ -1,0 +1,1 @@
+{"spec":"self-u20-gatedhead-prereg","track":"U20","arm":"u20-midfold","seed":2,"steps":800,"verdict":"COMPLETE","n":200,"gatedEval":true,"accScratch":0.535,"accTwo":0.5,"adaptY":0.67,"adaptV":0.97,"adaptYablated":0.58,"ablateDrop":0.09,"meanHfAbsStd":0.6602,"meanHfAbsAdapt":0.6274,"frozenDriftTrain":0}

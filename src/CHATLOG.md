@@ -2776,3 +2776,9 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — PUSHED 7949f575 (parent a0ece725, 18 uploaded / 751KB, secret-scan clean, verified)
 - Backlog drained (U18 arc). Receipt rides next.
+
+## 2026-11-24 — Turn-94 U19 GATED-FOLD-PARTIAL-ABLATE + FRESH-VERIFIED + PUSHED (push-after-each-model order)
+- Prereg + 3x IMPLEMENTABLE battery (v1.0 stands, health 4/4) + driver (grad saga 6.55e-1 FAIL → /2 fix → 4.87e-7 PASS, 6T force-rerun) + 6T+6E COMPLETE (drift 0.0): gatedfold adaptY 0.74/0.61/0.645 vs shuf (SEL 3/3); two 0.585/0.575/0.5 vs W6 (STD 3/3); parity 3/3 vs U17; ablate 1/3 (0.09/0.12/0.065 — head too dead). Verdict filed. Fresh-eyes audit: U17/U18/U19 all 3/3 non-empty + verdicts + distinct; live probe FRESH-EYES-OK 3s.
+
+## 2026-11-24 — PUSHED a60389fd (parent 7949f575, 18 uploaded / 753KB, secret-scan clean, verified)
+- Backlog drained (U19 arc). Receipt rides next.
