@@ -2880,3 +2880,9 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-25 — Turn-121 U26 FULL BUILD CLOSED (verdict COMPETITION-FAIL; PUSH NEXT)
 - Prereg + 3x battery (v1.0 STANDS) + driver + grad-check 1.13e-7 + stage-1 (det true, oracle 0.855 viable) + 6T/6E COMPLETE drift 0.0. SELECT-HARD 0/3 (s0 0.69 highest-ever flicker, 1/3), COMPETE 0/3 (margins negative), SEL 2/3, HARD 3/3, GAP 0/3, SUMMARY 2/3, STD 3/3, INHIB-USE 0/3 (inh collapsed to constant, ablation 0.0). Shared MLP = nonlinear global inhibition, not per-assembly (Kim divergence WHY filed). Transcript Turn 121 filed.
+
+## 2026-11-25 — PUSHED 3b417978 (parent c76ea596, 18 uploaded / 860872B, secret-scan clean, verified)
+- Backlog drained except the PUSHED receipt (rides next push).
+
+## 2026-11-25 — Turn-122 U27 FULL BUILD CLOSED (verdict DETACHED-PARTIAL; PUSH NEXT)
+- Prereg + 3x battery (v1.0 STANDS) + driver + grad-check (ceZero, worstCE 1.09e-5, worstHinge 1.57e-7; phantom full-loss gap diagnosed as stop-gradient by design, all priors exonerated) + stage-1 (oracle 0.855 viable) + 6T/6E COMPLETE drift 0.0. SELECT-HARD 0/3 (0.355/0.335/0.22), COMPETE 0/3 (margins negative), INHIB-USE 2/3 (0.07/0.01/0.195), INHIB-SEPARATES 2/3 (+0.505/+0.057/+0.593), SEL 2/3, HARD 3/3, GAP 0/3, SUMMARY 2/3, STD 3/3. Interference confirmed (INH off-constant, load-bearing); wall localized to means-vs-max + teacher-binding. Transcript Turn 122 filed.
