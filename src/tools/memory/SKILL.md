@@ -66,6 +66,8 @@ Session-end fails because it runs at the end. Run it per-turn instead:
 
 ## Detail (read when the checklist points here)
 
+- REFERENCE-linkage.md — memory-as-linkage (U16 lesson): pieces frozen, growth by links, own-phase consolidation, ablation rule.
+
 - `REFERENCE-layers.md` — the five layers, durability order, secret handling.
 - `REFERENCE-rules.md` — snapshot, newest-wins, grounding, epistemic labels,
   checkpointing, promote-or-recipe, append-only, living-vs-record, handoffs.

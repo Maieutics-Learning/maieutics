@@ -1,0 +1,1 @@
+{"spec":"self-u16-linker-prereg","track":"U16","arm":"u16-shuf","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"accScratch":0.5,"accTwo":0.57,"adaptY":0.655,"adaptV":0.815,"adaptYablated":0.65,"ablateDrop":0.005,"meanRelayEntropy":2.7725,"meanTop2mass":0.1273,"frozenDriftTrain":0}
