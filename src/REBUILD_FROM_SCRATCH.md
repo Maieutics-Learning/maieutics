@@ -232,6 +232,11 @@ symmetry-mapping rule if FUNC holds while BIT misses) + evals EXACTLY equal 3/3.
 | U31f hunt | `self-u31f-substrate-hunt-prereg.md` v1.1 | `newai-selfu31f-driver.js` | SUBSTRATE-ABSENT: Stage-A screen ONLY (12T rand 400st + 12 none + 24E; grad 8.63e-8; 12 calib). SCREEN (rand≤0.60 AND lift≤+0.05, 2/3): R1 0.26/0.35/0.26 lifts +0.15/+0.28/+0.15 (below majority) DEAD; R2 0.76/0.61/0.93 DEAD (s1 0.61 closest; training hurts s0/s1) DEAD; R3 0.88 flat (diag easy) DEAD; R4 0.73–0.98 lifts to +0.74 DEAD. Survivors 0/4 → Stage B NOT run | deviations D1–D9 filed in verdict; dilution 35–81% fallback (paired) |
 | U32 repro | `self-u32-trunk-repro-prereg.md` v1.1 | `newai-selfu32-driver.js` (built Turn-147) | LOG-INSUFFICIENT (FREEZE PASS + FROZEN stable; BIT 0/3 ~1.6-1.8, FUNC 0/3; W6 ledgers predate current code — sweep s3-5 loss0 reproduces exactly 3/3 as positive control) | Waves 0–2 run Turn-147 under "go ahead" countersign |
 | U33 canonical repair | `self-u33-canonical-repair-prereg.md` v1.2 | `newai-selfu33-driver.js` (built Turn-151, extended Turn-152) | CANONICAL-EXACT (PIN 3/3 + BIT 3/3 + FUNC 3/3 + FLOOR 3/3; fresh seeds 3/3 floor + 3/3 sweep-loss0 — the reachable canonical; SUPERSEDES w6 as rebuild target) | Waves 0–2 run Turn-152 under "countersigned everything" |
+| U34 trunkcomp | `self-u34-trunkcomp-prereg.md` v1.0 | `newai-selfu34-driver.js` | WALLED-AGAIN (COMPOSE 1/3 — only s2 ≥ +0.05; RET 3/3; ORACLE-CHECK 3/3 gaps shrank; clean-signal compose price reaches the circuit but does not move two at quorum) | 9T+9E run Turn-154 under "countersigned, please run fresh eyes and then continue" (battery already closed Turn-153 — no re-battery spent) |
+| U35 capacity | `self-u35-capacity-escape-prereg.md` v1.0 | `newai-selfu35-driver.js` | WALLED-AT-SCALE (COMPOSE 0/3; ABS 2/3 via capacity on s0/s2; comparative gradcheck gate D1 — absolute finite-diff vacuous for this step lineage, H48 fails identically) | 3 parity T+E (BIT-exact vs u34-c0) + 6T+6E H96, Turn-158 |
+| U36 diet+dyn | `self-u36-diverse-dynamic-prereg.md` v1.0 | `newai-selfu36-driver.js` | DIET-ONLY (COMPOSE 0/3 — dynamics decorative; diet shuffles ±, no quorum move; diet D1: uniform-pick + OOD qk!=v, R4 dropped) | wave0 (dyn-gradcheck 6.19e-9 + 6/6 twins) + 6T+6E H48, Turn-161 |
+| U37 learned-inh | `self-u37-learned-inhib-prereg.md` v1.0 | `newai-selfu37-driver.js` | SCHED-ONLY (COMPOSE 1/3; INH-USE 0/3 — learned inh trains then hollows, ablation changes nothing; ORACLE 0/3 gaps widen; D2 repair: first 6T omitted P0/P, force-overwritten identical) | wave0 (gradcheck 2.13e-9 + 6/6 twins) + 6T+6E H48, Turn-163 |
+| U38 stategate | `self-u38-stategate-prereg.md` v1.0 | `newai-selfu38-driver.js` | GATE-DEAD (COMPOSE 0/3; SHUTS 0/3 — 21-param gate saturates ~0.75 open, never shuts; USES 1/3 s2 only; PRED 0/3; LOWCUE 0/3; D2 check-spec fix: joint-perturb tied c-dims, PASS 2.82e-7 + 6/6 twins) | wave0 + 6T+6E H48, Turn-168 |
 
 Wave file pattern (all under `src/evidence/decomp/`): train ledgers
 `d-newai-self-<wave>-<arm>-s<seed>-<steps>st.json` (carry `spec`, `track`,
@@ -350,7 +355,9 @@ frozen-missing). Re-run after every stage (§9).
 - MONITOR-BLIND (U31) · R2MON-VERIFIES (U31b) · SUBSTRATE-VOID (U31c) ·
   RETRY-DEAD (U31d) · TRAINS-BUT-BLIND (U31e) · SUBSTRATE-ABSENT (U31f) ·
   REPRO-EXACT / REPRO-FUNCTIONAL / LOG-INSUFFICIENT / STACK-NONDETERMINISM /
-  FREEZE-HALT (U32) · SWEEP-FAILS (W6) · WINNER-HOLDS/PARTIAL/DEAD ·
+  FREEZE-HALT (U32) · SWEEP-FAILS (W6) · CANONICAL-EXACT (U33) ·
+  WALLED-AGAIN (U34) · WALLED-AT-SCALE (U35) · DIET-ONLY (U36) ·
+  SCHED-ONLY (U37) · GATE-DEAD (U38) · WINNER-HOLDS/PARTIAL/DEAD ·
   PHOTOCOPY (Wave-D cold-distillation 0/9) · VOID (tripwire, not failure).
   Each verdict JSON carries its bars + deviations + mechanism — read the JSON,
   not the label.

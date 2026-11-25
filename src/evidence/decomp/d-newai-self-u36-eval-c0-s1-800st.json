@@ -1,0 +1,1 @@
+{"spec":"self-u36-diverse-dynamic-prereg","track":"U36-DYNDIET","arm":"c0","seed":1,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u36-c0-s1-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","evalAlpha":0,"accScratch":0.5,"accTwo":0.505,"accOracle":0.72,"accFwd":0.57}

@@ -1,0 +1,1 @@
+{"spec":"self-u35-capacity-escape-prereg","track":"U35-CAPESC","arm":"par","seed":1,"H":48,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u35-par-s1-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.58,"accTwo":0.56,"accOracle":0.295,"accFwd":0.58}

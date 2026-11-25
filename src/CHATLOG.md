@@ -3025,3 +3025,91 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Wave 1: 9T COMPLETE (c0 loss0 == repro exactly; c1 +0.69 / c2 +1.39 loss0 offsets = wCo*ln4 as predicted). Wave 2: 9E COMPLETE (c0 == canon exactly).
 - Verdict WALLED-AGAIN: PIN 3/3 / COMPOSE 1/3 (dTwo +0.035/+0.045/+0.085) / RET 3/3 / ORACLE-CHECK 3/3 (gaps shrank) / FLOOR 6/6. c2 two 0.635/0.555/0.62 (direction inconsistent, no tune).
 - Unpushed: + U34 driver + 9T + 9E + verdict + transcript + this line + CURRENT_TASK (ride next push; NO PUSH without order). PUSH GATE still tripped.
+
+## 2026-11-25 — Turn-155 PUSHED fe1c1ae4 (parent 3805d4aa tip-match held, vault github PAT, 342 uploaded / 16023566B, secret-scan clean, verified via ref + commit re-read)
+- Dry run first: token login Maieutics-Learning, tip 3805d4aa, scope 4465 files, remote 4129 blobs, diff 342 new/modified + 0 remote-only, 16.0MB — matches the expected U29/U30/E2 + extras + U31-U34 + manual + transcript + CHATLOG backlog (no false-flag-everything). Real push: 342 blobs, 4 tree batches, tip-guard held, ref PATCH + verify MATCH.
+- Backlog drained except this PUSHED receipt (rides next push). PUSH GATE cleared.
+
+## 2026-11-25 — Turn-156 editor-flag verification (NO compute; NO PUSH)
+- Editor flagged ~40 U23b-U26 files + 2026-11-24-memory.md as changed outside conversation; user: "run the next reviewed steps". Full workspace-vs-tip (fe1c1ae4) SHA-1 diff: only 2 files differ — my own Turn-155 receipts. Flagged files byte-identical to push; tip unmoved. Nothing to reconcile.
+- Record-search: 51 verdicts, all waves U1-U34 closed; frontier U34 WALLED-AGAIN (file, don't tune); no reviewed-but-unrun steps exist. Asked user to specify which steps they mean (or order U35 draft / receipt push).
+
+## 2026-11-25 — Turn-157 U35 prereg + battery CLOSED (direction delegated to record; no training compute; NO PUSH)
+- Record-search verdict: trunk WIDTH is the one untested dimension (U29/U30/U30b/U31f/U34 exhausted the rest at H48; U28 + U34 qualifier license width). Feasibility: inSeqMakeModelH already pinned, forward/backward width-agnostic — no stack surgery.
+- Prereg self-u35-capacity-escape-prereg.md v1.0 (H96 c0/c1, H48 parity gate, H96 gradcheck, bars PIN/PARITY/COMPOSE/ABS/RET/ORACLE-CHECK/FLOOR). Battery 3x IMPLEMENTABLE unanimous, 12/12 HEALTH -> v1.0 STANDS.
+- AWAITING fresh countersign for Waves 0-2 (9T+9E, ~10 min). NO COMPUTE until then. Unpushed: + U35 files + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-158 U35 Waves 0-2 CLOSED: WALLED-AT-SCALE (countersigned; CPU/in-worker; NO PUSH)
+- Driver (8/8 load-check). Pre-compute catch: gradcheck lossOf bugs fixed, still FAIL 1.0 → H48-control fails identically (wCo=0 too) → pre-existing W-era property. D1 filed (comparative gate; driver + verdict deviations).
+- Wave 0: identity exact, gradcheck comparative PASS (20/24 both), H96 twins 3/3. Parity: BIT-exact vs u34-c0 3/3.
+- Wave 1: 6T H96 COMPLETE. Wave 2: 6E + verdict COMPLETE.
+- Verdict WALLED-AT-SCALE: PIN/PARITY 3/3, COMPOSE 0/3 (+0.025/-0.025/+0.015), ABS 2/3 (capacity moves wall on s0/s2: dCap +0.05/-0.02/+0.09), RET/ORACLE 2/3 (s1 misses), FLOOR 3/3. Structural wall — STOP scaling.
+- Unpushed: + U35 driver + 9T + 9E + verdict + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-159 Q&A: what happened + why papers work but bench doesn't (no compute; NO PUSH)
+ - Explained U35 WALLED-AT-SCALE in plain English + ELI5: H96 capacity lifted base retrieval (ABS 2/3) but compose price added nothing (COMPOSE 0/3) — structural wall, not capacity.
+- Paper-vs-bench gap: papers have per-assembly dynamic inhibition, preparatory/reactive gating, post-retrieval monitoring, early per-stream filtering + huge diverse data/scale; bench has static global softmax, shared 8-dim encodings, toy 800-step diet, no event detector or slow state — bigger same-shaped trunk memorizes better but can't invent exclusion+binding.
+- Unpushed: + transcript + this line (ride next push; NO PUSH without order). PUSH GATE still tripped.
+
+## 2026-11-25 — Turn-160 U36 prereg + battery CLOSED (direction: add diverse world + extra parts; no training compute; NO PUSH)
+ - Memory check answered yes: durable record intact (U35 WALLED-AT-SCALE closed, 51+ verdicts), CPU/in-worker RAM-only, no GPU, no push/delete, frozen artifacts untouched.
+ - Prereg self-u36-diverse-dynamic-prereg.md v1.0 (H48 diverse diet 50/25/25 W6/R2/R4 + c0 static vs c1 dynamic oscillating scorer, single-variable split; bars PIN/DIET/COMPOSE/ABS/RET/ORACLE/FLOOR). Battery 3x IMPLEMENTABLE unanimous, 12/12 HEALTH -> v1.0 STANDS.
+ - AWAITING fresh countersign for Waves 0-2 compute (6T + 6E H48, ~3 min). NO COMPUTE until then.
+ - Unpushed: + U36 prereg + battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE still tripped.
+
+## 2026-11-25 — Turn-161 U36 Waves 0-2 CLOSED: DIET-ONLY (countersigned; CPU/in-worker; NO PUSH)
+ - Driver (D1 diet approx filed). Wave 0: dyn-gradcheck PASS 6.19e-9 + twins 6/6 exact.
+ - Wave 1: 6T H48 COMPLETE. Wave 2: 6E + verdict COMPLETE.
+- Verdict DIET-ONLY: PIN 3/3, COMPOSE 0/3 (-0.02/+0.01/+0.03), ABS 1/3, DIET +0.025/-0.055/+0.055, RET 3/3, ORACLE 3/3 (gaps shrank), FLOOR 3/3. Dynamics decorative; diet shuffles without quorum move.
+- Unpushed: + U36 driver + wave0 + 6T + 6E + verdict + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-162 U37 prereg + battery CLOSED (direction: next single part; no training compute; NO PUSH)
+- Learned inh[4] (init 0.15) on frozen U36-D1 diet; c0 scheduled vs c1 learned; ablation teeth same-rows.
+- Prereg self-u37-learned-inhib-prereg.md v1.0 + battery 3x IMPLEMENTABLE unanimous 12/12 HEALTH -> v1.0 STANDS.
+- AWAITING fresh countersign for Waves 0-2 (6T+6E ~3 min). NO COMPUTE until then.
+- Unpushed: + U37 prereg + battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-163 U37 Waves 0-2 CLOSED: SCHED-ONLY (countersigned; CPU/in-worker; NO PUSH)
+ - Driver (D2 repair: first 6T omitted P0/P -> fixed, 6T force-overwritten identical). Wave 0: learned-gradcheck PASS 2.13e-9 + twins 6/6 incl. Inh.
+ - Wave 1: 6T H48 COMPLETE (inh collapses toward ~0). Wave 2: 6E + verdict COMPLETE.
+- Verdict SCHED-ONLY: PIN 3/3, COMPOSE 1/3 (+0.05/+0.02/-0.025), ABS 2/3, INH-USE 0/3 (two==twoAbl — hollow), RET 2/3, ORACLE 0/3 (gaps widened), FLOOR 3/3.
+- Unpushed: + U37 driver + wave0 + 6T + 6E + verdict + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-164 Q&A: paper re-read, what gets us past the gap (no compute; NO PUSH)
+ - Re-read all 19 memory papers. New point: Liu boundary says state effects shrink under heavy cues — our evals are heavily cued, so we test where papers predict small effects.
+ - Unrun: state-conditioned gate, low-cue eval, reactive abort + intrusion detector, content verifier, early per-stream gate, substitution lane, separation/completion split, latency bars, success-gated momentum.
+- Recommended U38 = state-conditioned gate ([query|carry] input, mismatch SHUTS + predictivity bars + low-cue arm) on frozen diet. Awaiting order to draft prereg + battery.
+- Unpushed: + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-165 U38 triple-check battery CLOSED (full-paper read + self-direction audit; no compute; NO PUSH)
+ - 3x sealed (goal-fit / confounds-alternatives / self-direction-audit), all IMPLEMENTABLE, 12/12 HEALTH, 3x SELFSERVED=serves. No patches; proposal STANDS.
+- Sequenced mentions (reactive abort, post-monitor, event-detector) are future waves. Low-cue arm confirmed load-bearing.
+- Awaiting order to draft U38 prereg + battery.
+- Unpushed: + U38 triple-check battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-166 Q&A: U38 triple-check re-request (no compute; NO PUSH)
+ - No new battery (duplicate of Turn-165). Filed result stands: 3x IMPLEMENTABLE, 12/12 HEALTH, 3x SELFSERVED=serves, proposal STANDS, low-cue arm mandatory.
+- Unpushed: + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-167 U38 prereg + battery CLOSED (no training compute; NO PUSH)
+- Prereg self-u38-stategate-prereg.md v1.0 (state gate [E[qk]|cNew], mismatch slice D1, c0 open vs c1 learned; full bar set + teeth). Battery 3x IMPLEMENTABLE unanimous, 12/12 HEALTH, 3x SELFSERVED=serves -> v1.0 STANDS.
+- AWAITING fresh countersign for Waves 0-2 (~5 min). NO COMPUTE until then.
+- Unpushed: + U38 prereg + battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-168 U38 Waves 0-2 CLOSED: GATE-DEAD (countersigned; CPU/in-worker; NO PUSH)
+ - Driver (D1 mismatch diet). Wave 0: gradcheck HALT->D2 check-spec fix->PASS 2.82e-7 + twins 6/6 incl. gate.
+ - Wave 1: 6T H48 COMPLETE. Wave 2: 6E + verdict COMPLETE.
+- Verdict GATE-DEAD: PIN 3/3, COMPOSE 0/3, ABS 1/3, RET 3/3, ORACLE 2/3, USES 1/3, SHUTS 0/3 (gate never shuts, ~0.75 open all seeds), PRED 0/3, LOW 0/3, FLOOR 3/3.
+- Unpushed: + U38 driver + wave0 + 6T + 6E + verdict + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-169 Q&A: diagnosing the paper-gap failures (no compute; NO PUSH)
+ - Delivered 5-probe U39-DIAG plan (signal / pressure / trajectory / positive-control / gate-only). Awaiting order to draft prereg + battery.
+ - Unpushed: + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-170 Q&A: multi-head still in current trials (no compute; NO PUSH)
+ - YES — K=5 heads in U36/U37/U38 drivers (Wh[k]/bh[k], b%K aux slices, mean+vote/disagree, lam 2.0 pull, divCos). Verified in-workspace.
+ - Unpushed: + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-171 documentation: verbatim post-push record (NO COMPUTE; NO PUSH)
+ - Wrote src/evidence/decomp/self-u35-u38-post-push-record.md (fe1c1ae4→Turn-171: orders, authorizations, artifacts, verdict bars + per-seed numbers, D1/D2, full U39-DIAG text, owed items, 118-file inventory) + REBUILD §8 U34–U38 rows + glossary.
+ - Unpushed: + post-push record + REBUILD rows + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.

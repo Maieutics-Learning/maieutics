@@ -1,0 +1,1 @@
+{"spec":"self-u37-learned-inhib-prereg","track":"U37-LEARNINH","arm":"c0","seed":2,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u37-c0-s2-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.58,"accTwo":0.575,"accTwoAbl":0.575,"accOracle":0.665,"accFwd":0.555}
