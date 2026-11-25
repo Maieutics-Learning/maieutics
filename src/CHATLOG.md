@@ -2892,3 +2892,136 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-25 — Turn-123 U28 FULL BUILD CLOSED (verdict MAX-PARTIAL; PUSH NEXT)
 - Prereg + 3x battery (v1.0 STANDS) + driver (surgery + guard fix) + grad-check (ceZero, worstCE 1.09e-5, worstHinge 1.46e-7) + stage-1 (oracle 0.855 viable) + 6T/6E COMPLETE drift 0.0. SELECT-HARD 0/3 (0.235/0.07/0.36), COMPETE 0/3 (margins -0.022 to -0.028 unmoved), INHIB-USE 2/3 (0.155/0.045/0.10), INHIB-SEPARATES 2/3 (+0.681/-0.090/+0.697), SEL 2/3, HARD 3/3 (hardV 1.0), GAP 0/3, SUMMARY 3/3, STD 3/3. Max-pressure installs selective use without exclusion (Kim max-prediction WHY filed). Transcript Turn-123 filed.
+
+## 2026-11-25 — PUSHED 3805d4aa (parent 7f2e6238, 18 uploaded / 866172B, secret-scan clean, verified)
+- Backlog drained except the PUSHED receipt (rides next push).
+
+## 2026-11-25 — Turn-124 plain-English U28 (no compute; NO PUSH)
+- User: explain U28 in depth in english. Answered selection-without-exclusion + single-max-vs-manifold + binding gap + next. Transcript Turn-124 filed.
+
+## 2026-11-25 — Turn-125 query-vs-width (no compute; NO PUSH)
+- User: would the next two both help with the wall. Answered yes-different-faces (conditioning=binding, width=separability; order conditioning first). Transcript Turn-125 filed.
+
+## 2026-11-25 — Turn-126 bat-ball + wall ELI5 (no compute; NO PUSH)
+- User: bat-ball demo + what is failing/wall, simple english + ELI5 per idea. Answered 5 cents + wall as exclusion/binding gaps. Transcript Turn-126 filed.
+
+## 2026-11-25 — Turn-127 hard-labels Q (no compute; NO PUSH)
+- User: are we handing hard labels; how exclusion+binding without teaching. Answered yes-construction-labels + intrinsic routes. Transcript Turn-127 filed.
+
+## 2026-11-25 — Turn-128 U29 CLOSED (Q-FAIL; pre-countersigned U29/U30/E2 + extras)
+- Prereg+battery(3x IMPLEMENTABLE)->driver(grad PASS ceZero, worstCE 1.62e-5)+6T+6E+verdict filed (see transcript Turn-128). SELECT-HARD 0/3, COMPETE 0/3, Q-USE 0/3 decorative; USE 2/3, SEPARATES 3/3, HARD 3/3. WHY: raw Eqk unaligned, hinge too sparse — align or condition scorer next. Unpushed: + U29 files + transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-129 U30 CLOSED (WIDE-PARTIAL)
+- Spec+battery(3x IMPLEMENTABLE)+driver(grad PASS worstCE 5.24e-6)+6T+6E+verdict filed (see transcript Turn-129). SELECT-HARD 0/3 (s0 0.43 best-ever), COMPETE 0/3 margins worse (-0.04). USE 3/3, SEPARATES 2/3. WHY: capacity without binding scales distractor room. Unpushed: + U30 files + transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-130 E2 CLOSED (APPETITE-FAIL) + PROGRAM CLOSEOUT
+- Spec+battery(3x IMPLEMENTABLE)+driver(grad PASS firewall)+6T+6E+verdict filed (see transcript Turn-130). E-RECALL 0/3, TAKEN 1/3, m saturates 0.7-0.85. WHY: dense wins, nothing to gate. Closeout: USE without EXCLUSION 9/9 (COMPETE 0/3 x3, SELECT-HARD 0/3 x3, GAP 0/3 x3). Extras pre-countersigned (2/wave). Unpushed: + E2 files + transcripts + this line (ride next push; NO PUSH without order).
+
+## 2026-11-26 — EXTRAS CLOSED 6/6 (pre-countersigned; CPU/in-worker; NO PUSH)
+- E2b CONTROLS-FLAT (ORDER 1/3, NO-HARM 1/3, frozen==zero, frozen beats seq s2) + U30c TOPK-FAIL (SELECT 0.19/0.205/0.065, COMPETE 0/3) + U29b Q-TOPK-FAIL (Q-USE 0/3, SELECT 0.255/0.335/0.055) + U30b WIDE-LATE-FAIL (1400st SELECT 0.265/0.11/0.275, COMPETE 0/3) + U29c LOWCUE-FAIL (HARD 0.545/0.46/0.475, Q-USE 0/3) + E2c SURPRISE-FAIL (mFinal 0/0/0 degenerate, TAKEN 0/3). Bugs repaired: U30c twin-collision (force-reran), U29c head/tail split (0 truncs in head). Audit 2286 JSONs 0 bad, 6/6 verdicts. Transcript 2026-11-25-extras.md filed. Unpushed: + extras files + transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-133 use-without-exclusion Q (no compute; NO PUSH)
+- Step 0 late miss: read agents-augment + CURRENT_TASK before src/tools list + README (start-gate violation; fixed same session). Skills relevant: memory (logging only). Answered use-without-exclusion in plain English + ELI5. Transcript 2026-11-25-extras.md Turn-133 filed. Unpushed: + transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-134 inhibition/gating scan CLOSED (no compute; NO PUSH)
+- User: scan 9 supplied papers if helpful. Coverage: abstracts 9/9 (EPMC) + full text 5/9 (A&H2014 XML, Depue2012 + Penolazzi2014 PMC HTML, Anderson2016 + Nakajima2019 BioC); missing full Norman2007 (S2 CLOSED) / McNab2008 (no OA) / Baier2010 (BioC non-OA, NCBI captcha) / Henson1999 (pre-PMC). Fetch trail: OpenAlex shared-IP rate-limit, EPMC 9/9 titles, fullTextXML 1/6, NCBI HTML 2/5, BioC 2/3. CORRECTION: user's "Benoit & Anderson 2012" title = Depue 2012 single-author (no such Benoit paper; filed as Depue). Notes src/evidence/decomp/inhibition-papers-notes.md + Appendix E batch-3 (9 items). Wall stands (nothing overturned); new cells: U31 monitor / U32 dynamic-threshold / U33 proactive-vs-reactive / U34 per-stream input / E3 detector-first + pre-retrieval-predictivity bar. NO COMPUTE until prereg + 3x battery + fresh countersign (extras budget spent). Unpushed: + notes + index.html + transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-135 Benoit & Anderson 2012 Neuron filed (user-found PMC3480638; no compute; NO PUSH)
+- Full BioC read (~59K chars). Amends Turn-134 correction: TWO real papers (Depue 2012 = listed title; B&A 2012 Neuron = meant content); both filed. New detail: DCM bidirectional reactive loop (HC→DLPFC + DLPFC→HC, stronger in good forgetters), substitution = cPFC→mid-VLPFC retrieval bias, cue-independent trace weakening both. Notes + Appendix E updated (Depue li fixed, B&A li added). Proposals unchanged (U33 needs both loop directions; substitution gets retrieval-bias circuit + cue-independence bar). Unpushed: + notes + index.html + transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-136 U31 CLOSED (MONITOR-BLIND; user-ordered "lets continue"; CPU/in-worker; NO PUSH)
+- Step 0 LATE this session (reads before agents-augment/tools README; miss logged here). Skills: memory (logging), fresh-eyes (battery), eval-harness (driver/runs).
+- Prereg + battery (3x IMPLEMENTABLE unanimous, v1.0 STANDS) + driver (grad PASS at eps=1e-5 with dust deviation D1, retrieverTouch=0) + stage-1 (oracle twin-matched) + 6T + 6E COMPLETE + verdict filed (see transcript Turn-136). CATCH 1/3, LIFT 0/3 (vhat forced=1.0 — ceiling), SELMON vacuous, NOHARM/WALL(exact)/HARD/STD/SUMMARY/FROZEN/FRESH hold. WHY: constant-veto collapse + wrong stage (answers ride past slots). Unpushed: + U31 files + transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-137 U31b CLOSED (R2MON-VERIFIES) + U31c CLOSED (SUBSTRATE-VOID; user-ordered "lets continue" cover; CPU/in-worker; NO PUSH)
+- U31b: prereg + v1.1 P1 probe + battery (3x IMPLEMENTABLE) + red-team 3x + driver (grad PASS 4.2e-8) + stage-1 + 6T + 6E COMPLETE + verdict filed (see transcript Turn-137). CATCH2 2/3 (s1 +0.296, s2 +0.614; s0 inert), SELACC 2/3 + coverage 3/3, P1 perm collapses all seeds (input-dependent), WALL exact/HARD/STD/SUMMARY/FROZEN/FRESH hold.
+- Forensics: NaN-loss root cause = INH.W2 loaded from Ib2 typo (train) + INH never loaded (eval); fixed, debug tripwire added then removed, 6 ledgers force-overwritten. Filed as deviation D1, no design change.
+- U31c: prereg + v1.1 P1 + battery (3x IMPLEMENTABLE) + red-team 3x + driver (grad PASS 4.33e-9) + stage-1 SUBSTRATE probe 0.0000 3/3 -> tripwire VOID, no trains per prereg. Diagnostic 200/200 vhat-ceiling confirms probe honest. Verdict SUBSTRATE-VOID.
+- Unpushed: + U31b/U31c files + transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-138 next-step Q (no compute; NO PUSH)
+- Step 0 done this turn. Recommended U31d monitor-triggered resampling (retry on predicted round-2 failure with fresh masks; Y-LIFT/cost/WALL/NOHARM/P1 bars); rejected harder-value-substrate, U32-U34, representational rebuild (reasons in transcript). Fresh countersign required before compute. Unpushed: + transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-139 doc-audit CLOSED (3x GAPS-FOUND -> repaired; NO PUSH)
+- D1 comments added to U31b driver (comment-only); first-hand gradcheck ledger (4.22e-8 PASS) + 3 stage-1 ledgers (keep 0 x3) filed; audit results filed; 1 reviewer error corrected (unpushed != missing). Doc gate for U31d: PASS; compute still needs countersign. Unpushed: + above + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-140 U31d CLOSED (RETRY-DEAD; countersigned; NO PUSH)
+- Prereg + v1.1 + battery + driver + 3E COMPLETE + verdict filed (see transcript). DETERM/WALL 3/3, LIFT 0/3 (best +0.025), GATEVAL 2/3, COST 3/3. Errors systematic, not stochastic. Unpushed: + U31d files + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-141 U31e CLOSED (TRAINS-BUT-BLIND; "lets continue" cover; NO PUSH)
+- Prereg + v1.1 + battery + driver + gradcheck PASS + stage-1 (s0-sel VOID) + 11T + 11E + verdict filed (see transcript). LIFT 2/2, SEL 1/2 FAIL, RET 1/2 FAIL, rest hold. Composition learnable; gate = guardrail. Unpushed: + U31e files + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-142 U31f SUBSTRATE-HUNT prereg + battery CLOSED (no compute; NO PUSH)
+- Step 0 done (agents-augment + tools list + tools README; memory/REFERENCE-layers/REFERENCE-rules re-read). Skills: memory (this log), fresh-eyes (battery), eval-harness (staged gates), websearch (1 search + 1 primary: DDG hard-mining query -> mining helps in-distribution/boundary, no OOD guarantee; arXiv abs 1910.05280 fetched scratch/substrate-arxiv-1910.05280.html — matches U31e guardrail reading, motivates rand-must-fail-first).
+- Prereg self-u31f-substrate-hunt-prereg.md v1.0 (Stage A screen 4 regimes rand-only 12T+12E 400st: R1 lesioned-value, R2 interference-heavy, R3 OOD-bindings, R4 two-hop; survivor gate rand<=0.60 AND rand-frozen<=+0.05 2/3, max 2 advance; Stage B full sel/neg/rand/none 800st on survivors + VOID tripwire + probes; bars SCREEN/LIFT/SEL/NEG-KILLER/RET/NONE/FROZEN/FRESH; chance math via execute_js: LIFT joint ~0.0005, SEL joint ~0.023 at N=1000) + battery 3x sealed via root.generateText (R1/R2 IMPLEMENTABLE + R3 NEEDS-PATCH, converging L1 gate-shift confound) -> v1.1 pins-only (P1a calibration reporting, P1b R4 frozen-lookup reporting, P1c P-shuf non-binding arm + GATE-UNPROVEN qualifier <+0.02, P1d pool symmetry, P1e threshold stands, P1f math filed). Results fresh-eyes-self-u31f-3x-results.md. NO COMPUTE until fresh countersign for Stage A (this "go for it" covered prereg + battery only).
+- Unpushed: + U31f prereg + battery + this transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-143 U31f STAGE-A CLOSED (SUBSTRATE-ABSENT; countersigned "countersigned"; CPU/in-worker; NO PUSH)
+- Step 0 done (agents-augment + tools list + tools README; memory REFERENCE re-reads already this session). Skills: memory (this log), fresh-eyes (prior battery), eval-harness (staged gates), websearch (prior turn).
+- Driver newai-selfu31f-driver.js (D1-D8 filed in header). Self-review catch pre-compute: gate input pf.summary (U31b/U31e-identical), not ensBase — fixed, never run wrong. D5 vacuous support clause -> margin-only; D7 threshold 0.5->4.0 pre-train (margins measured 1.7-5.2).
+- Wave 0: gradcheck PASS 8.63e-8 + 12/12 calib COMPLETE (r2-s0 force re-run after D7; stale 0.5 numbers preserved in verdict D9). Wave 1: 12T COMPLETE 400st (drift 0, copyDiff 0, fallback 0; r4 losses fall to 0.77-1.02, r2 flat ~1.1). Wave 2: 12 none + 24E COMPLETE (none==frozen 12/12).
+- SCREEN (rand<=0.60 AND lift<=+0.05, 2/3): R1 0.26/0.35/0.26 but lifts +0.15/+0.28/+0.15 (below majority!) DEAD; R2 0.76/0.61/0.93 DEAD (closest s1 0.61; s0/s1 training hurts -0.14/-0.26); R3 0.88 flat DEAD (diag easy; allowed-ctx 0.87-0.91); R4 0.73-0.98, lifts to +0.74 DEAD (rand learns the hop). Survivors 0/4. FRESH/FROZEN/NONE hold.
+- Verdict d-newai-self-u31f-verdict.json = SUBSTRATE-ABSENT (mechanism + retention notes + dilution 35-81% filed). Stage B NOT run. Through-line: everywhere random can see the task, random learns it.
+- Unpushed: + ~66 U31f files + this transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped (>>20 files, 6 sessions) — push requested, needs user PAT + explicit order.
+
+## 2026-11-25 — Turn-144 Q&A retrain-from-scratch (no compute; NO PUSH)
+- Answered from receipts (Turn-91 fold-vs-retrain, Wave-D PHOTOCOPY, H2 memorize, h96-capacity, frozen-anchor discipline, continuity-mission). Decision stands: fold-in / continue-training only; from-scratch retrain not licensed. Transcript Turn-144 filed. Unpushed: + this transcript + this line (ride next push; NO PUSH without order).
+
+## 2026-11-25 — Turn-145 U32 trunk-freeze-repro prereg + battery CLOSED (no compute; NO PUSH)
+- Step 0 done (agents-augment + tools list + tools README; memory REFERENCE-layers/rules re-read this session). Skills: memory (this log), fresh-eyes (battery), eval-harness (staged Waves 0-2), websearch (1 DDG + 1 primary: RepDL arXiv 2510.09180 scratch/repro-repdl.html + NVIDIA deterministic-training docs — same-seed re-execution bit-exact, fresh-seed varies; matches W6 SWEEP-FAILS 1/6).
+- User order (binding, overrides Turn-144 FOR TRUNK ONLY): freeze current trunk + train new trunk to frozen one from logs. Target W6 s0-2 (C6/auxW0.5/800st/lam2/boot; streams in newai-winner-driver.js; scr 0.635/0.595/0.585, two 0.63/0.595/0.55).
+- Prereg self-u32-trunk-repro-prereg.md v1.0 (freeze SHA-256 ledger reads-only + retrain identical recipe to NEW u32 ledger paths + paired evals + bit-compare; bars BIT exact 0.0 3/3, FUNC exact 3/3, FROZEN drift 0) + battery 3x sealed (R1/R2/R3 IMPLEMENTABLE unanimous, 12/12 HEALTH) -> v1.1 pins-only (P1a BIT-magnitude+binary-compare, P1b stream first-N hash + eval identity, P1c zero-step + 1-step dry-run gates, P1d symmetry-mapping rule). Results fresh-eyes-self-u32-3x-results.md. NO COMPUTE until fresh countersign for Waves 0-2.
+- Unpushed: + U32 prereg + battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE still tripped — push requested, needs PAT + explicit order.
+
+## 2026-11-25 — Turn-146 REBUILD_FROM_SCRATCH manual + audit CLOSED (no training compute; NO PUSH)
+- Step 0 done (agents-augment + tools list + tools README; memory SKILL + REFERENCE-layers/rules re-read). Skills: memory, fresh-eyes (pool battery), eval-harness (rebuild gates). No websearch (no external fact needed).
+- User order: keep frozen stuff; stranger-regenerates-everything manual + script; document everything; pool usable; re-read augment.
+- Filed: src/REBUILD_FROM_SCRATCH.md v1.1 + src/tools/rebuild.js (tested execute_js pattern) + battery fresh-eyes-rebuild-3x-results.md (3x NEEDS-PATCH -> pins P1a-P1g: premise/drivers-ship, run recipe, countersign/COMPLETE defs, canonical set, C/pick-max/auxW defs, quorum/schema, tested §10 recipe + this session's result; 1 reject: code-dump misread).
+- Audit MEASURED (2 runs, this session): REBUILD-READY 30/30, 4405->4406 src files, 2397 ledgers, W6 s0-2 COMPLETE 800st C6/auxW0.5/lam2 11 blocks, scr/two exact. Frozen untouched (new ledger paths only; rebuild writes nothing old).
+- Unpushed: + manual + script + battery + U32 files + U31-U31f backlog + transcript + this line (ride next push; NO PUSH without order). PUSH GATE still tripped — push requested, needs PAT + explicit order.
+
+## 2026-11-25 — Turn-147 U32 Waves 0-2 CLOSED (LOG-INSUFFICIENT; countersigned "go ahead"; CPU/in-worker; NO PUSH)
+- Wave 0 freeze ledger COMPLETE (SHA-256 s0 7df2c1db / s1 e0803dff / s2 1e7e5a03; filed scr/two exact; P1b stream hashes + eval-row identity match 3/3; twin 1-step exact 0.0 3/3). D1: zero-step-init-vs-final retired as vacuous (final-P ledgers), loss0 fingerprint instead - MISS 3/3.
+- Positive control: current stack reproduces sweep s3-5 loss0 EXACTLY 3/3; misses all W1-W6 (auxW grid + 108 stream combos, no hits). Mechanism CODE-DRIFT: W-era ran pre-rewrite winner driver (ledger path pattern differs); exact old code unfiled.
+- Wave 1: 3 retrains COMPLETE. Wave 2: 3 repro + 3 frozen re-evals COMPLETE (frozen re-evals exact 3/3). Verdict LOG-INSUFFICIENT: BIT 0/3 (~1.6-1.8), FUNC 0/3 (repro scr 0.585/0.58/0.6, two 0.57/0.56/0.49), FROZEN PASS (post-wave SHA re-match 3/3). Repair owed: version-pin stack / re-freeze current-code trunk.
+- Unpushed: + U32 driver + freeze + 3T + 6E + verdict + manual rows + transcript + this line (ride next push; NO PUSH without order). PUSH GATE still tripped - push requested, needs PAT + explicit order.
+
+## 2026-11-25 — Turn-148 Q&A (no compute; NO PUSH)
+- User asked why earlier training took much longer and why complete logs did not allow rebuild.
+- Answer filed: earlier work had many models/longer recipes/evals/forensics; U32 had only three tiny 800-step retrains at about 8.7-8.9s each. Logs had recipe/config/streams/losses/final params but not stack revision hash or init checkpoint; shared code evolved. Current stack reproduces sweep exactly but not W-era. Logging continues.
+- Unpushed: updated transcript + this line + CURRENT_TASK ride next push; NO PUSH without order.
+
+## 2026-11-25 — Turn-149 Q&A + record check (no training compute; NO PUSH)
+- User asked how to rebuild from scratch from memory; checked src/REBUILD_FROM_SCRATCH.md.
+- Answer filed: functional rebuild from the repo is possible via freeze/snapshot, rebuild.js audit, canonical frozen W6 ledgers, and wave drivers; bit-exact W6 retraining from current code is not (U32 LOG-INSUFFICIENT). Durable repo memory is the source of truth, not context memory.
+- Unpushed: updated transcript + this line + CURRENT_TASK ride next push; NO PUSH without order.
+
+## 2026-11-25 — Turn-150 Q&A (no training compute; NO PUSH)
+- User asked how version-pinned stack plus init checkpoints, or re-freezing a current-code trunk, helps a stranger build a brain from scratch.
+- Answer filed: pinned stack gives exact-code verification; init checkpoints give a cheap bit-exact starting gate; a re-frozen current-code trunk gives a reachable canonical target. Rebuild becomes a mechanical gated sequence with each divergence layer isolated.
+- Unpushed: updated transcript + this line + CURRENT_TASK ride next push; NO PUSH without order.
+
+## 2026-11-25 — Turn-151 U33 prereg + battery + driver CLOSED (no training compute; NO PUSH)
+- User ordered the canonical repair with FUNC-equivalence for stranger retrains.
+- Prereg self-u33-canonical-repair-prereg.md v1.1 (stack pin + P0 + re-freeze A + confirm B + FUNC ±0.02 + FLOOR); battery 3x IMPLEMENTABLE -> P1a; driver newai-selfu33-driver.js built + load-checked.
+- AWAITING fresh countersign for Waves 0-2 compute. NO COMPUTE until then.
+- Unpushed: + U33 prereg + battery + driver + transcript + this line + CURRENT_TASK (ride next push; NO PUSH without order). PUSH GATE still tripped.
+
+## 2026-11-25 — Turn-152 U33 Waves 0-2 CLOSED: CANONICAL-EXACT (countersigned "everything"; NO PUSH)
+- v1.2 (fresh-seed set C, no new battery per sweep precedent) + driver "fresh" kind + verdict fresh section.
+- Wave 0: stack 258d2f06 (11 files), init demos 3/3. Wave 1: 9T COMPLETE (confirm loss0 == canon 3/3; fresh loss0 == sweep 3/3). Wave 2: 9E COMPLETE.
+- Verdict CANONICAL-EXACT: PIN/BIT/FUNC/FLOOR 3/3; FRESH-SEED 3/3 floor + 3/3 sweep-match (fresh scr 0.54/0.6/0.555 two 0.495/0.57/0.5). Bit-exact version = set B; not-byte-perfect version = set C, passes floor 3/3. Manual pointer -> u33.
+- Unpushed: + U33 v1.2 + driver ext + stack + 9T + 9E + verdict + manual rows + transcript + this line + CURRENT_TASK (ride next push; NO PUSH without order). PUSH GATE still tripped.
+
+## 2026-11-25 — Turn-153 U34 prereg + battery CLOSED (no training compute; NO PUSH)
+- User: "move on to the wall we were at before, the wall that requires more training" = U31e/U31f self-direction wall; licensed way through = price composition DURING trunk training (U31e verdict), not copy diets.
+- Prereg self-u34-trunkcomp-prereg.md v1.0 (oracle-compose aux dose c0/c1/c2 + PIN/ORACLE-CHECK/RET/FLOOR bars). Battery 3x IMPLEMENTABLE unanimous, 12/12 HEALTH -> v1.0 STANDS, no pins. Filed fresh-eyes-self-u34-3x-results.md.
+- AWAITING fresh countersign for Waves 1-2 compute (9T + 9E, ~3 min). NO COMPUTE until then. (Cross-machine dust owed follow-up: filed in working record.)
+- Unpushed: + U34 prereg + battery + transcript + this line + CURRENT_TASK (ride next push; NO PUSH without order). PUSH GATE still tripped.
+
+## 2026-11-25 — Turn-154 U34 Waves 1-2 CLOSED: WALLED-AGAIN (countersigned "countersigned"; CPU/in-worker; NO PUSH)
+- "Run fresh eyes" reconciled: U34 3x battery already closed unanimous in Turn-153 (v1.0 STANDS); proceeded to countersigned compute.
+- Driver newai-selfu34-driver.js (load-check 5/5, stack match): c0 = exact u32TrainOneStep; c1/c2 add oracle-compose aux (true-v round-2, wCo/B, round-2 path only).
+- Wave 1: 9T COMPLETE (c0 loss0 == repro exactly; c1 +0.69 / c2 +1.39 loss0 offsets = wCo*ln4 as predicted). Wave 2: 9E COMPLETE (c0 == canon exactly).
+- Verdict WALLED-AGAIN: PIN 3/3 / COMPOSE 1/3 (dTwo +0.035/+0.045/+0.085) / RET 3/3 / ORACLE-CHECK 3/3 (gaps shrank) / FLOOR 6/6. c2 two 0.635/0.555/0.62 (direction inconsistent, no tune).
+- Unpushed: + U34 driver + 9T + 9E + verdict + transcript + this line + CURRENT_TASK (ride next push; NO PUSH without order). PUSH GATE still tripped.

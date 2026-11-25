@@ -1,0 +1,1 @@
+{"spec":"self-u31e-selfdir-prereg","test":"u31e-stage1-selection","seed":0,"tries":1000,"sel":96,"selRate":0.096,"selOracle":46,"tripwire":0.1,"pass":false,"verdict":"COMPLETE"}

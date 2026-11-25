@@ -1,0 +1,1 @@
+{"spec":"self-u31b-r2mon-prereg","test":"u31b-gradcheck","worst":4.2159490252258546e-8,"where":"mag=1.48e-4","pass":true,"note":"BCE exact incl. sigmoid; retriever/trunk no-touch by construction (hParams = R2MON only)"}

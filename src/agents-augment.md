@@ -20,6 +20,7 @@ file gets amended.
   folder exists is a known, repeated failure mode — Step 0 exists because an agent
   given the README alone still used none of the tools and re-proposed a run sweep.
 - Helpers need an explicit invocation checklist, not assumed initiative.
+- THE MAIN VISION OF THE PROJECT CURRENTLY IS A SELF-DIRECTED, SELF-LEARNING BRAIN, THAT CAN DIRECT ITS OWN LEARNING WITHOUT HUMAN INTERVENTION.
 
 ## 2. Workspace / durability rule (user-set 2026-11-11, from README l.12)
 

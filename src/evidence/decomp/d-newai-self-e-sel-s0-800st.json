@@ -1,0 +1,1 @@
+{"spec":"self-u31e-selfdir-prereg","track":"U31e","arm":"e-sel","seed":0,"steps":800,"diet":"sel","verdict":"VOID","reason":"stage-1 selection-rate tripwire: 0.096 < 0.10 (d-newai-self-u31e-stage1-s0.json); neg/rand/none proceed"}

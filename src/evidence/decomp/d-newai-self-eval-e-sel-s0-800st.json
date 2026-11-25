@@ -1,0 +1,1 @@
+{"spec":"self-u31e-selfdir-prereg","track":"U31e","arm":"e-sel","seed":0,"verdict":"VOID","reason":"train arm voided by stage-1 tripwire; no weights, no eval"}

@@ -1,0 +1,1 @@
+{"spec":"self-u32-trunk-repro-prereg","track":"U32-REPRO","arm":"u32-repro","seed":1,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-w-w6-s1.json","tag":"frozenChecksum","accScratch":0.595,"accOne":0.6,"accTwo":0.595,"accOracle":0.73,"accFwd":0.56}

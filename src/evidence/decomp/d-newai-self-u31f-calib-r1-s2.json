@@ -1,0 +1,1 @@
+{"spec":"self-u31f-substrate-hunt-prereg","test":"u31f-calib","track":"U31f","regime":"r1","seed":2,"tries":1000,"filterPass":1000,"filterRate":1,"sel":359,"selRate":0.359,"oracleAmongPass":0.637,"oracleAmongSel":0.2396,"pDeciles":[0.0498,0.1463,0.3164,0.4339,0.5607,0.65,0.7055,0.7666,0.8163,0.887],"meanP_sel":0.2809,"meanP_nonsel":0.7493,"tripwire":0.1,"verdict":"COMPLETE"}

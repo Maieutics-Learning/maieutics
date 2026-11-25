@@ -1,0 +1,114 @@
+{
+ "bars": {
+  "U29-SELECT-HARD": {
+   "got": [
+    0.15,
+    0.28,
+    0.245
+   ],
+   "hit": 0,
+   "need": "top-2 hit-rate >= 0.80 2/3",
+   "pass": false
+  },
+  "U29-COMPETE": {
+   "got": [
+    0,
+    0,
+    0
+   ],
+   "hit": 0,
+   "need": "strict row fraction >= 0.50 2/3",
+   "pass": false
+  },
+  "U29-INHIB-USE": {
+   "got": [
+    0.15,
+    0.175,
+    0.045
+   ],
+   "hit": 2,
+   "need": "zero-inh ablation drop >= 0.05 2/3",
+   "pass": true
+  },
+  "U29-Q-USE": {
+   "got": [
+    0,
+    0,
+    0
+   ],
+   "hit": 0,
+   "need": "zero-query ablation drop >= 0.05 2/3",
+   "pass": false
+  },
+  "U29-INHIB-SEPARATES": {
+   "got": [
+    0.3447,
+    0.2652,
+    0.8233
+   ],
+   "hit": 3,
+   "need": "inhDistMean minus inhTrueMean >= +0.10 2/3",
+   "pass": true
+  },
+  "U29-SEL": {
+   "got": [
+    0.105,
+    0.155,
+    -0.005
+   ],
+   "hit": 2,
+   "need": "hard minus shuf >= +0.05 2/3",
+   "pass": true
+  },
+  "U29-HARD": {
+   "got": [
+    0.785,
+    0.73,
+    0.685
+   ],
+   "hit": 3,
+   "need": "adaptY-hard-heldout >= 0.60 2/3",
+   "pass": true
+  },
+  "U29-GAP": {
+   "got": [
+    0.035,
+    0.01,
+    0.005
+   ],
+   "hit": 0,
+   "need": "comp minus frozen-U22c-scale >= 0.15 2/3",
+   "pass": false
+  },
+  "U29-SUMMARY-HARD": {
+   "got": [
+    0.095,
+    0.055,
+    0.01
+   ],
+   "hit": 2,
+   "need": "zero-summary drop >= 0.05 2/3",
+   "pass": true
+  },
+  "U29-STD": {
+   "got": [
+    0.585,
+    0.575,
+    0.5
+   ],
+   "hit": 2,
+   "need": "two within +-0.05 of W6 two 2/3 (ref 0.63/0.595/0.55)",
+   "pass": true
+  },
+  "U29-FRESH": {
+   "health": "goalInAll true, nonEmpty 3/3, hasVerdict 3/3, distinct true (Turn batteries, 3x IMPLEMENTABLE unanimous)",
+   "pass": true
+  }
+ },
+ "verdict": "Q-FAIL",
+ "deviations": [
+  "D1 low-cue probe deferred (prereg OUTLOOK-only; U29c extra owns it; no verdict impact).",
+  "D2 eval return patched post-hoc to include hardNoQueryY/queryUseDrop (eval-only addition, no retrain; grad-check + trains unchanged)."
+ ],
+ "mechanism": "Q-FAIL: query-conditioning decorative. INH ignores Eqk (Q-USE 0/3, all 0.0-0.005) while content separation persists (SEPARATES 3/3, USE 2/3). SELECT-HARD 0/3 (0.15/0.28/0.245), COMPETE 0/3 strict, margins -0.014..-0.025 unmoved vs U28. Paper-divergence WHY (Kim #5 / Zheng #1): content-only max-hinge already saturates the 8-dim INH; concatenating raw Eqk (12-dim embedding space) without alignment gives the MLP no bindable signal on 800st two-slot hinge — query needs alignment (projection to enc space) or direct scorer conditioning, not wider INH input. Pressure-shape insufficient confirmed; binding gap relocalized to query↔content alignment."
+}

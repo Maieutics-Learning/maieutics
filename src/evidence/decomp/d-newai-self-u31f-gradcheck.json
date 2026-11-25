@@ -1,0 +1,1 @@
+{"spec":"self-u31f-substrate-hunt-prereg","test":"u31f-gradcheck","seed":0,"worst":8.628247956174236e-8,"where":"base mag=1.92e-4","maxCopyDiff":0,"pass":true,"verdict":"PASS"}

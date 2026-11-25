@@ -1,0 +1,1 @@
+{"spec":"self-u31c-subst-prereg","test":"u31c-stage1-substrate","seed":1,"tries":500,"wrong":0,"keep":0,"keepRate":0,"tripwire":0.1,"pass":false,"floor":{"oracleY":0.685,"minerY":0.395},"verdict":"COMPLETE"}

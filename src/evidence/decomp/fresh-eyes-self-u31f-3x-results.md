@@ -1,0 +1,19 @@
+# Fresh-eyes battery: self-u31f-substrate-hunt-prereg.md v1.0 (3x sealed, parallel)
+
+Method: file text read from workspace + 3 parallel reviewer calls (reviewer labor only; never training signal). Each reviewer saw ONLY the prereg + ≤200-word return shape (VERDICT / patches / HEALTH / cheapest experiment).
+
+## Verbatim
+U31f-R1: IMPLEMENTABLE. (1) L1 distribution shift: frozen gate on shifted R1/R2/R4 may measure calibration/mismatch not learnability. (2) R4 label leakage: y2 from frozen pipeline may collapse to frozen-bias lookup. (3) Missing Random-Selection control (any non-uniform sampling shifts gradients). (4) Stage-A 0.60 threshold arbitrary (0.61 cliff). HEALTH 4/4. Cheapest: gate-shuffle arm in Stage B (same n as sel, shuffled p<0.5 labels).
+U31f-R2: IMPLEMENTABLE. (1) L1 gate drift on shifted regimes (p<0.5 may not track difficulty). (2) R4 labeling trivial if frozen high-accuracy. (3) R3 OOD valid (allowed-train/diag-test). (4) Stage-A rand-minus-frozen gate strict, necessary. HEALTH 4/4. Cheapest: run Stage A first to verify ≤0.60 ceiling before Stage B.
+U31f-R3: NEEDS-PATCH. (1) Gate distribution shift (R1/R4 alter manifold; gate = distribution filter artifact). (2) S1 paradox (guardrail gate + SEL +0.03 = noise/redistribution). (3) Missing distribution-matched random (baseline must sample from same slice). (4) Run Stage A R1+R4 only. HEALTH: confounds FAIL, numbers PASS, controls FAIL, plausibility PASS.
+
+## Adjudication (2x IMPLEMENTABLE + 1x NEEDS-PATCH -> v1.1 pins-only, no design change)
+- ACCEPT-reporting (R1-1/R2-1/R3-1, converging 3/3 = top risk, already pre-registered L1): P1a gate-calibration reporting per regime/seed in Stage A (sel-rate + gate-p histogram + p-vs-oracle-correct correlation). Tripwire unchanged (P(p<0.5)<0.10 VOID). L1 stands; retraining gate stays OUT OF SCOPE (would confound selection with new learning).
+- ACCEPT-reporting (R1-2/R2-2): P1b R4 frozen-lookup reporting (frozen y2 acc + majority-class y2 baseline in every R4 eval ledger). LIFT bar unchanged — it already subtracts frozen, so bias-lookup collapse fails LIFT by construction.
+- ACCEPT non-binding arm (R1-3/R3-3 + R1-cheapest): P1c P-shuf arm in Stage B (permuted-p selection, same keep-count as sel, rng bases 94700/95700 family; reported sel-minus-shuf). Non-binding like U31d P1. Qualifier rule with teeth: if SEL holds but sel-minus-shuf < +0.02 on 2/3 seeds, verdict carries GATE-UNPROVEN qualifier (gate = efficiency/filter, not proven selector).
+- CLARIFY (R3-3 slice point): P1d regime-pool symmetry — all arms sample INSIDE the same regime-filtered pool (R2 filter applies to sel/neg/rand/shuf/none identically; arms differ only by gate rule inside the slice). R2 filter membership rates reported per arm.
+- REJECT-as-bar-move (R1-4 threshold cliff; anti-tuning rule): P1e threshold STANDS (0.60 AND +0.05 both required). Distance-to-gate reported per regime; near-miss (0.60-0.65) files SUBSTRATE-ABSENT with closest-regime note — follow-up threshold change needs a NEW prereg, never a data-driven move.
+- REJECT-as-covered (R3-2 S1 paradox): chance math filed in prereg (LIFT joint ~0.0005, SEL joint ~0.023 at N=1000, computed this session). SEL +0.03 stands with NEG-KILLER + new SHUF qualifier as the two guards against noise/redistribution readings.
+- REJECT with reason (R3-4 run R1+R4 only): Stage A is already cheap (12x400st) and R2/R3 are the literature-backed regimes (interference + OOD); dropping them pre-commits to the shifted regimes the same reviewer flags as confounded. Keep all 4.
+- REJECT-as-covered (R2-cheapest run Stage A first): already staged (Stage B gated on survivors).
+Round score: 3 reporting pins + 1 non-binding arm + 1 clarification + 1 stand + 3 rejected-as-covered/reason. HEALTH 10/12. Proceed to v1.1 (pins below in prereg), NO COMPUTE until fresh countersign for Stage A.
