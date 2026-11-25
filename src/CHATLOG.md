@@ -2832,3 +2832,12 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — Turn-108 U23 prereg + battery CLOSED (no trains; NO PUSH)
 - User: go for it. Filed U23 prereg (identical wiring, miner-rejection diet, held-out + OOD control). Battery R1+R2 IMPL, R3 NEEDS-PATCH → v1.0 STANDS + pins (hard-rate/seed, per-half curves, 0.10 stretch). Verbatim filed. Driver + trains need order. Transcript Turn 108 filed.
+
+## 2026-11-24 — Turn-109 U23 FULL BUILD CLOSED + PUSHED 0538d7d (verdict PRESSURE-FAIL)
+- Mining-harness deterministic + grad 3.45e-6 + 6T (NaN-loss bug repaired, hard-rates 0.27/0.39/0.36, no CE-shortcut) + 6E drift 0.0 (twin-match + minerOK bugs repaired; oracle probes added). HARD/GAP/SELECT/SUMMARY/SEL 0/3; STD/ABLATE/FLOOR 3/3. Mechanism: minerY-wrong = trunk-bound hop-2 (minerV 0.92-0.98, oracle = trained = OOD). Repair: U23b vhat-mining, oracle-gated. Transcript Turn 109 filed.
+
+## 2026-11-24 — Turn-110 U23b prereg + battery CLOSED (no trains; NO PUSH)
+- User: what is mining + go ahead. Filed U23b prereg (identical wiring codes 161/162, vhat-mining keep iff minerVhatWrong AND oracleY correct, 8+8 diet, cap 20, offsets 61300/62300, pre-train ORACLE-GATE 0.70/0.20 VOID). Battery 3x IMPLEMENTABLE unanimous → v1.0 STANDS, no patches. Verbatim filed. Driver + trains need order. Transcript Turn 110 filed.
+
+## 2026-11-24 — Turn-111 U23b FULL BUILD CLOSED + PUSH NEXT (verdict USES-PARTIAL)
+- Driver (vhat-keep e.v/argmax-only D1 filed; init-recursion bug D2 self-caught pre-compute, zero ledgers; grad worstRel 3.45e-6 D3) + gate probe (oracle 0.78/0.745/0.65 viable 2/3; keep-rate ~1-1.7%, fallback 64-88% flagged) + 6T drift 0.0 (hard lossN 0.87-0.99 vs shuf 3.1-3.5) + 6E. ORACLE-GATE 2/3, HARD 3/3 (+0.11/+0.345/+0.105 over minerY), SEL 2/3, STD/ABLATE/FRESH hold; GAP 0/3, SELECT-HARD 0/3, SUMMARY-HARD 1/3, MINER-VHAT-FLOOR conjunction FAIL (minerY half 3/3, vhatErr half unmeasured/diluted). Mechanism: diet installs head-use, selection never emerges, no wiring margin on diluted held-out. Transcript Turn 111 filed.
