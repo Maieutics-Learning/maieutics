@@ -2871,3 +2871,12 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-25 — Turn-119 U25 FULL BUILD CLOSED (verdict COMPETITION-FAIL; PUSH NEXT)
 - Prereg + 3x battery (v1.0 STANDS) + driver + stage-1 (grad 1.24e-7, floor 0.855/0.685/0.72) + 6T/6E COMPLETE drift 0.0. SELECT-HARD 0/3, COMPETE 0/3 (margins negative), SEL 2/3, HARD 3/3, GAP 0/3, SUMMARY 1/3, STD 3/3. Hinge never opens gap; wall stands. Transcript Turn 119 filed.
+
+## 2026-11-25 — PUSHED c76ea596 (parent 5079dae1, 38 uploaded / 1093809B, secret-scan clean, verified)
+- Backlog drained except the PUSHED receipt (rides next push).
+
+## 2026-11-25 — Turn-120 plain-English synthesis (no compute; NO PUSH)
+- User: what did we learn, in english. Answered U16-U25: pressure installs use, selection wall stands across diets/gates/scales/losses; dilution quantified; use != selection; next is different substrate. Transcript Turn 120 filed.
+
+## 2026-11-25 — Turn-121 U26 FULL BUILD CLOSED (verdict COMPETITION-FAIL; PUSH NEXT)
+- Prereg + 3x battery (v1.0 STANDS) + driver + grad-check 1.13e-7 + stage-1 (det true, oracle 0.855 viable) + 6T/6E COMPLETE drift 0.0. SELECT-HARD 0/3 (s0 0.69 highest-ever flicker, 1/3), COMPETE 0/3 (margins negative), SEL 2/3, HARD 3/3, GAP 0/3, SUMMARY 2/3, STD 3/3, INHIB-USE 0/3 (inh collapsed to constant, ablation 0.0). Shared MLP = nonlinear global inhibition, not per-assembly (Kim divergence WHY filed). Transcript Turn 121 filed.
