@@ -2859,3 +2859,15 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-25 — Turn-116 log-retrace audit CLOSED (no compute; NO PUSH)
 - Full audit: 2107 JSONs 0 bad; U16-U23b chains complete; lineage present; Appendix E 5 hgroups/24 links; raws present. Sealed 3x retrace battery → adjudicated RETRACEABLE-WITH-NOTES (durable fresh-eyes-self-u23b-audit-3x-results.md; raw scratch/u23b-audit-battery.json). Repairs: Liu doi added to notes #11; Turn-112 read-order pointer (belongs 111-113, appended late); keep-rate bridged (dedicated vs shared rng streams); eval-mining labeled (train object by construction); maxRel stale label; MINER-FLOOR unmeasured half stays FAIL + owed; FRESH schema + grad-delegation pointers documented. No numbers changed. Transcript Turn 116 filed.
+
+## 2026-11-25 — PUSHED 5079dae1 (parent f0bab2a5, 5 uploaded / 778753B, secret-scan clean, verified)
+- Backlog drained except the PUSHED receipt (rides next push).
+
+## 2026-11-25 — Turn-117 U24 FULL BUILD CLOSED (verdict GATE-FAIL; NO PUSH)
+- Prereg + 3x battery (v1.0 STANDS + pins) + driver (D1 dedicated stream, D2 live-state gate input) + stage-1 (grad 3.58e-6, floor 0.825/0.755/0.665) + 6T/6E COMPLETE drift 0.0. USES 0/3, SHUTS 1/3, STD 3/3, HARD 3/3, SEL 1/3, GAP 0/3, SELECT 0/3, SUMMARY 2/3, LOWCUE 1/3, FRESH 4/4. Gate constant ~0.75, decorative; diet carries HARD. Self-caught: argmax typo + carry fix (force re-run). Verdict filed. Transcript Turn 117 filed.
+
+## 2026-11-25 — Turn-118 U23b after-series (i) CLOSED (kept/fallback split; NO PUSH)
+- Split driver + 3 ledgers COMPLETE. Kept: hardY=V=oracle=1.0, minerFloor 0.05-0.13, ood 0.82-1.0 (miner-hard but scale-easy; kept-GAP +0.18/+0.055/0). Fallback: all-metrics 0.6-0.7 (random-easy). Dilution confirmed arithmetically; SELECT 0 in both subsets (wall not a dilution artifact). Transcript Turn 118 filed.
+
+## 2026-11-25 — Turn-119 U25 FULL BUILD CLOSED (verdict COMPETITION-FAIL; PUSH NEXT)
+- Prereg + 3x battery (v1.0 STANDS) + driver + stage-1 (grad 1.24e-7, floor 0.855/0.685/0.72) + 6T/6E COMPLETE drift 0.0. SELECT-HARD 0/3, COMPETE 0/3 (margins negative), SEL 2/3, HARD 3/3, GAP 0/3, SUMMARY 1/3, STD 3/3. Hinge never opens gap; wall stands. Transcript Turn 119 filed.

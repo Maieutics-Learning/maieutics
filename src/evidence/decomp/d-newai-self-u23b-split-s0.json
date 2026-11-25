@@ -1,0 +1,1 @@
+{"spec":"self-u23b-vhatmining-prereg (after-series i)","track":"U23b-split","seed":0,"verdict":"COMPLETE","n":200,"kept":{"n":55,"hardY":1,"hardV":1,"minerFloor":0.1091,"minerV":0,"oracleY":1,"oodY":0.8182,"selHit":0},"fallback":{"n":145,"hardY":0.6966,"hardV":1,"minerFloor":0.6966,"minerV":0.9862,"oracleY":0.6966,"oodY":0.6966,"selHit":0.0069}}
