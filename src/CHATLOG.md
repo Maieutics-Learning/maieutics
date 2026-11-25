@@ -2841,3 +2841,21 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — Turn-111 U23b FULL BUILD CLOSED + PUSH NEXT (verdict USES-PARTIAL)
 - Driver (vhat-keep e.v/argmax-only D1 filed; init-recursion bug D2 self-caught pre-compute, zero ledgers; grad worstRel 3.45e-6 D3) + gate probe (oracle 0.78/0.745/0.65 viable 2/3; keep-rate ~1-1.7%, fallback 64-88% flagged) + 6T drift 0.0 (hard lossN 0.87-0.99 vs shuf 3.1-3.5) + 6E. ORACLE-GATE 2/3, HARD 3/3 (+0.11/+0.345/+0.105 over minerY), SEL 2/3, STD/ABLATE/FRESH hold; GAP 0/3, SELECT-HARD 0/3, SUMMARY-HARD 1/3, MINER-VHAT-FLOOR conjunction FAIL (minerY half 3/3, vhatErr half unmeasured/diluted). Mechanism: diet installs head-use, selection never emerges, no wiring margin on diluted held-out. Transcript Turn 111 filed.
+
+## 2026-11-24 — PUSHED f0bab2a5 (parent 0538d7d, 18 uploaded, secret-scan clean, verified)
+- Backlog drained except the PUSHED receipt (rides next push).
+
+## 2026-11-25 — Turn-112 retrieval read-through (no compute; NO PUSH)
+- User supplied 10 retrieval papers. Fetched 9/10 full/abstract (Savarimuthu unindexed, used user summary; raw scratch/retrieval/). Filed retrieval-papers-notes.md: per-paper claims + bench mapping (Zheng state-gate vs our U-gate failures; Kim selective inhibition vs SELECT wall; Patil dopamine vs E-appetite; Zhang speed vs accuracy-only bars; Joensen additive vs fold-in; Halpern/Halpern; To/Cohen two-path; Salan variation vs re-seeding) + proposals U24 gate / U25 scorer / E2 rehearsal / SPEED bars. Next: prereg + battery before compute. Transcript Turn 112 filed.
+
+## 2026-11-25 — Turn-113 attachment check (no compute; NO PUSH)
+- User-attached fncel-19-1629796.pdf is NOT the missing Savarimuthu review: PDF metadata = Liu et al. 2025 state-dependent-memory review (same journal, related topic). Missing review still missing. Transcript Turn 113 filed.
+
+## 2026-11-25 — Turn-114 Liu read (no compute; NO PUSH)
+- Read Liu PDF (pdfjs/jsdelivr, full text filed). Notes updated: #2 corrected (real Savarimuthu paper found, paywalled, abstract only) + #11 Liu (boundary conditions → U24 low-cue amendment). Transcript Turn 114 filed.
+
+## 2026-11-25 — Turn-115 Appendix E shelf + full logging (no compute; NO PUSH)
+- index.html Appendix E extended: Retrieval I/II/III (11 papers) + Storage (5) + Control toolkit (Pain Axis paper + repo). Identifiers verified from PDF metadata. page_refresh clean, 5 hgroups + 24 links verified in live DOM. Durable record: transcript Turn 115 + retrieval-papers-notes.md + raw scratch/retrieval/ + this entry (+ working record).
+
+## 2026-11-25 — Turn-116 log-retrace audit CLOSED (no compute; NO PUSH)
+- Full audit: 2107 JSONs 0 bad; U16-U23b chains complete; lineage present; Appendix E 5 hgroups/24 links; raws present. Sealed 3x retrace battery → adjudicated RETRACEABLE-WITH-NOTES (durable fresh-eyes-self-u23b-audit-3x-results.md; raw scratch/u23b-audit-battery.json). Repairs: Liu doi added to notes #11; Turn-112 read-order pointer (belongs 111-113, appended late); keep-rate bridged (dedicated vs shared rng streams); eval-mining labeled (train object by construction); maxRel stale label; MINER-FLOOR unmeasured half stays FAIL + owed; FRESH schema + grad-delegation pointers documented. No numbers changed. Transcript Turn 116 filed.
