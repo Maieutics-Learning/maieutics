@@ -1,0 +1,1 @@
+{"spec":"self-u22a-scopeparity-prereg","track":"U22a","arm":"u22a-shuf","seed":1,"steps":800,"verdict":"COMPLETE","n":200,"gatedEval":true,"accScratch":0.48,"accTwo":0.575,"adaptY":0.625,"adaptV":0.985,"adaptYablated":0.49,"ablateDrop":0.135,"meanHfAbsStd":0.5352,"meanHfAbsAdapt":0.7179,"frozenDriftTrain":0}

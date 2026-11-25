@@ -2788,3 +2788,30 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 
 ## 2026-11-24 — PUSHED 52f6e739 (parent a60389fd, 18 uploaded / 750KB, secret-scan clean, verified)
 - Backlog drained (U20 arc). Receipt rides next.
+
+## 2026-11-24 — Turn-96 U21 LOW-PARTIAL + PUSHED (push-after-each-model order)
+- Prereg (wStd 1.0) + 3x IMPLEMENTABLE battery (health 4/4) + driver (grad 3.74e-7 PASS) + 6T+6E COMPLETE (drift 0.0): lowfold adaptY 0.785/0.63/0.67 vs shuf (SEL 3/3); two 0.585/0.575/0.5 vs W6 (STD 3/3); parity 3/3 vs U17; ablate 2/3 (s2 0.09 same miss — NOT recovered). Verdict LOW-PARTIAL, input-scope bound.
+
+## 2026-11-24 — PUSHED 53e19ed0 (parent 52f6e739, 18 uploaded / 749KB, secret-scan clean, verified)
+- Backlog drained (U21 arc). Receipt rides next.
+
+## 2026-11-24 — Turn-97 s2 input-scope diagnosis (no compute; NO PUSH)
+- User: why was it broken? Answered: ablated baselines identical (0.65/0.49/0.58); fold adaptY loses only s2 (0.67 vs 0.69) while s0/s1 match; HF grows but s2 ablation stuck 0.09 — head-only-h vs linker 5-piece bound. Transcript Turn 97 filed.
+
+## 2026-11-24 — Turn-98 out-scoped unpacked (no compute; NO PUSH)
+- User: what do you mean out-scoped? Answered plain-English: teacher = 5-input fn (68-dim), student = 1-input fn (h 48-dim); s0/s1 h suffices (match), s2 needs other 4 (drops 0.02 = ablation miss); |HF| growth without s2 movement proves scope not pressure; baselines identical so no wound. Transcript Turn 98 filed.
+
+## 2026-11-24 — Turn-99 widen vs factorize (no compute; NO PUSH)
+- User: limited inputs? how accommodate + break down? Answered: yes 48 vs 68; fix = scope-parity wider HF (68→24→4, +~0.5k, drift 0.0) then factorize HR+HC split; U22a single-variable first. Transcript Turn 99 filed.
+
+## 2026-11-24 — Turn-100 1000-input funnel (no compute; NO PUSH)
+- User: 1000 inputs how break down? Answered: no monolith concat; shared encoder → top-k → pool → tiny combiner (≈1.5k not 24k); split by semantics, ablate per stage. Transcript Turn 100 filed.
+
+## 2026-11-24 — Turn-101 scales-flat (no compute; NO PUSH)
+- User: as long as it can scale. Answered: params constant, compute linear, combiner fixed; frozen trunk drift 0; hierarchy repeats. Transcript Turn 101 filed.
+
+## 2026-11-24 — Turn-102 U22a next (no compute; NO PUSH)
+- User: what next? Answered: U22a scope-parity (68→24→4, single change) then U22b funnel; prereg+battery+grad-check before trains. Transcript Turn 102 filed.
+
+## 2026-11-24 — Turn-103 U22a/b/c DESIGNED + batteries CLOSED (no trains; NO PUSH)
+- Filed 3 delta-preregs (scope-parity / bottleneck-funnel / 1000-stress) with record-search. Batteries: U22a 2x IMPL + NEEDS-PATCH → v1.0 STANDS + pins (capacity-report, |HFW| bounds, s2 hedge); U22b 3x IMPL STANDS; U22c 3x IMPL STANDS (STE pin). Verbatim in 3 battery files. Drivers + trains need order. Transcript Turn 103 filed.
