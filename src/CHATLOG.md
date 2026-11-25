@@ -2755,3 +2755,15 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - User: how to leverage linked-net-of-scattered-pieces. Answered: keep fragments in place, train sparse relay linker only (frozen trunk+heads), each skill = new link pattern; composes instead of winner-picks (avoids U8-U13 dominance); relay pool 16-24 top-2, bars adapt-gain + STD + ablation + old-intact; spawn/prune on VITAL-fail; fold back only own-phase. Next owed subgraph-linker prereg + 3x battery before compute. Transcript Turn 88 filed.
 ## 2026-11-24 — Turn-89 U16 LINK-WORKS-AT-COST + memory update + PUSHED (push-after-each-model order)
 - Prereg + 3x IMPLEMENTABLE battery (v1.0 stands) + driver (grad 3.65e-5 PASS) + 6T+6E COMPLETE (frozenDrift 0.0): link adaptY 0.785/0.635/0.69 vs shuf 0.655/0.485/0.58 (SEL 3/3); adaptV ~1.0 vs ~0.78; ablation 3/3 (0.135/0.145/0.11); STD 1/3 (ensemble shift, no wound); relays distributed (ent ~2.76). Verdict LINK-WORKS-AT-COST (s0 0.785 best-frozen). Memory skill: REFERENCE-linkage.md + SKILL pointer. Transcript Turn 89 filed.
+
+## 2026-11-24 — PUSHED 178f216f (parent 7d050696, 20 uploaded / 0.8MB, secret-scan clean, verified)
+- Backlog drained (U16 arc: prereg + battery + driver + 6T/6E + verdict + REFERENCE-linkage.md + logs). Receipt rides next.
+
+## 2026-11-24 — Turn-90 plain-English U16 lesson (no compute; NO PUSH)
+- User: "Can we learn this in english?" Answered: frozen pieces + trainable links, adapt gain with ablation proof, distributed relays, STD cost without wound, growth-by-addition rule. Transcript Turn 90 filed.
+
+## 2026-11-24 — Turn-91 fold-vs-retrain decision (no compute; NO PUSH)
+- User: intrinsic-only end-state? fold all skills in vs retrain from scratch? pros/cons + final decision. Answered: yes intrinsic-only; decision = staged fold-in, not scratch retrain (reasons: U1/U2/U6/U14 closure vs U5/U16 addition pattern). Transcript Turn 91 filed.
+
+## 2026-11-24 — Turn-92 U17 GATED-WORKS + PUSH NEXT
+- Prereg + 3x IMPLEMENTABLE battery (v1.0 stands) + driver (grad 3.65e-5 PASS) + 6T+6E COMPLETE (drift 0.0): gated adaptY 0.785/0.64/0.69 vs shuf 0.685/0.515/0.535 (SEL 3/3); two 0.585/0.575/0.5 vs W6 (STD 3/3); ablation 3/3; parity 3/3 vs U16. Verdict GATED-WORKS. Transcript Turn 92 filed.

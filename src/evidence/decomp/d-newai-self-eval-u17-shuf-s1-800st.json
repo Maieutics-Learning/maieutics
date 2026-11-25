@@ -1,0 +1,1 @@
+{"spec":"self-u17-gated-linker-prereg","track":"U17","arm":"u17-shuf","seed":1,"steps":800,"verdict":"COMPLETE","n":200,"gated":true,"accScratch":0.48,"accTwo":0.575,"adaptY":0.515,"adaptV":0.795,"adaptYablated":0.49,"ablateDrop":0.025,"meanRelayEntropy":2.7724,"meanTop2mass":0.1291,"frozenDriftTrain":0}
