@@ -1,0 +1,14 @@
+--- U49W1 R1 ---
+VERDICT: WAVE1-COMPLETE
+ALL9: yes
+GATERATE: gate fired ~0.19-0.20 all seeds yes
+
+--- U49W1 R2 ---
+VERDICT: WAVE1-COMPLETE
+DETREP: no
+SANE: yes
+
+--- U49W1 R3 ---
+VERDICT: WAVE1-COMPLETE
+GATE-LIVE: yes
+PATCHES: none

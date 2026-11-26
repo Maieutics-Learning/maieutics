@@ -1,0 +1,1 @@
+{"spec":"self-u40-gate-audit-prereg","track":"U40-GATE-AUDIT","probe":"U4","verdict":"COMPLETE","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","perSeed":[{"seed":0,"maxMove":0.8498323271960886,"moved":true},{"seed":1,"maxMove":0.7051630383167852,"moved":true},{"seed":2,"maxMove":0.6804887560266626,"moved":true}],"outcome":"MOVED"}

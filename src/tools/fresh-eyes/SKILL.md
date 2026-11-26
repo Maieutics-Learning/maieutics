@@ -95,28 +95,52 @@ surprisingly good at catching what you can't see anymore.
     rebuttal each unless a claim is genuinely tied — cost is ~3x a
     sealed round, so spend it on load-bearing documents only.
 11. **Staff audit round (the closer — added 2026-11-14, ix rounds).** After
-    red/steel rounds go barren-ish, run three fresh sealed auditors in
-    parallel on the patched artifact: (a) MATH auditor — checks every number
-    and threshold for soundness (prompts: is each co-bar meaningful at its n?
-    pooled variance? baseline definitions correct? which threshold misbehaves
-    at these n's?); (b) IMPLEMENTATION auditor — checks the text describes
-    something code can enforce (are assertions reviewable in the driver? is
-    the firewall implementable without silent human judgment?); (c)
-    ALTERNATIVE-EXPLANATION reviewer — must bring ONE rival mechanism plus
-    the cheapest killer test plus whether-the-design-contains-it. This round
-    repeatedly pays: the math auditor's solo FAIL becomes a filed chance
-    calculation, the rival becomes a pre-registered null control WITH TEETH
-    (example: shuffled-weights control — if the null beats the bar too, the
-    PASS demotes to a scoped finding rather than dying or passing clean).
+     red/steel rounds go barren-ish, run three fresh sealed auditors in
+     parallel on the patched artifact: (a) MATH auditor — checks every number
+     and threshold for soundness (prompts: is each co-bar meaningful at its n?
+     pooled variance? baseline definitions correct? which threshold misbehaves
+     at these n's?); (b) IMPLEMENTATION auditor — checks the text describes
+     something code can enforce (are assertions reviewable in the driver? is
+     the firewall implementable without silent human judgment?); (c)
+     ALTERNATIVE-EXPLANATION reviewer — must bring ONE rival mechanism plus
+     the cheapest killer test plus whether-the-design-contains-it. This round
+     repeatedly pays: the math auditor's solo FAIL becomes a filed chance
+     calculation, the rival becomes a pre-registered null control WITH TEETH
+     (example: shuffled-weights control — if the null beats the bar too, the
+     PASS demotes to a scoped finding rather than dying or passing clean).
 12. **Retrospective battery (what-would-they-have-said — added 2026-11-14).**
-    Re-run any battery on a frozen plan with outcomes WITHHELD ("you review
-    BEFORE any run; outcomes do not exist, do not assume them"), then score
-    predictions vs actuals. Purpose is calibration of trust, not patching:
-    reds calling a mechanism in advance (vii collapse-to-point-estimate, 3/4
-    predicting full FAIL) earns weight; unanimous misses (all reds calling
-    pointer ABANDONED 0.65–0.85 vs actual 1.000) prove reviewer priors wrong
-    and certify the surprise as genuine. Log the scorecard beside the raw
-    replies; feed calibration notes into the next battery's briefs.
+     Re-run any battery on a frozen plan with outcomes WITHHELD ("you review
+     BEFORE any run; outcomes do not exist, do not assume them"), then score
+     predictions vs actuals. Purpose is calibration of trust, not patching:
+     reds calling a mechanism in advance (vii collapse-to-point-estimate, 3/4
+     predicting full FAIL) earns weight; unanimous misses (all reds calling
+     pointer ABANDONED 0.65–0.85 vs actual 1.000) prove reviewer priors wrong
+     and certify the surprise as genuine. Log the scorecard beside the raw
+     replies; feed calibration notes into the next battery's briefs.
+ 13. **Multi-round document-state debate (added 2026-11-25, paper program).**
+     For stateless agents that must argue across rounds: the DEBATE DOCUMENT
+     is their memory. One durable file per debate
+     (`src/evidence/<topic>/debate-<slug>.md`, never scratch-only), sections:
+     THESIS (frozen claim + artifact), SEALED POSITIONS (round 1, no peeking),
+     REBUTTALS (rounds 2+, each agent quoted the current doc), ADJUDICATION
+     (yours). How to run it: (a) freeze thesis + artifact, version the doc;
+     (b) round 1 = format-3 barrage on the artifact (parallel, disjoint angles,
+     capped words, enforced return shape — verdict + hardest test); append all
+     replies VERBATIM to the doc before any round 2 call; (c) round 2+ = each
+     agent gets the FULL current doc + its role (proponent / skeptic /
+     synthesizer — roles fixed per agent across rounds) + the strongest
+     opposing quote + "rebut in <=150 words: concede, kill, name the evidence
+     that would settle it"; append verbatim; (d) you adjudicate every point
+     (ACCEPT / REJECT / PARTIAL) and write the ruling into the doc — the ruling
+     is the round output, not who "won". Rules: sealed round first, always
+     (second speaker must not anchor on the first — run round 1 as one
+     `Promise.all`, never sequentially); never reuse agents across versions
+     (re-prompts are new reviewers — say so in the doc); agents read the doc,
+     never each other's live output; two barren rounds = stop (format-10
+     loop-closure applies: an unopposed red-team round with no adoptable
+     finding closes the debate). Cost: ~3 calls/reviewer/round — spend full
+     3-round debates on load-bearing theses, 2 rounds elsewhere, and say
+     which in the doc header.
 
 ## Adjudication additions (2026-11-14, ix rounds)
 - Score JOINT gates jointly. A reviewer FAILing one half of a two-half gate

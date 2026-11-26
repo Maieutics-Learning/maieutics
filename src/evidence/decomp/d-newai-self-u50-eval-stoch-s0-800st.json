@@ -1,0 +1,1 @@
+{"spec":"self-u50-drift-prereg","track":"U50-DRIFT","arm":"stoch","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u50-stoch-s0-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.565,"accTwo":0.54,"accOracle":0.605,"accFwd":0.45}

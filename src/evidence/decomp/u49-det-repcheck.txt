@@ -1,0 +1,6 @@
+s0 loss0=true lossN=true
+s0 two 0.525/0.525 match=true
+s1 loss0=true lossN=true
+s1 two 0.515/0.515 match=true
+s2 loss0=true lossN=true
+s2 two 0.355/0.355 match=true

@@ -1,0 +1,1 @@
+{"spec":"self-u41-fixstep-prereg","track":"U41-FIXSTEP","arm":"c0","seed":2,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u41-c0-s2-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.565,"accTwo":0.555,"accTwoOpen":0.555,"accOracle":0.825,"accFwd":0.52,"accTwoLow":0.505}

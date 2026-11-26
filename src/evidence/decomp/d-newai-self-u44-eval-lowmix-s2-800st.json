@@ -1,0 +1,1 @@
+{"spec":"self-u44-mixband-prereg","track":"U44-MIXBAND","arm":"lowmix","seed":2,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u44-lowmix-s2-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.58,"accTwo":0.465,"accOracle":0.575,"accFwd":0.53}

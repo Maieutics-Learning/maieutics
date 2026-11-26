@@ -1,0 +1,17 @@
+--- U50W2 R1 ---
+VERDICT: CONFIRM-ADVANCE-DRIFT
+ARITH: s0 dRD+0.14 dSD+0.09, s1 +0.08/+0.065, s2 +0.00/+0.025; nRD=2 nSD=2 yes
+TIEBREAK: both hit quorum, RES mean margin bigger yes
+FLOOR: max 0.59/0.505/0.455 floorBad 0 yes
+
+--- U50W2 R2 ---
+VERDICT: CONFIRM-ADVANCE-DRIFT
+S2: no
+ADAPT: yes
+OVERCLAIM: yes
+
+--- U50W2 R3 ---
+VERDICT: CONFIRM-ADVANCE-DRIFT
+NO-ADVANCE-OFF-FLOOR: no
+PIN: true
+PATCHES: none

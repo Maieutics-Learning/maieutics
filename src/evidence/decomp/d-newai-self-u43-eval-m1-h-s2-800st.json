@@ -1,0 +1,1 @@
+{"spec":"self-u43-advanced-prereg","track":"U43-M1","module":"m1","arm":"h","seed":2,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u43-m1-h-s2-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.61,"accTwo":0.575,"accOracle":0.71,"accFwd":0.51}

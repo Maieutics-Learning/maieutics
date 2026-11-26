@@ -1,0 +1,1 @@
+{"spec":"self-u40-gate-audit-prereg","track":"U40-GATE-AUDIT","probe":"U2","seed":2,"verdict":"COMPLETE","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","analytic":-0.001878,"fd":-0.026434,"ratio":0.071,"gradNorm":0.0035,"frozenExact":0,"optDeliver":null,"outcome":"GRAD-DEAD"}

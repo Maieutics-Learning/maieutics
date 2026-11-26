@@ -1,0 +1,17 @@
+--- U47W0 D1 redo ---
+REVISED: CONFIRM-WAVE0
+AGREE: R1 R2 R3 agree
+FIX: none
+OBJECTION: none
+
+--- U47W0 D2 redo ---
+REVISED: CONFIRM-WAVE0
+AGREE: R1 R2 R3 agree
+FIX: none
+OBJECTION: none
+
+--- U47W0 D3 redo ---
+REVISED: CONFIRM-WAVE0
+AGREE: R1 R2 R3 agree
+FIX: none
+OBJECTION: none

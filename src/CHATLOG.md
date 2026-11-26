@@ -3113,3 +3113,112 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 ## 2026-11-25 — Turn-171 documentation: verbatim post-push record (NO COMPUTE; NO PUSH)
  - Wrote src/evidence/decomp/self-u35-u38-post-push-record.md (fe1c1ae4→Turn-171: orders, authorizations, artifacts, verdict bars + per-seed numbers, D1/D2, full U39-DIAG text, owed items, 118-file inventory) + REBUILD §8 U34–U38 rows + glossary.
  - Unpushed: + post-push record + REBUILD rows + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-172 PUSHED 2d786c5d (explicit "push" order; vault github PAT)
+ - Dry run: tip fe1c1ae4 unmoved, scope 4539, remote 4467 blobs, 77 changed/new, 0 remote-only, 12.0MB, secret-scan clean. Push: 77 blobs, tree ec699fc, tip-guard held, commit 2d786c5d, ref + commit re-read MATCH.
+ - Backlog drained except this PUSHED receipt (rides next push). PUSH GATE CLEARED.
+
+## 2026-11-25 — Turn-173 outside opinion read (attachment; NO COMPUTE; NO PUSH)
+ - Read 465-line transcript (Irie&Lake/Oudeyer/Colas/Mattar&Daw tiers + H1-H3 + recursive-dev-intelligence). Stale snapshot (pre-U35); diagnosis matches USE-WITHOUT-EXCLUSION; U35–U38 strengthen its case; E2 caveat for H1/H2. Awaiting order.
+ - Unpushed: + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-174 paper deep-read + debate program (authorized; pool spend; NO training compute; NO PUSH)
+ - Fresh-eyes skill +Format 13 (document-state debate). Corpus: 13/13 fetched (notes: Lake-Baroni via PMC XML, Oudeyer via pyoudeyer https, Diekmann via bioRxiv, Abraham = nrn2356 not nn.1243, LangCult arXiv 2206.01134). PDFs via unpdf.
+ - Unpushed: + skill + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-174 debates adjudicated + synthesis CLOSED (NO training compute; NO PUSH)
+- 12/12 debates read; owner ADJUDICATION filed in each (all training arms REJECTED pending zero-training gates; 03+04 merged). 3-way sealed synthesis unanimous: Lippl shortcut audit highest-stakes; kill-switch adjudicated (slope<1 + collapse = architecture track; slope~=1 + no shortcut = kernel theory falsified).
+- Wrote synthesis-turn-174.md (verdict table + Wave-A ledger batch + Wave-B frozen-probe batch + recommendation). Next: request prereg + battery for diagnostic batch (extends U39-DIAG). 08/10/11/13 training arms explicitly not recommended.
+- Unpushed: + 12 adjudications + synthesis + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-175 U39-DIAG-EXT prereg + battery CLOSED (no training compute; NO PUSH)
+- Prereg v1.0 (U39-DIAG D1-D5 + Wave-A A1-A7 + Wave-B B1-B8 + Wave-C D5 gate-only trains) with 4 filed deviations (coarse 9-pt curves, no token head, row-level slope, 1-margin gain). Battery 2x NEEDS-PATCH + 1x IMPLEMENTABLE → v1.1 pins P1a-P1e (R1 A7-replacement REJECTED, regen path is the instrument; B4 FINAL-INCONCLUSIVE; B6 quorum; B2 DEAD; A1→B8 one-way).
+- AWAITING fresh countersign for Waves A-C. Unpushed: + prereg + battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-176 U39 Waves A+B CLOSED, C HALTED: DIAG-COMPLETE (countersigned; CPU/in-worker; NO PUSH)
+- Wave-A: A1 LIVE 12/12, A2 HEADROOM (-0.075), A3 TUGBOAT (r=0.664), A4 SPANNED (2.25 -> 08 DEAD), A5 NO-SIGNATURE (-0.05 -> 11 DEAD), A6 HEADROOM (0.364), A7 CLEAN (0.496).
+- Wave-B: B1 NO-SIGNAL 3/3, B2 RATIONALLY-OPEN 3/3 (shut~0; gate unresponsive, 01 DEAD), B3 BLIND 3/3 -> Wave-C HALTED, integration audit owed. B4 mixed (02 GATED-SHUT). B5 BIASED 3/3 (13 ADVANCE-cond). B6 COMPRESSION 3/3 + A7 CLEAN = 09 MIXED (Arm-B neutralize owed). B7 DISSOCIATED 3/3 (05 ADVANCE). B8 r=-0.819 (SIGNAL, inverted sign -> bandit flips).
+- License: ADVANCE 03/04, 05, 06, 07, 10, 13; DEAD 01, 08, 11; GATED-SHUT 02; MIXED 09. Next: integration audit, Arm-B probe, preregs. Awaiting order.
+- Unpushed: + u39 driver + waveA + 24 probes + verdict + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-177 U40-GATE-AUDIT prereg + battery CLOSED (no compute; NO PUSH)
+- Prereg v1.0 (U4 ledger-first halt + U1 wiring + U2 grad-flow + U3 bias-dominance; measurement-only). Battery 2x IMPLEMENTABLE + 1x NEEDS-PATCH -> v1.1 pins P1a-P1c (FD restore; OPT-NOT-DELIVERING; 0.25-4x). Rejects filed with reasons.
+- AWAITING fresh countersign for U1-U4. Unpushed: + u40 prereg + battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-178 U40 audit CLOSED: INTEGRATION-BUG localized (countersigned; CPU/in-worker; NO PUSH)
+- U4 MOVED (0.68-0.85). U1 CONNECTED 3/3 (~0.9). U2 GRAD-DEAD 3/3 (0.065/0.094/0.071). U3 LIVE-INPUT 3/3 (2.1-3.4). Single-row analytic/FD exactly 1.0000 (12/12) -> backward math correct; batch attenuation ~13x = DOUBLE /B in filed u38 step (gate + round-2 carry paths /B^2 in c0+c1; u32/u34/u36 pass dc undivided). U38 train verdicts SUSPECT-STEP; B2/B3 forward numbers stand, training-reading void. Fix needs fresh prereg; D5 halted.
+- Owed: fix-step prereg, Arm-B probe, advanced-arm preregs. Awaiting order.
+- Unpushed: + u40 driver + u4 + 9 probes + verdict + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-25 — Turn-179 U41+U42+U43 prereg+battery CLOSED; U42 FALSIFIED; U41 FIX-VERIFIED/GATE-INPUT-SIDE (CPU/in-worker; NO PUSH)
+- U41 v1.1 (3x IMPLEMENTABLE), U42 v1.1 (3x NEEDS-PATCH -> difficulty guard/c0-veto/family-grace), U43 v1.1 (clarifications, no bar changes). U42: 9/9 probes, FALSIFIED 3/3 trunks (O/N irrelevant; N marginally better) -> kernel theory dead for bench. U41 W0 R0=1.000 3/3; 6T+6E COMPLETE; shut 0/0/0.025 with true grads -> never-shuts is pressure/input-side, not weak-grads. D-g retired displacement bar (Adam scale-invariance; owner error owned). D5 halted; U38 behavioral SUSPECT partially lifted, magnitudes stay suspect.
+- Owed: U43 execution (~51 trains M2 first), gate-input redesign prereg. Awaiting countersign for U43 compute.
+- Unpushed: + 3 preregs + 3 batteries + u41/u42 drivers + 23 ledgers + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-185 U43 M5+M3+M4+M6 CLOSED (countersigned; CPU/in-worker; NO PUSH)
+- M5 ADVANCE (RAMP>=FLAT+0.03 A 2/3 + relative transfer hold 2/3; absolute B at chance ~0.2 both arms — qualification filed). M3 DEAD (SFMA~=NR 3/3, substrate cannot use replay). M4 INCONCLUSIVE (STAGED below floor 3/3, oracle collapse = freeze damage; directional JOINT/LINDEC>=STAGED 3/3). M6 DEAD (P~=E 2/3 + break 0.35/0.185/0.35 vs 0.80 — token decorative). Rollup PROGRAM-COMPLETE pin 6/6.
+- Unpushed: + driver ext + 33T + 45E + 4 verdicts + rollup + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-186 U44 DEAD-INVERTED + U45 DEAD + dust BLOCKED (full-pipeline cover; CPU/in-worker; NO PUSH)
+- U44: HIGH-MIX>=LOW-MIX 3/3 — B8 inverted direction real at 75% mixture (low-disagree genuinely low-value); LP-bandit dead, reading flips (disagreement seeks gain). U45: NEW gate shut 0/0/0.005, pred-gap ~0.004 — explicit features + true grads still never shut; pressure-side confirmed, gate-input line closed (loud-mismatch diet still unrun). Dust BLOCKED (needs second machine; recipe filed).
+- Unpushed: + preregs + batteries + drivers + wave0s + 18T + 18E + 2 verdicts + recipe + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-180 memory-paper re-read + fresh-eyes (no compute; NO PUSH)
+- Re-read Turn-174 originals + briefs 01-13 + Appendix E. Fresh-eyes R1 storage-shelf / R2 mechanisms / R3 U43-still-good + synthesis + 6 original-paper reviewers (scratch/fresh-eyes-original-papers.md). REAL leftovers: weak-tag+PRP ~30 steps, BCM sliding threshold (lam=2.0 suspect), per-episode RULE randomization, astrocyte second-store, subgraph-engram growth, hop-count routing. Decorative: precision-guard (U41), mutual-exclusivity scorer. U43 RUN-AMENDED proposed M1-first + M4 baseline (needs amendment pin; default RUN-AS-FILED M2-first).
+- Unpushed: + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-181 post-paper learnings ledger (no compute; NO PUSH)
+- Wrote src/evidence/decomp/self-turn181-postpaper-learnings.md (U39 numbers+licenses, U40 ratios, U41 FIX/GATE-INPUT+D-g, U42 Ds, U43 status+amendment, Turn-180 audit, learnings 1-7; §§10-11 later Turn-185/186).
+- Unpushed: + learnings doc + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-182 countersign RECEIVED for next two U43 modules (no compute yet; NO PUSH)
+- User: "Go ahead and I will countersign the next couple of runs." Accepted as fresh countersign for M2 then M1 IN FILED ORDER (M1-first proposal NOT preregged). Driver missing — build first, then M2 (9T+9E), then M1. M5/M3/M4/M6 need later countersign.
+- Unpushed: + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-183 linker-hold check (no compute; NO PUSH)
+- Q: does Turn-88 cortex/linker still hold? A: YES. U16 adaptY 0.785/0.635/0.69 COMPOSE 3/3 ABLATE 3/3; U17 STD 3/3 PARITY 3/3; U18-U21 fold partial (s2 0.09 vs 0.11) — linker stays serving solution. Wall never re-tested/overturned it; U42 consistent.
+- Unpushed: + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-184 U43 M2+M1 CLOSED + eval-typo repair (countersigned; CPU/in-worker; NO PUSH)
+- Driver built + load-checked. M2 ADVANCE (dGS -0.06/+0.04/+0.04, G≥S+0.03 2/3 s1/s2; orc healthy 0.61-0.725). M1 INCONCLUSIVE (L two 0.305/0.355/0.4 below floor 3/3; dLU -0.26/-0.16/-0.145; L orc collapsed 0.29/0.46/0.45 vs H/U 0.66-0.87). Owed mixed-proportion bandit prereg.
+- REPAIR: u34:173 orc-line missing .logitsK → always-0 (=y==0 rate); U34 ORACLE-CHECK VACUOUS (headline WALLED-AGAIN stands, two/scr-based); U36/U41/U39-U42 unaffected; u43 first-issue false 'oracle collapse' retracted. U34 verdict NOT rewritten (history frozen).
+- Unpushed: + u43 driver + 18T + 18E + 2 verdicts + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-187 U46-NOISE prereg + battery CLOSED (no training compute; NO PUSH)
+- User "Can we try this for curiosity" + paper set = prereg + battery cover. Prereg self-u46-noise-prereg.md v1.0 (DET vs RES sigma0.3 [Battaglini] vs STOCH T0.5 [Rolls]; 12+1 RNG; bars +0.03 quorum, floor, PIN HALT). Battery 3x IMPLEMENTABLE unanimous 12/12 HEALTH → v1.0 STANDS. Owed U47+ substrate/split/resting + loud-mismatch + dust. AWAITING countersign for Waves 0-2.
+- Unpushed: + U46 prereg + battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-188 U46 iterative fresh-eyes + Waves 0-2 CLOSED: ADVANCE-PROT (CPU/in-worker; NO PUSH)
+- Paper battery all four groups → disc all IMPLEMENTABLE; arbitration P1a selection-only tag + P1b U47 RAND-DET spec + P1c U48 split pointer (doc-only, v1.1 pins). Wave0 9 twins PASS. Wave1 9T COMPLETE (loss0 2.07-2.14, lossN 1.60-1.87, PIN all 9). Wave2 9E → ADVANCE-PROT: s0 det two 0.525 stoch 0.475 fail; s1 det 0.515 stoch 0.55 pass +0.035; s2 det 0.355 stoch 0.45 pass +0.095; RES 1/3; floorBad 0; pin true. Explainers: wall-is-memory, curiosity-vs-memory, Battaglini dose, Rolls-vs-Battaglini/Gumbel-max.
+- Unpushed: + u46 driver + wave0 + 9T + 9E + verdict + v1.1 pins + 2 battery docs + 6 review docs + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-189 U47-COMBO prereg + battery CLOSED (no training compute; NO PUSH)
+- User "Lets try both to see if both together work better than the pure dice roll" = prereg + battery cover. Prereg self-u47-combo-prereg.md v1.0 (DET vs STOCH T0.5 vs BOTH sigma0.3+T0.5 ~0.71; bars +0.03 quorum, floor, PIN). Battery 3x IMPLEMENTABLE → STANDS. AWAITING countersign. Explainer: combo-why.
+- Unpushed: + U47 prereg + battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-190 U47-COMBO Waves 0-2 CLOSED: DEAD-COMBO (countersigned "go for it"; CPU/in-worker; NO PUSH)
+- Build fix: extra brace line 99 → mirror line 72 (failed before any write). Wave0 9/9 PASS; disc fiction discarded → strict redo CONFIRM. Wave1 9T COMPLETE (DET+STOCH BIT-replicate U46 6/6; R1 C3-no = reviewer error, repcheck scratch/u47-det-repcheck.txt). Wave2 9E → DEAD-COMBO: s0 stoch 0.475 both 0.4 (-0.075 hold); s1 stoch 0.55 both 0.445 (-0.105 hold); s2 stoch 0.45 both 0.555 (+0.105 lone win, best single two 0.555 loses quorum); pin true. Explainer: humans-do-both.
+- Unpushed: + u47 driver + wave0 + 9T + 9E + verdict + repcheck + 6 review docs + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-191 U48-PCTCOMBO prereg + battery CLOSED (no training compute; NO PUSH)
+- User "keep both in but lower the blur (percentage?), push back if reason to remove the dial" = prereg + battery cover. Pushback P1-P5 filed (KEEP both dials; percentage = NEW mechanism; single 25% dose now; collapse diagnostic; no label leak). Prereg self-u48-pctcombo-prereg.md v1.0; battery 3x IMPLEMENTABLE PCT-CHECK sound → STANDS. Slot renumber U48=this. AWAITING countersign.
+- Unpushed: + U48 prereg + battery + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-192 U48-PCTCOMBO SHELVED (user order; NO compute; NO PUSH)
+- User "don't do percentage blur then" shelves U48 (prereg+battery filed, never executed). Ammo menu given in chat (STOCH-replay, loud-mismatch+STOCH, trajectory+replay, U47b RAND-DET, U51 split/resting, sigma%-grid moot, dust blocked).
+- Unpushed unchanged (+ shelved note + transcript + this line; ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-193 U49-MARGATE Waves 0-2 CLOSED: DEAD (pre-countersigned; CPU/in-worker; NO PUSH)
+- Protocol 3x NEW reviewers/wave → strict short discussion (LONG prompts = fiction-drift lesson; fiction rounds discarded/redone). Battery 3x IMPLEMENTABLE → STANDS. Wave0 9/9 PASS. Wave1 9T COMPLETE (DET/STOCH BIT-replicate 6/6; R2 DETREP-no = reviewer error repcheck scratch/u49-det-repcheck.txt; gateRate 0.203/0.192/0.196 healthy). Wave2 9E → DEAD: dGS -0.02/-0.09/+0.05; s2 GATE 0.5 beats both parents yet loses quorum; floorBad 0; pin true.
+- Queued: STOCH-replay, loud-mismatch+STOCH, trajectory+replay, U47b RAND-DET, U50 split/resting, sigma%-grid moot, dust blocked.
+- Unpushed: + u49 prereg + battery + driver + wave0 + 9T + 9E + verdict + repcheck + 7 review docs + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-194 U50-DRIFT Waves 0-2 CLOSED: ADVANCE-DRIFT (pre-countersigned; CPU/in-worker; NO PUSH)
+- Rotating menu; U46 trio verbatim. Battery 3x IMPLEMENTABLE → STANDS. D1: hot sets {4,5}/{6,7} never occur (qk domain {0,1,2,3} probe-verified); reviewers HALT-FIX 2-1 → disc unanimous HOLD-HALT; fix alternates {0,1}/{2,3} + force flag; wave0+9T force-overwritten. Wave0 9/9 PASS. Wave1 9T COMPLETE (adapt live 0.62-1.0). Wave2 9E → ADVANCE-DRIFT: s0 det 0.45 stoch 0.54 res 0.59; s1 det 0.425 stoch 0.49 res 0.505; s2 det 0.43 stoch 0.455 res 0.43; nRD=2 nSD=2 tiebreak RES mean 0.22>0.155; floorBad 0; pin true. Blur vindicated under drift (stationary: dice; rotating: blur). Explainers: drift adjudication, brain-why-blur.
+- Queued: STOCH-replay, loud-mismatch+STOCH, trajectory+replay, U47b RAND-DET, U51 split/resting, dust blocked.
+- Unpushed: + u50 prereg + battery + driver + D1 + wave0 + 9T(first)+9T(refixed) + 9E + verdict + repchecks + 10 review docs + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.
+
+## 2026-11-26 — Turn-196 log-audit fresh-eyes + durable-vs-scratch scan CLOSED (no compute; NO PUSH)
+- 3x independent reviewers on Turn-180–194 logs → discussion unanimous CONFIRM. Single real issue (wording-only, verdicts stand): U50 "mean margin 0.22>0.155" mislabels SUMS of qualifying margins (driver L234-235; s2 +0.00/+0.025 excluded). All other flags reviewer error (dGS-sum, pin/quorum confusion, 185/186 "missing", U48-no-ledger, P1-P5/M2-M1 "missing"). Battery filed: src/evidence/decomp/fresh-eyes-log-audit-3x-results.md (raws verbatim + arbitration).
+- Durable-vs-scratch scan: U46-U50 preregs/batteries/drivers/verdicts/wave0s zero scratch/ refs. Promoted to durable twins (byte-identical): u47/u49-det-repcheck.txt, fresh-eyes-original-papers.md. scratch/papers/* stay fetch dumps (briefs durable + URLs). Shipped runtime (index.html script list) zero scratch loads; live scratch reads only in dev-tool scripts (by-design temp). Turn-180 3x brief raws never filed (gap noted; adjudication stands). scratch/CURRENT_TASK never ships (Turn-195 "+ this file rides push" corrected here).
+- Unpushed: + audit battery + 3 promoted twins + learnings §12a + transcript + this line (ride next push; NO PUSH without order). PUSH GATE tripped.

@@ -1,0 +1,1 @@
+{"spec":"self-u46-noise-prereg","track":"U46-NOISE","arm":"det","seed":0,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u46-det-s0-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.535,"accTwo":0.525,"accOracle":0.52,"accFwd":0.47}

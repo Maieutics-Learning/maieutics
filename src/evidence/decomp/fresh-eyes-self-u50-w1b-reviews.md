@@ -1,0 +1,17 @@
+--- U50W1b R1 ---
+VERDICT: COMPLETE-FIXED
+ALL4: yes
+SHOCKS: yes
+CALL: yes
+
+--- U50W1b R2 ---
+VERDICT: COMPLETE-FIXED
+FAIR: yes
+SANE: yes
+CALL: proceed yes
+
+--- U50W1b R3 ---
+VERDICT: COMPLETE-FIXED
+RES-LIVE: yes
+PATCHES: one fix
+CALL: proceed yes

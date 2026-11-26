@@ -1,0 +1,17 @@
+--- U49W2 R1 ---
+VERDICT: CONFIRM-DEAD
+ARITH: dGS -0.02/-0.09/+0.05 1/1/1
+FLOOR: max 0.525/0.55/0.5 floorBad 1 yes
+PIN: true yes
+
+--- U49W2 R2 ---
+VERDICT: CONFIRM-DEAD
+S2: no
+GATE-RATE: yes
+OVERCLAIM: yes
+
+--- U49W2 R3 ---
+VERDICT: CONFIRM-DEAD
+NO-BAR-MISS: yes
+DET-REP: yes
+PATCHES: none

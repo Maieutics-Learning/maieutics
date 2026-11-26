@@ -1,0 +1,17 @@
+--- U47W1 R1 ---
+WAVE1-COMPLETE
+C1: yes
+C2: yes
+C3: no
+
+--- U47W1 R2 ---
+VERDICT: WAVE1-COMPLETE
+C1: yes
+C2: yes
+C3: yes
+
+--- U47W1 R3 ---
+VERDICT: WAVE1-COMPLETE
+C1: yes
+C2: no
+PATCHES: none

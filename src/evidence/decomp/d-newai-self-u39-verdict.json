@@ -1,0 +1,335 @@
+{
+ "spec": "self-u39-diag-ext-prereg",
+ "track": "U39-DIAG-EXT",
+ "verdict": "DIAG-COMPLETE",
+ "bars": {
+  "A1": "LIVE",
+  "A2": "HEADROOM",
+  "A3": "TUGBOAT",
+  "A4": "SPANNED",
+  "A5": "NO-SIGNATURE",
+  "A6": "HEADROOM",
+  "A7": "CLEAN",
+  "B1": "0/3",
+  "B2": "0/3",
+  "B3": "BLIND-EVEN-ON-ZEROS,BLIND-EVEN-ON-ZEROS,BLIND-EVEN-ON-ZEROS",
+  "B4": "FINAL-INCONCLUSIVE,FINAL-INCONCLUSIVE,PASS",
+  "B5": "3/3",
+  "B6compression": "3/3",
+  "B7": "DISSOCIATED,DISSOCIATED,DISSOCIATED",
+  "B8": "r=-0.819 n=18",
+  "D5a": "0/3 NOT-RUN-B3-BLIND",
+  "D5b": "0/3 NOT-RUN-B3-BLIND"
+ },
+ "perSeed": {
+  "B1": [
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B1",
+    "seed": 0,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "acc": 0.474,
+    "outcome": "NO-SIGNAL"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B1",
+    "seed": 1,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "acc": 0.481,
+    "outcome": "NO-SIGNAL"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B1",
+    "seed": 2,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "acc": 0.469,
+    "outcome": "NO-SIGNAL"
+   }
+  ],
+  "B2": [
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B2",
+    "seed": 0,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "accClean": 0.568,
+    "accSwap": 0.401,
+    "accZero": 0.551,
+    "shutRate": 0,
+    "outcome": "RATIONALLY-OPEN"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B2",
+    "seed": 1,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "accClean": 0.533,
+    "accSwap": 0.397,
+    "accZero": 0.475,
+    "shutRate": 0.015,
+    "outcome": "RATIONALLY-OPEN"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B2",
+    "seed": 2,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "accClean": 0.557,
+    "accSwap": 0.393,
+    "accZero": 0.493,
+    "shutRate": 0.029,
+    "outcome": "RATIONALLY-OPEN"
+   }
+  ],
+  "B3": [
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B3",
+    "seed": 0,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "gZeroMean": 0.7607,
+    "gSwapMean": 0.7658,
+    "outcome": "BLIND-EVEN-ON-ZEROS"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B3",
+    "seed": 1,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "gZeroMean": 0.7056,
+    "gSwapMean": 0.7219,
+    "outcome": "BLIND-EVEN-ON-ZEROS"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B3",
+    "seed": 2,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "gZeroMean": 0.7301,
+    "gSwapMean": 0.7319,
+    "outcome": "BLIND-EVEN-ON-ZEROS"
+   }
+  ],
+  "B4": [
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B4",
+    "seed": 0,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "trunk": "u34-c2-s0",
+    "accSym": 0.538,
+    "accCol": 0.505,
+    "delta": 0.033,
+    "outcome": "FINAL-INCONCLUSIVE"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B4",
+    "seed": 1,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "trunk": "u34-c2-s0",
+    "accSym": 0.517,
+    "accCol": 0.473,
+    "delta": 0.044,
+    "outcome": "FINAL-INCONCLUSIVE"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B4",
+    "seed": 2,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "trunk": "u34-c2-s0",
+    "accSym": 0.521,
+    "accCol": 0.546,
+    "delta": -0.025,
+    "outcome": "PASS"
+   }
+  ],
+  "B5": [
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B5",
+    "seed": 0,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "meanEntropy": 0.8045,
+    "bar": 1.0863,
+    "outcome": "BIASED"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B5",
+    "seed": 1,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "meanEntropy": 0.7745,
+    "bar": 1.0863,
+    "outcome": "BIASED"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B5",
+    "seed": 2,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "meanEntropy": 0.7491,
+    "bar": 1.0863,
+    "outcome": "BIASED"
+   }
+  ],
+  "B6": [
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B6",
+    "seed": 0,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "slope": 0.5143,
+    "ci95": [
+     0.4614,
+     0.5672
+    ],
+    "compression": true
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B6",
+    "seed": 1,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "slope": 0.6433,
+    "ci95": [
+     0.5956,
+     0.691
+    ],
+    "compression": true
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B6",
+    "seed": 2,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "slope": 0.4179,
+    "ci95": [
+     0.3617,
+     0.4741
+    ],
+    "compression": true
+   }
+  ],
+  "B7": [
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B7",
+    "seed": 0,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "rho": 0.3353,
+    "outcome": "DISSOCIATED"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B7",
+    "seed": 1,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "rho": 0.3456,
+    "outcome": "DISSOCIATED"
+   },
+   {
+    "spec": "self-u39-diag-ext-prereg",
+    "track": "U39-DIAG-EXT",
+    "probe": "B7",
+    "seed": 2,
+    "verdict": "COMPLETE",
+    "stackHash": "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e",
+    "rho": 0.1846,
+    "outcome": "DISSOCIATED"
+   }
+  ],
+  "D5a": [
+   {
+    "outcome": "NOT-RUN",
+    "reason": "B3-BLIND halt"
+   },
+   {
+    "outcome": "NOT-RUN",
+    "reason": "B3-BLIND halt"
+   },
+   {
+    "outcome": "NOT-RUN",
+    "reason": "B3-BLIND halt"
+   }
+  ],
+  "D5b": [
+   {
+    "outcome": "NOT-RUN",
+    "reason": "B3-BLIND halt"
+   },
+   {
+    "outcome": "NOT-RUN",
+    "reason": "B3-BLIND halt"
+   },
+   {
+    "outcome": "NOT-RUN",
+    "reason": "B3-BLIND halt"
+   }
+  ]
+ },
+ "deviations": [
+  "D-a total-loss proxy (+B8 per-family recompute)",
+  "D-b row-level slope (per-seed quorum)",
+  "D-c vote-entropy substitute",
+  "D-d 1-margin gain",
+  "D-e Wave-C gate zeros init",
+  "D-f A2 signed slope (headroom = descending)"
+ ],
+ "license": {
+  "01-irie": "DEAD (RATIONALLY-OPEN quorum)",
+  "02-lake-baroni": "GATED-SHUT (FINAL-INCONCLUSIVE)",
+  "03-04-colas-oudeyer": "ADVANCE (bandit vs uniform+yoked)",
+  "05-mattar-daw": "ADVANCE (3-way replay)",
+  "06-diekmann": "ADVANCE (SFMA vs random+IoR)",
+  "07-sydnor": "ADVANCE (staged vs joint + linear-decay)",
+  "08-jarvis": "DEAD (subspace spanned at 4-class)",
+  "09-lippl": "MIXED (filed, no re-run)",
+  "10-andrychowicz": "ADVANCE (ramp + cross-diet transfer)",
+  "11-stc": "DEAD (no over-chasing)",
+  "13-langcult": "ADVANCE (productive vs extractive, wrong-token-breaks-action)"
+ }
+}

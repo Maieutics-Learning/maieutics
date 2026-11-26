@@ -1,0 +1,2 @@
+# Battery: U41-FIXSTEP prereg v1.0 -> v1.1 (3x IMPLEMENTABLE)
+R1/R2/R3 all IMPLEMENTABLE, 5/5, 4/5+4/5 HEALTH. Notes: R2/R3 flag displacement>=filed as lenient/auto-pass but sufficient as sanity check (W0 halt is the teeth). R3-P1a ACCEPTED: displacement >= 1.2x filed (P1a). R3-P1b REJECTED: logging mismatch-delta in W2 would deviate from the u38-eval instrument verbatim rule and break twin-comparability; mismatch behavior is D5's job under un-halt. Result: v1.0 STANDS with pin -> v1.1.

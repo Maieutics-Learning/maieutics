@@ -1,0 +1,6 @@
+s0 loss0match=true lossNmatch=true
+s0 twoA=0.525 twoC=0.525 evalmatch=true
+s1 loss0match=true lossNmatch=true
+s1 twoA=0.515 twoC=0.515 evalmatch=true
+s2 loss0match=true lossNmatch=true
+s2 twoA=0.355 twoC=0.355 evalmatch=true

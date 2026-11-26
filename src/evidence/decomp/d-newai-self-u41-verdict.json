@@ -1,0 +1,81 @@
+{
+ "spec": "self-u41-fixstep-prereg",
+ "track": "U41-FIXSTEP",
+ "verdict": "FIX-VERIFIED/GATE-INPUT-SIDE",
+ "bars": {
+  "R0": "1,1,1",
+  "minDispRatio": 0.855,
+  "shut": "0,0,0.025"
+ },
+ "perSeed": [
+  {
+   "arm": "c0",
+   "seed": 0,
+   "loss0": 2.079531,
+   "lossN": 1.860869,
+   "scr": 0.625,
+   "two": 0.605,
+   "orc": 0.87
+  },
+  {
+   "arm": "c0",
+   "seed": 1,
+   "loss0": 2.068538,
+   "lossN": 1.771201,
+   "scr": 0.605,
+   "two": 0.605,
+   "orc": 0.835
+  },
+  {
+   "arm": "c0",
+   "seed": 2,
+   "loss0": 2.107137,
+   "lossN": 1.684083,
+   "scr": 0.565,
+   "two": 0.555,
+   "orc": 0.825
+  },
+  {
+   "arm": "c1",
+   "seed": 0,
+   "loss0": 2.079528,
+   "lossN": 1.550622,
+   "scr": 0.605,
+   "two": 0.58,
+   "orc": 0.795,
+   "gateDisp": 0.7569,
+   "gateDispU38": 0.8498,
+   "shut": 0
+  },
+  {
+   "arm": "c1",
+   "seed": 1,
+   "loss0": 2.068268,
+   "lossN": 1.462947,
+   "scr": 0.545,
+   "two": 0.545,
+   "orc": 0.915,
+   "gateDisp": 0.7125,
+   "gateDispU38": 0.7052,
+   "shut": 0
+  },
+  {
+   "arm": "c1",
+   "seed": 2,
+   "loss0": 2.10708,
+   "lossN": 1.531068,
+   "scr": 0.65,
+   "two": 0.585,
+   "orc": 0.775,
+   "gateDisp": 0.5817,
+   "gateDispU38": 0.6805,
+   "shut": 0.025
+  }
+ ],
+ "deviations": [
+  "single /B on carry+gate paths (only recipe change)",
+  "D-g (owner adjudication, this turn): displacement bar >=1.2x retired as misconceived. Rationale: Adam steps are scale-invariant (m-hat/sqrt(v-hat)) + global norm clip at 1.0, so 16x grads take ~same-sized steps in the same direction; correct expectation under the fix is SIMILAR movement, which is what happened (0.86x). R2/R3 flagged this bar as auto-pass/tautology in battery; the owner wrongly tightened it (P1a) instead of listening. W0 (R0=1.000 all seeds, twin exact) is the actual step verification and it PASSED: the double-/B is fixed, analytics now exact."
+ ],
+ "license": "no D5 un-halt; no gate-arm advance; next = gate-INPUT redesign prereg (new mismatch signature in gate input, e.g. explicit mismatch features or different gate input annealing), or pressure-ratio diet (D5-b-style loud mismatch) under corrected step with fresh prereg",
+ "ownerAdjudication": "Step fix VERIFIED (W0 R0=1.000 3/3). Displacement bar overruled per D-g. Gate-behavior result with CORRECT grads: shut-rate 0/0/0.025, gClean 0.70-0.76 (still saturates open), two 0.545-0.585 — the gate STILL never shuts when grads are true. Weak grads therefore do NOT explain never-shuts; cause is pressure/input-side (D3 pressure ratio: 87.5% clean rows drown 12.5% mismatch; B1: input carries no mismatch signature). D5 un-halt criterion (shut>0.2) still FAILS -> D5 stays halted; direction = input redesign (B1 confirmed twice: U39-B1 separability 0.47 AND corrected-step convergence to the same open gate). U38 SUSPECT-STEP marks PARTIALLY LIFTED for the behavioral claim only (never-shuts replicates under true grads -> robust, not artifactual); all u38 MAGNITUDE claims (displacement, rates, gaps) stay suspect as trained-under-bug."
+}

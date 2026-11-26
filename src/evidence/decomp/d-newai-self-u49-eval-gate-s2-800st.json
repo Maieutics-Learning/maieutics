@@ -1,0 +1,1 @@
+{"spec":"self-u49-margate-prereg","track":"U49-MARGATE","arm":"gate","seed":2,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u49-gate-s2-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.545,"accTwo":0.5,"accOracle":0.57,"accFwd":0.455}
