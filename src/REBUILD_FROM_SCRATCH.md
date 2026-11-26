@@ -237,6 +237,21 @@ symmetry-mapping rule if FUNC holds while BIT misses) + evals EXACTLY equal 3/3.
 | U36 diet+dyn | `self-u36-diverse-dynamic-prereg.md` v1.0 | `newai-selfu36-driver.js` | DIET-ONLY (COMPOSE 0/3 — dynamics decorative; diet shuffles ±, no quorum move; diet D1: uniform-pick + OOD qk!=v, R4 dropped) | wave0 (dyn-gradcheck 6.19e-9 + 6/6 twins) + 6T+6E H48, Turn-161 |
 | U37 learned-inh | `self-u37-learned-inhib-prereg.md` v1.0 | `newai-selfu37-driver.js` | SCHED-ONLY (COMPOSE 1/3; INH-USE 0/3 — learned inh trains then hollows, ablation changes nothing; ORACLE 0/3 gaps widen; D2 repair: first 6T omitted P0/P, force-overwritten identical) | wave0 (gradcheck 2.13e-9 + 6/6 twins) + 6T+6E H48, Turn-163 |
 | U38 stategate | `self-u38-stategate-prereg.md` v1.0 | `newai-selfu38-driver.js` | GATE-DEAD (COMPOSE 0/3; SHUTS 0/3 — 21-param gate saturates ~0.75 open, never shuts; USES 1/3 s2 only; PRED 0/3; LOWCUE 0/3; D2 check-spec fix: joint-perturb tied c-dims, PASS 2.82e-7 + 6/6 twins) | wave0 + 6T+6E H48, Turn-168 |
+| U39 diag-ext | `self-u39-diag-ext-prereg.md` v1.1 (pins P1a–P1e; Waves A–C) | `newai-selfu39-driver.js` | DIAG-COMPLETE: Wave-A ledger arithmetic + Wave-B 24 frozen probes (B3 BLIND 3/3 → integration audit owed, Wave-C NOT run); license table ADVANCE 03/04 (bandit INVERTED r=−0.819)/05/06/07/10/13, DEAD 01/08/11, GATED-SHUT 02, MIXED 09 | Turns 175–176 (pre-countersigned; 24 probes + verdict) |
+| U40 gate-audit | `self-u40-gate-audit-prereg.md` v1.1 | `newai-selfu40-driver.js` | INTEGRATION-BUG localized: gate + round-2 carry grads ~13x underweight (single-row FD 1.0000, batch 0.065/0.094/0.071); U4 MOVED, U1 CONNECTED, U3 LIVE-INPUT; U38 train verdicts SUSPECT-STEP (magnitudes), B2/B3 forward numbers stand; D5 halted | 9 probes + verdict, Turn-178 |
+| U41 step-fix + U42 shortcut | `self-u41-*` + `self-u42-*` preregs + batteries | `newai-selfu41-driver.js`, `newai-selfu42-driver.js` | U41 FIX-VERIFIED/GATE-INPUT-SIDE (double-/B R0=1.000; gate still never shuts w/ true grads → pressure-side; D-g owner bar error filed) + u34:173 orc-line typo repair (zeros→y==0 rate; U34 ORACLE-CHECK vacuous, headline unaffected); U42 FALSIFIED 3/3 (kernel/shortcut dead) | 23 ledgers, Turn-179/184 |
+| U43 program | `self-u43-advanced-prereg.md` v1.1 (M2→M1→M5→M3→M4→M6) | `newai-selfu43-driver.js` (+E6–E11 ext) | PROGRAM-COMPLETE: M2 ADVANCE (dGS −0.06/+0.04/+0.04, G≥S+0.03 2/3) + M1 INCONCLUSIVE (floor guard; L-orc collapse) + M5 ADVANCE (absolute transfer caveat) + M3 DEAD (SFMA≈NR) + M4 INCONCLUSIVE (STAGED floor) + M6 DEAD (P≈E); licensed: replay + trajectory programs | 18T+18E (M2/M1, Turn-184) + 33T+45E + rollup (Turn-185) |
+| U44 mix-bandit | `self-u44-*` prereg + battery | `newai-selfu44-driver.js` | DEAD-INVERTED (HIGH-MIX≥LOW-MIX 3/3 — B8 direction real, robust at mixture) | 9T+9E, Turn-186 |
+| U45 gate-input | `self-u45-*` prereg v1.1 + battery | `newai-selfu45-driver.js` | DEAD (never shuts 2/3, pred-gap 0/3 — pressure-side; gate-input line closed) + dust recipe BLOCKED (needs second machine) | wave0 + 9T+9E, Turn-186 |
+| U46 noise | `self-u46-noise-prereg.md` v1.1 (pins P1a–c; 4 paper groups A–D) | `newai-selfu46-driver.js` | ADVANCE-PROT: STOCH≥DET+0.03 on 2/3 (s0 −0.05 fail, s1 +0.035, s2 +0.095); RES 1/3; per-wave 10x→(Turn-201+) review protocol starts here | wave0 + 9T+9E + 6 iterative review docs, Turn-188 |
+| U47 combo | `self-u47-combo-prereg.md` v1.0 | `newai-selfu47-driver.js` (brace fix pre-compute) | DEAD-COMBO: STOCH≥BOTH+0.03 on 2/3 (s0 −0.075 hold, s1 −0.105 hold, s2 +0.105 lone BOTH win, two 0.555 best single but 1/3 = no license) | wave0 + 9T+9E + 6 review docs, Turn-190 |
+| U48 pctcombo | `self-u48-pctcombo-prereg.md` v1.0 + battery | — (never built) | SHELVED per user order (prereg + 3x IMPL filed, 0 ledgers) | Turn-192, no compute |
+| U49 margate | `self-u49-margate-prereg.md` v1.0 | `newai-selfu49-driver.js` | DEAD: dGS −0.02/−0.09/+0.05, nGS=1 nSG=1; s2 GATE 0.5 beats both parents yet loses quorum; stacking 0/3 families | wave0 + 9T+9E + 7 review docs, Turn-193 |
+| U50 drift | `self-u50-drift-prereg.md` v1.0 (+D1 alternate-hot fix) | `newai-selfu50-driver.js` | ADVANCE-DRIFT: nRD=2 nSD=2, tiebreak RES mean 0.22 > STOCH 0.155 (s0 +0.14/+0.09, s1 +0.08/+0.065, s2 +0.00/+0.025); blur vindicated under rotation; wall's first conditional breach (stationary: dice; rotating: blur) | wave0 + 9T(first)+9T(refixed)+9E + 10 review docs, Turn-194 |
+| U51 slot | (reserved) | — | RESERVED for owed split/resting program — never run | slot held since Turn-199 |
+| U52 bioreview | `self-u52-bioreview-synthesis.md` v1.2 (pins P1a–d + P2a–h) + `papers/brief-14..20` + `papers/incoming-outside-perspective-2026-11-26.md` | — (no compute) | REVIEW CLOSED: 7/7 PMIDs verified, 1 full text read (Anderson & Floresco 2022); triage P1 detector-blocked/highest, P5 runnable now (E-EXT1 first), P2 sequenced, P3 split, P4 parked; order of battle 7 experiments | 3x + 10x repass batteries, Turns 199–202 |
+| U53 ext1 | `self-u53-ext1-prereg.md` v1.2+A1 (A1 relative bars post-halt; Delta SE-derived; LOWCOMP flag) | `newai-selfu53-driver.js` | FLOOR-FAIL: PIN 3/3 CTX 1/3 NOERASE 0/3 ISOLATE 3/3 FLOOR 0/3 MISFIRE 3/3 (FIRST misfire event); ckpts 0.275/0.340/0.305; vetoA 0.0556/0.0635/0.0502; criterion −1 D1 | wave0 + 12 Phase-1 + 12 Phase-2 + 12E + 4 review docs, Turns 204–206 |
+| U54 ext2 | `self-u54-ext2-prereg.md` v1.0 STANDS (C1 800-step brain, C2 closed-init b=−2) | `newai-selfu54-driver.js` (u53 clone, 5/5 load-check) | FLOOR-FAIL: PIN 3/3 CTX 1/3 (s2 0.605 only) NOERASE 1/3 (s2 vetoA 0.0464 clean) ISOLATE 3/3 FLOOR 0/3 (noveto/global 0.22–0.335 drag) MISFIRE 2/3; ckpts 0.585/0.555/0.555 (C1 HELD); SECOND quorum misfire → P5 CLOSED; D3 floor-scope flaw filed | wave0 + 24T + 12E + 4 review docs, Turns 207–208 |
 
 Wave file pattern (all under `src/evidence/decomp/`): train ledgers
 `d-newai-self-<wave>-<arm>-s<seed>-<steps>st.json` (carry `spec`, `track`,
@@ -357,7 +372,14 @@ frozen-missing). Re-run after every stage (§9).
   REPRO-EXACT / REPRO-FUNCTIONAL / LOG-INSUFFICIENT / STACK-NONDETERMINISM /
   FREEZE-HALT (U32) · SWEEP-FAILS (W6) · CANONICAL-EXACT (U33) ·
   WALLED-AGAIN (U34) · WALLED-AT-SCALE (U35) · DIET-ONLY (U36) ·
-  SCHED-ONLY (U37) · GATE-DEAD (U38) · WINNER-HOLDS/PARTIAL/DEAD ·
+  SCHED-ONLY (U37) · GATE-DEAD (U38) · DIAG-COMPLETE (U39) ·
+  INTEGRATION-BUG (U40) · FIX-VERIFIED/GATE-INPUT-SIDE (U41) ·
+  FALSIFIED (U42) · PROGRAM-COMPLETE (U43: M2/M5 ADVANCE, M1/M4
+  INCONCLUSIVE, M3/M6 DEAD) · DEAD-INVERTED (U44) · DEAD (U45) ·
+  ADVANCE-PROT (U46) · DEAD-COMBO (U47) · SHELVED (U48) · DEAD (U49) ·
+  ADVANCE-DRIFT (U50) · FLOOR-FAIL (U53/U54; P5 CLOSED on second
+  quorum misfire) · VETO-MISFIRE / UNFROZEN-HOLDS (diagnostics) ·
+  WINNER-HOLDS/PARTIAL/DEAD ·
   PHOTOCOPY (Wave-D cold-distillation 0/9) · VOID (tripwire, not failure).
   Each verdict JSON carries its bars + deviations + mechanism — read the JSON,
   not the label.

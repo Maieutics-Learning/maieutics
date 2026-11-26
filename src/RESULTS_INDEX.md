@@ -78,6 +78,23 @@ The §8-era (G-series v2, hinges, cheap-tests, batteries) is fully ledgered: 137
 | 8.8 (g) rule-ish binding | cyclic 10/12; many-to-one mean 0.736, none at chance | `g-results.json`, `wave5-driver.js` | eval-only symmetry probes | CONFIRMED |
 | 8.8 batteries | v1 6/4 → v2 6/2/2 → v3 10/10 steelman | `evo-fade-premise-v{1..3}.md`, `fresh-eyes-evo-fade-v{1..3}-results.md`, `cheap-tests/spec.md` | drivers beside results | CONFIRMED |
 
+## Post-paper program U39–U54 (durable ledgers; CHATLOG Turns 175–209 + extras)
+
+| Claim | Numbers | Artifacts | Code | Status |
+|---|---|---|---|---|
+| U39 diagnostics license the program | Wave-B 24 probes; B3 BLIND 3/3; ADVANCE 03/04 (bandit r=−0.819)/05/06/07/10/13, DEAD 01/08/11 | `d-newai-self-u39-*` + `d-newai-self-u39-verdict.json` (DIAG-COMPLETE) | `newai-selfu39-driver.js` | CONFIRMED |
+| U40 integration bug localized | gate + r2-carry grads ~13x underweight (FD 1.0000 vs batch 0.065/0.094/0.071) | `d-newai-self-u40-*` + verdict (INTEGRATION-BUG) | `newai-selfu40-driver.js` | CONFIRMED |
+| U41 fix verified, gate input-side + U42 falsified | double-/B R0=1.000; U42 shortcut 0/3 | verdicts FIX-VERIFIED / FALSIFIED | `newai-selfu41-driver.js`, `newai-selfu42-driver.js` | CONFIRMED |
+| U43 program complete | M2 dGS −0.06/+0.04/+0.04; M1/M4 INCONCLUSIVE; M3/M6 DEAD; M5 ADVANCE | 6 module verdicts + rollup PROGRAM-COMPLETE | `newai-selfu43-driver.js` | CONFIRMED |
+| U44 inverted + U45 dead + dust blocked | HIGH-MIX≥LOW-MIX 3/3; U45 never shuts 2/3 | verdicts DEAD-INVERTED / DEAD + dust recipe | `newai-selfu44/45-driver.js` | CONFIRMED |
+| U46 dice helps combine (stationary) | STOCH≥DET+0.03 2/3 (s0 −0.05, s1 +0.035, s2 +0.095) | `d-newai-self-u46-*` + verdict ADVANCE-PROT | `newai-selfu46-driver.js` | CONFIRMED |
+| U47 dice+smudge hurts | STOCH≥BOTH 2/3; s2 BOTH two 0.555 lone win | verdict DEAD-COMBO | `newai-selfu47-driver.js` | CONFIRMED |
+| U49 smart gating changes nothing | dGS −0.02/−0.09/+0.05; s2 GATE 0.5 lone | verdict DEAD | `newai-selfu49-driver.js` | CONFIRMED |
+| U50 blur wins under drift | nRD=2 nSD=2; RES mean 0.22 > STOCH 0.155 | verdict ADVANCE-DRIFT | `newai-selfu50-driver.js` | CONFIRMED |
+| U52 bioreview triage | 7 briefs, 7/7 PMIDs, 1 full text; P5 runnable now | synthesis v1.2 + briefs 14–20 + incoming transcript | — (no compute) | CONFIRMED |
+| U53 veto switch fails guards | ckpts 0.275/0.340/0.305; vetoA 0.0556/0.0635/0.0502 | 37 ledgers + verdict FLOOR-FAIL | `newai-selfu53-driver.js` | CONFIRMED |
+| U54 stronger brain + closed switch still fails quorum, P5 closed | ckpts 0.585/0.555/0.555; s2 veto 0.605/1/0.56 vetoA 0.0464 clean 1/3; MISFIRE 2/3 | 38 ledgers + verdict FLOOR-FAIL | `newai-selfu54-driver.js` | CONFIRMED |
+
 ## §2 lineage (LITERATURE — no our-ledger)
 
 Huginn 2502.05171, Grassmann 2512.19428, Mamba 2312.00752, Coconut 2412.06769, Looped 2301.13196, CoT, s1, PonderNet, DEQ, DAgger, CGAR, Looped-LM survey, collapse-as-cultural-evolution, Ren 2004 fading, Gaier/Ha WANN, Salimans ES, Jaderberg PBT. Artifacts: arXiv links in paper References; Track-C notes in `src/evidence/rabbithole/track-c/` + `src/evidence/synthesis/`.
