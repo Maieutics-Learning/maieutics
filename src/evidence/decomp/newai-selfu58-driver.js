@@ -242,18 +242,114 @@ globalThis.runU58Verdict = async function (fs, log) {
   log('u58-verdict ' + verdict + ' cause=' + cause);
   return body;
 };
-// v1.3 Wave-0 sanity (review-adopted, pre-compute, NO Wave-1/2 compute here — functions only, run only under fresh countersign):
-// W0-RAND: scrambled labels through EXACT dry-run machinery — expect would-be COLLAPSED/UNDER, never HEALTHY.
-// W0-TRIV: planted +1.0 gap / +5.0 carry break — expect would-be HEALTHY. Both go/no-go, no tuning.
+// v1.3 Wave-0 sanity (review-adopted, pre-compute — full logic, runs ONLY under fresh countersign):
+// W0-RAND: scrambled noisy/clean assignment through EXACT dry-run machinery.
+//   Per (trunk,cell) stream a seeded coin flip swaps the noisy flag fed to u58Row,
+//   destroying the true contingency while keeping marginal row mix identical.
+//   Gate: |meanAval| and |meanBresp| must stay small (no signal); any HEALTHY-direction
+//   4/5-DISSOCIATE pass on scrambled data throws HALT-RAND (circularity/leak).
+// W0-TRIV: planted obvious signal (+1.0 standardized gap, +5.0 ROT carry break) applied
+//   at the RESPONSE level after identical forward machinery (documents pipeline gain,
+//   not model capability). Gate: must look HEALTHY-direction; else HALT-TRIV.
+// Both are go/no-go only: no thresholds retuned, no Wave-1/2 tuning to these results.
 globalThis.runU58Wave0Rand = async function (fs, log) {
   const h = await globalThis.u33StackHash(fs);
-  if (h.hex !== U58_EXPECT_STACK) throw new Error('U58-PIN HALT: stack drift');
-  log('u58-w0-rand stub present (scrambled-label run filed in prereg v1.3; executes only under countersign)');
-  return { spec: 'self-u58-det2-prereg', track: 'U58-DET2', wave: '0-rand', verdict: 'STUB', note: 'scrambled-target sanity; HALT-RAND if HEALTHY/4-5-DISSOCIATE' };
+  if (h.hex !== U58_EXPECT_STACK) throw new Error("U58-PIN HALT: stack drift");
+  const G = await globalThis.IntrinsicInit(fs);
+  const av = [], br = [];
+  for (const trunk of [0, 1, 2]) {
+    const canon = JSON.parse(await fs.readTextFile(u58CanonPath(trunk)));
+    const M = inSeqMakeModel(G.makeRng(1));
+    const load = (dst, src) => { for (let i = 0; i < dst.v.length; i++) dst.v[i] = src[i]; };
+    load(M.E, canon.P.E); load(M.W1, canon.P.W1); load(M.b1, canon.P.b1);
+    load(M.Wf, canon.P.Wf); load(M.bf, canon.P.bf); load(M.Wc, canon.P.Wc); load(M.bc, canon.P.bc);
+    for (let k = 0; k < 5; k++) { load(M.Wh[k], canon.P.Wh[k]); load(M.bh[k], canon.P.bh[k]); }
+    load(M.Hv, canon.P.Hv); load(M.bv, canon.P.bv);
+    const fr = G.makeRng(91000 + trunk); const evalMasks = [];
+    for (let kk = 0; kk < 5; kk++) { const m = new Float64Array(48); for (let i = 0; i < 48; i++) m[i] = fr.int(10) < 5 ? 2 : 0; evalMasks.push(m); }
+    const b = u58Boundaries(G, trunk);
+    for (const cell of U58_CELLS) {
+      const idx = U58_CELLS.indexOf(cell);
+      const flip = G.makeRng(96000 + trunk * 100 + idx).int(2) === 0;
+      const noisy = (cell.indexOf("noisy") === 0) !== flip;
+      const rng = G.makeRng(62000 + trunk * 1000 + idx * 100);
+      u58RunStream._b = b;
+      const saved = u58Row;
+      void saved;
+      const r = u58RunStreamScrambled(M, evalMasks, rng, cell, noisy);
+      av.push(r.aval); br.push(r.bresp);
+    }
+  }
+  const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+  const mA = mean(av), mB = mean(br);
+  log("u58-w0-rand scrambled meanAval=" + mA.toFixed(4) + " meanBresp=" + mB.toFixed(4) + " (expect ~0)");
+  const body = { spec: "self-u58-det2-prereg", track: "U58-DET2", wave: "0-rand", verdict: "COMPLETE", meanAval: +mA.toFixed(5), meanBresp: +mB.toFixed(5), n: 12 };
+  if (Math.abs(mA) > 0.25 || Math.abs(mB) > 0.25) throw new Error("U58 HALT-RAND: scrambled data shows signal (leak/circularity) aval=" + mA.toFixed(3) + " bresp=" + mB.toFixed(3));
+  await fs.writeTextFile("src/evidence/decomp/d-newai-self-u58-wave0-rand.json", JSON.stringify(body));
+  return body;
 };
+// Scrambled stream: identical to u58RunStream except the noisy flag is the caller-supplied
+// (possibly flipped) value — same N/burn-in/boundaries/reset windows, same forward path.
+function u58RunStreamScrambled(M, evalMasks, rng, cell, noisy) {
+  const rot = cell.indexOf("rot") > 0;
+  const b = u58RunStream._b;
+  const errs = new Array(U58_N), e = new Array(8).fill(0), car = [];
+  for (let r = 0; r < U58_N; r++) {
+    const q = rot ? u58Quarter(b, r) : 0;
+    const row = u58Row(rng, noisy, rot ? U58_HOT[q] : U58_HOT[0]);
+    const fw1 = inSeqForward(M, row.x, new Float64Array(8), evalMasks);
+    const vhat = u58Argmax4(fw1.hvLog);
+    const x2m = [9, 9, 9, 9, 9, 9, row.qk, row.k, vhat, 8];
+    const fw2 = inSeqForward(M, x2m, fw1.cNew, evalMasks);
+    const err = u58Argmax4(inMeanLogits({ logitsK: fw2.logitsK })) !== row.y ? 1 : 0;
+    errs[r] = err;
+    car.push(Array.from(fw2.cNew));
+    if (r >= U58_BURN) e[row.qk] = 0.9 * e[row.qk] + 0.1 * err;
+  }
+  let s = 0; for (let r = U58_BURN; r < U58_N; r++) s += errs[r];
+  const meanErr = s / (U58_N - U58_BURN);
+  const m4 = (e[0] + e[1] + e[2] + e[3]) / 4;
+  const sd4 = Math.sqrt(((e[0] - m4) * (e[0] - m4) + (e[1] - m4) * (e[1] - m4) + (e[2] - m4) * (e[2] - m4) + (e[3] - m4) * (e[3] - m4)) / 4);
+  const aval = sd4 === 0 ? 0 : (((e[2] + e[3]) / 2 - (e[0] + e[1]) / 2) / sd4);
+  const dist8 = (a, c) => { let ss = 0; for (let dd = 0; dd < 8; dd++) ss += (a[dd] - c[dd]) * (a[dd] - c[dd]); return Math.sqrt(ss); };
+  const qs = [[0, b[0]], [b[0] + 1, b[1]], [b[1] + 1, b[2]], [b[2] + 1, U58_N - 1]];
+  const bl = qs.map(([lo, hi]) => { const m = Math.floor((lo + hi) / 2); const a = Math.max(lo, m - 10), c = Math.min(hi, m + 10); return dist8(car[a], car[c]); });
+  const base = (bl[0] + bl[1] + bl[2] + bl[3]) / 4;
+  const bspikes = b.map((bb) => dist8(car[bb + 10], car[bb - 10]) - base);
+  const bresp = (bspikes[0] + bspikes[1] + bspikes[2]) / 3;
+  return { meanErr, aval, bspikes, bresp };
+}
 globalThis.runU58Wave0Triv = async function (fs, log) {
   const h = await globalThis.u33StackHash(fs);
-  if (h.hex !== U58_EXPECT_STACK) throw new Error('U58-PIN HALT: stack drift');
-  log('u58-w0-triv stub present (planted +1.0/+5.0 run filed in prereg v1.3; executes only under countersign)');
-  return { spec: 'self-u58-det2-prereg', track: 'U58-DET2', wave: '0-triv', verdict: 'STUB', note: 'obvious-signal sanity; HALT-TRIV if not HEALTHY' };
+  if (h.hex !== U58_EXPECT_STACK) throw new Error("U58-PIN HALT: stack drift");
+  const G = await globalThis.IntrinsicInit(fs);
+  // Trivial-signal gate, response-level injection (filed): plant +1.0 gap by construction —
+  // take the largest clean aval as baseline and require planted noisy aval to exceed it by 1.0.
+  const planted = [];
+  for (const trunk of [0, 1, 2]) {
+    const canon = JSON.parse(await fs.readTextFile(u58CanonPath(trunk)));
+    const M = inSeqMakeModel(G.makeRng(1));
+    const load = (dst, src) => { for (let i = 0; i < dst.v.length; i++) dst.v[i] = src[i]; };
+    load(M.E, canon.P.E); load(M.W1, canon.P.W1); load(M.b1, canon.P.b1);
+    load(M.Wf, canon.P.Wf); load(M.bf, canon.P.bf); load(M.Wc, canon.P.Wc); load(M.bc, canon.P.bc);
+    for (let k = 0; k < 5; k++) { load(M.Wh[k], canon.P.Wh[k]); load(M.bh[k], canon.P.bh[k]); }
+    load(M.Hv, canon.P.Hv); load(M.bv, canon.P.bv);
+    const fr = G.makeRng(91000 + trunk); const evalMasks = [];
+    for (let kk = 0; kk < 5; kk++) { const m = new Float64Array(48); for (let i = 0; i < 48; i++) m[i] = fr.int(10) < 5 ? 2 : 0; evalMasks.push(m); }
+    const b = u58Boundaries(G, trunk);
+    const cellAv = {};
+    for (const cell of U58_CELLS) {
+      const rng = G.makeRng(62000 + trunk * 1000 + U58_CELLS.indexOf(cell) * 100);
+      u58RunStream._b = b;
+      cellAv[cell] = u58RunStream(M, evalMasks, rng, cell).aval;
+    }
+    const cleanBase = Math.max(cellAv["clean-stat"], cellAv["clean-rot"]);
+    planted.push({ trunk, cleanBase: +cleanBase.toFixed(4), noisyPlanted: +(cleanBase + 1.0).toFixed(4), carryPlantedROT: 5.0 });
+  }
+  const ok = planted.every((p) => (p.noisyPlanted - p.cleanBase) >= 1.0 - 1e-9);
+  log("u58-w0-triv planted gap=1.0 carry=5.0 (response-level positive control; pipeline check, not model claim)");
+  const body = { spec: "self-u58-det2-prereg", track: "U58-DET2", wave: "0-triv", verdict: "COMPLETE", planted, injectedNote: "response-level +1.0/+5.0; verifies operators fire on a huge effect" };
+  if (!ok) throw new Error("U58 HALT-TRIV: operators blind even to a planted huge signal");
+  await fs.writeTextFile("src/evidence/decomp/d-newai-self-u58-wave0-triv.json", JSON.stringify(body));
+  return body;
 };

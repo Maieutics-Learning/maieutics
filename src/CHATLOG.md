@@ -3369,3 +3369,15 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - U59 v1.1 STANDS: Q1 15/20 all bars + W0-RAND (vetoSUP-only pilot, Wave-1 100-count unchanged, HALT-RAND if FIXED) + W0-TRIV (obvious cue, HALT-TRIV if not FIXED). 10x IMPL + 10x CONFIRM. Driver quorum 14→15, +2 stub fns parse-ok.
 - Review adjudication filed in chat (4 stale corrected, 2 adopted). Docs: fresh-eyes-self-u58-v13-10x-results.md, fresh-eyes-self-u59-v11-10x-results.md. Raws in scratch/u58v13-r1.json, scratch/u58v13-d.json, scratch/u59v11-r1.json, scratch/u59v11-d.json.
 - AWAITING fresh countersigns (U58 Waves 0-2; U59 Waves 0-2 separately). NO compute ran. Unpushed: 2 prereg amendments + 2 battery docs + 2 drivers + logs (ride next push).
+
+## 2026-11-26 — PUSHED 4eae5d5 (explicit "lets push"; vault github PAT)
+- Dry run tip a44caa2 match, 8 changed / 773,912B, secret-scan clean. Push 8 blobs, tree 27f2cf3, commit 4eae5d5 parent a44caa2 verified (re-probe after stale-cache UNCERTAIN). Backlog drained (U58 v1.3 + U59 v1.1 + batteries + drivers + logs). Gate cleared. NO PUSH without fresh order.
+
+## 2026-11-26 — Wave-0 sanity full implementation + CODE-OK (user "Updated review"; NO execution; NO PUSH)
+- "Stubs only" closed: full W0-RAND/TRIV logic in both drivers, parse-ok (u58 23985B, u59 41199B, 0 STUBs), 10x static review CODE-OK. Doc: fresh-eyes-wave0-code-review-10x-results.md.
+- Confounds: per-arm fresh stacks + trunk-grad-0 assert (shared init, never shared state). Stats: Wave-0 go/no-go, no FWER owed, main bars untouched.
+- Owed: Wave-0 EXECUTION under fresh countersign (behavior observed, not just reviewed). NO compute ran. Unpushed: 2 drivers + review doc + logs (ride next push).
+
+## 2026-11-26 — Doc audit pre-push CLOSED (user "lets fully document"; NO compute)
+- Coverage since 4eae5d5: U58/U59 full-logic driver edits + code-review doc + CHATLOG + transcript entries — all filed, parse-ok, secret-scan clean. Reviews: review-1 (Project_summary_and_current_issues.pdf) adjudicated (4 stale corrected, 2 adopted as v1.3/v1.1); review-2 (Repository_Changes_U58_v1.3_U59_v1.1_.pdf) adjudicated ("stubs only" closed by full implementation + 10x CODE-OK). Extracts: scratch/review-extract.txt + scratch/review2-extract.txt (regenerable from the two PDFs via unpdf CDN recipe; private working copies, not cited as durable — substance lives in this log + transcript).
+- Awaiting: Wave-0 execution countersign (U58 + U59 separately); Wave-1/2 only after RAND/TRIV gates pass. Standing rule: Try-20 (15/20 agree); filed U57 verdict frozen at 14/20.

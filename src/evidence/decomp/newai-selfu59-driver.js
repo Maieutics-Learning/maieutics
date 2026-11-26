@@ -474,18 +474,157 @@ globalThis.runU59Verdict = async function (fs, log) {
   log("u59-verdict " + verdict + " cause=" + cause + " PIN " + pinN + "/20 CTX " + ctxN + "/20 NOERASE " + noeN + "/20 ISOLATE " + isoN + "/20 FLOOR " + floorN + "/20 MISFIRE " + misN + "/20");
   return body;
 };
-// v1.1 Wave-0 sanity (review-adopted + 15/20 quorum, pre-compute — functions only, run only under fresh countersign):
-// W0-RAND: scrambled ctx pilot (vetoSUP-only, Wave-1 100-train count UNCHANGED) — expect would-be PERSISTS/FLOOR, never FIXED.
-// W0-TRIV: obvious-cue ctx — expect would-be FIXED. Quorum for verdict fns is now 15/20 (Q1).
+// v1.1 Wave-0 sanity (review-adopted + 15/20 quorum — full logic, runs ONLY under fresh countersign):
+// W0-RAND: scrambled ctx pilot (vetoSUP-only, 1 seed x 200 steps pilot — Wave-1's 100-train
+//   count UNCHANGED). A seeded coin flips ctx per row before label/nu/loss use, destroying
+//   the ctx->label contingency while keeping marginals. Gate: veto must NOT separate
+//   (mean|nuA-nuB| small, SUP-CTX would fail); else HALT-RAND (leak/circularity).
+//   Separate arm instances: each run calls u32FreshStack fresh (own params/opt/rng);
+//   veto arms assert trunk-grad-0 every step (see u59Phase2Step frozen branch), so the
+//   shared frozen trunk is identical initialization, never shared mutable state.
+// W0-TRIV: obvious-cue diet (vetoSUP-only pilot, ctx perfectly predicts label, A-rows fixed
+//   to y=3 far from 0). Gate: veto MUST separate cleanly (would-be SUP-CTX pass); else HALT-TRIV.
+// Both go/no-go only: LAM_SUP=1.0, lr, K, B-heavy 80/20, U54 probes all unchanged.
+function u59Phase2StepScrambled(M, params, veto, opt, dataRng, fixedMasks, arm, scrRng) {
+  const B = 16, auxW = 0.5, lam = 2.0, K = 5;
+  const argmax4 = (a) => { let b = 0; for (let i = 0; i < 4; i++) if (a[i] > a[b]) b = i; return b; };
+  const frozen = (arm === "veto");
+  const useCtx = (arm === "veto" || arm === "unfrozen");
+  void useCtx;
+  for (const p of params) p.g.fill(0);
+  veto.gw.fill(0); veto.gb = 0;
+  let lsum = 0, nuA = 0, nuB = 0, nA = 0, nB = 0;
+  for (let b = 0; b < B; b++) {
+    const e = u59PickR1(M, dataRng, fixedMasks);
+    const ctxTrue = dataRng.int(10) < 8 ? 1 : 0;
+    const ctx = scrRng.int(2) === 0 ? ctxTrue : 1 - ctxTrue; // destroy contingency
+    const label = ctx === 1 ? 0 : e.y;
+    const fw1 = inSeqForward(M, e.x, new Float64Array(8), fixedMasks);
+    const ceHv = inCELossGrad(fw1.hvLog, e.v);
+    const dHv = new Float64Array(4); for (let o = 0; o < 4; o++) dHv[o] = ceHv.d[o] * auxW / B;
+    const vhat = argmax4(fw1.hvLog);
+    const x2m = [9, 9, 9, 9, 9, 9, e.qk, e.k, vhat, 8];
+    const fw2 = inSeqForward(M, x2m, fw1.cNew, fixedMasks);
+    const mean2 = inMeanLogits({ logitsK: fw2.logitsK });
+    const nu = u59Nu(veto, ctx, arm);
+    if (ctxTrue === 0) { nuA += nu; nA++; } else { nuB += nu; nB++; }
+    const eff = new Float64Array(4);
+    for (let o = 0; o < 4; o++) eff[o] = (1 - nu) * mean2[o] + nu * (o === 0 ? U59_K : 0);
+    const ce = inCELossGrad(eff, label);
+    lsum += ce.loss;
+    const dEff = new Float64Array(4); for (let o = 0; o < 4; o++) dEff[o] = ce.d[o] / B;
+    const dMean2 = new Float64Array(4); for (let o = 0; o < 4; o++) dMean2[o] = (1 - nu) * dEff[o];
+    let dnu = 0; for (let o = 0; o < 4; o++) dnu += dEff[o] * ((o === 0 ? U59_K : 0) - mean2[o]);
+    dnu /= B;
+    const gg = nu * (1 - nu);
+    if (arm === "vetoSUP") { lsum += U59_LAM_SUP * (-(ctx * Math.log(nu + 1e-12) + (1 - ctx) * Math.log(1 - nu + 1e-12))); veto.gw[ctx] += U59_LAM_SUP * (nu - ctx) / B; }
+    if (arm === "vetoSUP" || arm === "vetoTASK" || arm === "unfrozen") veto.gw[ctx] += dnu * gg;
+    else if (arm === "global") veto.gb += dnu * gg;
+    const perHead1 = fw1.logitsK.map((lg, k) => {
+      if ((b % K) !== k) return new Float64Array(4);
+      const c2 = inCELossGrad(lg, e.y); const d = new Float64Array(4);
+      for (let o = 0; o < 4; o++) d[o] = c2.d[o] * 0.1 * K / B;
+      return d;
+    });
+    const perHead2 = fw2.logitsK.map((lg, k) => {
+      if ((b % K) !== k) return new Float64Array(4);
+      const c2 = inCELossGrad(lg, e.y); const d = new Float64Array(4);
+      for (let o = 0; o < 4; o++) d[o] = c2.d[o] * 0.1 * K / B;
+      return d;
+    });
+    const mean1 = inMeanLogits({ logitsK: fw1.logitsK });
+    const ce1m = inCELossGrad(mean1, e.y);
+    const dMean1 = new Float64Array(4); for (let o = 0; o < 4; o++) dMean1[o] = ce1m.d[o] * 0.3 / B;
+    const dcGated = frozen ? null : inSeqBackward(M, fw2, dMean2, perHead2, null, null, fixedMasks);
+    if (!frozen) {
+      const dcC = new Float64Array(8);
+      for (let d = 0; d < 8; d++) dcC[d] = dcGated[d] / B;
+      inSeqBackward(M, fw1, dMean1, perHead1, dHv, dcC, fixedMasks);
+    }
+  }
+  if (!frozen) {
+    const meanW = new Float64Array(M.Wh[0].v.length);
+    for (let k = 0; k < K; k++) for (let i = 0; i < meanW.length; i++) meanW[i] += M.Wh[k].v[i] / K;
+    for (let k = 0; k < K; k++) for (let i = 0; i < meanW.length; i++) M.Wh[k].g[i] += lam * (M.Wh[k].v[i] - meanW[i]) / (B * M.H);
+    const plist = params;
+    let s = 0;
+    for (const p of plist) for (let i = 0; i < p.g.length; i++) s += p.g[i] * p.g[i];
+    const n = Math.sqrt(s);
+    if (n > 1.0) { const sc = 1.0 / n; for (const p of plist) for (let i = 0; i < p.g.length; i++) p.g[i] *= sc; }
+    opt.step(plist);
+  } else {
+    for (const p of params) for (let i = 0; i < p.g.length; i++) {
+      if (p.g[i] !== 0) throw new Error("U59-FROZEN-VIOLATION: trunk grad nonzero in veto arm");
+    }
+  }
+  if (arm === "vetoSUP" || arm === "vetoTASK" || arm === "unfrozen") { veto.w[0] -= U59_VETO_LR * veto.gw[0]; veto.w[1] -= U59_VETO_LR * veto.gw[1]; }
+  else if (arm === "global") { veto.b -= U59_VETO_LR * veto.gb; }
+  veto.gw.fill(0); veto.gb = 0;
+  return { loss: lsum / B, nuA: nA ? nuA / nA : 0, nuB: nB ? nuB / nB : 0 };
+}
 globalThis.runU59Wave0Rand = async function (fs, log) {
   const h = await globalThis.u33StackHash(fs);
-  if (h.hex !== "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e") throw new Error("U59-PIN HALT: stack drift");
-  log("u59-w0-rand stub present (scrambled-ctx pilot filed in prereg v1.1; executes only under countersign)");
-  return { spec: "self-u59-ext3-prereg", track: "U59-EXT3", wave: "0-rand", verdict: "STUB", note: "HALT-RAND if SUP-FIXED on scrambled" };
+  if (h.hex !== U59_EXPECT_STACK) throw new Error("U59-PIN HALT: stack drift");
+  const G = await globalThis.IntrinsicInit(fs);
+  const t = await globalThis.u32FreshStack(fs, 0);
+  const veto = u59MakeVeto();
+  const scrRng = G.makeRng(97531);
+  let nuA = 0, nuB = 0;
+  for (let step = 0; step < 200; step++) {
+    const r = u59Phase2StepScrambled(t.M, t.params, veto, t.opt, t.dataRng, t.fixedMasks, "vetoSUP", scrRng);
+    nuA = r.nuA; nuB = r.nuB;
+    if (step % 100 === 0) log("u59-w0-rand vetoSUP pilot step " + step + "/200 nuA=" + nuA.toFixed(3) + " nuB=" + nuB.toFixed(3));
+  }
+  const sep = Math.abs(nuA - nuB);
+  log("u59-w0-rand scrambled pilot sep=" + sep.toFixed(4) + " (expect ~0, must NOT separate)");
+  const body = { spec: "self-u59-ext3-prereg", track: "U59-EXT3", wave: "0-rand", verdict: "COMPLETE", nuA: +nuA.toFixed(4), nuB: +nuB.toFixed(4), sep: +sep.toFixed(4), steps: 200 };
+  if (sep > 0.2) throw new Error("U59 HALT-RAND: veto separates on scrambled ctx (leak/circularity) sep=" + sep.toFixed(3));
+  await fs.writeTextFile("src/evidence/decomp/d-newai-self-u59-wave0-rand.json", JSON.stringify(body));
+  return body;
 };
 globalThis.runU59Wave0Triv = async function (fs, log) {
   const h = await globalThis.u33StackHash(fs);
-  if (h.hex !== "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e") throw new Error("U59-PIN HALT: stack drift");
-  log("u59-w0-triv stub present (obvious-cue sanity filed in prereg v1.1; executes only under countersign)");
-  return { spec: "self-u59-ext3-prereg", track: "U59-EXT3", wave: "0-triv", verdict: "STUB", note: "HALT-TRIV if not SUP-FIXED on obvious cue" };
+  if (h.hex !== U59_EXPECT_STACK) throw new Error("U59-PIN HALT: stack drift");
+  const G = await globalThis.IntrinsicInit(fs);
+  const t = await globalThis.u32FreshStack(fs, 1);
+  const veto = u59MakeVeto();
+  let nuA = 0, nuB = 0;
+  for (let step = 0; step < 200; step++) {
+    for (const p of t.params) p.g.fill(0);
+    veto.gw.fill(0); veto.gb = 0;
+    let lsum = 0, sA = 0, sB = 0, nA = 0, nB = 0;
+    for (let b = 0; b < 16; b++) {
+      const e = u59PickR1(t.M, t.dataRng, t.fixedMasks);
+      const ctx = t.dataRng.int(10) < 8 ? 1 : 0;
+      const label = ctx === 1 ? 0 : 3; // trivial: A-rows always y=3, far from 0
+      const fw1 = inSeqForward(t.M, e.x, new Float64Array(8), t.fixedMasks);
+      const vhat = (() => { let bb = 0; for (let i = 1; i < 4; i++) if (fw1.hvLog[i] > fw1.hvLog[bb]) bb = i; return bb; })();
+      const x2m = [9, 9, 9, 9, 9, 9, e.qk, e.k, vhat, 8];
+      const fw2 = inSeqForward(t.M, x2m, fw1.cNew, t.fixedMasks);
+      const mean2 = inMeanLogits({ logitsK: fw2.logitsK });
+      const nu = u59Nu(veto, ctx, "vetoSUP");
+      if (ctx === 0) { sA += nu; nA++; } else { sB += nu; nB++; }
+      const eff = new Float64Array(4);
+      for (let o = 0; o < 4; o++) eff[o] = (1 - nu) * mean2[o] + nu * (o === 0 ? U59_K : 0);
+      const ce = inCELossGrad(eff, label);
+      lsum += ce.loss;
+      const dEff = new Float64Array(4); for (let o = 0; o < 4; o++) dEff[o] = ce.d[o] / 16;
+      let dnu = 0; for (let o = 0; o < 4; o++) dnu += dEff[o] * ((o === 0 ? U59_K : 0) - mean2[o]);
+      dnu /= 16;
+      const gg = nu * (1 - nu);
+      lsum += U59_LAM_SUP * (-(ctx * Math.log(nu + 1e-12) + (1 - ctx) * Math.log(1 - nu + 1e-12)));
+      veto.gw[ctx] += (U59_LAM_SUP * (nu - ctx) + dnu * gg) / 1;
+    }
+    veto.w[0] -= U59_VETO_LR * veto.gw[0] / 16; veto.w[1] -= U59_VETO_LR * veto.gw[1] / 16;
+    veto.gw.fill(0); veto.gb = 0;
+    nuA = nA ? sA / nA : 0; nuB = nB ? sB / nB : 0;
+    void lsum;
+    if (step % 100 === 0) log("u59-w0-triv vetoSUP pilot step " + step + "/200 nuA=" + nuA.toFixed(3) + " nuB=" + nuB.toFixed(3));
+  }
+  const sep = nuB - nuA;
+  log("u59-w0-triv obvious-cue pilot sep(B-A)=" + sep.toFixed(4) + " (expect large positive)");
+  const body = { spec: "self-u59-ext3-prereg", track: "U59-EXT3", wave: "0-triv", verdict: "COMPLETE", nuA: +nuA.toFixed(4), nuB: +nuB.toFixed(4), sep: +sep.toFixed(4), steps: 200 };
+  if (!(nuB > 0.7 && nuA < 0.3)) throw new Error("U59 HALT-TRIV: veto blind even to obvious cue nuA=" + nuA.toFixed(3) + " nuB=" + nuB.toFixed(3));
+  await fs.writeTextFile("src/evidence/decomp/d-newai-self-u59-wave0-triv.json", JSON.stringify(body));
+  return body;
 };
