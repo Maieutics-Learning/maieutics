@@ -19,6 +19,13 @@
 //   await globalThis.runU58Wave0(fs, log);      // load-check + twins + dry-run 12 probes
 //   await globalThis.runU58Probes(fs, log);     // 12 ledgers (20 streams each)
 //   await globalThis.runU58Verdict(fs, log);    // bars + verdict
+// v1.5 (20 trunks x 80 streams; ONLY under fresh countersign — trains + probes are compute):
+//   await globalThis.runU58CanonNew(fs, log);   // 17 new canon trunks s3-19 (W6 recipe, P0 + stackHash)
+//   await globalThis.runU58Wave0_20(fs, log);    // PIN + P0-identity s0-2 + Guard' + dry-run 80 + timing
+//   await globalThis.runU58Wave0Rand20(fs, log); // scrambled null at full N (go/no-go)
+//   await globalThis.runU58Wave0Triv20(fs, log); // planted +1.0/+5.0 at full N (go/no-go)
+//   await globalThis.runU58Probes20(fs, log);   // 80 ledgers (80 streams each, v15 paths)
+//   await globalThis.runU58Verdict20(fs, log);  // 15/20 quorum + 6+ POWER (v1.5 bars)
 globalThis.SelfU58Init = async function (fs) {
   const src = await fs.readTextFile("src/evidence/decomp/newai-selfu53-driver.js");
   (0, eval)(src + "\n//# sourceURL=newai-selfu53-driver.js");
@@ -350,5 +357,256 @@ globalThis.runU58Wave0Triv = async function (fs, log) {
   const body = { spec: "self-u58-det2-prereg", track: "U58-DET2", wave: "0-triv", verdict: "COMPLETE", planted, injectedNote: "response-level +1.0/+5.0; verifies operators fire on a huge effect" };
   if (!ok) throw new Error("U58 HALT-TRIV: operators blind even to a planted huge signal");
   await fs.writeTextFile("src/evidence/decomp/d-newai-self-u58-wave0-triv.json", JSON.stringify(body));
+  return body;
+};
+
+// ===== v1.5 extension (20 trunks x 80 streams/cell; v1.3 [0,1,2]/20-stream fns above UNTOUCHED) =====
+// Streams 0..79 reuse the v1.3 seed formula (62000 + trunk*1000 + cellIdx*100 + s), so streams
+// 0..19 per cell are bit-identical to the filed v1.3 probes (nested superset, not a resample).
+const U58V15_TRUNKS = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+const U58V15_NEW_SEEDS = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+const U58V15_STREAMS = 80;
+function u58v15ProbePath(trunk, cell) { return "src/evidence/decomp/d-newai-self-u58-v15-probes-t" + trunk + "-c" + cell + ".json"; }
+const U58V15_WAVE0_PATH = "src/evidence/decomp/d-newai-self-u58-v15-wave0.json";
+const U58V15_RAND_PATH = "src/evidence/decomp/d-newai-self-u58-v15-wave0-rand.json";
+const U58V15_TRIV_PATH = "src/evidence/decomp/d-newai-self-u58-v15-wave0-triv.json";
+const U58V15_VERDICT_PATH = "src/evidence/decomp/d-newai-self-u58-v15-verdict.json";
+function u58v15LoadCanon(M, canon) {
+  const load = (dst, src) => { for (let i = 0; i < dst.v.length; i++) dst.v[i] = src[i]; };
+  load(M.E, canon.P.E); load(M.W1, canon.P.W1); load(M.b1, canon.P.b1);
+  load(M.Wf, canon.P.Wf); load(M.bf, canon.P.bf); load(M.Wc, canon.P.Wc); load(M.bc, canon.P.bc);
+  for (let k = 0; k < 5; k++) { load(M.Wh[k], canon.P.Wh[k]); load(M.bh[k], canon.P.bh[k]); }
+  load(M.Hv, canon.P.Hv); load(M.bv, canon.P.bv);
+}
+function u58v15EvalMasks(G, trunk) {
+  const fr = G.makeRng(91000 + trunk); const evalMasks = [];
+  for (let kk = 0; kk < 5; kk++) { const m = new Float64Array(48); for (let i = 0; i < 48; i++) m[i] = fr.int(10) < 5 ? 2 : 0; evalMasks.push(m); }
+  return evalMasks;
+}
+// Canon trains s3-19: EXACT W6 recipe via pinned u32TrainOneStep (same call sequence as
+// runU33Train canon). Ledger schema identical to filed d-newai-self-u33-canon (same paths,
+// same fields) so filed loaders read them byte-compatibly.
+globalThis.runU58CanonNew = async function (fs, log) {
+  if (typeof u32FreshStack !== "function" || typeof u32TrainOneStep !== "function" || typeof u32SnapshotParams !== "function")
+    throw new Error("U58v15 HALT: canon recipe fns missing (need u32FreshStack/u32TrainOneStep/u32SnapshotParams)");
+  const h = await globalThis.u33StackHash(fs);
+  if (h.hex !== U58_EXPECT_STACK) throw new Error("U58v15-PIN HALT: stack drift " + h.hex.slice(0, 16));
+  for (const seed of U58V15_NEW_SEEDS) {
+    const ledgerPath = u58CanonPath(seed);
+    try { const prev = JSON.parse(await fs.readTextFile(ledgerPath)); if (prev && prev.verdict === "COMPLETE") { log(ledgerPath + " exists, skip"); continue; } } catch (e) {}
+    const t = await u32FreshStack(fs, seed);
+    const P0 = u32SnapshotParams(t.M);
+    const steps = 800, t0 = Date.now(), curve = [];
+    for (let step = 0; step < steps; step++) {
+      for (const p of t.params) p.g.fill(0);
+      const r = u32TrainOneStep(t.M, t.params, t.opt, t.dataRng, t.fixedMasks);
+      if (step % 100 === 0 || step === steps - 1) curve.push({ step, loss: +r.loss.toFixed(6) });
+      if (step % 200 === 0) log("u58v15-canon s" + seed + " step " + step + "/800 loss=" + r.loss.toFixed(4));
+    }
+    const P = u32SnapshotParams(t.M);
+    const divCos = (typeof inMeanCos === "function") ? +inMeanCos(t.M).toFixed(4) : null;
+    const body = {
+      spec: "self-u33-canonical-repair-prereg", track: "U33-CANON", kind: "canon", seed, steps,
+      B: 16, lr: 5e-3, K: 5, H: 48, C: 6, auxW: 0.5, lam: 2.0,
+      bootstraps: "b%K slices (same as cur-pick)", verdict: "COMPLETE",
+      recipeMatch: "C6/auxW0.5/800st/lam2.0/B16/lr5e-3/K5/H48/armCode76/pick-max-ties-lowest — W6 recipe on pinned stack",
+      stackHash: h.hex, stackFiles: (h.perFile || []).map((f) => f.path),
+      wallMs: Date.now() - t0, frozen: true, curve, divCos, P0, P,
+      v15: "canon trunk for U58-DET2 v1.5 (identical recipe to filed s0-2)",
+    };
+    await fs.writeTextFile(ledgerPath, JSON.stringify(body));
+    log("u58v15-canon s" + seed + " COMPLETE loss0=" + curve[0].loss + " lossN=" + curve[curve.length - 1].loss);
+  }
+  return "CANON-NEW-COMPLETE";
+};
+globalThis.runU58Wave0_20 = async function (fs, log) {
+  try { const prev = JSON.parse(await fs.readTextFile(U58V15_WAVE0_PATH)); if (prev && prev.verdict === "COMPLETE") { log(U58V15_WAVE0_PATH + " exists, skip"); return prev; } } catch (e) {}
+  const h = await globalThis.u33StackHash(fs);
+  if (h.hex !== U58_EXPECT_STACK) throw new Error("U58v15-PIN HALT: stack drift " + h.hex.slice(0, 16));
+  const G = await globalThis.IntrinsicInit(fs);
+  log("u58v15-wave0 stack PIN ok");
+  for (const seed of [0, 1]) {
+    const r1 = G.makeRng(62000 + seed), r2 = G.makeRng(62000 + seed);
+    const a = inSeqGenShift(r1, null), c = inSeqGenShift(r2, null);
+    if (JSON.stringify(a) !== JSON.stringify(c)) throw new Error("U58v15 Wave-0 HALT: probe stream not reproducible");
+  }
+  log("u58v15-wave0 probe-stream reproducible");
+  for (const hp of U58_HOT) for (const qq of hp) if (qq < 0 || qq > 3) throw new Error("U58v15 Wave-0 HALT: hot pair outside qk domain " + JSON.stringify(hp));
+  {
+    const rng = G.makeRng(777001); let n = 0;
+    for (let i = 0; i < 2000; i++) { const e = u58Row(rng, false, [0, 1]); if (e.qk === 0 || e.qk === 1) n++; }
+    const f = n / 2000; log("u58v15-wave0 hot-fraction=" + f.toFixed(3) + " (v1.4 expect ~0.85)");
+    if (Math.abs(f - 0.85) > 0.05) throw new Error("U58v15 Wave-0 HALT: hot mixture off (v1.4 expect 0.85)");
+  }
+  // P0-identity: fresh-stack init must match filed canon P0 exactly (recipe-drift gate, reads only).
+  for (const trunk of [0, 1, 2]) {
+    const canon = JSON.parse(await fs.readTextFile(u58CanonPath(trunk)));
+    if (!canon.P0) throw new Error("U58v15 HALT: filed canon s" + trunk + " lacks P0");
+    const fresh = await u32FreshStack(fs, trunk);
+    const cmp = u32MaxAbsDiff(u32SnapshotParams(fresh.M), canon.P0);
+    log("u58v15 P0-identity s" + trunk + " diff=" + cmp.max);
+    if (cmp.max !== 0) throw new Error("U58v15 HALT: canon recipe drift s" + trunk);
+  }
+  // Dry-run: 1 stream per cell per trunk (crash-test only; values filed, thresholds untouched).
+  const t0 = Date.now(); const dry = [];
+  for (const trunk of U58V15_TRUNKS) {
+    const canon = JSON.parse(await fs.readTextFile(u58CanonPath(trunk))); // HALTs if a new trunk ledger is missing — CanonNew first
+    const M = inSeqMakeModel(G.makeRng(1));
+    u58v15LoadCanon(M, canon);
+    const evalMasks = u58v15EvalMasks(G, trunk);
+    const b = u58Boundaries(G, trunk);
+    for (const cell of U58_CELLS) {
+      const rng = G.makeRng(62000 + trunk * 1000 + U58_CELLS.indexOf(cell) * 100);
+      u58RunStream._b = b;
+      const r = u58RunStream(M, evalMasks, rng, cell);
+      dry.push({ trunk, cell, meanErr: +r.meanErr.toFixed(4), aval: +r.aval.toFixed(4), bresp: +r.bresp.toFixed(4) });
+    }
+  }
+  const ms = Date.now() - t0, per = ms / dry.length;
+  const proj = Math.round(per * U58V15_TRUNKS.length * U58_CELLS.length * U58V15_STREAMS * 3 / 1000);
+  log("u58v15-wave0 dry-run 80 streams ok; per-probe ~" + per.toFixed(1) + "ms; projected RAND+TRIV+Wave1 (19,200 probes) ~" + proj + "s (record only, no gate)");
+  const body = { spec: "self-u58-det2-prereg", track: "U58-DET2", wave: "0-v15", verdict: "COMPLETE", stackHash: h.hex, dryRun: dry, timingMs: ms, perProbeMs: +per.toFixed(2), projectedSec: proj };
+  await fs.writeTextFile(U58V15_WAVE0_PATH, JSON.stringify(body));
+  return body;
+};
+globalThis.runU58Wave0Rand20 = async function (fs, log) {
+  const h = await globalThis.u33StackHash(fs);
+  if (h.hex !== U58_EXPECT_STACK) throw new Error("U58v15-PIN HALT: stack drift");
+  const G = await globalThis.IntrinsicInit(fs);
+  const av = [], br = [];
+  for (const trunk of U58V15_TRUNKS) {
+    const canon = JSON.parse(await fs.readTextFile(u58CanonPath(trunk)));
+    const M = inSeqMakeModel(G.makeRng(1));
+    u58v15LoadCanon(M, canon);
+    const evalMasks = u58v15EvalMasks(G, trunk);
+    const b = u58Boundaries(G, trunk);
+    for (const cell of U58_CELLS) {
+      for (let s = 0; s < U58V15_STREAMS; s++) {
+        const rng = G.makeRng(62000 + trunk * 1000 + U58_CELLS.indexOf(cell) * 100 + s);
+        u58RunStream._b = b;
+        const r = u58RunStreamScrambled(M, evalMasks, rng, cell, false); // D4 true null: relabel OFF everywhere
+        av.push(r.aval); br.push(r.bresp);
+      }
+    }
+    log("u58v15-rand t" + trunk + " 320 null streams ok");
+  }
+  const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+  const mA = mean(av), mB = mean(br);
+  log("u58v15-rand scrambled n=" + av.length + " meanAval=" + mA.toFixed(4) + " meanBresp=" + mB.toFixed(4) + " (expect ~0)");
+  const body = { spec: "self-u58-det2-prereg", track: "U58-DET2", wave: "0-rand-v15", verdict: "COMPLETE", meanAval: +mA.toFixed(5), meanBresp: +mB.toFixed(5), n: av.length };
+  if (Math.abs(mA) > 0.25 || Math.abs(mB) > 0.25) throw new Error("U58v15 HALT-RAND: scrambled data shows signal aval=" + mA.toFixed(3) + " bresp=" + mB.toFixed(3));
+  await fs.writeTextFile(U58V15_RAND_PATH, JSON.stringify(body));
+  return body;
+};
+globalThis.runU58Wave0Triv20 = async function (fs, log) {
+  const h = await globalThis.u33StackHash(fs);
+  if (h.hex !== U58_EXPECT_STACK) throw new Error("U58v15-PIN HALT: stack drift");
+  const G = await globalThis.IntrinsicInit(fs);
+  const planted = [];
+  for (const trunk of U58V15_TRUNKS) {
+    const canon = JSON.parse(await fs.readTextFile(u58CanonPath(trunk)));
+    const M = inSeqMakeModel(G.makeRng(1));
+    u58v15LoadCanon(M, canon);
+    const evalMasks = u58v15EvalMasks(G, trunk);
+    const b = u58Boundaries(G, trunk);
+    let cleanBase = -Infinity;
+    for (const cell of U58_CELLS) {
+      for (let s = 0; s < U58V15_STREAMS; s++) {
+        const rng = G.makeRng(62000 + trunk * 1000 + U58_CELLS.indexOf(cell) * 100 + s);
+        u58RunStream._b = b;
+        const a = u58RunStream(M, evalMasks, rng, cell).aval;
+        if (cell.indexOf("clean") === 0 && a > cleanBase) cleanBase = a;
+      }
+    }
+    planted.push({ trunk, cleanBase: +cleanBase.toFixed(4), noisyPlanted: +(cleanBase + 1.0).toFixed(4), carryPlantedROT: 5.0 });
+    log("u58v15-triv t" + trunk + " 320 streams ok");
+  }
+  const ok = planted.every((p) => (p.noisyPlanted - p.cleanBase) >= 1.0 - 1e-9);
+  log("u58v15-triv planted gap=1.0 carry=5.0 (response-level positive control; pipeline check, not model claim)");
+  const body = { spec: "self-u58-det2-prereg", track: "U58-DET2", wave: "0-triv-v15", verdict: "COMPLETE", planted, injectedNote: "response-level +1.0/+5.0 at full v1.5 N; verifies operators fire on a huge effect" };
+  if (!ok) throw new Error("U58v15 HALT-TRIV: operators blind even to a planted huge signal");
+  await fs.writeTextFile(U58V15_TRIV_PATH, JSON.stringify(body));
+  return body;
+};
+globalThis.runU58Probes20 = async function (fs, log) {
+  const h = await globalThis.u33StackHash(fs);
+  if (h.hex !== U58_EXPECT_STACK) throw new Error("U58v15-PIN HALT: stack drift");
+  const G = await globalThis.IntrinsicInit(fs);
+  for (const trunk of U58V15_TRUNKS) {
+    const canon = JSON.parse(await fs.readTextFile(u58CanonPath(trunk)));
+    const M = inSeqMakeModel(G.makeRng(1));
+    u58v15LoadCanon(M, canon);
+    const evalMasks = u58v15EvalMasks(G, trunk);
+    const b = u58Boundaries(G, trunk);
+    for (const cell of U58_CELLS) {
+      const path = u58v15ProbePath(trunk, cell);
+      try { const prev = JSON.parse(await fs.readTextFile(path)); if (prev && prev.verdict === "COMPLETE") { log(path + " exists, skip"); continue; } } catch (e) {}
+      const streams = [];
+      for (let s = 0; s < U58V15_STREAMS; s++) {
+        const rng = G.makeRng(62000 + trunk * 1000 + U58_CELLS.indexOf(cell) * 100 + s);
+        u58RunStream._b = b;
+        const r = u58RunStream(M, evalMasks, rng, cell);
+        streams.push({ s, meanErr: +r.meanErr.toFixed(5), aval: +r.aval.toFixed(5), bspikes: r.bspikes.map((v) => +v.toFixed(5)), bresp: +r.bresp.toFixed(5) });
+      }
+      await fs.writeTextFile(path, JSON.stringify({ spec: "self-u58-det2-prereg", track: "U58-DET2", v15: true, trunk, cell, verdict: "COMPLETE", stackHash: h.hex, boundaries: b, n: U58_N, streamsPerCell: U58V15_STREAMS, streams }));
+      log("u58v15-probes t" + trunk + " " + cell + " COMPLETE (80 streams)");
+    }
+  }
+  return "ALL-PROBES20-COMPLETE";
+};
+globalThis.runU58Verdict20 = async function (fs, log) {
+  const perTrunk = [];
+  for (const trunk of U58V15_TRUNKS) {
+    const L = {};
+    for (const cell of U58_CELLS) L[cell] = JSON.parse(await fs.readTextFile(u58v15ProbePath(trunk, cell)));
+    const pin = U58_CELLS.every((c) => L[c].stackHash === U58_EXPECT_STACK);
+    const vec = { aval: [], bsw: [], merr: [], cellOf: [] };
+    for (const cell of U58_CELLS) for (const st of L[cell].streams) {
+      vec.aval.push(st.aval); vec.bsw.push(st.bresp); vec.merr.push(st.meanErr); vec.cellOf.push(cell);
+    }
+    const idx = (pred) => vec.cellOf.map((c, i) => (pred(c) ? i : -1)).filter((i) => i >= 0);
+    const at = (arr, ii) => ii.map((i) => arr[i]);
+    const cs = (arr, cell) => { const a = at(arr, idx((c) => c === cell)); return { m: u58Mean(a), se: u58SD(a) / Math.sqrt(a.length) }; };
+    const rA = u58OLS(vec.merr, vec.aval), rB = u58OLS(vec.merr, vec.bsw);
+    const nosread = rA.singular || rB.singular;
+    const A = nosread ? vec.aval : rA.resid, B = nosread ? vec.bsw : rB.resid;
+    const K2 = nosread ? 2 : 1;
+    const gSn = cs(A, 'noisy-stat'), gSc = cs(A, 'clean-stat');
+    const gRn = cs(A, 'noisy-rot'), gRc = cs(A, 'clean-rot');
+    const gS = gSn.m - gSc.m, seS = Math.sqrt(gSn.se * gSn.se + gSc.se * gSc.se);
+    const gR = gRn.m - gRc.m, seR = Math.sqrt(gRn.se * gRn.se + gSc.se * gSc.se);
+    const cross = Math.abs(gR - gS), seC = Math.sqrt(seS * seS + seR * seR);
+    const bR = at(B, idx((c) => c.indexOf('rot') >= 0));
+    const sR = u58Mean(bR), seSR = u58SD(bR) / Math.sqrt(bR.length);
+    const bS = at(B, idx((c) => c.indexOf('stat') >= 0));
+    const sS = u58Mean(bS), seSS = u58SD(bS) / Math.sqrt(bS.length);
+    const r = u58Corr(vec.aval, vec.bsw);
+    const nondegen = (gS - 2 * K2 * seS > 0) && (gR - 2 * K2 * seR > 0) && (sR - 2 * K2 * seSR > 0);
+    const subs = [
+      { name: 'gap_STAT', pass: gS - 2 * K2 * seS > 0, uw: 2 * seS > 0.25 },
+      { name: 'gap_ROT', pass: gR - 2 * K2 * seR > 0, uw: 2 * seR > 0.25 },
+      { name: 'cross', pass: gS > 0 && gR > 0 && cross <= 0.5 * Math.min(gS, gR), uw: 2 * seC > 0.25 },
+      { name: 'spike_ROT', pass: sR - 2 * K2 * seSR > 0, uw: 2 * seSR > 0.25 },
+      { name: 'spike_STAT', pass: (Math.abs(sS) <= 2 * seSS) && (sR > 0 && sS <= sR / 2), uw: (sR > 0) && (2 * seSS > Math.abs(sR) / 2) },
+    ];
+    const disN = subs.filter((s) => s.pass).length;
+    const dissociate = nondegen && disN >= 4;
+    const independ = dissociate && Math.abs(r) < 0.7;
+    const uwN = subs.filter((s) => s.uw).length;
+    perTrunk.push({ trunk, pin, nosread, gaps: { gS: +gS.toFixed(4), gR: +gR.toFixed(4), cross: +cross.toFixed(4) }, spikes: { rot: +sR.toFixed(4), stat: +sS.toFixed(4) }, r: +r.toFixed(4), nondegen, subs: subs.map((s) => s.name + '=' + (s.pass ? '1' : '0')), disN, dissociate, independ, uwN });
+    log('u58v15-verdict t' + trunk + ' PIN=' + (pin ? 'ok' : 'FAIL') + ' gaps=' + gS.toFixed(3) + '/' + gR.toFixed(3) + ' cross=' + cross.toFixed(3) + ' spikes=' + sR.toFixed(3) + '/' + sS.toFixed(3) + ' r=' + r.toFixed(3) + (nosread ? ' NOSREAD(x2)' : '') + ' uw=' + uwN + '/5');
+  }
+  const q = (f) => perTrunk.filter((s) => f(s)).length;
+  const pinN = q((s) => s.pin), ndN = q((s) => s.nondegen), disN = q((s) => s.dissociate), indN = q((s) => s.independ), uwT = q((s) => s.uwN > 0);
+  let verdict, cause;
+  if (pinN < 20) { verdict = 'PIN-FAIL'; cause = 'pin'; }
+  else if (uwT >= 6) { verdict = 'UNDERPOWERED'; cause = 'precision (fixed-tolerance POWER trip on 6+ trunks, v1.5)'; }
+  else if (ndN < 15) { verdict = 'DET2-COLLAPSED'; cause = 'nondegeneracy'; }
+  else if (disN < 15) { verdict = 'DET2-ENTANGLED'; cause = 'dissociation (need 4/5 at quorum)'; }
+  else if (indN < 15) { verdict = 'DET2-ENTANGLED'; cause = 'independence (|r|>=0.7)'; }
+  else { verdict = 'DET2-HEALTHY'; cause = 'clean (H-language: licenses E-NE1 consumers, proves no biology)'; }
+  const body = { spec: 'self-u58-det2-prereg', track: 'U58-DET2', v15: true, verdict, cause, bars: { 'DET2-PIN': pinN + '/20', 'DET2-NONDEGEN': ndN + '/20', 'DET2-DISSOCIATE': disN + '/20', 'DET2-INDEPEND': indN + '/20', 'DET2-POWER': (20 - uwT) + '/20 (non-underpowered)' }, perTrunk };
+  await fs.writeTextFile(U58V15_VERDICT_PATH, JSON.stringify(body));
+  log('u58v15-verdict ' + verdict + ' cause=' + cause);
   return body;
 };

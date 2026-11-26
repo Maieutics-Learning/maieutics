@@ -169,6 +169,12 @@ is filed as a gap, not backlog.
   Grad-check before any training (exact ≤1e-5; filed ledgers: U31b 4.2e-8, U31c
   4.33e-9, U31f 8.63e-8). Frozen params: maxAbsDrift == 0.0 every wave; Mc/none
   copies: copyDiff == 0.
+  Known bug classes (all repaired same-session pre-compute, disclosed in review
+  docs — do NOT re-fix): (a) consts (U58_HOT, U61_EXPECT_STACK) invisible across
+  the eval boundary — use filed literal hashes; (b) u32MaxAbsDiff misused on live
+  param objects — use direct grad-array diff (U60b Wave-0 gate crashed pre-write);
+  (c) probe ledger infix `-cclean-*` matches filed v1.5 naming, reads/writes
+  consistent — leave alone (renaming would invalidate filed ledgers).
 - **Eval + verdict** (`d-newai-self-<wave>-*.json` + `d-newai-self-<wave>-verdict.json`):
   paired N=1000 (U31f) / N=200 (trunk) evals on identical row sets across arms;
   verdict JSON carries bars (bar/result/seeds), deviations, mechanism, quorum.
@@ -256,9 +262,18 @@ symmetry-mapping rule if FUNC holds while BIT misses) + evals EXACTLY equal 3/3.
 | U56 leakfix | `self-u56-ext1b-prereg.md` v1.1 STANDS | `newai-selfu56-driver.js` | LEAK-FIXED: CLEAN 3/3 CTX 2/3 (c1 ctxA 0.485 lone miss) FLOOR 3/3 MISFIRE 0/3; E-EXT2 LICENSED; P5 stays CLOSED | wave0 + 60 fits + 60E + verdict + 4 review docs, Turn-213 |
 | U57 ext2 (20 seeds, 14/20 frozen) | `self-u57-ext2-prereg.md` v1.0 STANDS | `newai-selfu57-driver.js` (U54 transform + VETO3) | FLOOR-FAIL: PIN 20/20 CTX 8/20 NOERASE 0/20 ISOLATE 11/20 FLOOR 0/20 MISFIRE 20/20; vetoA 0.051–0.068 all seeds; E-EXT2 line DEAD | wave0 + 160T + 80E + verdict + 4 review docs, Turn-215 |
 | U58 det2 (probe track, 3 trunks frozen) | `self-u58-det2-prereg.md` v1.0→v1.3 (centering→precision P1, fixed-tolerance POWER P3, RAND/TRIV go/no-go) | `newai-selfu58-driver.js` (full RAND/TRIV logic, code-review CODE-OK) | UNDERPOWERED: PIN 3/3 NONDEGEN/DISSOCIATE/POWER 0/3; gap_STAT 0.73–1.15 pass 3/3, gap_ROT 0.10–0.25 + carry ~0 fail; no license either way | wave0/RAND/TRIV + 12 probes (240) + verdict + 6 review docs + code-review + interpretation note, Turns 216–218 |
-| U58 v1.4 (20-trunk conversion, unexecuted) | `self-u58-det2-prereg.md` v1.4 section (2/3 retired, 15/20 trunks, reuse s0-2 + 17 new identical canon, 1600 probes, POWER 6+ ratified) | driver ext OWED (canon s3-19 train + 20-trunk fns; old [0,1,2] fns untouched) | prereg+battery CLOSED STANDS (10x IMPL + 10x CONFIRM); NO compute until fresh countersign | battery doc `fresh-eyes-self-u58-v14-10x-results.md`, Turn-218+ |
+| U58 v1.4 (20-trunk conversion; superseded by v1.5 for power) | v1.4 section (2/3 retired, 15/20 trunks, 1600 probes) | STANDS (10x IMPL + 10x CONFIRM) but power-deficient as filed — trunk scaling alone can't fix within-trunk SE; kept for N<20 compliance | battery doc `fresh-eyes-self-u58-v14-10x-results.md` |
+| U58 v1.5 (20 trunks x 80 streams, EXECUTED) | prereg v1.5 + driver ext (6 fns, parse-OK, old fns intact) | UNDERPOWERED again: PIN 20/20, gap_STAT 20/20, gap_ROT 14/20 (0.09–0.58), cross 2/20, spike_ROT 0/20, uw 3–4/5 all trunks; 60 reviewers unanimous | 17 canon + wave0/RAND/TRIV + 80 probes (6400) + verdict + 3 review docs, Turn-218+ |
 | U59 ext3 (20 seeds, 15/20) | `self-u59-ext3-prereg.md` v1.0→v1.1 (quorum 14/20→15/20, RAND/TRIV, LAM_SUP=1.0) | `newai-selfu59-driver.js` (repaired D1/D2/D3/D5/D6 pre-compute, zero data) | FLOOR-FAIL: PIN/CTX edge 15/20 + NOERASE 20/20 (vetoSUP vetoA 0.0059–0.0064 all seeds — leak FIXED vs U57 0.059; replication 0.0589 holds) but noveto CTX-A 0.21–0.34 kills floor 0/20; line dead on B-heavy, mechanism vindicated | wave0/RAND/TRIV + 100T + 100E + verdict + 6 review docs, Turn-218 |
+| U60 det3 (regime substrate; EXECUTED) | `self-u60-det3-prereg.md` v1.0 (20 regime trunks, diet-only pressure, DET2 probes verbatim, MANIP guard, same bars 15/20) | `newai-selfu60-driver.js` | MANIP-FAIL: PIN 20/20, MANIP 10/20 (canon max 0.003314; regime mean ~0.00333, half the trunks above max), NONDEGEN/DISSOCIATE/INDEPEND/POWER 0/20 — guard fires first per filed order, DET3 bars NOT interpreted | wave0 (PIN + P0-identity + Guard + dry-run) + 20 regime trains + 80 probes + verdict `d-newai-self-u60-verdict.json` + closeout `self-u60-det3-closeout.md` + 3 review docs (`fresh-eyes-self-u60-wave{0,1,2}-10x-results.md`, 30 R1 + 30 D unanimous) |
+| U60b priced (carry price; EXECUTED) | `self-u60b-priced-prereg.md` v1.0 (SAME 20 regime trunks + aux quarter-loss price; SAME MANIP guard + DET2 probes; Q-probe + Wave-0 gate prove price reaches carry) | `newai-selfu60b-driver.js` (D-pin repair pre-compute: first gate misused u32MaxAbsDiff on live params, crashed pre-write — fixed to direct grad-array diff, zero data) | UNDERPOWERED: MANIP 16/20 (qv 0.0016–0.0082, ~2x U60 max — price installs excursion); quarter-readout 0.313 vs 0.25 chance (echo ceiling ~0.50; training qloss 1.27–1.54 vs ln4 1.386 = elevation WITHOUT information); POWER trips (gated, not interpreted) | 80 probes + verdict `d-newai-self-u60b-verdict.json` + closeout `self-u60b-priced-closeout.md` + 4 review docs (prereg + wave{0,1,2}, 30 R1 + 30 D unanimous) |
+| U60c trace (slow surprise-trace; EXECUTED, reads-only) | `self-u60c-trace-prereg.md` v1.0 (same 20 regime trunks; 50-row EMA disagreement trace Z; QV-Z guard vs canon band; ZB-resp spike test; D5 STAT-control disclosed pre-data as confounded) | `newai-selfu60c-driver.js` | Z-ABSENT: QV-Z 0.0003–0.0012 all inside canon band (mean 0.00072 max 0.001385) → guard 0/20; ZB-resp ROT negative everywhere (−0.001 to −0.0035, dips not snaps); STAT ZB-resp ~+0.01 WITHOUT base correction (D5, non-deciding); POWER-diag 0/20 | reads-only on 40 filed frozen trunks (no new trains) + verdict `d-newai-self-u60c-verdict.json` + closeout `self-u60c-trace-closeout.md` + 3 review docs (prereg + wave{0,1}, 30 R1 + 30 D unanimous) |
+| U61 ext4 (balanced 50/50 veto; EXECUTED) | `self-u61-ext4-prereg.md` v1.0 (diet-only change from U59; all else identical) + driver `newai-selfu61-driver.js` (mechanical clone, parse-OK) | FLOOR-FAIL: CTX 16/20 + vetoA 0.0024–0.0025 (cleanest) + replication 0.0373, but global 0/20 by-construction + noveto 5/20 kill floor; D3 scope flaw binding; leak∝pressure hypothesis filed | wave0/RAND/TRIV + 100T + 100E + verdict + 3 review docs + closeout `self-u61-closeout.md` |
+| U62 rescoped (fair-scope re-gate; EXECUTED, reads-only) | `self-u62-veto-rescoped-prereg.md` v1.0 (recompute on filed U61 100T+100E: FLOOR-R shielded vetoSUP/vetoTASK/unfrozen CTX-A≥0.45 + GLOBAL-DIR control + NOVETO-DIAG, same 15/20 quorum; replication ±0.02 vs U57 0.059) | `newai-selfu62-driver.js` (reads-only; first recompute printed PIN-FAIL from const-visibility bug class U58_HOT/U61_EXPECT_STACK invisible across eval boundary — fixed to filed literal hashes, re-ran pre-review) | TASK-NOREP: PIN 20/20, CTX 16/20, NOERASE 20/20, ISOLATE 11/20, FLOOR-R 20/20, GDIR 20/20, replication 0.0373 vs 0.059 trips by 0.0017 (gate reached because floor now passes) | wave0 ledger-identity + verdict `d-newai-self-u62-verdict.json` + 3 review docs (`fresh-eyes-self-u62-10x-results.md` + wave{0,1}, 20 R1 + 20 D unanimous) |
+| U62 replication audit (doc-only, reads-only) | `self-u62-replication-audit.md` (pipeline-intact check + diet-scaling math: 0.0589 × 0.5/0.8 = 0.03681 predicted vs 0.03733 observed, diff ~0.5 SE) | — (no driver) | DIET-EXPLAINED: every other bar replicates U61 exactly; tolerance is diet-blind (leak proportional to B-pressure); licensed U63 diet-scaled recompute or close line | audit doc only, no new ledgers |
+| U63 scaled (diet-scaled replication; EXECUTED, reads-only) | `self-u63-veto-scaled-prereg.md` v1.0 (U62-verbatim except replication center 0.036875 = 0.059 × 0.5/0.8, same ±0.02) | `newai-selfu63-driver.js` (U62 clone, 1-line center change) | SUP-PERSISTS: replication 0.0373 vs 0.036875 RESOLVED (diff 0.0005); isolate 11/20 (unfrHolds 0/20 — balanced diet never erases); PIN 20/20 CTX 16/20 NOERASE 20/20 FLOOR-R 20/20 GDIR 20/20 | wave0 + verdict `d-newai-self-u63-verdict.json` + closeout `self-u63-scaled-closeout.md` + 2 review docs (prereg + wave01, 20 R1 + 20 D unanimous). Line status: veto proven, pressure-dependent necessity — no further veto prereg licensed |
 | U58+U59 failure analysis | `self-u58-u59-failure-analysis.md` (U58 ruler-short + null carry + rotation attenuation; U59 gate-preserves-not-teaches + all-arm floor scope) | — (doc-only) | STANDS (10x SOUND + 10x CONFIRM); licensed: U58 v1.4 ruler-retry + U59 new-diet prereg | battery doc `fresh-eyes-self-u58u59-analysis-10x-results.md`, Turn-218+ |
+| U60 paper-gap analysis | `self-u60-paper-gap-analysis.md` (7 gaps: half-a-variable w/o consumers; un-timed gain; no mode; all-commit + timescale outside window; fixed lam suspect; Lippl points at binding; fixed-schedule clock + no second store + dense interference) + 6-step success recipe (step 1 = rule-switch diet + oracle controls, NOT preregged) | — (doc-only) | STANDS (reviewed); licensed: U60-successor step-1 prereg OR close detector line (substrate-dead by U60/U60b/U60c triangulation) | doc-only, no compute |
 | Standing rule (2026-11-26) | NO N<20 on any test (supersedes probe-track 2/3 exemption; filed verdicts frozen) | — | recorded in CURRENT_TASK; U58 v1.4 is first compliant probe track | — |
 
 Wave file pattern (all under `src/evidence/decomp/`): train ledgers
@@ -372,6 +387,33 @@ frozen-missing). Re-run after every stage (§9).
   `14900+s` (cycle/H), `15200+s` (ext). Tutor gate: test acc ≥ 0.60 else ABORT.
 - Convention everywhere: twin-matched per-seed init/train/eval streams; paired
   eval rows across arms; COMPLETE-gated resume; NO seed shopping.
+- U60/U60b regime trunks s0–19: W6 recipe verbatim (800st, B16/lr5e-3/K5/H48,
+  C=6 pick-max auxW0.5 lam2.0 boot, init 73000+seed·7919+76·131, data
+  42000+seed·104729+55, masks 91000+seed) EXCEPT row sampler: 32 blocks × 400
+  rows; block rng 62000+seed·1000+j; jittered boundaries bj=[100±U{0..20},
+  200±U{0..20}, 300±U{0..20}]; rotating hot HOT=[[0,1],[2,3],[0,1],[2,3]] per
+  quarter; if dataRng.int(10)<7 rejection-sample qk into HOT[q] (≤50 tries).
+  Labels never relabeled. Ledger families: `d-newai-self-u60-regime-s{seed}-800st.json`,
+  `d-newai-self-u60b-priced-s{seed}-800st.json`. Probes: 4 cells × 80 streams,
+  N=400, DET2 v1.5 operators verbatim. Canon qv band (U60 Wave-0, filed):
+  mean 0.002272 max 0.003314.
+- U60b price only: linear Q (4×8 + 4 bias, init rng 96000+seed) on round-2 carry;
+  auxQW=0.5 × CE(Q·cNew, q)/B; full-trunk grads; Q-init twin-checked in Wave-0.
+- U60c trace (reads-only, zero new trains): reuse 20 filed U60 regime + 20 filed
+  canon trunks; surprise d=curVoteDisagree(fw2.logitsK); slow trace
+  z←(1−α)z+α·d, α=0.02 filed (horizon ~50 rows); QV-Z + ZB-resp (z[bb+10]−z[bb−10]
+  minus in-quarter baseline); canon band mean 0.00072 max 0.001385 (Wave-0).
+- U61 balanced veto (100 Phase-2 trains): reuse U57 Phase-1 verbatim; 5 arms × 20
+  seeds; open w=[0,0], lr 1.0, K=10, LAM_SUP=1.0 (vetoSUP own-objective);
+  diet ctx=dataRng.int(10)<5 (50% B label-0 / 50% A label-y; U59 was 80/20).
+  Eval U54 Phase-3 verbatim (CTX-A/CTX-B/RET-A, N=200, same stream IDs).
+  Ledger families: `d-newai-self-u61-phase2-{arm}-s{seed}.json` +
+  `d-newai-self-u61-eval-{arm}-s{seed}.json` (arm ∈ noveto/global/vetoSUP/vetoTASK/unfrozen).
+- U62/U63 recompute (reads-only, zero train writes): reuse 200 filed U61 ledgers
+  (100 Phase-2 + 100 evals); U62 replication center 0.059 ±0.02 (vs U57);
+  U63 center 0.036875 = 0.059×0.5/0.8 ±0.02 (diet-scaled; B-fractions U59 0.8,
+  U61 0.5 are filed diet constants). Bar→file map: verdict JSON perSeed[*].arms
+  carries all five arms; wave0 ledger asserts 200/200 presence + spot-hash.
 
 ## Appendix C — verdict glossary (filed meanings, not folk meanings)
 
@@ -389,6 +431,8 @@ frozen-missing). Re-run after every stage (§9).
   quorum misfire) · VETO-MISFIRE / UNFROZEN-HOLDS (diagnostics) ·
   WINNER-HOLDS/PARTIAL/DEAD · DET-COLLAPSED (U55) · LEAK-FIXED (U56) ·
   FLOOR-FAIL (U57/U59) · UNDERPOWERED (U58; v1.4 20-trunk retry owed) ·
+  MANIP-FAIL (U60) · UNDERPOWERED (U60b) · Z-ABSENT (U60c) · FLOOR-FAIL (U61) ·
+  TASK-NOREP (U62) · SUP-PERSISTS (U63) · DIET-EXPLAINED (U62 audit) ·
   PHOTOCOPY (Wave-D cold-distillation 0/9) · VOID (tripwire, not failure).
   Each verdict JSON carries its bars + deviations + mechanism — read the JSON,
   not the label.
