@@ -3381,3 +3381,24 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 ## 2026-11-26 — Doc audit pre-push CLOSED (user "lets fully document"; NO compute)
 - Coverage since 4eae5d5: U58/U59 full-logic driver edits + code-review doc + CHATLOG + transcript entries — all filed, parse-ok, secret-scan clean. Reviews: review-1 (Project_summary_and_current_issues.pdf) adjudicated (4 stale corrected, 2 adopted as v1.3/v1.1); review-2 (Repository_Changes_U58_v1.3_U59_v1.1_.pdf) adjudicated ("stubs only" closed by full implementation + 10x CODE-OK). Extracts: scratch/review-extract.txt + scratch/review2-extract.txt (regenerable from the two PDFs via unpdf CDN recipe; private working copies, not cited as durable — substance lives in this log + transcript).
 - Awaiting: Wave-0 execution countersign (U58 + U59 separately); Wave-1/2 only after RAND/TRIV gates pass. Standing rule: Try-20 (15/20 agree); filed U57 verdict frozen at 14/20.
+
+## 2026-11-26 — PUSHED 0847eec7 (explicit "lets fully document and push"; vault github PAT)
+- Dry run: tip 4eae5d5 match, 5 changed / ~776KB, secret-scan clean. Push: 5 blobs, tree 3523b72, commit 0847eec765e4bc39416258489104ad12e91714f8 parent 4eae5d5 verified pushed:true (clean, no stale-cache repeat).
+- Backlog drained (Wave-0 full logic + code review + doc audit + logs). Gate cleared. NO PUSH without fresh order.
+
+## 2026-11-26 — Interpretation note filed (user "Last review"; doc-only; NO compute; NO PUSH)
+- Filed src/evidence/decomp/wave0-interpretation-note.md: per-verdict meanings, both-HEALTHY cross-pattern with shortcut filing-against, final-report changelog, inspectable-commit pointer. No bars moved. Wave-0 execution still needs fresh countersign. Unpushed: note + logs (ride next push; NO PUSH without fresh order).
+
+## 2026-11-26 — U58 UNDERPOWERED + U59 FLOOR-FAIL CLOSED (countersigned everything; NO PUSH)
+- Repairs pre-compute (zero data): U59-D1 crash line deleted, D2 frozen trunk vetoSUP/vetoTASK, D3/D6 stale veto keys fixed, D5 pilot-average gates; U58-D4 true-null repair. Parse-ok, 0 stale preds.
+- U58: W0 gates PASS (RAND -0.224/-0.160, TRIV verified) -> 240 probes -> UNDERPOWERED (gap_STAT 3/3 but ROT+carry fail, uw 3/3 trunks). U59: W0 gates PASS (sep 0.0181/0.8791) -> 100 trains -> 100 evals -> FLOOR-FAIL (CTX 15/20 meets Q1, NOERASE 20/20, vetoA~0.006 leak fixed, replication 0.0589, noveto floor 0/20). 120 reviewers unanimous (docs: fresh-eyes-self-u58/u59-wave{0,1,2}-10x-results.md).
+- Unpushed: drivers + 200+ ledgers + verdicts + 6 review docs + logs (ride next push).
+
+## 2026-11-26 — Standing rule NO N<20 + U58 v1.4 CLOSED (user "Lets not have <20 on any tests"; NO compute; NO PUSH)
+- Rule: every future test uses 20+ independent units with 15/20 quorum (streams-in-a-trunk do NOT count). Retires U58 probe-track 2/3 exemption (v1.3 line 31); filed verdicts frozen.
+- U58 v1.4: prereg section (reuse canon s0-2 + 17 new identical s3-19, 1600 probes, same operators/thresholds, POWER 6+ ratified) + 10x IMPL R1 + 10x CONFIRM-STANDS discussion (raws scratch/u58v14-r1.json, scratch/u58v14-d.json) -> v1.4 STANDS. Doc fresh-eyes-self-u58-v14-10x-results.md.
+- Owed: driver ext (canon s3-19 + 20-trunk fns, old fns untouched) + fresh countersign for Waves 0-2 at N=20. NO compute ran (battery pool only). Unpushed: section + battery doc + logs.
+
+## 2026-11-26 — U58+U59 failure analysis CLOSED (user "document what failed and get a good reason why"; NO compute; NO PUSH)
+- Doc self-u58-u59-failure-analysis.md: U58 ruler-short (ROT 0.10-0.25 vs 0.25 tolerance) + null carry (~0, no context substrate) + rotation attenuation (cross 0.64-0.90); U59 leak-fix vindicated (vetoSUP 0.0059-0.0064 20/20 vs 0.059, replication 0.0589) but B-heavy erases noveto to 0.21-0.34 so all-arm floor fails 0/20 (gate preserves, doesn't teach); controls RAND/TRIV pass both tracks; both lines dead as filed; what-would-change-mind filed.
+- Battery 10x SOUND + 10x CONFIRM unanimous (raws scratch/u58u59-analysis-r1.json, scratch/u58u59-analysis-d.json). Doc fresh-eyes-self-u58u59-analysis-10x-results.md. Licensed: U58 v1.4 ruler-retry + U59 new-diet prereg (new doc). NO compute ran. Unpushed: analysis + battery doc + logs.

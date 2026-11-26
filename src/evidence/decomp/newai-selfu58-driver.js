@@ -243,11 +243,15 @@ globalThis.runU58Verdict = async function (fs, log) {
   return body;
 };
 // v1.3 Wave-0 sanity (review-adopted, pre-compute — full logic, runs ONLY under fresh countersign):
-// W0-RAND: scrambled noisy/clean assignment through EXACT dry-run machinery.
-//   Per (trunk,cell) stream a seeded coin flip swaps the noisy flag fed to u58Row,
-//   destroying the true contingency while keeping marginal row mix identical.
-//   Gate: |meanAval| and |meanBresp| must stay small (no signal); any HEALTHY-direction
-//   4/5-DISSOCIATE pass on scrambled data throws HALT-RAND (circularity/leak).
+// W0-RAND (D4-repaired null): ALL cells' streams generated with noisy=false (relabel OFF
+//   everywhere) through the EXACT dry-run machinery (same N/burn-in/boundaries/reset
+//   windows, same seeds, same hot-pair schedules, same forward path). The relabel is the
+//   treatment; removing it from both arms is the true null — the detector must see ~0.
+//   (First issue flipped the generation flag per cell, which changes the data instead of
+//   removing the treatment: relabelled rows carry extra slot-{2,3} errors by construction,
+//   so aval=0.46 was the detector working, not a leak. The gate correctly HALTed a bad
+//   null. This repair makes the null a null.)
+//   Gate: |meanAval| and |meanBresp| must stay small (no signal); else HALT-RAND.
 // W0-TRIV: planted obvious signal (+1.0 standardized gap, +5.0 ROT carry break) applied
 //   at the RESPONSE level after identical forward machinery (documents pipeline gain,
 //   not model capability). Gate: must look HEALTHY-direction; else HALT-TRIV.
@@ -269,14 +273,9 @@ globalThis.runU58Wave0Rand = async function (fs, log) {
     for (let kk = 0; kk < 5; kk++) { const m = new Float64Array(48); for (let i = 0; i < 48; i++) m[i] = fr.int(10) < 5 ? 2 : 0; evalMasks.push(m); }
     const b = u58Boundaries(G, trunk);
     for (const cell of U58_CELLS) {
-      const idx = U58_CELLS.indexOf(cell);
-      const flip = G.makeRng(96000 + trunk * 100 + idx).int(2) === 0;
-      const noisy = (cell.indexOf("noisy") === 0) !== flip;
-      const rng = G.makeRng(62000 + trunk * 1000 + idx * 100);
+      const rng = G.makeRng(62000 + trunk * 1000 + U58_CELLS.indexOf(cell) * 100);
       u58RunStream._b = b;
-      const saved = u58Row;
-      void saved;
-      const r = u58RunStreamScrambled(M, evalMasks, rng, cell, noisy);
+      const r = u58RunStreamScrambled(M, evalMasks, rng, cell, false); // D4: null = relabel OFF everywhere (treatment removed, not flipped)
       av.push(r.aval); br.push(r.bresp);
     }
   }
@@ -284,7 +283,7 @@ globalThis.runU58Wave0Rand = async function (fs, log) {
   const mA = mean(av), mB = mean(br);
   log("u58-w0-rand scrambled meanAval=" + mA.toFixed(4) + " meanBresp=" + mB.toFixed(4) + " (expect ~0)");
   const body = { spec: "self-u58-det2-prereg", track: "U58-DET2", wave: "0-rand", verdict: "COMPLETE", meanAval: +mA.toFixed(5), meanBresp: +mB.toFixed(5), n: 12 };
-  if (Math.abs(mA) > 0.25 || Math.abs(mB) > 0.25) throw new Error("U58 HALT-RAND: scrambled data shows signal (leak/circularity) aval=" + mA.toFixed(3) + " bresp=" + mB.toFixed(3));
+  if (Math.abs(mA) > 0.25 || Math.abs(mB) > 0.25) throw new Error("U58 HALT-RAND: scrambled data shows signal (leak/circularity) aval=" + mA.toFixed(3) + " bresp=" + mB.toFixed(3)); // D-pin: 0.25 = POWER tolerance magnitude (same standardized units); any HALT-direction signal on scrambled data stops the line — go/no-go only, main bars untouched
   await fs.writeTextFile("src/evidence/decomp/d-newai-self-u58-wave0-rand.json", JSON.stringify(body));
   return body;
 };

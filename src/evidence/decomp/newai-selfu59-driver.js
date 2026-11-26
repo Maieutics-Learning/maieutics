@@ -83,8 +83,8 @@ function u59PickR1(M, dataRng, fixedMasks) {
 function u59Phase2Step(M, params, veto, opt, dataRng, fixedMasks, arm) {
   const B = 16, auxW = 0.5, lam = 2.0, K = 5;
   const argmax4 = (a) => { let b = 0; for (let i = 1; i < 4; i++) if (a[i] > a[b]) b = i; return b; };
-  const frozen = (arm === "veto");
-  const useCtx = (arm === "veto" || arm === "unfrozen");
+  const frozen = (arm === "vetoSUP" || arm === "vetoTASK"); // D2 repair: U57's (arm==="veto") never fires under U59's split arm names; filed design is frozen trunk + VETO3 (SUP-PIN trunk-grad-0 assert)
+  const useCtx = (arm === "vetoSUP" || arm === "vetoTASK" || arm === "unfrozen");
   for (const p of params) p.g.fill(0);
   veto.gw.fill(0); veto.gb = 0;
   let lsum = 0, nuA = 0, nuB = 0, nA = 0, nB = 0;
@@ -181,7 +181,6 @@ globalThis.runU59Wave0 = async function (fs, log) {
     const nu = 1 / (1 + Math.exp(-(ctx === 0 ? wA : wB)));
     let dnu = 0; for (let o = 0; o < 4; o++) dnu += dE[o] * ((o === 0 ? U59_K : 0) - m2[o]);
     const gg = nu * (1 - nu);
-    if (arm === "vetoSUP") { lsum += U59_LAM_SUP * (-(ctx * Math.log(nu + 1e-12) + (1 - ctx) * Math.log(1 - nu + 1e-12))); veto.gw[ctx] += U59_LAM_SUP * (nu - ctx) / B; } // own objective: non-vanishing direct supervision
     const ana = [ctx === 0 ? dnu * gg + U59_LAM_SUP * (nu - ctx) : 0, ctx === 1 ? dnu * gg + U59_LAM_SUP * (nu - ctx) : 0];
     const vars = [[wA, 0], [wB, 1]];
     const eeps = 1e-6;
@@ -416,12 +415,13 @@ globalThis.runU59Verdict = async function (fs, log) {
       E[arm] = JSON.parse(await fs.readTextFile(u59EvalPath(seed, arm)));
     }
     const P1 = {};
-    for (const arm of ["noveto", "global", "veto", "unfrozen"]) P1[arm] = JSON.parse(await fs.readTextFile(u59Phase1Path(seed, arm)));
+    for (const arm of ["noveto", "global", "vetoSUP", "vetoTASK", "unfrozen"]) P1[arm] = JSON.parse(await fs.readTextFile(u59Phase1Path(seed, arm))); // D3 repair: u59Phase1Path maps vetoSUP/vetoTASK to the shared U57 veto file; the old ["veto"] key left P1.vetoSUP undefined (verdict crash)
     const pinHash = ["noveto", "global", "vetoSUP", "vetoTASK", "unfrozen"].every((a) => T[a].stackHash === U59_EXPECT_STACK && E[a].stackHash === U59_EXPECT_STACK && P1[a].stackHash === U59_EXPECT_STACK);
     const ckSame = ["global", "vetoSUP", "vetoTASK", "unfrozen"].every((a) => P1[a].checkpoint.inputsHash === P1.noveto.checkpoint.inputsHash);
-    const frozenKept = (() => {
-      const a = JSON.stringify(T.veto.P), b = JSON.stringify(T.veto.P0);
-      return a === b;
+    const frozenKept = (() => { // D6 repair: stale T.veto key (split-arm rename); check BOTH veto arms' Phase-2 P vs P0 — frozen trunk per filed design
+      const a = JSON.stringify(T.vetoSUP.P), b = JSON.stringify(T.vetoSUP.P0);
+      const c = JSON.stringify(T.vetoTASK.P), d = JSON.stringify(T.vetoTASK.P0);
+      return a === b && c === d;
     })();
     const ev = E.vetoSUP, er = E.vetoTASK, eu = E.unfrozen, eg = E.global, en = E.noveto;
     const lowComp = ev.checkpointAcc < 0.28;
@@ -488,8 +488,8 @@ globalThis.runU59Verdict = async function (fs, log) {
 function u59Phase2StepScrambled(M, params, veto, opt, dataRng, fixedMasks, arm, scrRng) {
   const B = 16, auxW = 0.5, lam = 2.0, K = 5;
   const argmax4 = (a) => { let b = 0; for (let i = 0; i < 4; i++) if (a[i] > a[b]) b = i; return b; };
-  const frozen = (arm === "veto");
-  const useCtx = (arm === "veto" || arm === "unfrozen");
+  const frozen = (arm === "vetoSUP" || arm === "vetoTASK"); // D2 repair: U57's (arm==="veto") never fires under U59's split arm names; filed design is frozen trunk + VETO3 (SUP-PIN trunk-grad-0 assert)
+  const useCtx = (arm === "vetoSUP" || arm === "vetoTASK" || arm === "unfrozen");
   void useCtx;
   for (const p of params) p.g.fill(0);
   veto.gw.fill(0); veto.gb = 0;
@@ -560,7 +560,7 @@ function u59Phase2StepScrambled(M, params, veto, opt, dataRng, fixedMasks, arm, 
   if (arm === "vetoSUP" || arm === "vetoTASK" || arm === "unfrozen") { veto.w[0] -= U59_VETO_LR * veto.gw[0]; veto.w[1] -= U59_VETO_LR * veto.gw[1]; }
   else if (arm === "global") { veto.b -= U59_VETO_LR * veto.gb; }
   veto.gw.fill(0); veto.gb = 0;
-  return { loss: lsum / B, nuA: nA ? nuA / nA : 0, nuB: nB ? nuB / nB : 0 };
+  return { loss: lsum / B, nuA: nA ? nuA / nA : 0, nuB: nB ? nuB / nB : 0, nA, nB }; // D5: counts for pilot-average gating
 }
 globalThis.runU59Wave0Rand = async function (fs, log) {
   const h = await globalThis.u33StackHash(fs);
@@ -569,16 +569,17 @@ globalThis.runU59Wave0Rand = async function (fs, log) {
   const t = await globalThis.u32FreshStack(fs, 0);
   const veto = u59MakeVeto();
   const scrRng = G.makeRng(97531);
-  let nuA = 0, nuB = 0;
+  let tA = 0, tB = 0, cA = 0, cB = 0; // D5: accumulate over the WHOLE pilot — last-batch means (B=16, ~3 true-A rows) are pure noise
   for (let step = 0; step < 200; step++) {
     const r = u59Phase2StepScrambled(t.M, t.params, veto, t.opt, t.dataRng, t.fixedMasks, "vetoSUP", scrRng);
-    nuA = r.nuA; nuB = r.nuB;
-    if (step % 100 === 0) log("u59-w0-rand vetoSUP pilot step " + step + "/200 nuA=" + nuA.toFixed(3) + " nuB=" + nuB.toFixed(3));
+    tA += r.nuA * r.nA; cA += r.nA; tB += r.nuB * r.nB; cB += r.nB;
+    if (step % 100 === 0) log("u59-w0-rand vetoSUP pilot step " + step + "/200 nuA=" + r.nuA.toFixed(3) + " nuB=" + r.nuB.toFixed(3) + " (batch; gate uses pilot average)");
   }
+  const nuA = cA ? tA / cA : 0, nuB = cB ? tB / cB : 0; // pilot-average: same 50/50 mixture both groups by construction
   const sep = Math.abs(nuA - nuB);
   log("u59-w0-rand scrambled pilot sep=" + sep.toFixed(4) + " (expect ~0, must NOT separate)");
   const body = { spec: "self-u59-ext3-prereg", track: "U59-EXT3", wave: "0-rand", verdict: "COMPLETE", nuA: +nuA.toFixed(4), nuB: +nuB.toFixed(4), sep: +sep.toFixed(4), steps: 200 };
-  if (sep > 0.2) throw new Error("U59 HALT-RAND: veto separates on scrambled ctx (leak/circularity) sep=" + sep.toFixed(3));
+  if (sep > 0.2) throw new Error("U59 HALT-RAND: veto separates on scrambled ctx (leak/circularity) sep=" + sep.toFixed(3)); // D-pin: 0.2 pilot gate — at chance (nu~0.5 both) sep~0; separation on noise stops the line. Go/no-go only.
   await fs.writeTextFile("src/evidence/decomp/d-newai-self-u59-wave0-rand.json", JSON.stringify(body));
   return body;
 };
@@ -588,7 +589,7 @@ globalThis.runU59Wave0Triv = async function (fs, log) {
   const G = await globalThis.IntrinsicInit(fs);
   const t = await globalThis.u32FreshStack(fs, 1);
   const veto = u59MakeVeto();
-  let nuA = 0, nuB = 0;
+  let nuA = 0, nuB = 0, tA = 0, tB = 0, cA = 0, cB = 0; // D5: pilot averages (last-batch TRIV gate would be batch noise too)
   for (let step = 0; step < 200; step++) {
     for (const p of t.params) p.g.fill(0);
     veto.gw.fill(0); veto.gb = 0;
@@ -618,13 +619,15 @@ globalThis.runU59Wave0Triv = async function (fs, log) {
     veto.w[0] -= U59_VETO_LR * veto.gw[0] / 16; veto.w[1] -= U59_VETO_LR * veto.gw[1] / 16;
     veto.gw.fill(0); veto.gb = 0;
     nuA = nA ? sA / nA : 0; nuB = nB ? sB / nB : 0;
+    tA += nuA * nA; cA += nA; tB += nuB * nB; cB += nB; // D5: accumulate whole pilot
     void lsum;
-    if (step % 100 === 0) log("u59-w0-triv vetoSUP pilot step " + step + "/200 nuA=" + nuA.toFixed(3) + " nuB=" + nuB.toFixed(3));
+    if (step % 100 === 0) log("u59-w0-triv vetoSUP pilot step " + step + "/200 nuA=" + nuA.toFixed(3) + " nuB=" + nuB.toFixed(3) + " (batch; gate uses pilot average)");
   }
+  nuA = cA ? tA / cA : 0; nuB = cB ? tB / cB : 0; // D5: pilot-average gate
   const sep = nuB - nuA;
   log("u59-w0-triv obvious-cue pilot sep(B-A)=" + sep.toFixed(4) + " (expect large positive)");
   const body = { spec: "self-u59-ext3-prereg", track: "U59-EXT3", wave: "0-triv", verdict: "COMPLETE", nuA: +nuA.toFixed(4), nuB: +nuB.toFixed(4), sep: +sep.toFixed(4), steps: 200 };
-  if (!(nuB > 0.7 && nuA < 0.3)) throw new Error("U59 HALT-TRIV: veto blind even to obvious cue nuA=" + nuA.toFixed(3) + " nuB=" + nuB.toFixed(3));
+  if (!(nuB > 0.7 && nuA < 0.3)) throw new Error("U59 HALT-TRIV: veto blind even to obvious cue nuA=" + nuA.toFixed(3) + " nuB=" + nuB.toFixed(3)); // D-pin: obvious-cue gate (B=suppress nu->1, A=release nu->0); failure = power/design flaw. Go/no-go only.
   await fs.writeTextFile("src/evidence/decomp/d-newai-self-u59-wave0-triv.json", JSON.stringify(body));
   return body;
 };

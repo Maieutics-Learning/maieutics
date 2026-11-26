@@ -78,7 +78,7 @@ The §8-era (G-series v2, hinges, cheap-tests, batteries) is fully ledgered: 137
 | 8.8 (g) rule-ish binding | cyclic 10/12; many-to-one mean 0.736, none at chance | `g-results.json`, `wave5-driver.js` | eval-only symmetry probes | CONFIRMED |
 | 8.8 batteries | v1 6/4 → v2 6/2/2 → v3 10/10 steelman | `evo-fade-premise-v{1..3}.md`, `fresh-eyes-evo-fade-v{1..3}-results.md`, `cheap-tests/spec.md` | drivers beside results | CONFIRMED |
 
-## Post-paper program U39–U54 (durable ledgers; CHATLOG Turns 175–209 + extras)
+## Post-paper program U39–U59 (durable ledgers; CHATLOG Turns 175–218+ + extras)
 
 | Claim | Numbers | Artifacts | Code | Status |
 |---|---|---|---|---|
@@ -94,6 +94,11 @@ The §8-era (G-series v2, hinges, cheap-tests, batteries) is fully ledgered: 137
 | U52 bioreview triage | 7 briefs, 7/7 PMIDs, 1 full text; P5 runnable now | synthesis v1.2 + briefs 14–20 + incoming transcript | — (no compute) | CONFIRMED |
 | U53 veto switch fails guards | ckpts 0.275/0.340/0.305; vetoA 0.0556/0.0635/0.0502 | 37 ledgers + verdict FLOOR-FAIL | `newai-selfu53-driver.js` | CONFIRMED |
 | U54 stronger brain + closed switch still fails quorum, P5 closed | ckpts 0.585/0.555/0.555; s2 veto 0.605/1/0.56 vetoA 0.0464 clean 1/3; MISFIRE 2/3 | 38 ledgers + verdict FLOOR-FAIL | `newai-selfu54-driver.js` | CONFIRMED |
+| U55 detector collapses (thin signal, precise null) | residual gaps +0.02..+0.14, spikes ~0; NONDEGEN 0/3 POWER 3/3 | wave0 + 240 probes + verdict DET-COLLAPSED | `newai-selfu55-driver.js` v1.4 | CONFIRMED |
+| U56 balanced supervision fixes the leak | vetoA 0.0025 all arms; CTX 2/3 FLOOR 3/3 | wave0 + 60 fits + 60E + verdict LEAK-FIXED | `newai-selfu56-driver.js` | CONFIRMED |
+| U57 20-seed veto retest fails floor | vetoA 0.051–0.068 20/20; CTX 8/20 FLOOR 0/20 MISFIRE 20/20 | 160T + 80E + verdict FLOOR-FAIL | `newai-selfu57-driver.js` | CONFIRMED |
+| U58 rotation detector underpowered (3-trunk, frozen) | gap_STAT 0.73–1.15 3/3; gap_ROT 0.10–0.25 + carry ~0; uw 3/3 trunks | wave0/RAND/TRIV + 240 probes + verdict UNDERPOWERED + v1.4 20-trunk conversion (unexecuted) | `newai-selfu58-driver.js` | CONFIRMED |
+| U59 supervised veto fixes leak, floor fails (20 seeds) | vetoSUP vetoA 0.0059–0.0064 20/20 (vs U57 0.059); CTX 15/20 NOERASE 20/20; noveto 0.21–0.34 → FLOOR 0/20; replication 0.0589 | 100T + 100E + verdict FLOOR-FAIL + failure analysis (10x SOUND/CONFIRM) | `newai-selfu59-driver.js` | CONFIRMED |
 
 ## §2 lineage (LITERATURE — no our-ledger)
 
