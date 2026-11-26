@@ -242,3 +242,18 @@ globalThis.runU58Verdict = async function (fs, log) {
   log('u58-verdict ' + verdict + ' cause=' + cause);
   return body;
 };
+// v1.3 Wave-0 sanity (review-adopted, pre-compute, NO Wave-1/2 compute here — functions only, run only under fresh countersign):
+// W0-RAND: scrambled labels through EXACT dry-run machinery — expect would-be COLLAPSED/UNDER, never HEALTHY.
+// W0-TRIV: planted +1.0 gap / +5.0 carry break — expect would-be HEALTHY. Both go/no-go, no tuning.
+globalThis.runU58Wave0Rand = async function (fs, log) {
+  const h = await globalThis.u33StackHash(fs);
+  if (h.hex !== U58_EXPECT_STACK) throw new Error('U58-PIN HALT: stack drift');
+  log('u58-w0-rand stub present (scrambled-label run filed in prereg v1.3; executes only under countersign)');
+  return { spec: 'self-u58-det2-prereg', track: 'U58-DET2', wave: '0-rand', verdict: 'STUB', note: 'scrambled-target sanity; HALT-RAND if HEALTHY/4-5-DISSOCIATE' };
+};
+globalThis.runU58Wave0Triv = async function (fs, log) {
+  const h = await globalThis.u33StackHash(fs);
+  if (h.hex !== U58_EXPECT_STACK) throw new Error('U58-PIN HALT: stack drift');
+  log('u58-w0-triv stub present (planted +1.0/+5.0 run filed in prereg v1.3; executes only under countersign)');
+  return { spec: 'self-u58-det2-prereg', track: 'U58-DET2', wave: '0-triv', verdict: 'STUB', note: 'obvious-signal sanity; HALT-TRIV if not HEALTHY' };
+};

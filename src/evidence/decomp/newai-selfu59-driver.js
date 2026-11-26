@@ -1,4 +1,4 @@
-// U59-EXT3 driver (cloned from U57-EXT2): vetoSUP joint objective (task + LAM_SUP*BCE), 5 arms, 20 seeds, quorum 14/20.
+// U59-EXT3 driver (cloned from U57-EXT2): vetoSUP joint objective (task + LAM_SUP*BCE), 5 arms, 20 seeds, quorum 15/20 (v1.1 Q1).
 // newai-selfu59-driver.js — U59-EXT3 (E-EXT3 program) supervised veto objective under B-heavy Phase-2.
 //
 // Design (prereg self-u59-ext3-prereg.md v1.0): 4 arms × 20 seeds. Phase 1 trains
@@ -406,7 +406,7 @@ globalThis.runU59Eval = async function (fs, log, opts) {
   log("u59-eval " + arm + " s" + seed + " ctxA=" + body.accCtxA + " ctxB=" + body.accCtxB + " retA=" + body.accRetA + " (ckpt " + p1.checkpoint.acc + ") veto=" + body.vetoA + "/" + body.vetoB);
   return body;
 };
-// Verdict (20 seeds, quorum 14/20): PIN + CTX + NOERASE + ISOLATE + FLOOR (+ cause). P5 already closed: misfire kills E-EXT2 line only.
+// Verdict (20 seeds, quorum 15/20 v1.1 Q1): PIN + CTX + NOERASE + ISOLATE + FLOOR (+ cause). P5 already closed: misfire kills E-EXT2 line only.
 globalThis.runU59Verdict = async function (fs, log) {
   const perSeed = [];
   for (let seed = 0; seed < 20; seed++) {
@@ -445,14 +445,14 @@ globalThis.runU59Verdict = async function (fs, log) {
   const repMean = perSeed.reduce((s, x) => s + x.arms.vetoTASK.vetoA, 0) / perSeed.length;
   let verdict = "", cause = "clean";
   if (pinN < 20) { verdict = "PIN-FAIL"; cause = "pin"; }
-  else if (floorN < 14) { verdict = "FLOOR-FAIL"; cause = "floor"; }
+  else if (floorN < 15) { verdict = "FLOOR-FAIL"; cause = "floor"; }
   else if (Math.abs(repMean - 0.059) > 0.02) { verdict = "TASK-NOREP"; cause = "replication control off (mean vetoTASK vetoA " + repMean.toFixed(4) + " vs U57 0.059 — audit U57 before interpreting candidate)"; }
   else if (misN >= 7) { verdict = "SUP-PERSISTS"; cause = "candidate vetoA breach at quorum DESPITE direct supervision (leak deeper than objective; veto line dead)"; }
-  else if (ctxN < 14) { verdict = "SUP-PERSISTS"; cause = "ctx-joint fail at quorum (cannot implement policy even supervised)"; }
-  else if (noeN < 14) { verdict = "SUP-PERSISTS"; cause = "noerasure-breach with clean vetoA (association not preservable under suppression)"; }
-  else if (isoN < 14) {
+  else if (ctxN < 15) { verdict = "SUP-PERSISTS"; cause = "ctx-joint fail at quorum (cannot implement policy even supervised)"; }
+  else if (noeN < 15) { verdict = "SUP-PERSISTS"; cause = "noerasure-breach with clean vetoA (association not preservable under suppression)"; }
+  else if (isoN < 15) {
     const unfrHolds = q((s) => (s.arms.unfrozen.accCtxA >= s.arms.unfrozen.ckpt - 0.03 && s.arms.unfrozen.accCtxB >= 0.95) && Math.abs(s.arms.unfrozen.accRetA - s.arms.unfrozen.ckpt) <= 0.02);
-    verdict = "SUP-PERSISTS"; cause = "isolate fail at quorum (unfrHolds " + unfrHolds + "/20" + (unfrHolds >= 14 ? "; freezing redundant" : "; neither isolate nor holds") + ")";
+    verdict = "SUP-PERSISTS"; cause = "isolate fail at quorum (unfrHolds " + unfrHolds + "/20" + (unfrHolds >= 15 ? "; freezing redundant" : "; neither isolate nor holds") + ")";
   }
   else verdict = "SUP-FIXED";
   if (verdict === "SUP-FIXED") cause = "clean (candidate holds under B-heavy with own objective; replication leaks as expected)";
@@ -460,10 +460,10 @@ globalThis.runU59Verdict = async function (fs, log) {
     spec: "self-u59-ext3-prereg", track: "U59-EXT3", verdict, cause,
     bars: {
       "SUP-PIN": pinN + "/20 (stack + checkpoint identity + VETO3 weights byte-frozen + trunk-grad-0 assert)",
-      "SUP-CTX": ctxN + "/20 (quorum 14/20; vetoSUP CTX-A>=ckpt-0.03 AND CTX-B>=0.95; A1 relative)",
-      "SUP-NOERASE": noeN + "/20 (quorum 14/20; |ret-ckpt|<=0.02 AND vetoA<=0.05)",
-      "SUP-ISOLATE": isoN + "/20 (quorum 14/20; UNFROZEN behavior-pass relative + retention-fail; A1)",
-      "SUP-FLOOR": floorN + "/20 (quorum 14/20; CTX-A>=0.45 all 5 arms; floor-first gating)",
+      "SUP-CTX": ctxN + "/20 (quorum 15/20 v1.1 Q1; vetoSUP CTX-A>=ckpt-0.03 AND CTX-B>=0.95; A1 relative)",
+      "SUP-NOERASE": noeN + "/20 (quorum 15/20 v1.1 Q1; |ret-ckpt|<=0.02 AND vetoA<=0.05)",
+      "SUP-ISOLATE": isoN + "/20 (quorum 15/20 v1.1 Q1; UNFROZEN behavior-pass relative + retention-fail; A1)",
+      "SUP-FLOOR": floorN + "/20 (quorum 15/20 v1.1 Q1; CTX-A>=0.45 all 5 arms; floor-first gating)",
       "LOWCOMP-FLAG": perSeed.filter((s) => s.ctx.lowComp).length + "/20 seeds ckpt<0.28 (diagnostic, no quorum change)",
       "REPLICATION-CHECK": "vetoTASK mean vetoA " + repMean.toFixed(4) + " vs U57 0.059 (tolerance 0.02; else TASK-NOREP)",
       "MISFIRE-COUNT": misN + "/20 (candidate misfire=vetoA>0.05; >=7 kills EXT3 line; P5 already closed, not a P5 event)",
@@ -473,4 +473,19 @@ globalThis.runU59Verdict = async function (fs, log) {
   await fs.writeTextFile(U59_VERDICT_PATH, JSON.stringify(body));
   log("u59-verdict " + verdict + " cause=" + cause + " PIN " + pinN + "/20 CTX " + ctxN + "/20 NOERASE " + noeN + "/20 ISOLATE " + isoN + "/20 FLOOR " + floorN + "/20 MISFIRE " + misN + "/20");
   return body;
+};
+// v1.1 Wave-0 sanity (review-adopted + 15/20 quorum, pre-compute — functions only, run only under fresh countersign):
+// W0-RAND: scrambled ctx pilot (vetoSUP-only, Wave-1 100-train count UNCHANGED) — expect would-be PERSISTS/FLOOR, never FIXED.
+// W0-TRIV: obvious-cue ctx — expect would-be FIXED. Quorum for verdict fns is now 15/20 (Q1).
+globalThis.runU59Wave0Rand = async function (fs, log) {
+  const h = await globalThis.u33StackHash(fs);
+  if (h.hex !== "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e") throw new Error("U59-PIN HALT: stack drift");
+  log("u59-w0-rand stub present (scrambled-ctx pilot filed in prereg v1.1; executes only under countersign)");
+  return { spec: "self-u59-ext3-prereg", track: "U59-EXT3", wave: "0-rand", verdict: "STUB", note: "HALT-RAND if SUP-FIXED on scrambled" };
+};
+globalThis.runU59Wave0Triv = async function (fs, log) {
+  const h = await globalThis.u33StackHash(fs);
+  if (h.hex !== "258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e") throw new Error("U59-PIN HALT: stack drift");
+  log("u59-w0-triv stub present (obvious-cue sanity filed in prereg v1.1; executes only under countersign)");
+  return { spec: "self-u59-ext3-prereg", track: "U59-EXT3", wave: "0-triv", verdict: "STUB", note: "HALT-TRIV if not SUP-FIXED on obvious cue" };
 };
