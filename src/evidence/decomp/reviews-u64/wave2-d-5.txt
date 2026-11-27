@@ -1,0 +1,2 @@
+VERDICT: CHALLENGE
+REASON: ORACLE-EDGE-outcome 4/20 FAIL is inconsistent with the INCONCLUSIVE verdict logic; a 20% failure rate in a deterministic simulation violates the required stability threshold for Wave-2.

@@ -1,0 +1,1 @@
+{"spec":"self-u64c-response-prereg","version":"v1.3","track":"U64c-RESPONSE","arm":"detT","seed":5,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u64c-detT-s5-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.54,"accTwo":0.37,"accOracle":0.415,"accFwd":0.525}

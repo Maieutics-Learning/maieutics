@@ -1,0 +1,1 @@
+{"spec":"self-u64-ruleswitch-prereg","track":"U64-RULESWITCH","arm":"shT","seed":18,"steps":800,"verdict":"COMPLETE","n":200,"frozenTest":true,"evalOf":"src/evidence/decomp/d-newai-self-u64-shT-s18-800st.json","stackHash":"258d2f060684ce382778e203959ab791abb5df79af174deef19ff568886d4d6e","accScratch":0.53,"accTwo":0.43,"accOracle":0.54,"accFwd":0.545}

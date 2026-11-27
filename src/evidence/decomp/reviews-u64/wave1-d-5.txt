@@ -1,0 +1,2 @@
+VERDICT: HOLD
+REASON: Correction to ORACLE-ADAPT (15/20) satisfies quorum, but overall verdict remains INCONCLUSIVE as 4/20 fails the AND-gate and 11/20 trip the floor.

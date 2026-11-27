@@ -1,0 +1,3 @@
+# U64e red-team v1.2 reply red-v1.2-4 (verbatim, 2026-11-27)
+
+**KILL**. 1. Load-bearing claim: The +0.03 gain on accRec is a statistically significant signal of "CLOSED-LOOP-WORKS" rather than seed-dependent noise. 2. Cheapest run: A cross-validation swap of the disjoint stream bases (e.g., swapping 53500 for 53800 across the 20 seeds). 3. Derivation: Given the seed spread (0.69-0.96) and the narrow margin (+0.03), the "winner" is mathematically unstable. If the stream base shift reassigns passes, the quorum of 15/20 will collapse. The result is a stochastic artifact of the specific stream-seed pairing, not a systemic architectural win.

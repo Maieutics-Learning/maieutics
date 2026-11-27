@@ -1,0 +1,2 @@
+VERDICT: CHALLENGE
+REASON: ORACLE-EDGE-outcome 4/20 FAIL is miscounted; ledger entries indicate 5/20 FAIL.

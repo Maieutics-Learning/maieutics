@@ -1,0 +1,2 @@
+VERDICT: CHALLENGE
+REASON: The ORACLE-ADAPT recomputation to 15/20 contradicts the filed train ledgers; the 4/20 failure rate is mathematically inconsistent with a 15/20 quorum.

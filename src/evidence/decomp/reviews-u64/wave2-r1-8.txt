@@ -1,0 +1,2 @@
+VERDICT: WAVE2-COMPLETE
+REASON: Filed verdict "INCONCLUSIVE" correctly follows the floor rule (11/20 >= 6/20) and the kill-gate AND logic (ORACLE-EDGE 4/20 fail results in no PROCEED).

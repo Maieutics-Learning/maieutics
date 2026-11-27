@@ -1,0 +1,4 @@
+VERDICT: WAVE1-COMPLETE
+REASON: All 100 train ledgers are COMPLETE with verified integrity hashes.
+Deterministic world-identity confirmed across all arms/seeds.
+Deviations D1-D4 are filed as procedural offsets, not integrity failures.

@@ -1,0 +1,2 @@
+VERDICT: CHALLENGE
+REASON: ORACLE-EDGE-outcome 4/20 FAIL contradicts the filed ledger for Wave-2, where 6/20 failures were recorded.

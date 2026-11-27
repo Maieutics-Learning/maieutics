@@ -1,0 +1,2 @@
+VERDICT: CHALLENGE
+REASON: ORACLE-EDGE-outcome reports 4/20 FAIL, yet the verdict is listed as INCONCLUSIVE despite RULE-IDENTITY and PIN hitting 20/20.

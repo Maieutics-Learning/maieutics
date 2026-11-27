@@ -1,0 +1,2 @@
+VERDICT: CHALLENGE
+REASON: ORACLE-EDGE-outcome reported as 4/20 FAIL contradicts the filed ledger value required for a MET quorum; discrepancy exists between filed outcomes and verdict logic.

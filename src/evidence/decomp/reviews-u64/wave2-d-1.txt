@@ -1,0 +1,2 @@
+VERDICT: CHALLENGE
+REASON: ORACLE-EDGE-outcome 4/20 FAIL is inconsistent with a WAVE2-COMPLETE 10/10 review given the INCONCLUSIVE verdict logic.

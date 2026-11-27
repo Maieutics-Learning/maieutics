@@ -274,6 +274,8 @@ symmetry-mapping rule if FUNC holds while BIT misses) + evals EXACTLY equal 3/3.
 | U63 scaled (diet-scaled replication; EXECUTED, reads-only) | `self-u63-veto-scaled-prereg.md` v1.0 (U62-verbatim except replication center 0.036875 = 0.059 × 0.5/0.8, same ±0.02) | `newai-selfu63-driver.js` (U62 clone, 1-line center change) | SUP-PERSISTS: replication 0.0373 vs 0.036875 RESOLVED (diff 0.0005); isolate 11/20 (unfrHolds 0/20 — balanced diet never erases); PIN 20/20 CTX 16/20 NOERASE 20/20 FLOOR-R 20/20 GDIR 20/20 | wave0 + verdict `d-newai-self-u63-verdict.json` + closeout `self-u63-scaled-closeout.md` + 2 review docs (prereg + wave01, 20 R1 + 20 D unanimous). Line status: veto proven, pressure-dependent necessity — no further veto prereg licensed |
 | U58+U59 failure analysis | `self-u58-u59-failure-analysis.md` (U58 ruler-short + null carry + rotation attenuation; U59 gate-preserves-not-teaches + all-arm floor scope) | — (doc-only) | STANDS (10x SOUND + 10x CONFIRM); licensed: U58 v1.4 ruler-retry + U59 new-diet prereg | battery doc `fresh-eyes-self-u58u59-analysis-10x-results.md`, Turn-218+ |
 | U60 paper-gap analysis | `self-u60-paper-gap-analysis.md` (7 gaps: half-a-variable w/o consumers; un-timed gain; no mode; all-commit + timescale outside window; fixed lam suspect; Lippl points at binding; fixed-schedule clock + no second store + dense interference) + 6-step success recipe (step 1 = rule-switch diet + oracle controls, NOT preregged) | — (doc-only) | STANDS (reviewed); licensed: U60-successor step-1 prereg OR close detector line (substrate-dead by U60/U60b/U60c triangulation) | doc-only, no compute |
+| U64 ruleswitch (rule-switch diet + oracle cheater; EXECUTED) | `self-u64-ruleswitch-prereg.md` v1.0 STANDS (randomized rule per run: order + hot sets; 5 arms × 20 seeds × 800st H48 det/dice/orT/orF/shT; bars quorum 15/20) | `newai-selfu64-driver.js` (D-pins D1–D4 + D5 diet-bound correction, zero data) | INCONCLUSIVE: ORACLE-EDGE-outcome 4/20 FAIL (passes s1/s3/s5/s13) / ORACLE-ADAPT 15/20 quorum MET (correction-1: filed 0/20 not reproducible; orF=1.0 ×20, dice 0.61–0.97, thin margins) / FLOOR trips 11/20 (all arms 0.25–0.52) / TIMING-DIAG orT−shT −0.028 reversed / PIN 20+100 / RULE-ID 20/20. Reading: cheater buys adapt-speed thinly, not outcomes; stationary final-memory eval washes out rule-switch training; floor 0.45 miscalibrated for this diet | wave0 (15/15 twins) + 100T + 100E + verdict `d-newai-self-u64-verdict.json` + correction-1 + closeout `self-u64-closeout.md` + 4 review docs (program battery + wave{0,1,2}, 40 R1 + 40 D; all dissent rejected with reasons). Line status: U65–U69 compute UNLICENSED (no PROCEED); next is owner choice (U64b recal / outcome-half KILL / transfer eval), each needing fresh prereg + battery + countersign |
+| U65–U69 program preregs (battery-closed, COMPUTE UNLICENSED) | `self-u65-detector-prereg.md` + `self-u66-consumers-prereg.md` + `self-u67-sticky-prereg.md` + `self-u68-thermostat-prereg.md` + `self-u69-store-prereg.md`, all v1.0 STANDS (no amendments) | — (no drivers; compute gated on U64-PROCEED, U66 additionally on U65-READY — gates unmet) | STANDS: U64 10/10 + U65 9/10 (dissent answered in-prereg) + U66–U69 10/10 IMPLEMENTABLE; all D rounds vacuous/fiction-drift, zero adoptions | program battery doc `fresh-eyes-self-u64-u69-10x-results.md` (60 R1 + 60 D). No ledgers, no compute |
 | Standing rule (2026-11-26) | NO N<20 on any test (supersedes probe-track 2/3 exemption; filed verdicts frozen) | — | recorded in CURRENT_TASK; U58 v1.4 is first compliant probe track | — |
 
 Wave file pattern (all under `src/evidence/decomp/`): train ledgers
@@ -414,6 +416,17 @@ frozen-missing). Re-run after every stage (§9).
   U63 center 0.036875 = 0.059×0.5/0.8 ±0.02 (diet-scaled; B-fractions U59 0.8,
   U61 0.5 are filed diet constants). Bar→file map: verdict JSON perSeed[*].arms
   carries all five arms; wave0 ledger asserts 200/200 presence + spot-hash.
+- U64 ruleswitch (100 trains + 100 evals): rule per seed ruleRng G.makeRng(64000+seed),
+  hotSeq[4] from 6 qk-pairs adjacent-differ (redraw ≤20), boundaries b=[200±40,400±40,600±40];
+  diet U50 verbatim (r=dataRng.int(8): r<6 familiar W6 two-branch qk in hotSeq[q] ≤10 tries,
+  r==6 OOD qk!=v, else uniform); arm dataRng G.makeRng(42000+seed*104729+55+armCode),
+  armCodes det 101/dice 102/orT 103/orF 104/shT 105; shT resets shRng G.makeRng(65000+seed)
+  3 steps in [50,750]; 800st H48/B16/lr5e-3/K5/C6/auxW0.5/lam2.0 u43 ops; eval U50 verbatim
+  (streams 52500/52400+seed, masks 91000+seed, N=200 stationary). Bar→file: verdict
+  perSeed[*] {adapt{det,dice,orT,orF,shT from train adaptEarly}, det/dice/orT/orF/shT
+  {two/scr/orc from eval accTwo/accScratch/accOracle}}; train PIN + rule-ID cross-checked
+  100/100 and 20/20. Expected s0 rule: hot=[[0,1],[0,3],[1,3],[0,1]] b=[215,418,581]
+  sh=[108,444,456]; diet familiar 0.8672 (D5 gate 0.75–0.95).
 
 ## Appendix C — verdict glossary (filed meanings, not folk meanings)
 
@@ -433,6 +446,8 @@ frozen-missing). Re-run after every stage (§9).
   FLOOR-FAIL (U57/U59) · UNDERPOWERED (U58; v1.4 20-trunk retry owed) ·
   MANIP-FAIL (U60) · UNDERPOWERED (U60b) · Z-ABSENT (U60c) · FLOOR-FAIL (U61) ·
   TASK-NOREP (U62) · SUP-PERSISTS (U63) · DIET-EXPLAINED (U62 audit) ·
+  INCONCLUSIVE (U64: kill-gate outcome half 4/20 fails AND floor trips 11/20, while
+  adapt half passes 15/20 — neither PROCEED nor KILL-LINE; eval suspect, not just arms) ·
   PHOTOCOPY (Wave-D cold-distillation 0/9) · VOID (tripwire, not failure).
   Each verdict JSON carries its bars + deviations + mechanism — read the JSON,
   not the label.

@@ -1,0 +1,2 @@
+VERDICT: WAVE2-COMPLETE
+REASON: Filed verdict (INCONCLUSIVE) matches prereg logic. The outcome half failed (4/20 FAIL) and the floor rule triggered (11/20 >= 6/20), both of which logically lead to an inconclusive result.

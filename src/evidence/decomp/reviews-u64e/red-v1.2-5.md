@@ -1,0 +1,3 @@
+# U64e red-team v1.2 reply red-v1.2-5 (verbatim, 2026-11-27)
+
+1. **KILL**: The floor (0.40) is a dead-end logic gate. Derivation: In a system where resets strictly raise scores (non-decreasing), the floor cannot be tripped by a downward trend. If the "floor" is meant to detect failure or instability, it is mathematically unreachable under the provided reset logic. Impact: The INCONCLUSIVE verdict becomes a ghost state. Because the safety valve (floor trip) cannot fire, any system failure that doesn't trigger a LINE-HALT or PIN-FAIL will be incorrectly categorized by the F-tree or remain in a loop. The verdict set is logically incomplete.

@@ -1,0 +1,2 @@
+VERDICT: WAVE2-COMPLETE
+REASON: The filed verdict "INCONCLUSIVE" correctly follows the prereg logic. The floor rule fired (11/20 >= 6/20), and the outcome half failed (4/20 FAIL), both of which independently trigger a non-proceed result.

@@ -1,0 +1,2 @@
+VERDICT: HOLD
+REASON: Correction of ORACLE-ADAPT to 15/20 maintains quorum, but the overall INCONCLUSIVE status is mathematically grounded as 4/20 AND-gate failures persist.

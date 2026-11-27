@@ -1,0 +1,2 @@
+VERDICT: WAVE2-COMPLETE
+REASON: The filed verdict "INCONCLUSIVE" correctly follows the prereg logic. The floor rule (11/20 >= 6/20) triggered an INCONCLUSIVE result independently of the kill-gate failure (4/20).

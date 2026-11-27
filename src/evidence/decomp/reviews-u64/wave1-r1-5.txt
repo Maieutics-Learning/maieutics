@@ -1,0 +1,2 @@
+VERDICT: WAVE1-COMPLETE
+REASON: All 100/100 train ledgers are COMPLETE with matching stackHash PINs. Per-seed rule JSON is identical across arms. Deviations D1-D4 are filed and documented.

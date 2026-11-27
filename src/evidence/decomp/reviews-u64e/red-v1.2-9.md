@@ -1,0 +1,3 @@
+# U64e red-team v1.2 reply red-v1.2-9 (verbatim, 2026-11-27)
+
+1. **KILL**. Load-bearing claim: The "Demotion-proof" nature of the credited-win subset (v1.2, item 7) claiming 0.041 stands. 2. Cheapest run: Execute a cross-window variance check on the surBlind (108) primary bar. Because qkCount is fresh and weights are frozen, the "credited-win" subset is mathematically decoupled from the trigger mechanism. The 0.041 value is a static artifact, not a dynamic performance metric. 3. Derivation: If weights = frozen and qkCount = 0 at b_1, then any "win" credited to the subset is independent of the trigger's ability to clear stale counts. The 0.041 cannot represent a "proof" of system efficacy; it is a measurement of noise floor.

@@ -1,0 +1,2 @@
+VERDICT: HOLD
+REASON: ORACLE-ADAPT recomputation (15/20) meets quorum, but the overall INCONCLUSIVE status remains valid as 4/20 AND-gate failures and 11/20 floor trips persist.

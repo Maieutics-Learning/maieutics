@@ -1,0 +1,3 @@
+# U64e red-team v1.2 reply red-v1.2-2 (verbatim, 2026-11-27)
+
+1. **KILL**: The "demotion-proof" claim fails via the blindHit = F2 adjudication link. If blindHit is the sole arbiter for F2, and randBlind is stratified, the "credited-win subset" is merely a filtered slice of the stratified noise. Derivation: surBlind trigger -> blindHit -> F2. If blindHit approx familiar fraction (the ceiling), then surBlind is not detecting a signal but is gated by the same stochastic ceiling as randBlind. **Cheapest run**: Compare surBlind hit-rate vs. randBlind hit-rate across the 20 seeds. If delta approx 0 or purely a function of the stratified window [b, b+20], the "closed-loop" is a mirage of the stratified distribution.

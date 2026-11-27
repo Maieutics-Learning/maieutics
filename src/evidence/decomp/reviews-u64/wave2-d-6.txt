@@ -1,0 +1,2 @@
+VERDICT: CHALLENGE
+REASON: ORACLE-EDGE-outcome 4/20 FAIL implies 16/20 passed; this exceeds the 6/20 threshold required for FLOOR trips, yet verdict is INCONCLUSIVE.

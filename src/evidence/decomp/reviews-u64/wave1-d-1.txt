@@ -1,0 +1,2 @@
+VERDICT: HOLD
+REASON: ORACLE-ADAPT quorum is met at 15/20, but the INCONCLUSIVE verdict is logically consistent as the AND-gate fails (4/20) and floor trips (11/20).

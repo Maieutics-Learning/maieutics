@@ -1,0 +1,2 @@
+VERDICT: CHALLENGE
+REASON: ORACLE-EDGE-outcome reported as 4/20 FAIL contradicts the INCONCLUSIVE verdict; 80% pass rate exceeds the implied failure threshold.

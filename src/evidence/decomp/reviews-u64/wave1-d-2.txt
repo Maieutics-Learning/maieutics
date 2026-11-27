@@ -1,0 +1,2 @@
+VERDICT: HOLD
+REASON: Correction of ORACLE-ADAPT to 15/20 maintains the INCONCLUSIVE status as the AND-gate remains failed (4/20) and floor trips (11/20) are still active.
