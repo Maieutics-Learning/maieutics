@@ -1,0 +1,97 @@
+{
+ "spec": "u70-f14-prereg-proposal",
+ "version": "v1.1",
+ "verdict": "F14-TRAIN-REPAIRED + F14-HELDOUT-DEGRADES(collapse)",
+ "tests": {
+  "T1": "PASS",
+  "T2a": "PASS",
+  "T2b": "PASS",
+  "T3": "PASS",
+  "T4": "PASS",
+  "T7": "PASS",
+  "T8": "PASS",
+  "T8b": "PASS",
+  "E1": "PASS",
+  "E2": "PASS",
+  "E3": "PASS",
+  "E4": "PASS",
+  "T5": "PASS",
+  "T5a_code": "PASS (agent grep pre-smoke: literal path seeds 3/4/5/7/11/23, U70N_SEEDS 0..19, mapping s->s+20 max 39)",
+  "T5a_ledger": "PASS (new-ledger maxEvalSeed 39, no seeds beyond 0..39)",
+  "T6a": "PASS",
+  "T6b": "PASS",
+  "E4h": "PASS"
+ },
+ "replication": {
+  "mismatches": 0,
+  "checked": 20,
+  "hashesValid": 40,
+  "hashBad": 0
+ },
+ "train": {
+  "ctx": 0.8783,
+  "probe": 0.7183,
+  "gap": 0.1468,
+  "nCtx": 16,
+  "nProbe": 12,
+  "nGap": 20
+ },
+ "held": {
+  "ctx": 0.7777,
+  "probe": 0.6227,
+  "gap": 0.0274,
+  "nCtx": 4,
+  "nProbe": 8,
+  "nGap": 8
+ },
+ "leakTrain": {
+  "mean": 0.0108,
+  "ci": [
+   -0.0005,
+   0.0222
+  ]
+ },
+ "leakHeld": {
+  "mean": 0.005,
+  "ci": [
+   -0.0046,
+   0.0146
+  ]
+ },
+ "deltas": {
+  "dProbe": {
+   "mean": 0.0957,
+   "ci": [
+    0.0336,
+    0.1577
+   ]
+  },
+  "dGapTH": {
+   "mean": 0.1195,
+   "ci": [
+    0.0839,
+    0.1551
+   ]
+  },
+  "dCtx": {
+   "mean": 0.1007,
+   "ci": [
+    0.0577,
+    0.1436
+   ]
+  }
+ },
+ "kl": {
+  "klTr": 0.0327,
+  "klHd": 0.0334,
+  "klFail": 0.0363
+ },
+ "cueFloor": 0.7503,
+ "eceHeld": 0.1871,
+ "oracle": {
+  "reused": "d-u70-oracle-f13.json",
+  "ctxAcc": 0.9537,
+  "shift": 0.0039,
+  "qualifier": null
+ }
+}

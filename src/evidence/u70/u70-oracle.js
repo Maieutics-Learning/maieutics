@@ -40,10 +40,11 @@ function u70RunSeed(seed) {
   // posterior over 6 states [c*3+r]; uniform prior
   let post = [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6];
   const goodArm = (c) => (c === 0 ? 0 : 1); // 0=L,1=R
-  let correct = 0, calBins = Array.from({ length: 10 }, () => [0, 0]);
-  let fa = 0, rhoHit = 0, rhoAbs = 0, rhoMeanAbs = 0;
+  let correct = 0, calBins = Array.from({ length: 10 }, () => [0, 0, 0]); // F12: [n, correct, confSum] (valid ECE; was [n, correct] vs fixed 0.95)
+  let fa = 0, rhoHit = 0, rhoAbs = 0, rhoMeanAbs = 0, confSumAll = 0;
   let maskedN = 0, maskedC = 0, misN = 0, misC = 0, lowN = 0, lowC = 0;
   let oracleActC = 0, cueActC = 0;
+  const calTrace = []; // F12: per-trial [conf4dp, hit] (re-binning future-proof)
   const grace = new Set();
   for (const s of path.switches) for (let t = s; t < Math.min(U70_T, s + 10); t++) grace.add(t);
   const delays = [];
@@ -89,7 +90,8 @@ function u70RunSeed(seed) {
     if (guess === c) correct++;
     const conf = Math.max(pC[0], pC[1]);
     const b = Math.min(9, Math.floor(conf * 10));
-    calBins[b][0]++; if (guess === c) calBins[b][1]++;
+    calBins[b][0]++; if (guess === c) calBins[b][1]++; calBins[b][2] += conf; confSumAll += conf;
+    calTrace.push([+conf.toFixed(4), guess === c ? 1 : 0]);
     if (!grace.has(t) && (1 - pTrue) >= 0.75) fa++;
     const rhoGuess = [post[0] + post[3], post[1] + post[4], post[2] + post[5]];
     let rg = 0; for (let i = 1; i < 3; i++) if (rhoGuess[i] > rhoGuess[rg]) rg = i;
@@ -111,11 +113,22 @@ function u70RunSeed(seed) {
     }
     if (d.delay === null) d.censored = true;
   }
-  let eceN = 0, ece = 0;
-  for (const [n, k] of calBins) if (n > 0) { ece += n * Math.abs(k / n - 1 + 0.05); eceN += n; }
+  // F12: valid ECE = sum_b (n_b/N)|acc_b - conf_b| (empty bins contribute 0). Filed fixed-0.95
+  // field removed (same name, different meaning is how the next audit fails); filed ledgers keep
+  // their values as measured-as-run with the fixed-reference gloss.
+  let eceN = 0, ece = 0, mce = 0;
+  const calBinsOut = calBins.map(([n, k, cs]) => {
+    if (!n) return [0, 0, 0];
+    const acc = k / n, mc = cs / n, d = Math.abs(acc - mc);
+    ece += n * d; if (d > mce) mce = d; eceN += n;
+    return [n, +acc.toFixed(4), +mc.toFixed(4)];
+  });
   return {
     seed, ctxAcc: +(correct / U70_T).toFixed(4),
-    ece: eceN ? +(ece / eceN).toFixed(4) : null,
+    ece: eceN ? +(ece / eceN).toFixed(6) : null,
+    mce: eceN ? +mce.toFixed(6) : null,
+    meanConf: eceN ? +(confSumAll / eceN).toFixed(4) : null,
+    calBins: calBinsOut, calTrace,
     detDelays: delays.map((d) => d.delay), censored: delays.filter((d) => d.censored).length,
     faPer100: +((fa / U70_T) * 100).toFixed(3),
     rhoAcc: +(rhoHit / U70_T).toFixed(4), rhoMAE: +(rhoMeanAbs / U70_T).toFixed(4),
@@ -126,17 +139,58 @@ function u70RunSeed(seed) {
     nSwitches: path.switches.length,
   };
 }
-globalThis.runU70Oracle = async function (fs, log) {
-  const perSeed = U70_SEEDS.map((s) => {
+// F12 executable tests E1-E3 (oracle side; E4 is neural retention). Pre-recompute HALT gate.
+function u70F12OracleTests() {
+  const lines = [];
+  const validECE = (bins) => { // bins: 10x[n, acc, meanConf]; empty bins contribute 0
+    let N = 0, e = 0, m = 0;
+    for (const [n, a, c] of bins) { if (!n) continue; const d = Math.abs(a - c); e += n * d; if (d > m) m = d; N += n; }
+    return { ece: N ? e / N : null, mce: N ? m : null, N };
+  };
+  // E1: zero on perfect calibration
+  {
+    const bins = Array.from({ length: 10 }, (_, i) => (i % 3 === 0 ? [50, 0.75, 0.75] : [0, 0, 0]));
+    const { ece, mce } = validECE(bins);
+    if (ece !== 0 || mce !== 0) throw new Error("E1 FAIL: perfect calibration must give ECE==0, MCE==0");
+    lines.push("E1 zero-on-perfect PASS");
+  }
+  // E2: fixed-reference detector — all-correct-at-conf-0.6: valid 0.4, OLD formula 0.05
+  {
+    const bins = Array.from({ length: 10 }, (_, i) => (i === 6 ? [100, 1, 0.6] : [0, 0, 0]));
+    const { ece } = validECE(bins);
+    if (Math.abs(ece - 0.4) > 1e-12) throw new Error("E2 FAIL: valid ECE should be 0.4");
+    const old = Math.abs(1 - 0.95);
+    if (Math.abs(old - 0.05) > 1e-12) throw new Error("E2 FAIL: old-formula sanity");
+    if (Math.abs(ece - old) < 1e-6) throw new Error("E2 FAIL: new code indistinguishable from old metric");
+    lines.push("E2 fixed-reference-detector PASS (valid 0.4 vs old 0.05 — change confirmed)");
+  }
+  // E3: oracle determinism — two direct runs identical to 4 decimals
+  {
+    const a = u70RunSeed(3), b = u70RunSeed(3);
+    for (const k of ["ctxAcc", "ece", "mce", "meanConf"]) {
+      if (a[k] !== b[k]) throw new Error("E3 FAIL: nondeterministic " + k);
+    }
+    lines.push("E3 oracle-determinism PASS (seed 3 identical)");
+  }
+  return lines;
+}
+globalThis.runU70Oracle = async function (fs, log, opts) {
+  opts = opts || {};
+  if (opts.f12 || opts.f13) { // F12/F13 gate: E1-E3 must pass before any recompute
+    let tl;
+    try { tl = u70F12OracleTests(); } catch (e) { throw new Error("F12 HALT: " + String((e && e.message) || e)); }
+    for (const m of tl) log("[F12-TEST] " + m);
+  }
+  const perSeed = (opts.seeds || U70_SEEDS).map((s) => {
     const r = u70RunSeed(s);
-    log("u70 s" + s + " ctxAcc=" + r.ctxAcc + " ece=" + r.ece + " delays=[" + r.detDelays + "] fa/100=" + r.faPer100 + " rhoAcc=" + r.rhoAcc + " mask=" + r.maskedAcc + " mis=" + r.misleadAcc + " oAct=" + r.oracleActAcc + "/cAct=" + r.cueActAcc);
+    log("u70 s" + s + " ctxAcc=" + r.ctxAcc + " ece=" + r.ece + " mce=" + r.mce + " delays=[" + r.detDelays + "] fa/100=" + r.faPer100 + " rhoAcc=" + r.rhoAcc + " mask=" + r.maskedAcc + " mis=" + r.misleadAcc + " oAct=" + r.oracleActAcc + "/cAct=" + r.cueActAcc);
     return r;
   });
   const M = (f) => +(perSeed.reduce((x, r) => x + f(r), 0) / perSeed.length).toFixed(4);
   const allDelays = perSeed.flatMap((r) => r.detDelays.filter((d) => d !== null)).sort((a, b) => a - b);
   const med = allDelays.length ? allDelays[Math.floor(allDelays.length / 2)] : null;
   const pooled = {
-    ctxAcc: M((r) => r.ctxAcc), ece: M((r) => r.ece), detDelayMedian: med,
+    ctxAcc: M((r) => r.ctxAcc), ece: M((r) => r.ece), mce: M((r) => r.mce), meanConf: M((r) => r.meanConf), detDelayMedian: med,
     detDelayMean: allDelays.length ? +(allDelays.reduce((a, b) => a + b, 0) / allDelays.length).toFixed(2) : null,
     censored: perSeed.reduce((x, r) => x + r.censored, 0),
     faPer100: M((r) => r.faPer100), rhoAcc: M((r) => r.rhoAcc), rhoMAE: M((r) => r.rhoMAE),
@@ -146,8 +200,8 @@ globalThis.runU70Oracle = async function (fs, log) {
   };
   let driverHash = "n/a";
   try { driverHash = await (0, eval)("u32Sha256Hex")(await fs.readTextFile("src/evidence/u70/u70-oracle.js")); } catch (e) {}
-  const body = { spec: "u70-task-spec", version: "v1.0", track: "U70-CTX", kind: "identifiability-report (descriptive, no bars, no verdict)", driverHash, pooled, perSeed };
-  await fs.writeTextFile("src/evidence/u70/d-u70-oracle-identifiability.json", JSON.stringify(body));
-  log("u70-oracle COMPLETE ctxAcc=" + pooled.ctxAcc + " delayMed=" + pooled.detDelayMedian + " fa/100=" + pooled.faPer100);
+  const body = { spec: (opts.f13 ? "u70-f13-prereg-proposal" : "u70-f12-prereg-proposal"), version: "v1.1", track: "U70-CTX", kind: (opts.f13 ? "f13-heldout-oracle-recompute (valid ECE; seeds 20..39; filed seeds-0..19 values stand as measured-as-run)" : (opts.f12 ? "f12-valid-ece-recompute (valid ECE; filed fixed-0.95 values stand as measured-as-run)" : "identifiability-report (descriptive, no bars, no verdict)")), driverHash, pooled, perSeed };
+  await fs.writeTextFile("src/evidence/u70/" + (opts.f13 ? "d-u70-oracle-f13.json" : (opts.f12 ? "d-u70-oracle-f12.json" : "d-u70-oracle-identifiability.json")), JSON.stringify(body));
+  log("u70-oracle COMPLETE ctxAcc=" + pooled.ctxAcc + " ece=" + pooled.ece + " mce=" + pooled.mce + " delayMed=" + pooled.detDelayMedian + " fa/100=" + pooled.faPer100);
   return body;
 };

@@ -1,6 +1,9 @@
-// u70-neural.js — U70-CTX neural execution driver (prereg v1.1 EXACT).
-// F11 (countersigned v1.1 EXACT, 2026-11-27): forward-exact one-hot + pure-shuffle read +
-// factored softmax-jacobian + T1-T4 HALT gate + epoch-loss ledger field. All else unchanged.
+// u70-neural.js — U70-CTX neural execution driver (F14 prereg v1.1 EXACT).
+// F14 (countersigned v1.1 EXACT, 2026-11-27): TRUE full-latent intervention — the factored
+// u70nApplyShuffle helper IS the u70nEval V4 metric path (deletes the C2-partial inline
+// branch zdet+q); T7/T8/T8b metric-path gates + T5/T6/E4 retention + per-seed early-HALT
+// replication vs filed F12. F11 base kept (forward-exact one-hot, T1-T4), F12 valid ECE
+// (E1-E4), F13 held-out path + hashes (T5/T5a/T6/E4h). All else unchanged.
 //
 // Variants: V1 reactive floor (analytic, no training). V2 GRU no-z (trained).
 // V3 full (GRU h + discrete z + rho-head + reconstruction, trained). V4 = frozen
@@ -405,6 +408,80 @@ function u70nApplyShuffle(M, trials, order) {
   }
   return trials;
 }
+// F13: provenance hashing + held-out gates (pre-smoke HALT). 64-hex = 4x FNV-1a-64 lanes.
+// Deterministic same-engine (floats via String(), ASCII-only); cross-engine bit-identity
+// explicitly out of scope (prereg v1.1 determinism gloss).
+function u70nHashLane(str, lane) {
+  let h = [0xcbf29ce484222325n, 0x84222325cbf29ce4n, 0x9e3779b97f4a7c15n, 0xbf58476d1ce4e5b9n][lane & 3];
+  const M = 0xffffffffffffffffn, P = 0x100000001b3n;
+  for (let i = 0; i < str.length; i++) { h ^= BigInt(str.charCodeAt(i) & 255); h = (h * P) & M; }
+  return h.toString(16).padStart(16, "0");
+}
+function u70nHash256(str) {
+  return u70nHashLane(str, 0) + u70nHashLane(str, 1) + u70nHashLane(str, 2) + u70nHashLane(str, 3);
+}
+function u70nWeightHash(M) {
+  const parts = [];
+  for (const P of M.params) { const a = []; for (let i = 0; i < P.w.length; i++) a.push(String(P.w[i])); parts.push(a.join(",")); }
+  return u70nHash256(parts.join(";"));
+}
+function u70nConfigHash(specStr) { return u70nHash256(specStr); }
+function u70nF13ConfigSpec() {
+  return ["F13", "F4-exact", "ep200", "lr3e-4", "clip1.0", "win50", "floor0.05", "ctxw3.0", "repw0.1", "GRU64/Cat4-ST", "init90000+s", "argmax", "train0-19", "eval20-39", "map s->s+20"].join("|");
+}
+// F13 executable tests T5/T5a-half/T6/E4h (pre-smoke HALT gate). T5a's LEDGER half runs in the
+// wave script (max path-seed over filed ledgers); the CODE half (no 20..39 path call sites)
+// is agent-verified by grep pre-smoke and logged. Returns log lines; throws on fail.
+function u70nF13Tests() {
+  const lines = [];
+  // T5: mapping + disjointness + reference isolation on real gen calls
+  {
+    const train = [...Array(20).keys()], held = train.map((s) => s + 20);
+    const overlap = train.filter((s) => held.indexOf(s) >= 0);
+    if (overlap.length) throw new Error("T5 FAIL: seed overlap " + overlap);
+    for (const s of [0, 5, 19]) {
+      if (s + 20 < 20 || s + 20 > 39) throw new Error("T5 FAIL: mapping s=" + s);
+      const pA = u70nGenPath(s), oA = u70nGenObs(s, pA);
+      const pH = u70nGenPath(s + 20), oH = u70nGenObs(s + 20, pH);
+      if (pA === pH || oA === oH) throw new Error("T5 FAIL: object reuse s=" + s);
+      if (pA.ctx === pH.ctx || oA.xs === oH.xs) throw new Error("T5 FAIL: array reuse s=" + s);
+    }
+    lines.push("T5 disjointness+mapping+isolation PASS (0..19 x 20..39, reference-checked s=0,5,19)");
+  }
+  // T6a: hash format + init determinism (double-init identical)
+  {
+    const hex64 = /^[0-9a-f]{64}$/;
+    const A = u70nInitModel("F4", 3, 90000), B = u70nInitModel("F4", 3, 90000);
+    const ha = u70nWeightHash(A), hb = u70nWeightHash(B);
+    if (!hex64.test(ha)) throw new Error("T6a FAIL: weightHash format");
+    if (ha !== hb) throw new Error("T6a FAIL: init nondeterminism");
+    const hc = u70nConfigHash(u70nF13ConfigSpec());
+    if (!hex64.test(hc)) throw new Error("T6a FAIL: configHash format");
+    if (hc !== u70nConfigHash(u70nF13ConfigSpec())) throw new Error("T6a FAIL: config nondeterminism");
+    lines.push("T6a hash-format+init-determinism PASS");
+  }
+  // T6b: one-epoch-double determinism (same init, same stream -> identical hash after training step)
+  {
+    const A = u70nInitModel("F4", 11, 90000), B = u70nInitModel("F4", 11, 90000);
+    const p = u70nGenPath(11), o = u70nGenObs(11, p);
+    const ra = u70nEpoch(A, p, o, 0.1), rb = u70nEpoch(B, p, o, 0.1);
+    if (!isFinite(ra.loss) || !isFinite(rb.loss)) throw new Error("T6b FAIL: non-finite loss");
+    if (u70nWeightHash(A) !== u70nWeightHash(B)) throw new Error("T6b FAIL: train-step nondeterminism");
+    lines.push("T6b train-step-determinism PASS (1-epoch double, identical hashes)");
+  }
+  // E4h: retention integrity on a FRESH held-out-style eval (seed 23, never a train seed)
+  {
+    const M = u70nInitModel("F4", 7, 90000); M._seed = 7;
+    const p = u70nGenPath(23), o = u70nGenObs(23, p);
+    const m = u70nEval(M, p, o, false);
+    let n = 0; for (const [bn] of m.calBins) n += bn;
+    if (n !== 300) throw new Error("E4h FAIL: bin n-sum " + n);
+    if (!m.calTrace || m.calTrace.length !== 300) throw new Error("E4h FAIL: calTrace length");
+    if (!(m.meanConf >= 0 && m.meanConf <= 1)) throw new Error("E4h FAIL: meanConf range");
+    lines.push("E4h held-out-retention PASS (seed-23 eval: bins sum T, trace T)");
+  }
+  return lines;
+}
 // F11 executable tests T1-T4 (pre-smoke HALT gate). Returns log lines; throws on fail.
 function u70nF11Tests() {
   const lines = [];
@@ -509,6 +586,71 @@ function u70nF11Tests() {
   }
   return lines;
 }
+// F14 config spec (provenance for TRUE-metric rows; training identical to F12/F13).
+function u70nF14ConfigSpec() {
+  return ["F14", "F12-exact", "ep200", "lr3e-4", "clip1.0", "win50", "floor0.05", "ctxw3.0", "repw0.1", "GRU64/Cat4-ST", "init90000+s", "argmax", "train0-19", "eval s clean+TRUE + s+20 clean+TRUE", "TRUE-pure-shuffle-metric"].join("|");
+}
+// F14 executable tests T7/T8/T8b (pre-smoke HALT gate). Proves the TRUE intervention
+// landed ON THE METRIC PATH (r2 adoption): T7 reads metric-path head inputs via the
+// captureShuf hook in u70nEval; T8 equates metric path to helper; T8b re-derives the
+// shuffled read independently (no helper, no metric branch) and demands strict ===.
+function u70nF14Tests() {
+  const lines = [];
+  const Z = U70N_Z, H = U70N_H, T = U70N_T;
+  const M = u70nInitModel("F4", 3, 90000); M._seed = 3;
+  const path = u70nGenPath(3), obs = u70nGenObs(3, path);
+  const cap = [];
+  u70nEval(M, path, obs, true, { captureShuf: cap });
+  if (cap.length !== T) throw new Error("T7 FAIL: capture length " + cap.length);
+  // independent clean-zi recompute (public step loop, no eval internals)
+  let h = new Float64Array(H);
+  const cleanZi = [];
+  for (let t = 0; t < T; t++) { const c = u70nStep(M, u70nInput(obs.xs, obs.as, obs.rs, t), h, false); h = c.hn; cleanZi.push(c.zi); }
+  // T7: metric-path isolation — z-part exact one-hot, no q float present, valid permutation
+  {
+    const a = cleanZi.slice().sort((x, y) => x - y), seen = [];
+    for (const r of cap) {
+      let ones = 0;
+      for (let k = 0; k < Z; k++) {
+        if (r.zoh[k] === 1) ones++;
+        else if (r.zoh[k] !== 0) throw new Error("T7 FAIL: non-binary zoh " + r.zoh[k]);
+        for (let j = 0; j < Z; j++) {
+          if (r.q[j] !== 0 && r.q[j] !== 1 && r.zoh[k] === r.q[j] && r.zoh[k] !== 0) throw new Error("T7 FAIL: q leak");
+        }
+      }
+      if (ones !== 1) throw new Error("T7 FAIL: not one-hot");
+      seen.push(r.ziShuf);
+    }
+    seen.sort((x, y) => x - y);
+    for (let t = 0; t < T; t++) if (a[t] !== seen[t]) throw new Error("T7 FAIL: not a permutation");
+    lines.push("T7 metric-path-isolation PASS (" + T + " trials: exact one-hot, no q float, valid permutation)");
+  }
+  // T8: helper-metric equivalence — same order through the helper gives identical pc
+  {
+    const order = u70nShuffleOrder(M._seed || 0, M._shufOff || 0, T);
+    let h2 = new Float64Array(H);
+    const trials = [];
+    for (let t = 0; t < T; t++) { const c = u70nStep(M, u70nInput(obs.xs, obs.as, obs.rs, t), h2, false); h2 = c.hn; trials.push({ zi: c.zi, q: c.q, hn: c.hn }); }
+    u70nApplyShuffle(M, trials, order);
+    for (let t = 0; t < T; t++) {
+      const a = trials[t].pc, b = cap[t].pc;
+      for (let k = 0; k < 2; k++) if (a[k] !== b[k]) throw new Error("T8 FAIL: pc mismatch t=" + t);
+    }
+    lines.push("T8 helper-metric-equivalence PASS (" + T + " trials strict ===)");
+  }
+  // T8b: independent recompute — ziShuf + frozen Wc/bc, no helper, no metric branch
+  {
+    for (let t = 0; t < T; t++) {
+      const r = cap[t];
+      const zdet = new Float64Array(Z); zdet[r.ziShuf] = 1;
+      const clog = u70nLinCache(zdet, M.Wc, M.bc, 2); // F4 rule: ctx-head reads z-onehot ONLY
+      const pc = u70nSoftmax(clog, 2);
+      for (let k = 0; k < 2; k++) if (pc[k] !== r.pc[k]) throw new Error("T8b FAIL: recompute mismatch t=" + t);
+    }
+    lines.push("T8b independent-recompute PASS (" + T + " trials strict ===, q never referenced)");
+  }
+  return lines;
+}
 // ---- eval ----
 function u70nEval(M, path, obs, zShuffle, RC) {
   RC = RC || {};
@@ -533,24 +675,18 @@ function u70nEval(M, path, obs, zShuffle, RC) {
     trials.push(c);
   }
   if (zShuffle && M.variant !== "V2") {
-    const zs = trials.map((c) => c.zi);
-    const shuffled = order.map((i) => zs[i]);
-    for (let t = 0; t < U70N_T; t++) {
-      const c = trials[t];
-      const zdet = new Float64Array(Z); zdet[shuffled[t]] = 1;
-      const zoh = new Float64Array(Z);
-      for (let k = 0; k < Z; k++) zoh[k] = zdet[k] + c.q[k];
-      const sfeat = (M.variant === "F2" || M.variant === "F4") ? zoh : (() => { const f = new Float64Array(H + Z); f.set(c.hn, 0); f.set(zoh, H); return f; })();
-      const clog = u70nLinCache(sfeat, M.Wc, M.bc, 2);
-      c.pc = u70nSoftmax(clog, 2);
-      c.ziShuf = shuffled[t];
-    }
+    // F14 (countersigned v1.1 EXACT): TRUE full-latent intervention — the factored helper
+    // IS the metric path (deletes the C2-partial inline branch zdet+q). Boundary unchanged
+    // from F11: recurrence history stays clean-z (intervention at the read point).
+    u70nApplyShuffle(M, trials, order);
+    if (RC && RC.captureShuf) for (const c of trials) RC.captureShuf.push({ q: Array.from(c.q), zoh: Array.from(c.zohShuf), ziShuf: c.ziShuf, pc: Array.from(c.pc) });
   }
-  let correct = 0; const calBins = Array.from({ length: 10 }, () => [0, 0]);
-  let fa = 0, rhoHit = 0, rhoAbs = 0;
+  let correct = 0; const calBins = Array.from({ length: 10 }, () => [0, 0, 0]); // F12: [n, correct, confSum] (valid ECE; was fixed-0.95)
+  let fa = 0, rhoHit = 0, rhoAbs = 0, confSumAll = 0;
   let maskedN = 0, maskedC = 0, misN = 0, misC = 0, lowN = 0, lowC = 0;
   let oActC = 0, cueActC = 0;
   const pTrueTrace = [];
+  const calTrace = []; // F12: per-trial [conf4dp, hit] (hit = ctx-guess correct, all trials incl. masked)
   const traceCtx = RC.trace ? [] : null, traceAct = RC.trace ? [] : null; // F10: per-trial vote logging
   const qMean = M.variant === "V2" ? null : new Float64Array(Z);
   let klSum = 0, probeHit = 0;
@@ -560,7 +696,8 @@ function u70nEval(M, path, obs, zShuffle, RC) {
     if (guess === ct) correct++;
     const conf = Math.max(c.pc[0], c.pc[1]);
     const b = Math.min(9, Math.floor(conf * 10));
-    calBins[b][0]++; if (guess === ct) calBins[b][1]++;
+    calBins[b][0]++; if (guess === ct) calBins[b][1]++; calBins[b][2] += conf; confSumAll += conf;
+    calTrace.push([+conf.toFixed(4), guess === ct ? 1 : 0]);
     const pTrue = ct === 0 ? c.pc[0] : c.pc[1];
     pTrueTrace.push(pTrue);
     if (!grace.has(t) && (1 - pTrue) >= 0.75) fa++;
@@ -593,8 +730,16 @@ function u70nEval(M, path, obs, zShuffle, RC) {
   }
   const ftd = delays.filter((d) => d === null).length;
   const det = delays.filter((d) => d !== null).sort((a, b) => a - b);
-  let eceN = 0, ece = 0;
-  for (const [n, k] of calBins) if (n > 0) { ece += n * Math.abs(k / n - 0.95); eceN += n; }
+  // F12: valid ECE = sum_b (n_b/N)|acc_b - conf_b| (empty bins contribute 0, no accuracy term).
+  // Filed fixed-0.95 field removed (same name, different meaning fails the next audit); filed
+  // ledgers keep their values as measured-as-run with the fixed-reference gloss.
+  let eceN = 0, ece = 0, mce = 0;
+  const calBinsOut = calBins.map(([n, k, cs]) => {
+    if (!n) return [0, 0, 0];
+    const acc = k / n, mc = cs / n, d = Math.abs(acc - mc);
+    ece += n * d; if (d > mce) mce = d; eceN += n;
+    return [n, +acc.toFixed(4), +mc.toFixed(4)];
+  });
   void eceN;
   let usage = null, probeAcc = null, klMean = null;
   if (M.variant !== "V2") {
@@ -603,7 +748,10 @@ function u70nEval(M, path, obs, zShuffle, RC) {
   }
   return {
     ctxAcc: +(correct / U70N_T).toFixed(4),
-    ece: +(ece / U70N_T).toFixed(4),
+    ece: eceN ? +(ece / eceN).toFixed(6) : null,
+    mce: eceN ? +mce.toFixed(6) : null,
+    meanConf: eceN ? +(confSumAll / eceN).toFixed(4) : null,
+    calBins: calBinsOut, calTrace,
     detDelayMedian: det.length ? det[Math.floor(det.length / 2)] : null,
     ftd, nSwitches: path.switches.length,
     faPer100: +((fa / U70N_T) * 100).toFixed(3),
@@ -618,7 +766,62 @@ function u70nEval(M, path, obs, zShuffle, RC) {
     probeAcc: probeAcc === null ? null : +probeAcc.toFixed(4),
     klMean: klMean === null ? null : +klMean.toFixed(4),
     trace: RC.trace ? { ctx: traceCtx, act: traceAct } : undefined,
+    pTrueTrace: RC.tracePtrue ? pTrueTrace.map((v) => +v.toFixed(4)) : undefined,
   };
+}
+// F12 executable tests E1-E4 (pre-smoke HALT gate). Returns log lines; throws on fail.
+function u70nF12Tests() {
+  const lines = [];
+  const validECE = (bins) => {
+    let N = 0, e = 0, m = 0;
+    for (const [n, a, c] of bins) { if (!n) continue; const d = Math.abs(a - c); e += n * d; if (d > m) m = d; N += n; }
+    return { ece: N ? e / N : null, mce: N ? m : null, N };
+  };
+  // E1: zero on perfect calibration (empty bins contribute 0)
+  {
+    const bins = Array.from({ length: 10 }, (_, i) => (i % 3 === 0 ? [50, 0.75, 0.75] : [0, 0, 0]));
+    const { ece, mce } = validECE(bins);
+    if (ece !== 0 || mce !== 0) throw new Error("E1 FAIL: perfect calibration must give 0");
+    lines.push("E1 zero-on-perfect PASS (empty bins contribute 0)");
+  }
+  // E2: change-detector (NOT a calibration validator): all-correct-at-0.6 -> valid 0.4 vs old 0.05
+  {
+    const bins = Array.from({ length: 10 }, (_, i) => (i === 6 ? [100, 1, 0.6] : [0, 0, 0]));
+    const { ece } = validECE(bins);
+    if (Math.abs(ece - 0.4) > 1e-12) throw new Error("E2 FAIL: valid ECE should be 0.4");
+    if (Math.abs(Math.abs(1 - 0.95) - 0.05) > 1e-12) throw new Error("E2 FAIL: old-formula sanity");
+    if (Math.abs(ece - 0.05) < 1e-6) throw new Error("E2 FAIL: indistinguishable from old metric");
+    lines.push("E2 fixed-reference-detector PASS (valid 0.4 vs old 0.05)");
+  }
+  // E3: determinism is exercised on the neural path by the filed replication precedent
+  // (F5-k0 maxDiff 0.0000, F10 0/1080); here: same-seed eval twice identical incl. valid ECE.
+  {
+    const M = u70nInitModel("F4", 4, 90000); M._seed = 4;
+    const path = u70nGenPath(4), obs = u70nGenObs(4, path);
+    const a = u70nEval(M, path, obs, false), b = u70nEval(M, path, obs, false);
+    for (const k of ["ctxAcc", "ece", "mce", "meanConf"]) if (a[k] !== b[k]) throw new Error("E3 FAIL: " + k);
+    lines.push("E3 eval-determinism PASS (same-seed identical incl. valid ECE)");
+  }
+  // E4: retention integrity on the REAL eval path — bins sum to T, trace length T, meanConf in range
+  {
+    const M = u70nInitModel("F4", 7, 90000); M._seed = 7;
+    const path = u70nGenPath(7), obs = u70nGenObs(7, path);
+    const m = u70nEval(M, path, obs, false);
+    let n = 0; for (const [bn] of m.calBins) n += bn;
+    if (n !== 300) throw new Error("E4 FAIL: bin n-sum " + n + " != T");
+    if (!m.calTrace || m.calTrace.length !== 300) throw new Error("E4 FAIL: calTrace length");
+    if (!(m.meanConf >= 0 && m.meanConf <= 1)) throw new Error("E4 FAIL: meanConf range");
+    for (const [bn, ba, bc] of m.calBins) {
+      if (!bn) continue;
+      if (!(ba >= 0 && ba <= 1 && bc >= 0 && bc <= 1)) throw new Error("E4 FAIL: bin range");
+    }
+    // recompute-from-ledger within 1e-4 (6dp ECE vs 4dp bins)
+    let e = 0, N = 0;
+    for (const [bn, ba, bc] of m.calBins) { if (!bn) continue; e += bn * Math.abs(ba - bc); N += bn; }
+    if (Math.abs(e / N - m.ece) > 1e-4) throw new Error("E4 FAIL: recompute drift " + Math.abs(e / N - m.ece));
+    lines.push("E4 retention-integrity PASS (bins sum T, trace T, recompute within 1e-4)");
+  }
+  return lines;
 }
 globalThis.runU70Neural = async function (fs, log, opts) {
   opts = opts || {};
@@ -635,11 +838,30 @@ globalThis.runU70Neural = async function (fs, log, opts) {
   U70N_INITSCALE = (opts.initscale === undefined) ? 1.0 : opts.initscale;
   const anneal = !!opts.anneal;
   const repwAt = (e) => anneal ? 0.3 * Math.min(e + 1, 100) / 100 : U70N_REPW_BASE;
-  const ledger = { spec: "u70-f10-prereg-proposal", version: "v1.1", track: "U70-CTX", kind: "neural-execution", epochs, floor: U70N_FREEBITS, ctxw: U70N_CTXW, warmup: U70N_WARMUP, tilt: U70N_TILT, initscale: U70N_INITSCALE, initBase: (opts.initBase === undefined ? 90000 : opts.initBase), members: opts.members || null, anneal, rows: [] };
+  const ledger = { spec: (opts.f14 ? "u70-f14-prereg-proposal" : (opts.f13 ? "u70-f13-prereg-proposal" : (opts.f12 ? "u70-f12-prereg-proposal" : "u70-f10-prereg-proposal"))), version: "v1.1", track: "U70-CTX", kind: "neural-execution", epochs, floor: U70N_FREEBITS, ctxw: U70N_CTXW, warmup: U70N_WARMUP, tilt: U70N_TILT, initscale: U70N_INITSCALE, initBase: (opts.initBase === undefined ? 90000 : opts.initBase), members: opts.members || null, anneal, rows: [] };
   if (opts.f11) { // F11 (countersigned v1.1 EXACT): pre-smoke HALT gate — T1-T4 must pass before any train
     let tl;
     try { tl = u70nF11Tests(); } catch (e) { throw new Error("F11 HALT: " + String((e && e.message) || e)); }
     for (const m of tl) log("[F11-TEST] " + m);
+  }
+  if (opts.f13) { // F13 (countersigned v1.1 EXACT): F11 T1-T4 + F12 E1-E4 + F13 T5/T6/E4h must pass before any train
+    for (const pair of [[u70nF11Tests, "F11-TEST"], [u70nF12Tests, "F12-TEST"], [u70nF13Tests, "F13-TEST"]]) {
+      let tl2;
+      try { tl2 = pair[0](); } catch (e) { throw new Error("F13 HALT: " + String((e && e.message) || e)); }
+      for (const m of tl2) log("[" + pair[1] + "] " + m);
+    }
+  }
+  if (opts.f14) { // F14 (countersigned v1.1 EXACT): F11 T1-T4 + F12 E1-E4 + F13 T5/T6/E4h + F14 T7/T8/T8b must pass before any train
+    for (const pair of [[u70nF11Tests, "F11-TEST"], [u70nF12Tests, "F12-TEST"], [u70nF13Tests, "F13-TEST"], [u70nF14Tests, "F14-TEST"]]) {
+      let tl2;
+      try { tl2 = pair[0](); } catch (e) { throw new Error("F14 HALT: " + String((e && e.message) || e)); }
+      for (const m of tl2) log("[" + pair[1] + "] " + m);
+    }
+  }
+  if (opts.f12) { // F12 (countersigned v1.1 EXACT): pre-smoke HALT gate — E1-E4 must pass before any train
+    let tl;
+    try { tl = u70nF12Tests(); } catch (e) { throw new Error("F12 HALT: " + String((e && e.message) || e)); }
+    for (const m of tl) log("[F12-TEST] " + m);
   }
   if (opts.members) { // F10 ensemble vote mode: M members per seed, majority vote + disagreement
     const memb = opts.members, v = (opts.variants || ["F4"])[0];
@@ -714,13 +936,13 @@ globalThis.runU70Neural = async function (fs, log, opts) {
         const epLoss = []; // F11 ledger field (within-wave sanity; filed waves lack it — no cross-wave claim)
         for (let e = 0; e < epochs; e++) {
           const r = u70nEpoch(M, path, obs, repwAt(e));
-          if ((e + 1) % 50 === 0) { log(v + " s" + s + " epoch " + (e + 1) + "/" + epochs + " loss=" + r.loss.toFixed(4)); if (opts.f11) epLoss.push(+r.loss.toFixed(4)); }
+          if ((e + 1) % 50 === 0) { log(v + " s" + s + " epoch " + (e + 1) + "/" + epochs + " loss=" + r.loss.toFixed(4)); if (opts.f11 || opts.f12 || opts.f13 || opts.f14) epLoss.push(+r.loss.toFixed(4)); }
           if (!isFinite(r.loss)) { row = { variant: v, seed: s, INVALID: true, reason: "non-finite loss" }; break; }
         }
         if (!row) {
-          const m = u70nEval(M, path, obs, false);
+          const m = u70nEval(M, path, obs, false, (opts.f12 && opts.mode === "smoke") ? { tracePtrue: true } : undefined);
           row = { variant: v, seed: s, ms: Date.now() - t0 };
-          if (opts.f11) row.epLoss = epLoss;
+          if (opts.f11 || opts.f12 || opts.f13 || opts.f14) row.epLoss = epLoss;
           Object.assign(row, m);
           if (v === "V3" || v === "F2" || v === "F4") {
             const m4 = u70nEval(M, path, obs, true);
@@ -728,6 +950,35 @@ globalThis.runU70Neural = async function (fs, log, opts) {
             row.gap = +(row.actionAcc - Math.max(row.cueActAcc, m4.actionAcc)).toFixed(4);
           }
           if (opts.keepModels) { globalThis.u70nModels = globalThis.u70nModels || {}; globalThis.u70nModels[v + "-" + s] = M; }
+          if (opts.heldout) { // F13: paired held-out eval on the SAME frozen weights (no training between)
+            const hs = s + 20;
+            const pathH = u70nGenPath(hs), obsH = u70nGenObs(hs, pathH);
+            if (pathH === path || obsH === obs) throw new Error("F13 HALT: T5 object reuse s=" + s);
+            if (hs !== s + 20) throw new Error("F13 HALT: T5 mapping s=" + s);
+            row.evalSeed = s; row.evals = "train";
+            row.weightHash = u70nWeightHash(M); row.configHash = u70nConfigHash((opts.f14 ? u70nF14ConfigSpec() : u70nF13ConfigSpec()));
+            if (opts.repCheck) { // F14 per-seed early-HALT (r9): train-clean must match filed F12 before any shuffled/heldout eval
+              const base = opts.repCheck[s];
+              const cleanOf = (r) => { const o = {}; for (const k of ["variant", "seed", "ctxAcc", "ece", "mce", "meanConf", "calBins", "calTrace", "detDelayMedian", "ftd", "nSwitches", "faPer100", "rhoAcc", "rhoMAE", "maskedAcc", "misleadAcc", "lowRhoAcc", "actionAcc", "cueActAcc", "usage", "probeAcc", "klMean"]) o[k] = r[k]; return JSON.stringify(o); };
+              if (!base) throw new Error("F14 HALT: no baseline for seed " + s);
+              if (cleanOf(row) !== cleanOf(base)) throw new Error("F14 HALT: replication mismatch s=" + s + " (BROKEN — training did not land F12-exact)");
+              log("[F14-REP] s" + s + " replication 0-mismatch PASS");
+            }
+            const mH = u70nEval(M, pathH, obsH, false);
+            const rowH = { variant: v, seed: s, evalSeed: hs, evals: "heldout", ms: 0 };
+            if (opts.f11 || opts.f12 || opts.f13 || opts.f14) rowH.epLoss = epLoss.slice();
+            Object.assign(rowH, mH);
+            if (v === "V3" || v === "F2" || v === "F4") {
+              const m4H = u70nEval(M, pathH, obsH, true);
+              rowH.v4actionAcc = m4H.actionAcc;
+              rowH.gap = +(rowH.actionAcc - Math.max(rowH.cueActAcc, m4H.actionAcc)).toFixed(4);
+            }
+            rowH.weightHash = row.weightHash; rowH.configHash = row.configHash;
+            let nbH = 0; for (const bn of rowH.calBins) nbH += bn[0];
+            if (nbH !== U70N_T || !rowH.calTrace || rowH.calTrace.length !== U70N_T) throw new Error("F13 HALT: E4h retention s=" + s);
+            ledger.rows.push(rowH);
+            log("done " + v + " s" + s + " heldout s" + hs + " " + JSON.stringify({ ctxAcc: rowH.ctxAcc, probeAcc: rowH.probeAcc, gap: rowH.gap, ece: rowH.ece }));
+          }
         }
       }
       ledger.rows.push(row);

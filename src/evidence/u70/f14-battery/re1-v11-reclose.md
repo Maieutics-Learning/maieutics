@@ -1,0 +1,4 @@
+# F14 re-close re1 (re-close T8b: can a leak pass T7+T8+T8b together)
+
+1. **Verdict:** NEEDS-PATCH.
+2. **Residual:** The "independent recompute" (T8b) fails to logically close the leak if the underlying `u70nEval` logic still relies on the same corrupted state-update sequence. While T8b verifies that the *output* of the shuffle branch matches a clean reference, it does not prove that the *input* to that branch (the trajectory state) was not already contaminated by the `+q` leak during the forward pass. If the leak is additive and persistent across the trajectory, a "pure" shuffle at the final read-point merely masks a corrupted state. T8b is a check on the *shuffler*, not a check on the *trajectory's purity*. To close this, you need a T-test asserting the state vector $\mathbf{z}$ is orthogonal to $\mathbf{q}$ at every step of the metric path.
