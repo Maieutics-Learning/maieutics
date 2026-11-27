@@ -1,0 +1,12 @@
+{
+ "probePass": 12,
+ "gapPass": 20,
+ "ctxPass": 16,
+ "catastrophes": [
+  2,
+  6,
+  7,
+  8
+ ],
+ "verdict": "REPAIRED"
+}

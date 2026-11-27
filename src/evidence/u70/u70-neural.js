@@ -1,4 +1,6 @@
 // u70-neural.js — U70-CTX neural execution driver (prereg v1.1 EXACT).
+// F11 (countersigned v1.1 EXACT, 2026-11-27): forward-exact one-hot + pure-shuffle read +
+// factored softmax-jacobian + T1-T4 HALT gate + epoch-loss ledger field. All else unchanged.
 //
 // Variants: V1 reactive floor (analytic, no training). V2 GRU no-z (trained).
 // V3 full (GRU h + discrete z + rho-head + reconstruction, trained). V4 = frozen
@@ -149,8 +151,7 @@ function u70nStep(M, x, h, train) {
     q = u70nSoftmax(elog, Z); p = u70nSoftmax(plog, Z);
     if (train) { zi = 0; const rr = M._srng(); let acc = 0; for (let k = 0; k < Z; k++) { acc += q[k]; if (rr < acc) { zi = k; break; } } }
     else { zi = 0; for (let k = 1; k < Z; k++) if (q[k] > q[zi]) zi = k; }
-    zoh = new Float64Array(Z); zoh[zi] = 1;
-    for (let k = 0; k < Z; k++) zoh[k] += q[k]; // straight-through carrier: oh + q - qd handled in backward via qd copy
+    zoh = new Float64Array(Z); zoh[zi] = 1; // F11: forward-exact one-hot (posterior-leak fix; was oh+q). ST gradient via analytic q-jacobian in backward, unchanged.
   }
   const hv = M.variant === "V2" ? h : null;
   let feat;
@@ -268,13 +269,12 @@ function u70nEpoch(M, path, obs, repw) {
           for (let j = 0; j < Z; j++) { gb[j] += dplog[j]; for (let ii = 0; ii < H; ii++) gW[ii * Z + j] += dplog[j] * c.h[ii]; }
           for (let ii = 0; ii < H; ii++) { let v = 0; for (let j = 0; j < Z; j++) v += M.Wp.w[ii * Z + j] * dplog[j]; dhn[ii] += v; }
         }
-        // d q-logits: rep-KL part + straight-through dz
+        // d q-logits: rep-KL part + straight-through dz (manual ST: backward never
+        // differentiates through the forward op — it routes head-grads through the analytic
+        // softmax jacobian of q, which references c.q but never the forward zoh value)
         const dqlog = new Float64Array(Z);
         for (let k = 0; k < Z; k++) dqlog[k] = dqrep[k] * repw + dz[k] * (1 - U70N_UNIF);
-        // softmax jacobian: dlogit = q*(dq - dq.q)
-        let dot = 0; for (let k = 0; k < Z; k++) dot += dqlog[k] * c.q[k];
-        const dlog = new Float64Array(Z);
-        for (let k = 0; k < Z; k++) dlog[k] = c.q[k] * (dqlog[k] - dot);
+        const dlog = u70nSoftmaxJacobianT(c.q, dqlog);
         {
           const ex = new Float64Array(H + U70N_D); ex.set(c.h, 0);
           for (let ii = 0; ii < U70N_D; ii++) ex[H + ii] = c.x[ii];
@@ -360,8 +360,7 @@ function u70nKLdp(qm, pm, active) {
   }
   return d;
 }
-function u70nKLdq(qm, pm, active) {
-  // d KL(qm||sg(pm))/d qlogit (qm = mix(q)); chain qm->q linear then softmax jacobian
+function u70nKLdq(qm, pm, active) {  // d KL(qm||sg(pm))/d qlogit (qm = mix(q)); chain qm->q linear then softmax jacobian
   const Z = qm.length;
   const dq = new Float64Array(Z);
   if (!active) return dq;
@@ -369,6 +368,146 @@ function u70nKLdq(qm, pm, active) {
   for (let j = 0; j < Z; j++) dqm[j] = Math.log(qm[j] / pm[j]) + 1;
   for (let k = 0; k < Z; k++) dqm[k] *= (1 - U70N_UNIF);
   return dqm; // caller applies softmax jacobian wrt q logits
+}
+// softmax jacobian transpose: dlogit = q*(dq - dq.q). Factored (F11) so the T2 test
+// exercises the exact function training uses.
+function u70nSoftmaxJacobianT(q, dq) {
+  const Z = q.length;
+  let dot = 0; for (let k = 0; k < Z; k++) dot += dq[k] * q[k];
+  const dlog = new Float64Array(Z);
+  for (let k = 0; k < Z; k++) dlog[k] = q[k] * (dq[k] - dot);
+  return dlog;
+}
+// F11: filed shuffle-RNG convention factored out (identical draws, 73000+seed+off).
+function u70nShuffleOrder(seed, shufOff, T) {
+  const order = [...Array(T).keys()];
+  const rng = u70nMulberry32(73000 + seed + shufOff);
+  for (let i = order.length - 1; i > 0; i--) { const j = Math.floor(rng() * (i + 1)); const tmp = order[i]; order[i] = order[j]; order[j] = tmp; }
+  return order;
+}
+// F11: read-point latent intervention on the REAL eval path. Replaces the complete per-trial
+// representation with the pure shuffled one-hot (original-trial q REMOVED; was zdet+q).
+// Documented boundary: recurrence history stays clean-z (intervention at the read, not a rewrite).
+function u70nApplyShuffle(M, trials, order) {
+  const H = U70N_H, Z = U70N_Z;
+  const zs = trials.map((c) => c.zi);
+  const shuffled = order.map((i) => zs[i]);
+  for (let t = 0; t < trials.length; t++) {
+    const c = trials[t];
+    const zdet = new Float64Array(Z); zdet[shuffled[t]] = 1;
+    const zoh = new Float64Array(Z);
+    for (let k = 0; k < Z; k++) zoh[k] = zdet[k];
+    c.zohShuf = zoh;
+    const sfeat = (M.variant === "F2" || M.variant === "F4") ? zoh : (() => { const f = new Float64Array(H + Z); f.set(c.hn, 0); f.set(zoh, H); return f; })();
+    const clog = u70nLinCache(sfeat, M.Wc, M.bc, 2);
+    c.pc = u70nSoftmax(clog, 2);
+    c.ziShuf = shuffled[t];
+  }
+  return trials;
+}
+// F11 executable tests T1-T4 (pre-smoke HALT gate). Returns log lines; throws on fail.
+function u70nF11Tests() {
+  const lines = [];
+  const Z = U70N_Z, H = U70N_H, D = U70N_D;
+  // T1: forward one-hotness on the REAL u70nStep path (strict equality, 200 draws)
+  {
+    const M = u70nInitModel("F4", 0, 90000); M._seed = 0;
+    const rng = u70nMulberry32(12345);
+    for (let i = 0; i < 200; i++) {
+      const h = new Float64Array(H), x = new Float64Array(D);
+      for (let j = 0; j < H; j++) h[j] = rng() * 2 - 1;
+      for (let j = 0; j < D; j++) x[j] = rng() < 0.3 ? 1 : 0;
+      const c = u70nStep(M, x, h, false);
+      let ones = 0;
+      for (let k = 0; k < Z; k++) {
+        if (c.zoh[k] === 1) ones++;
+        else if (c.zoh[k] !== 0) throw new Error("T1 FAIL: non-binary zoh[" + k + "]=" + c.zoh[k]);
+      }
+      if (ones !== 1) throw new Error("T1 FAIL: not one-hot");
+      if (c.zoh[c.zi] !== 1) throw new Error("T1 FAIL: argmax mismatch");
+    }
+    lines.push("T1 forward-one-hotness PASS (200 draws, strict equality)");
+  }
+  // T2: ST-surrogate gate (HALT on fail). CORRECTION (filed same-session, prereg v1.1 stands):
+  // a finite-difference "identity" of an ST surrogate against the true forward gradient is
+  // mathematically void — the true forward map (argmax one-hot) has gradient 0 a.e. by design,
+  // so numeric grad would be 0 while the surrogate is nonzero. That IS straight-through (biased
+  // by construction). What is testable: (a) the helper training uses is a valid softmax jacobian
+  // (row-sum zero, difference preservation, vs an independent re-derivation); (b) the signal path
+  // is alive end-to-end (encoder weights move under training — zero grads would move nothing).
+  {
+    const rng = u70nMulberry32(999);
+    for (let i = 0; i < 50; i++) {
+      const q = new Float64Array(Z), dq = new Float64Array(Z);
+      let s = 0;
+      for (let k = 0; k < Z; k++) { q[k] = rng() + 0.05; s += q[k]; dq[k] = rng() * 2 - 1; }
+      for (let k = 0; k < Z; k++) q[k] /= s;
+      const dlog = u70nSoftmaxJacobianT(q, dq);
+      let sum = 0; for (let k = 0; k < Z; k++) sum += dlog[k];
+      if (Math.abs(sum) > 1e-12) throw new Error("T2a FAIL: row-sum " + sum);
+      for (let k = 1; k < Z; k++) {
+        const lhs = dlog[k] / q[k] - dlog[0] / q[0], rhs = dq[k] - dq[0];
+        if (Math.abs(lhs - rhs) > 1e-9) throw new Error("T2a FAIL: diff-preservation");
+      }
+      // independent re-derivation (not calling the helper): J = diag(q) - q q^T, times dq
+      for (let k = 0; k < Z; k++) {
+        let v = q[k] * dq[k], sub = 0;
+        for (let j = 0; j < Z; j++) sub += q[k] * q[j] * dq[j];
+        if (Math.abs(dlog[k] - (v - sub)) > 1e-12) throw new Error("T2a FAIL: re-derivation mismatch");
+      }
+    }
+    lines.push("T2a jacobian-validity PASS (50 random, row-sum 0 + diff-preservation + re-derivation)");
+    // T2b vitality on the REAL training path: encoder weights must move in one epoch
+    const M = u70nInitModel("F4", 5, 90000); M._seed = 5;
+    const path = u70nGenPath(5), obs = u70nGenObs(5, path);
+    const before = Float64Array.from(M.We.w);
+    M._srng = u70nMulberry32(91000 + 5);
+    const r = u70nEpoch(M, path, obs, 0.1);
+    if (!isFinite(r.loss)) throw new Error("T2b FAIL: non-finite loss");
+    let moved = 0;
+    for (let i = 0; i < before.length; i++) if (M.We.w[i] !== before[i]) moved++;
+    if (moved === 0) throw new Error("T2b FAIL: encoder frozen — ST signal dead");
+    lines.push("T2b signal-vitality PASS (" + moved + "/" + before.length + " encoder weights moved, loss finite)");
+  }
+  // T3: intervention isolation on the REAL u70nApplyShuffle path (adversarial q)
+  {
+    const M = u70nInitModel("F4", 1, 90000); M._seed = 1;
+    const mkQ = (a) => Float64Array.from(a);
+    const trials = [
+      { zi: 0, q: mkQ([0.999, 0.0004, 0.0003, 0.0003]), hn: new Float64Array(H) },
+      { zi: 2, q: mkQ([0.25, 0.25, 0.25, 0.25]), hn: new Float64Array(H) },
+      { zi: 1, q: mkQ([0.1, 0.7, 0.1, 0.1]), hn: new Float64Array(H) },
+      { zi: 3, q: mkQ([0.02, 0.03, 0.9, 0.05]), hn: new Float64Array(H) },
+    ];
+    const order = [2, 0, 3, 1];
+    u70nApplyShuffle(M, trials, order);
+    const expectZi = [1, 0, 3, 2];
+    for (let t = 0; t < trials.length; t++) {
+      const c = trials[t];
+      if (c.ziShuf !== expectZi[t]) throw new Error("T3 FAIL: mapping");
+      for (let k = 0; k < Z; k++) {
+        if (!(c.zohShuf[k] === 0 || c.zohShuf[k] === 1)) throw new Error("T3 FAIL: non-binary shuffled zoh");
+      }
+      let ones = 0; for (let k = 0; k < Z; k++) if (c.zohShuf[k] === 1) ones++;
+      if (ones !== 1 || c.zohShuf[c.ziShuf] !== 1) throw new Error("T3 FAIL: not one-hot at shuffled idx");
+      for (let k = 0; k < Z; k++) for (let j = 0; j < Z; j++) {
+        if (c.zohShuf[k] !== 0 && c.zohShuf[k] !== 1) throw new Error("T3 FAIL: posterior float present");
+        if (c.q[j] !== 0 && c.q[j] !== 1 && c.zohShuf[k] === c.q[j] && c.zohShuf[k] !== 0) throw new Error("T3 FAIL: q leak");
+      }
+    }
+    lines.push("T3 intervention-isolation PASS (exact binarity + mapping, adversarial q)");
+  }
+  // T4: shuffle determinism (same seed+offset twice identical; permutation valid)
+  {
+    const a = u70nShuffleOrder(5, 0, 300), b = u70nShuffleOrder(5, 0, 300), c = u70nShuffleOrder(6, 0, 300);
+    for (let t = 0; t < 300; t++) if (a[t] !== b[t]) throw new Error("T4 FAIL: nondeterministic");
+    const s = new Set(a);
+    if (s.size !== 300) throw new Error("T4 FAIL: not a permutation");
+    let same = 0; for (let t = 0; t < 300; t++) if (a[t] === c[t]) same++;
+    if (same === 300) throw new Error("T4 FAIL: seed-insensitive");
+    lines.push("T4 shuffle-determinism PASS");
+  }
+  return lines;
 }
 // ---- eval ----
 function u70nEval(M, path, obs, zShuffle, RC) {
@@ -497,6 +636,11 @@ globalThis.runU70Neural = async function (fs, log, opts) {
   const anneal = !!opts.anneal;
   const repwAt = (e) => anneal ? 0.3 * Math.min(e + 1, 100) / 100 : U70N_REPW_BASE;
   const ledger = { spec: "u70-f10-prereg-proposal", version: "v1.1", track: "U70-CTX", kind: "neural-execution", epochs, floor: U70N_FREEBITS, ctxw: U70N_CTXW, warmup: U70N_WARMUP, tilt: U70N_TILT, initscale: U70N_INITSCALE, initBase: (opts.initBase === undefined ? 90000 : opts.initBase), members: opts.members || null, anneal, rows: [] };
+  if (opts.f11) { // F11 (countersigned v1.1 EXACT): pre-smoke HALT gate — T1-T4 must pass before any train
+    let tl;
+    try { tl = u70nF11Tests(); } catch (e) { throw new Error("F11 HALT: " + String((e && e.message) || e)); }
+    for (const m of tl) log("[F11-TEST] " + m);
+  }
   if (opts.members) { // F10 ensemble vote mode: M members per seed, majority vote + disagreement
     const memb = opts.members, v = (opts.variants || ["F4"])[0];
     for (const s of seeds) {
@@ -567,14 +711,16 @@ globalThis.runU70Neural = async function (fs, log, opts) {
       } else {
         const M = u70nInitModel(v, s, (opts.initBase === undefined ? 90000 : opts.initBase)); M._seed = s;
         const t0 = Date.now();
+        const epLoss = []; // F11 ledger field (within-wave sanity; filed waves lack it — no cross-wave claim)
         for (let e = 0; e < epochs; e++) {
           const r = u70nEpoch(M, path, obs, repwAt(e));
-          if ((e + 1) % 50 === 0) log(v + " s" + s + " epoch " + (e + 1) + "/" + epochs + " loss=" + r.loss.toFixed(4));
+          if ((e + 1) % 50 === 0) { log(v + " s" + s + " epoch " + (e + 1) + "/" + epochs + " loss=" + r.loss.toFixed(4)); if (opts.f11) epLoss.push(+r.loss.toFixed(4)); }
           if (!isFinite(r.loss)) { row = { variant: v, seed: s, INVALID: true, reason: "non-finite loss" }; break; }
         }
         if (!row) {
           const m = u70nEval(M, path, obs, false);
           row = { variant: v, seed: s, ms: Date.now() - t0 };
+          if (opts.f11) row.epLoss = epLoss;
           Object.assign(row, m);
           if (v === "V3" || v === "F2" || v === "F4") {
             const m4 = u70nEval(M, path, obs, true);

@@ -1,0 +1,3 @@
+=== RE3 [any remaining second variable or scope breach] ===
+1. **Verdict: STANDS.**
+2. **Hardest Falsifier:** The "Manual-coupling" claim (Section 5b.1). Since the forward pass is corrected to be discrete (one-hot) but the backward pass relies on a pre-existing ST surrogate (Section 3), there is a risk of a gradient-mismatch at the boundary of the repair. If the `dqlog` derivation in `:273-277` implicitly assumed the previous (incorrect) forward-pass continuity to function, the "repair" will trigger a catastrophic collapse in the 20 paired retrains. The test is whether the `REPAIRED` verdict persists when the backward pass is forced to use the actual (now discrete) forward output rather than the analytic surrogate.

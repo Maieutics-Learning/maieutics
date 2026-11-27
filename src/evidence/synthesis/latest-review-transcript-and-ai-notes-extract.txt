@@ -1,0 +1,115 @@
+FILES(17):
+[Content_Types].xml
+_rels/.rels
+docProps/core.xml
+docProps/app.xml
+word/document.xml
+word/_rels/document.xml.rels
+word/styles.xml
+word/stylesWithEffects.xml
+word/settings.xml
+word/webSettings.xml
+word/fontTable.xml
+word/theme/theme1.xml
+customXml/item1.xml
+customXml/_rels/item1.xml.rels
+customXml/itemProps1.xml
+word/numbering.xml
+docProps/thumbnail.jpeg
+
+=== word/document.xml crc=OK size=MISMATCH(21678vs17) PARAS(95) ===
+MAIEUTICS — LATEST REPOSITORY REVIEW
+Conversation transcript and AI-friendly research notes
+Scope: This document records the latest repository-review exchange after the user uploaded the newest maieutics-main.zip archive. The transcript is a faithful, organized rendering of the assistant's review, not a byte-for-byte export of the chat UI.
+Part I — Conversation transcript
+User
+“[$life-science-research] here is the newest directory”
+Assistant — review framing
+The archive was received. The initial finding was that the project had moved beyond the earlier U55–U60 failures into a more explicit U70 context-inference program. The review distinguished a genuine attempt to represent hidden context separately from cue reliability from proof that the complete system had learned a reliable, biologically meaningful context representation.
+The assistant noted that U70 used supervised context and reliability labels as training targets. This is a valid way to test whether a compact recurrent model can learn a useful state representation, but it is not evidence that the system autonomously discovers a new context structure. The F10 result was also characterized as a three-model majority vote, not a single model becoming consistently competent.
+Assistant — implementation findings
+1. Straight-through latent implementation
+In src/evidence/u70/u70-neural.js, lines 152–153, the code constructs a one-hot vector and adds the posterior q to it. The intended straight-through expression is onehot(argmax(q)) + q - stopgrad(q): its forward value is exactly one-hot while its backward gradient behaves as though it were continuous. The implementation instead computes onehot(argmax(q)) + q.
+Consequently, the forward representation is not purely categorical; it retains continuous posterior information. The z-shuffle evaluation has a related problem: it changes the hard category while retaining the original unshuffled posterior. It therefore does not fully intervene on the latent representation.
+Review implication: this is a blocking implementation issue for claims that F2, F4, or F10 establish that a discrete categorical latent is doing the work. Correct the forward value and make the shuffle intervention replace the complete representation.
+2. Calibration metric
+The reported ECE calculation in u70-neural.js (lines 457–459) compares each confidence bin's accuracy against a fixed 0.95. The oracle uses the equivalent calculation. Standard expected calibration error compares bin accuracy with average predicted confidence in that bin: sum_b (n_b/N) * |accuracy(b) - confidence(b)|.
+Because average confidence is not accumulated, the reported quantity is not ECE. This invalidates the calibration interpretation and any gate relying on that metric, but does not by itself invalidate context-accuracy measurements. Recalculate calibration from per-trial probabilities.
+3. Training/evaluation leakage across trajectories
+The driver trains for 200 epochs on a path and observation sequence, then evaluates on the same path and observations. Context and reliability labels are supplied as training targets at each time step. They are not inference inputs, but the evaluated trajectories are not held out.
+This tests fitting/replaying trajectories rather than generalization to unseen trajectories. The preregistration's proposed fresh seeds 20–39 are a suitable held-out replication idea, but that evaluation had not yet occurred in the reviewed material.
+4. Architecture/specification mismatch
+The minimal architecture specification describes h_t = GRU(h_{t-1}, x_t, z_{t-1}), but the implemented GRU update uses current input and previous hidden state without feeding the previous latent z_{t-1} into the recurrent update. This is still a recurrent model with a stochastic latent bottleneck, but it is not the architecture described in the specification.
+Assistant — experiment interpretation
+The review summarized the progression as follows: the Bayesian oracle achieved context accuracy 0.9498; the first neural wave did not proceed; F1–F2 persisted; F4 fixed the registered outcome; F5–F8 retained initialization sensitivity; F9 was partial; and F10 passed its vote-level gates.
+F10 reported majority-vote context accuracy 0.8832 and vote gap 0.1395, with 20/20 passing each gate. It lifted all eight previously identified catastrophe seeds above 0.70 and reproduced the previously filed F5 member results.
+However, the F10 closeout's paired improvement dProbe=+0.164 compared the F10 majority vote context-head prediction with F4's auxiliary z-only probe. These are different metrics. The same-metric comparison—F10 vote context accuracy against F4 context accuracy—was +0.0037, with confidence interval [-0.0027, +0.0100]. The +0.164 comparison should not be presented as a like-for-like ensemble improvement.
+The z-only probe averaged 0.5854 across the 60 F10 members, with only 28/60 members above 0.70. F10's majority vote was over context-head predictions, not the z-only probes. Therefore, the vote result does not establish that the discrete latent representation is reliable.
+Assistant — biological interpretation
+U70 is a computational experiment involving two contexts, three discrete cue-reliability levels, controlled switches, masking, and a Bayesian reference model. It does not yet demonstrate hippocampal remapping, prefrontal context inference, neuromodulation, or open-ended context recruitment.
+F10 showed lower member disagreement on catastrophe seeds than on healthy seeds (0.0687 versus 0.1431 split rate). This undermines the proposal that disagreement alone is a useful novelty signal. The review supported further trace logging of KL, entropy, and V4-gap signals, while advising against introducing ACh/NE mechanisms yet.
+Assistant — assessment of the research process
+The repository records the prior representation discussion as part of the U70 review intake. Therefore, U70 should not be described as an independent rediscovery of the proposed architecture. Its achievement is the translation of an externally supplied research direction into a concrete task, oracle, causal diagram, preregistration, experiment sequence, and preserved negative results.
+The review process appears stronger at reviewing plans and documents than at verifying implementation semantics. The F10 reviewer battery identified issues involving ensemble size, vote-gap definition, independence, and verdict interpretation, but missed the latent forward-pass issue, incomplete intervention, and ECE calculation. Stateless AI reviewers are useful adversarial reviewers, but they are not independent scientific validations and may share blind spots.
+Assistant — recommendations and conclusion
+Implementation audit: correct the straight-through forward value; make z-shuffle replace the complete representation; add executable tests for one-hot forward values and posterior removal.
+Metric audit: correct ECE in both oracle and neural implementations; retain per-trial probabilities and confidence so metrics can be independently recalculated.
+Generalization: train across multiple independent trajectories and evaluate on fresh held-out trajectories; save model weights and exact data/configuration hashes.
+Representation reassessment: compare recurrent-only, corrected categorical-latent, and ensemble models; report z-only representation separately from context-head performance; test whether the latent is necessary.
+Novelty test: introduce an unfamiliar context or changed contingency and test whether the system can recognize that its existing context inventory is inadequate.
+Biological mechanisms: only revisit reliability and unexpected-change modulation after the context representation and its generalization are established.
+Overall conclusion: the research design improved substantially and the classifier's ensemble performance improved on the tested trajectories, but the scientific claim remains open. The discrete latent representation, causal integration, calibration, and generalization have not yet been adequately established.
+Message to the research agent: “You have reached the point where another clever experiment is less valuable than verifying that the experiment you already ran means what you think it means. Audit the implementation, correct the measurements, and test on data you have never trained on. Do not defend F10's FIXED verdict beyond the precise conditions it actually passed. The next breakthrough is not a larger model or another biological mechanism. It is demonstrating that the system has learned a reusable representation of context rather than fitting the trajectories it was shown.”
+Part II — AI-friendly research handoff notes
+Purpose: concise machine-readable-style handoff for the AI research agent. These notes separate observations, interpretations, blockers, and required next actions. They are not new experimental results.
+A. Current working conclusion
+U70 is a promising context-inference research program, but F10 does not yet establish a reliable discrete latent context representation. F10 establishes a vote-level context-head result on trajectories used during training/evaluation. Implementation and measurement audits are prerequisites to further architectural claims.
+B. Confirmed review observations
+Latent forward path: 
+Current code computes onehot(argmax(q)) + q, not a forward-exact one-hot straight-through value.
+Latent intervention: 
+The z-shuffle changes the hard category but retains original q; the posterior information is not fully shuffled/removed.
+Calibration: 
+Reported ECE compares bin accuracy to fixed 0.95, not mean confidence in the bin.
+Evaluation split: 
+Training and evaluation use the same path and observations.
+Architecture mismatch: 
+Specification feeds z_(t-1) into GRU state update; implementation does not.
+F10 headline: 
+Vote context accuracy 0.8832; vote gap 0.1395; 20/20 gate passes as reported.
+F10 comparison: 
+Like-for-like vote context accuracy vs F4 context accuracy: +0.0037, CI [-0.0027, +0.0100]. The +0.164 figure compares different heads.
+Z-only diagnostic: 
+Mean 0.5854 over 60 members; 28/60 above 0.70.
+Disagreement: 
+Catastrophe-seed split rate 0.0687 vs healthy-seed split rate 0.1431; disagreement alone is not a validated novelty signal.
+C. Claim boundaries
+Supported within the reported experiment: 
+The Bayesian oracle achieves 0.9498 context accuracy on the defined synthetic task; the three-member vote achieved the reported F10 vote-level thresholds on the evaluated trajectories; F10 reproduced prior F5 member results.
+Suggestive, not established: 
+The architecture may be learning useful context-related features; ensemble members may have complementary errors; U70 may be a useful substrate for later context-dependent control.
+Not established: 
+A robust, reusable discrete latent context representation; generalization to unseen trajectories; correct calibration; causal necessity of the latent; open-ended novelty detection; biological equivalence to hippocampal/prefrontal/neuromodulatory mechanisms.
+D. Required next actions — in order
+Fix straight-through latent: forward value must equal onehot(argmax(q)); gradient surrogate must not leak q into forward value.
+Fix latent shuffle/intervention: replace or permute the complete latent representation, including posterior information; include controls demonstrating that original-trial q cannot reach the downstream head.
+Add unit tests for forward one-hotness, gradient behavior, and intervention isolation.
+Reimplement ECE using per-bin average confidence and accuracy; test on synthetic perfectly calibrated and deliberately miscalibrated predictions.
+Create independent train/validation/test trajectories. No trajectory or derived observation sequence may occur in both training and test.
+Report single-model, ensemble, context-head, and z-only metrics separately. Do not compare different heads as paired improvements.
+Resolve specification/implementation mismatch for z_(t-1) input to GRU, or revise the architecture specification and explicitly justify the change.
+Run causal ablations: remove latent, randomize latent, shuffle full latent, and compare to recurrent-only and ensemble baselines.
+Test held-out context combinations and a genuinely unfamiliar context/contingency; measure rejection/uncertainty rather than forced assignment to known categories.
+Do not proceed to ACh/NE-inspired modulation until representation, calibration, generalization, and functional integration gates pass.
+E. Reporting rules
+Keep oracle, individual-model, ensemble, context-head, and z-only metrics separate.
+State the independent replication unit; do not treat time steps or streams within a trajectory as independent seeds.
+Report held-out performance separately from training-trajectory performance.
+Report calibration only using a valid confidence-based metric.
+For every FIXED verdict, list the exact metric, population, gate, and evaluation split that passed.
+Distinguish implementation correctness, task performance, representation necessity, system integration, and biological interpretation.
+Preserve negative results and do not retroactively redefine the target metric.
+F. Suggested status language
+“F10 passed the preregistered ensemble vote-level thresholds on the evaluated trajectories. This is evidence of improved vote-level classification under those conditions. It is not yet evidence of a robust discrete latent context representation or generalization to unseen trajectories. The latent implementation, intervention, calibration metric, and held-out evaluation require correction/validation before the broader representation claim can be made.”
+G. Provenance and scope
+These notes summarize the latest repository-review exchange. They do not independently re-run the experiments, inspect additional commits, or validate the numerical outputs. The implementation observations refer to the source locations and results described in the review. The research agent should verify them against the current working tree before changing code.
