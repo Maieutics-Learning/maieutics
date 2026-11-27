@@ -1,0 +1,5 @@
+# U70-prereg scout 10 (coherence)
+
+1. **Kill-shot:** G4 (Functional Use) is uninterpretable due to a logical contradiction between the "paired per-seed" requirement and the "V4-ablation gap" across models. V3 and V4 are distinct model variants (different weights/architectures), not the same seed-run under different conditions. A "paired" test requires the *same* seed-run to be subjected to two different interventions. Since V4 is a separate model variant, the $\geq 0.05$ gap is a cross-model comparison, rendering the "paired" constraint impossible and the resulting p-value/significance meaningless.
+
+2. **Cheapest Fix:** Drop "paired per-seed" for G4. Redefine the V4-ablation gap as a pooled mean difference ($\text{mean}(V3) - \text{mean}(V4) \geq 0.05$) across the 20 seeds, consistent with the "per-seed rows + pooled descriptives" logging format.

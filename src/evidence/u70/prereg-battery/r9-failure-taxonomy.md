@@ -1,0 +1,5 @@
+# U70-prereg scout 9 (failure-taxonomy)
+
+1. **Kill-shot:** The failure taxonomy is logically incomplete. It defines "Integration failure" as $p̂(c)$ being good but the $do(z\text{-shuffle})$ action gap being low. However, it fails to account for the "Shortcut Success" scenario: where the model achieves high $actionAcc$ via $h_t$ (deterministic history) while $z_t$ (stochastic latent) is collapsed or ignored. Because $h_t$ is not intervened upon in V4, a model could pass G1 (context) and G4 (action) via $h_t$ alone, rendering the $z$-shuffle a null-op and the "Integration" verdict misleading.
+
+2. **Fix:** Add a $do(h\text{-shuffle})$ or $do(h\text{-freeze})$ intervention to V4. Alternatively, lock G5 (no-collapse) as a prerequisite for G4; if $z$ is collapsed, any action success is attributed to $h_t$, triggering a "Representation failure (Latent Collapse)" verdict regardless of $actionAcc$.

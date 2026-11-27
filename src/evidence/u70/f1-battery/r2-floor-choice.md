@@ -1,0 +1,5 @@
+# U70-F1 scout 2 (floor-choice)
+
+1. **Floor-choice failure**: The proposal lowers `U70N_FREEBITS` to 0.05 to restore gradients, but fails to define the KL-divergence's interaction with the `U70N_REPW` linear anneal (0 $\to$ 0.3). If the raw KL remains below 0.05 during the initial ramp, the "fixed" floor is irrelevant; the gradients remain zero during the critical alignment window.
+
+2. **Disguised Sweep**: By simultaneously lowering the floor AND implementing a linear anneal for `U70N_REPW` (replacing a fixed 0.1), the proposal conflates two distinct mechanisms: gradient restoration and pressure scheduling. Any success is uninterpretable: it is impossible to discern if the "fix" was the lower floor or the delayed representation pressure. This is a disguised sweep of two variables, violating the "two-number change" constraint of a clean prereg.

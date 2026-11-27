@@ -1,0 +1,5 @@
+# U70-F1 scout 10 (coherence)
+
+1. **Determinism/Comparability Flaw:** The proposal mandates a "linear anneal 0 $\rightarrow$ 0.3 over epochs 1..100" for `U70N_REPW`. However, the "UNCHANGED" section claims the "200 epochs" and "BPTT-50" discipline from v1.1 is carried over verbatim. In v1.1, the `REPW` weight was a fixed constant. By introducing a time-varying parameter (anneal), the "paired comparison against Wave-1 V3 rows per seed" becomes fundamentally incomparable. You are no longer comparing two different floor settings on a stable objective, but a stable objective vs. a moving target.
+
+2. **Verdict-Logic Contradiction:** The "Primary" bar requires `gap $\ge$ 0.05`, yet the "Verdict" logic defines `F1-PARTIAL` as "probe pass only — representation restored, causality still dead." If the probe passes but the gap fails, it is "Partial." However, the proposal fails to define the threshold for "causality dead" relative to the new 0.05 floor, rendering the "Partial" verdict uninterpretable.

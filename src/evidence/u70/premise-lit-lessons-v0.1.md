@@ -1,0 +1,8 @@
+# Premise artifact LIT-LESSONS v0.1 (frozen 2026-11-27; battery reads THIS)
+
+**Source under review:** `src/evidence/u70/lit-lessons-draft-v0.1.md` (5 sections: B1–B4 bio, A1–A4 systems, S1, 5 cross-cutting lessons).
+**Verified bibliography (not under review):** 8/8 real per `src/evidence/synthesis/lit-checks-representation-2026-11-27.md` with corrections (DreamerV3 version conflate; Memora thin/early; Hindsight demo; MemOS name collision; LangGraph orchestration-only; Yu&Dayan theory-not-thresholds). Battery does NOT re-check existence.
+**Oracle numbers (not under review):** U70 oracle report (`u70-oracle-identifiability-report.md`): ctxAcc 0.95, ECE 0.06, delay med 2, FA 0.7/100, rhoAcc 0.66, masked 0.94, misleading 0.90, action gap +0.20.
+**U-program grounding (not under review):** U64e-F4 (reset works +0.092, sensor 0 triggers/3000), U64h (LOOP-O 17/20, sensors dead).
+
+**The ask (red-team / fresh-eyes):** Attack the LESSONS, not the bibliography. One discipline per scout: (1) bio-fidelity, (2) ML-architecture, (3) memory-systems, (4) experimental-design, (5) statistics/metrology, (6) causality/integration, (7) scope/thresholds, (8) alternative simpler explanations, (9) missing literature, (10) internal coherence. The single lesson (by number, e.g. A1-adopt-(c)) that is most overclaimed or most likely to mislead the prereg/arch, plus the cheapest verifying check (a paper passage, an oracle number, or a control) that would force its downgrade. <=150 words, numbered, no ELI5. A repeat of another scout's point must say what that point missed, or it is stale and counts toward barren.

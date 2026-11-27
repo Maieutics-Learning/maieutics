@@ -1,0 +1,5 @@
+# U70-F2 scout 5 (determinism)
+
+1. **Contaminated Baseline:** V2 is retrained from scratch on the same seeds as F2. This creates a "race to the top" rather than a controlled baseline; any failure in V2 may be a seed-specific convergence fluke rather than a structural lack of $z$-utilization, masking the true delta.
+2. **Verdict Leakage:** The "F2-FIXED" verdict requires a $gap \geq 0.05$, but Phase 2 transfers are frozen weights. If Phase 1 produces a "FIXED" result via high-gradient volatility (not robust representation), the frozen transfer will crash, making the Phase 2 "MIXED" bar a disguised sweep of the Phase 1 variance.
+3. **Metric Collision:** Using `ctxAcc` in Phase 2 for frozen weights—where the head is now a fixed probe—fails to distinguish between "correct action via context" and "residual signal leakage" in the $z$-onehot, invalidating the transfer-fairness discipline.

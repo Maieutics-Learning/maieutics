@@ -1,0 +1,5 @@
+# Lit-lessons scout 3 (memory-systems)
+
+1. Most overclaimed: A2 (Memora) and A3 (Hindsight). The draft adopts "retrieval-with-termination" and "confidence-scored beliefs" as architectural patterns, but these are LLM-scale RAG/graph orchestrations, not latent-state memory systems. They do not validate the U70 POMDP requirement for calibrated posterior density or state-transition identifiability.
+
+2. Cheapest verifying check: Compare Memora’s "policy-guided retrieval" to U70's required "switch-detection metrics." A paper passage check on Memora's retrieval mechanism will show it relies on semantic similarity/token-matching, not the latent-state inference of a hidden-state model (B2). If the retrieval isn't gated by a latent state variable, the "termination policy" is just a heuristic, not a solution to the context-inference problem. Downgrade A2/A3 to "LLM-specific heuristics," not "Memory-System Patterns."

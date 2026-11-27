@@ -1,0 +1,5 @@
+# U70-prereg scout 4 (causality-ablation)
+
+1. **The Kill-Shot:** The causal-use test (G4) is underdetermined. Comparing V3 (full) to V4 (shuffled $z$) only proves the action selector uses *some* information from the $z$ bottleneck; it does not prove the selector uses the *context* representation specifically. Because the $\rho$-head (reliability) is not ablated in V4, the model can maintain a high $\rho$-estimate in $h_t$ and use that to gate a default action, bypassing the shuffled $z$ while still appearing to "integrate" based on the oracle gap.
+
+2. **The Fix:** Amend G4 to require a dual-intervention: $z$ must be shuffled AND the $\rho$-head must be zeroed/ablated. The "causal-use bar" ($\geq 0.05$ gap) is only interpretable if the reliability signal is silenced, forcing the agent to rely solely on the latent context $z$ for the action.

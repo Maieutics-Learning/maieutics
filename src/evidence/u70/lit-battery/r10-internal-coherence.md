@@ -1,0 +1,5 @@
+# Lit-lessons scout 10 (internal-coherence)
+
+1. **Overclaimed Lesson:** A2 (Memora) "Adopt as pattern: retrieval-with-termination ≈ detection with FA control." 
+2. **Critique:** This is a categorical leap. Memora's policy-guided retrieval is an efficiency/accuracy trade-off for LLM memory access. U70's False Alarm (FA) control is a signal-detection requirement for discrete state-switch inference in a POMDP. Equating a "terminate" token in a RAG chain to a rigorous FA budget for context-switching is a coherence failure; the former manages computational cost, the latter manages epistemological risk.
+3. **Cheapest Verifying Check:** Compare the loss function of Memora (likely cross-entropy on retrieval tokens) against the U70 oracle's FA 0.7/100 metric. The absence of a penalty term for "false positive retrieval" in Memora's architecture forces a downgrade of A2 from a "pattern" to a mere "analogy."

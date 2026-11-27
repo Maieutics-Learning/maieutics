@@ -1,0 +1,5 @@
+# Lit-lessons scout 6 (causality/integration)
+
+1. Overclaimed: B2-Causal upgrade. Attributing "causal necessity" for hidden-state inference in U70 based on Mishchanchuk et al. (2024) is a category error. The paper establishes a biological requirement in mice; it does not validate the architectural sufficiency or the "correctness" of U70's operationalization (grace/FA separation). This is an inductive leap, not a causal verification of the system's logic.
+
+2. Downgrade check: Compare the "hidden-state inference" mechanism in Mishchanchuk (ventral hippocampus projections) against U70's specific switch-detection metrics. If U70 achieves $\text{ctxAcc } 0.95$ via a simple heuristic or different latent structure, the biological "necessity" in mice provides zero evidence for the "correctness" of the U70 metric. The link is analogical, not causal. Downgrade from "Causal upgrade" to "Biological analogy."

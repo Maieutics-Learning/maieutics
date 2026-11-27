@@ -1,0 +1,137 @@
+Research Directive: Context Representation Substrate
+
+For the Maieutics experiment-running AI | Proposed next research track
+
+Purpose
+
+Do not begin by adding another neuromodulator, detector, or retrieval gate to the existing architecture. First establish whether the system can infer, maintain, and use a representation of its current hidden context. Treat this as a prerequisite experiment, not as evidence for a biological mechanism.
+
+Grounding in existing results
+
+U55: proposed uncertainty proxies did not establish the intended distinct uncertainty signals.
+
+U58: context/rotation signal and carried contextual substrate were inadequate. The reconciled v1.5 run (20 trunks × 80 streams) reportedly remained unsuccessful, strengthening the architectural-prerequisite explanation.
+
+U57: task-residual/veto failure is observed; the vanishing-learning-signal explanation remains a hypothesis unless gradient measurements directly establish it.
+
+U59: supervised veto reduced leakage, but relative control improvement did not satisfy the absolute competence floor. A retrieval gate cannot manufacture unlearned competence.
+
+U64e-F4: reset reportedly works (+0.092), while the surprise sensor fired zero times in 3,000 slots. This is downstream-component success with an inactive upstream signal, not integrated system success.
+
+Research question
+
+Can a compact recurrent agent infer which latent context it is operating in, separately estimate cue reliability, retain those beliefs over time, and use them to select context-appropriate behavior under ambiguity and unannounced context changes?
+
+Non-negotiable design principles
+
+Separate context identity, cue reliability, observation noise, and prediction uncertainty. Manipulate them independently.
+
+Do not use prediction error alone as a proxy for context change or cue unreliability.
+
+Do not infer detector functionality merely because a downstream mechanism works when manually triggered.
+
+Distinguish component function, system integration, behavioral competence, and biological interpretation.
+
+Label observations, interpretations, and hypotheses explicitly.
+
+Do not claim biological equivalence from a computational analogy.
+
+Proposed experiment: Context Representation Substrate (working label U60)
+
+This is a proposed design, not an instruction to silently modify an existing preregistration. Prepare a design memo and preregistration proposal for review before execution.
+
+A. Environment
+
+Construct a small partially observable task with at least two latent contexts (A/B). Each context has distinguishable outcome/action contingencies. Independently manipulate cue reliability, context stability/switches, and observation noise. Include combinations that prevent context and reliability from being solved by a single shortcut.
+
+B. Bayesian reference model
+
+Implement a Bayesian hidden-state estimator with access to the task's generative model. It must estimate posterior probability for each context and cue reliability. Report whether context is identifiable from observations. If the oracle cannot infer the state, do not penalize the neural model for failing.
+
+C. Neural representation model
+
+Implement a compact recurrent state-space model inspired by RSSM/Dreamer architectures: deterministic recurrent state h_t; stochastic latent context z_t; transition and observation/outcome prediction; context posterior head; separate cue-reliability head. Keep it small and instrumented. Do not add ACh/NE-inspired modulation yet.
+
+D. Evaluation
+
+Context posterior accuracy and calibration against the Bayesian oracle.
+
+Cue-reliability estimation accuracy independently of context.
+
+Context-switch detection delay and false-alarm rate.
+
+Persistence of context information across delays and distractor observations.
+
+Behavioral competence in each context when current observation is ambiguous.
+
+Recovery after misleading cues and transfer to held-out combinations.
+
+Ablations of recurrent state, latent context, and reliability representation.
+
+Evidence that inferred representation causally changes downstream behavior, not merely that a probe can decode it.
+
+E. Controls and baselines
+
+Bayesian oracle/reference estimator.
+
+Reactive policy with no persistent state.
+
+Recurrent model without an explicit latent context variable.
+
+Model with context but no separate cue-reliability variable.
+
+Model with shuffled or frozen context state.
+
+Capacity-matched learned-control baseline for later neuromodulatory comparisons.
+
+F. Preregistration and reporting
+
+Define independent replication unit, sample size, exclusions, and stopping rule before execution.
+
+Retain the project's independent-unit standard and report per-unit results, not only pooled streams.
+
+Set absolute competence and representation gates before running.
+
+Report raw performance alongside normalized or oracle-relative measures.
+
+Predefine calibration, switch-detection, false-alarm, and behavioral metrics.
+
+Log state-estimator, task, and control gradients separately. To test the U57 gradient hypothesis, log veto-gradient norms against residual magnitude and task-veto gradient alignment.
+
+Classify outcomes as representation failure, integration failure, behavioral failure, or inconclusive.
+
+Archive configs, seeds, model versions, raw results, analysis code, and evidence synthesis.
+
+Gate before biological mechanisms
+
+Do not introduce neuromodulatory control until the neural representation passes preregistered context-inference, cue-reliability separation, persistence, and behavioral-use gates. Then test ACh-inspired reliability regulation and NE-inspired unexpected-change regulation separately, together, and against a non-biological learned-control baseline.
+
+Required literature review
+
+Heald, Wolpert & Lengyel (2023), The Computational and Neural Bases of Context-Dependent Learning.
+
+Sanders, Wilson & Gershman (2020), Hippocampal remapping as hidden state inference.
+
+Yu & Dayan (2005), Uncertainty, Neuromodulation, and Attention.
+
+Hafner et al. (2025), Mastering diverse control tasks through world models (DreamerV3).
+
+Review recurrent state-space model implementations and compare state, transition, and observation objectives.
+
+Expected deliverables before implementation
+
+Literature synthesis distinguishing biological findings from computational analogies.
+
+Causal diagram linking observations, latent context, cue reliability, uncertainty, memory, and action.
+
+Task generative specification proving independent manipulation of context and cue reliability.
+
+Bayesian oracle implementation and identifiability report.
+
+Preregistration proposal with explicit gates, controls, and failure classifications.
+
+Minimal code-architecture proposal that avoids an unnecessary rewrite of the existing experimental trunk.
+
+Final instruction
+
+The objective is not to make the current biological story appear to work. The objective is to determine whether the system possesses the representational prerequisites that would make the story testable. Prefer a small, falsifiable experiment over a broad architectural rewrite. Do not claim success until representation, integration, and behavior each pass their own gates.

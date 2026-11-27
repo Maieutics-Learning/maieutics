@@ -1,0 +1,5 @@
+# U70-F1 scout 7 (verdict-logic)
+
+1. **Verdict Logic Collapse**: The proposal defines "F1-FIXED" as passing both probe (≥0.70) and gap (≥0.05). However, the "F1-PARTIAL" verdict is triggered by "probe pass only." Because the probe is a measure of representation and the gap is a measure of causality, a "Partial" result (representation restored, causality dead) is logically indistinguishable from a "Persists" result if the gap remains 0.0017 while the probe marginally increases but stays below 0.70.
+
+2. **Circular Evaluation**: By reporting KL against both 0.25 and 0.05 floors without a pre-defined priority for the verdict, the "F1-FIXED" status relies on a probe threshold that was calibrated against the 0.25 floor. If 0.05 restores gradients, the resulting representation may be qualitatively different, rendering the 0.70 probe bar arbitrary or unreachable, leading to an "F1-PERSISTS" verdict despite the underlying theory being correct.

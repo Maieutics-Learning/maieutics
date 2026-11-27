@@ -1,0 +1,5 @@
+# U70-F1 scout 1 (schedule-soundness)
+
+1. **Linear Anneal Collision**: The proposal implements a linear anneal of `U70N_REPW` from 0 to 0.3 over epochs 1..100. However, the "UNCHANGED" section claims the 200-epoch schedule remains v1.1-exact. This is a contradiction. If v1.1 used a fixed weight, the F1 schedule is a smuggled structural change to the training dynamics, not just a parameter shift.
+
+2. **Convergence Risk**: Ramping `REPW` to 0.3 while simultaneously dropping the KL floor to 0.05 introduces a coupled instability. The "hold" phase (101..200) assumes the model reaches a stable fixed point after the ramp, but without a corresponding decay or stabilization period, the 0.3 weight may over-correct the representation, leading to divergence or "catastrophic" forgetting of the initial alignment. This renders the "comparability" to Wave 1 (fixed 0.1) logically void.

@@ -1,0 +1,5 @@
+# U70-F2 scout 2 (floor-choice)
+
+1. **Floor-Choice Violation:** The `ctxAcc` sanity floor is lowered to 0.80 from the Wave-1 0.927 without a justified mechanism for the 12.7% drop. By loosening the floor while maintaining the same `probe` and `gap` thresholds, the proposal allows a "weak" representation to trigger an **F2-FIXED** verdict, effectively smuggling a lower bar for success.
+
+2. **Transfer-Fairness Gap:** Phase 2 compares frozen F2-V3 (z-only head) against V2 (h-only). Because V2 lacks the structural bottleneck of Phase 1, it may retain higher-dimensional residuals that F2-V3 cannot. Comparing a constrained architecture to an unconstrained one under novelty transfer is a disguised sweep; the "advantage" measured is likely a byproduct of the bottleneck's effect on regularization, not the validity of the z-representation transfer.

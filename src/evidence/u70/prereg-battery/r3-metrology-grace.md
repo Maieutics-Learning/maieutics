@@ -1,0 +1,5 @@
+# U70-prereg scout 3 (metrology-grace)
+
+1. **Kill-shot:** The `detDelay` (detection delay) metric is uninterpretable because the "censoring at dwell end" is not mathematically reconciled with the `grace=10` window. If a switch occurs and the model fails to detect it within the dwell period, it is censored; however, the `FA` (False Alarm) metric simultaneously penalizes "wrong" predictions outside the grace window. This creates a measurement paradox: a delayed detection that exceeds the dwell but falls within `grace` is simultaneously a "correct" delayed response and a "false" alarm.
+
+2. **Cheapest Fix:** Lock `detDelay` to be measured *only* within the `grace=10` window. Any detection occurring at $t > \text{dwell}$ or $t > 10$ is recorded as a "Failure to Detect" (FTD) rather than "censored," ensuring the delay CDF and FA rates are mutually exclusive and additive.

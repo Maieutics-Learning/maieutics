@@ -1,0 +1,5 @@
+# U70-prereg scout 6 (baselines-controls)
+
+1. **Kill-shot:** V4 (shuffled/frozen $z$) is an insufficient causal control for the "integration failure" verdict. Because V3 includes a $\rho$-head that is *explicitly* not derived from $z$ (per Arch Sec II), the action selector can bypass $z$ and rely solely on the $\rho$-head and $h$ to maintain context-awareness or drive behavior. A drop in `actionAcc` during $z$-shuffling proves $z$ is *sufficient* for the gap, but its absence doesn't prove $z$ is *necessary* if $h$ provides a redundant path.
+
+2. **Cheapest Fix:** Redefine G4. The "causal-use bar" must require the $z$-shuffling gap to be significantly larger than the gap produced by a V5 (no $\rho$-head) baseline, or explicitly mandate that $\rho$-head outputs be routed *through* $z$ to ensure a single causal bottleneck.

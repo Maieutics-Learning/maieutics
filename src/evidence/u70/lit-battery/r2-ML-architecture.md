@@ -1,0 +1,5 @@
+# Lit-lessons scout 2 (ML-architecture)
+
+1. Most overclaimed: A1-adopt-(b) regarding "dynamics-vs-representation KL separation." The claim that this specific structural split licenses "predictability pressure without collapse" in the U70 context is an over-extrapolation. DreamerV3's KL balancing prevents posterior collapse in a generative world-model; U70 is a discriminative POMDP task. Applying this logic to a representation-learning objective without a generative decoder is a category error.
+
+2. Cheapest verifying check: Examine the DreamerV3 loss function $\mathcal{L}_{rep}$. The "free bits" and "small rep weight" are hyperparameters for a Variational Autoencoder (VAE) bottleneck. If U70 lacks a generative decoder to ground the latent $z$, the "anti-collapse" mechanism is mathematically undefined. A check of the U70 loss architecture for a symmetric decoder would force a downgrade of A1-(b) to "unverified analogy."

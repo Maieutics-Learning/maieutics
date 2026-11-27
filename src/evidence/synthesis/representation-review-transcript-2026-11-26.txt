@@ -1,0 +1,129 @@
+Maieutics: Representation and Coherent Systems
+
+Conversation transcript — November 26, 2026
+
+User question
+
+So about the representation and the coherent system the latest runs is on the repo. Any idea on how to get it to work? Any papers we can read? Both biological or AI related? Anything current products that do this? What are your recommendations
+
+Assistant response
+
+My strongest recommendation is to stop treating this as primarily a neuromodulator problem and treat it as a state-representation and system-integration problem first.
+
+The latest findings point to a specific failure pattern: the reset mechanism can work while its surprise sensor never activates; a retrieval veto can reduce leakage without guaranteeing that the system learned the information it is supposed to protect; and more streams or seeds can establish that a failure is persistent, but cannot make a missing internal representation appear.
+
+The next goal should be to build a system that can represent what situation it is in, what it expects, how reliable its evidence is, and when those expectations have been violated. Only after that should biological analogies be layered on.
+
+1. Diagnosis
+
+The interpretation is that the system has signals, learned task behavior, and control mechanisms, but these pieces are not joined by a reliable internal representation of context. U55–U59 motivate this diagnosis: uncertainty signals were not sufficiently identifiable, contextual state was inadequate, and improved retrieval control did not establish underlying task competence.
+
+Important reconciliation: the user previously supplied a fact-check stating that U58 v1.5 ran on 20 trunks × 80 streams and remained unsuccessful, strengthening the architectural-omission explanation. The U57 vanishing-learning-signal explanation remains a hypothesis, not a measured finding. Those reconciled facts should take precedence over stale repository snapshots.
+
+2. Proposed context-and-belief architecture
+
+Working state h_t: what has happened recently and what information must persist.
+
+Context belief c_t: which hidden situation or regime is currently most likely.
+
+Cue reliability r_t: how trustworthy a particular source of evidence is.
+
+Prediction uncertainty u_t: uncertainty about predictions and surprise when outcomes violate expectations.
+
+These variables must be independently identifiable. A cue can be unreliable without a context switch; a context can change while a normally reliable cue remains reliable; and a prediction can be wrong because the model is inexperienced rather than because the world changed.
+
+Start with a small Bayesian hidden-state model before a neural model. Estimate posterior probabilities for contexts A and B while separately estimating cue reliability. This gives an oracle for what is inferable from the available information.
+
+3. Papers to read
+
+Biological
+
+Heald, Wolpert & Lengyel (2023), The Computational and Neural Bases of Context-Dependent Learning
+
+Highest-priority biological reading: context as something the brain infers, linked to hippocampal and prefrontal systems.
+
+Sanders, Wilson & Gershman (2020), Hippocampal remapping as hidden state inference
+
+Relevant to hippocampal remapping as inference about hidden environmental states.
+
+Yu & Dayan (2005), Uncertainty, Neuromodulation, and Attention
+
+The theoretical basis for the ACh/NE uncertainty distinction; not a ready-made detector or set of thresholds.
+
+AI and machine learning
+
+Hafner et al. (2025), Mastering diverse control tasks through world models (DreamerV3)
+
+Most relevant engineering reference: a recurrent state-space model with deterministic recurrent and stochastic latent state, used for prediction and behavior.
+
+Memora (2026), A Harmonic Memory Representation Balancing Abstraction and Specificity
+
+Relevant to organizing memory for both abstract knowledge and specific experiences.
+
+Hindsight (2026), Structured Agent Memory that Retains, Recalls, and Reflects
+
+Relevant to separating world facts, experiences, observations, and opinions.
+
+MemOS (2025), A Memory OS for AI System
+
+Useful perspective on managing different memory substrates and lifecycles.
+
+4. Existing systems/products to examine
+
+DreamerV3: closest precedent for a learned internal world/state model.
+
+Memora: potentially useful for long-term memory, abstraction, and retrieval.
+
+Hindsight: useful for distinguishing evidence, experience, and evolving beliefs.
+
+MemOS: memory infrastructure and lifecycle management.
+
+LangGraph: useful for orchestrating stateful research workflows and persistence, but it does not itself learn a latent representation.
+
+These systems solve different parts of the problem. A plausible combination is DreamerV3-like state estimation, Memora/Hindsight-like durable research memory, and LangGraph-like workflow orchestration. None should be presented as reproducing a biological brain.
+
+5. Proposed experimental sequence
+
+Phase A — Establish identifiability
+
+Build a small environment where context (A/B), cue reliability, context switches, and observation noise are independently manipulated.
+
+Phase B — Build a Bayesian oracle
+
+Measure context posterior accuracy, confidence calibration, switch-detection delay, cue-reliability estimation, false alarms, and performance on unfamiliar combinations.
+
+Phase C — Train a recurrent neural estimator
+
+Use a compact RSSM-inspired model: deterministic recurrent state, stochastic latent context, transition/prediction model, context-inference head, and separate cue-reliability head.
+
+Phase D — Demonstrate functional use
+
+Test context-dependent behavior when immediate inputs are ambiguous and relevant information exists only in history. Include misleading observations, recovery, and transfer.
+
+Phase E — Add neuromodulatory control
+
+Only after representation works, test ACh-inspired reliability control and NE-inspired context-change control against a non-biological learned-control baseline.
+
+6. Coherence and evaluation standards
+
+Representation: infer and retain the relevant hidden state.
+
+Integration: downstream components receive and use the correct state.
+
+Behavior: the integrated system improves on held-out conditions.
+
+Biological interpretation: the mechanism corresponds to the biological computation claimed.
+
+Compare neural context posterior against the Bayesian oracle.
+
+Measure persistence, held-out decoding, context swaps, counterfactuals, and causal influence on behavior.
+
+Log gradients separately for state estimation, task learning, and control; ablate context, reliability, and recurrent state independently.
+
+Retain independent-unit and preregistered competence requirements.
+
+7. Overall recommendation
+
+Pursue a world-model / latent-state architecture rather than continuing to bolt biological mechanisms onto the current task network. The next milestone should not be “make the neuromodulator work.” It should be “make the system capable of knowing what situation it is in.”
+
+Do not discard U55–U59: they exposed prerequisites the current architecture does not yet support. Make those prerequisites explicit and test them directly.

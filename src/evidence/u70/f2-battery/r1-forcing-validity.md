@@ -1,0 +1,5 @@
+# U70-F2 scout 1 (forcing-validity)
+
+1. **Forcing Failure:** The structural cut (Wc input 68$\rightarrow$4) is insufficient to force a representation. Since $h$ still drives $q$, recon, and rho-head, the model can bypass the $z$-onehot bottleneck by smuggling context through $h$ to the policy posterior. 
+2. **Control Invalidity:** V2-control (h-only, no z) is not a valid baseline for "forcing" because the original F2 architecture still possesses the $h$ pathway to $q$. V2 does not isolate the $z$-contribution; it merely removes the explicit $z$-input while the $h$-pathway remains active in both.
+3. **Verdict Contamination:** F2-FIXED can be triggered by $h$-driven accuracy, not $z$-driven factorization. The "gap" is meaningless if $h$ encodes the context. The proposal fails to ensure the policy posterior is *solely* dependent on $z$.

@@ -1,0 +1,5 @@
+# Lit-lessons scout 9 (missing-literature)
+
+1. **Overclaimed:** A1-adopt-(b) [Dynamics-vs-representation KL separation]. The draft claims this pattern provides "predictability pressure without collapse," but it fails to acknowledge that in POMDP-style context inference, this specific separation often leads to "posterior collapse" where the latent state ignores the input stream in favor of the prior, especially under the high masking (0.94) and misleading (0.90) rates reported by the U70 oracle.
+
+2. **Kill-shot:** Contrast the DreamerV3 loss $L_{rep}$ (weight 0.1) with the **"Information Bottleneck"** or **"Variational Information Bottleneck" (Tishby et al.)** literature. A simple check of the $\beta$-VAE or $\beta$-VAE-style KL-divergence terms in the presence of high-noise inputs would force a downgrade: the "free bits" approach is a heuristic for stability, not a theoretical guarantee of identifiability in non-stationary contexts.

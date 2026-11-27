@@ -1,0 +1,5 @@
+# U70-prereg scout 2 (statistics-power)
+
+1. **Kill-shot:** The N=20 per variant is statistically underpowered to reliably detect the G4 causal-use gap ($\ge 0.05$) against the reference oracle gap (+0.20), especially given the high variance of discrete latent ($z$) transitions in small-scale GRUs. With a binary/categorical outcome at the action level, N=20 provides insufficient resolution to distinguish a genuine functional use from stochastic noise or "lucky" seed-runs, risking a Type II error where G4 fails despite the architecture being functionally correct.
+
+2. **Cheapest Fix:** Lock a minimum effect size for the V3-V4 gap (e.g., $\ge 0.10$) as the requirement for G4, or increase N to $\ge 60$ per variant to ensure the delta is statistically significant beyond the noise floor of the 300-trial paths.
