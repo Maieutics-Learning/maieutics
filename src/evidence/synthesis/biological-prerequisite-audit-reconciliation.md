@@ -55,9 +55,29 @@ definitive audit. This file is that reconciliation.
   the index — including this file).
 
 ## Note on our later results (postdates the memo's evidence base)
-U60–U64e already embody most of §6 (no-gate baselines throughout: dice/det arms;
-dissociation designs; quorum competence floors; F-tree failure diagnosis). Most
-pointedly, U64e-F4 (RESET +0.092 16/20 with a monitor that fired 0 times in 3000
-slots) is a live demonstration of the memo's central thesis: a working mechanism
-with no valid sensor. U64h (monitor redesign) is the memo's step 3, already queued
-as the F4 follow-up — UNLICENSED, needs its own prereg + battery + countersign.
+## Addendum 2026-11-27 — reviewer reply (filed verbatim as
+`biological-audit-reviewer-reply-2026-11-27.md`; reconciliation ACCEPTED with 3 points)
+1. v1.5 upgrade ACCEPTED with qualification: 20 trunks are the replication unit;
+   80 streams/trunk improve within-trunk measurement only. Conclusion now filed:
+   increasing measurement AND replication did not rescue the mechanism — the
+   architecture is the leading explanation (not merely a candidate).
+2. U57 gradient: stays hypothesis. Five live candidates filed (diminishing
+   gradients; misaligned gradients; uninformative residual; inadequate veto
+   architecture; bad optimization dynamics). ADDED measurement requirement: log
+   gradient cosine similarity between task and veto objectives alongside
+   gradient-norms-vs-residuals in Phase-2 — distinguishes disappearing signal
+   from conflicting objectives.
+3. U64e-F4 caution ADOPTED: 0/3000 activations does not establish architectural
+   incapacity (threshold / calibration / input-distribution all live). U64h MUST:
+   (a) positive-control activation, (b) stable-condition silence, (c) graded
+   environmental changes, (d) activation tracks change magnitude, (e) downstream
+   gain evaluated ONLY when sensor-triggered. STANDING INSTRUCTION recorded:
+   upstream sensor validity is prerequisite for interpreting downstream regulatory
+   success — U64h must not become downstream-success-without-upstream-verification.
+4. Process recognition: noted. The mechanism that earned it (records-first,
+   challenge-with-evidence, amend-durably, translate-to-requirements) is the
+   standing battery + log-everything routine, unchanged.
+5. RESULTS_INDEX distinction ESTABLISHED (legend at top of index, complements
+   three-tier tags; U64e row annotated: reset functional+integrated under oracle,
+   sensor neither, NE interpretation unsupported). Claim-tags + competence gates
+   remain adopted for all future preregs.
