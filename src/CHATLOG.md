@@ -3770,3 +3770,22 @@ CONTEXT: P2 signal saturates (fresh-uniform ~0.25 regardless of train fit; recom
 - Biology-gap answer filed in chat: Heald inference-required / Sanders remapping-as-inference / Mishchanchuk vHPC REQUIRED causal / Yu & Dayan vocabulary-only / Zheng PFC-MD rapid pointer. Gap: no transferable code, no working sensor (downstream +0.092 works, sensor 0/3000), representation missing not under-resolved, papers license no numbers — all bars from oracle (0.95/2/0.7/100/+0.20).
 - Build-path answer filed in chat: oracle ceiling; h/z + discrete z + (h,z) ctx + (h) rho + recon decoders REQUIRED; free-bits + 0.1 + 1% uniform; learnable z->h (C5 fix); sensor-first (positive/silence/graded/gain-only); causality via do(z-shuffle) + ablations + held-out + unfamiliar + calibration; queued fixes in order. Each needs own prereg + battery + countersign.
 - Next: push full backlog via worker-side git-blobs overlay (vault github PAT, secret-scan, tip-guard, ref verify). NO further compute. NO PUSH without this owner order + PAT (order given here).
+
+## 2026-11-28 — PUSHED 76d57604 (vault github PAT, parent af36550 match; 75 files/~6.7MB, secret-scan clean, ref verified match)
+- Covers everything since af36550: newest-review intake (3 files) + F15 battery + F15 execution + F16 battery + F16 execution + drivers + ledgers + RESULTS_INDEX F15/F16 rows + README queued/push sections + CHATLOG doc entry + transcripts (f15/f16 battery+execution). Backlog drained except this receipt. NO PUSH owed.
+
+## 2026-11-28 — Outside handoff in (U71-PRED proposal) + independent review out
+- In: scratch/message-attachments/Maieutics_U71_AI_Research_Handoff_1_.docx (43673 B; U55-U71 progression, bio interpretation, U70-supervised limitation, foundational issues A/B/C, U71-PRED A0-A5 + G0-G5 + 14 review questions; proposal NOT licensed for execution).
+- Code-checked A/B/C against 76d57604: A REAL (oracle constant-psw vs dwell-25 generator), B REAL (oracle double-draw vs neural single-draw on dwell-blocked trials), C REAL (spec/diagram claim 1-trial cue lag; code uses ctx[t] same-trial). U71-0 must close all three + recompute oracle before any neural arm.
+- Out: src/evidence/synthesis/u71-pred-review-response-2026-11-28.md (review-only; direction + firewall endorsed; 5 needs-back: corrected generator/filter + threshold/power table + intervention-validity controls + exposure controls + explicit non-license list; smallest falsifiers: A4-pass/A3-fail or A1-matches-A3). No driver edit, no compute, no push. Awaiting owner order to pass back / iterate / prereg.
+
+## 2026-11-28 — U71 v0.2 joint draft in + independent review out (download for pass-back)
+- In: scratch/message-attachments/U71_PRED_Joint_Preregistration_v0.2.docx (46347 B; v0.2 joint working draft, NOT LICENSED; covers §1-15 + App A; five amendment groups in principle, numbers deferred to U71-0).
+- Out: src/evidence/synthesis/u71-pred-v02-review-2026-11-28.md (ACCEPT v0.2 as working draft; section-by-section diff; accepted vs unresolved (§14 10 items + §5 param-matching rule as v0.3 list); same-pathway same-recipient positive-control wording confirmed present, implementation spec owed in v0.3). Attached to chat as download for relay to other AI.
+- Provenance: three U71-0 defects treated as confirmed by my 76d57604 audit per owner instruction; no fresh re-audit claimed here. No driver edit, no compute, no push.
+
+## 2026-11-28 — U71 relay memos filed + pre-push logging (owner: fully logged and ready to push)
+- Filed: synthesis/u71-pred-review-response-2026-11-28.md (first review) + synthesis/u71-pred-v02-review-2026-11-28.md (v0.2 section diff, attached 7624 B) + synthesis/u71-build-thoughts-for-relay-2026-11-28.md (build memo for other AI, attached 6214 B).
+- Inbound docs: message-attachments/Maieutics_U71_AI_Research_Handoff_1_.docx (43673 B) + U71_PRED_Joint_Preregistration_v0.2.docx (46347 B) — both read via hand-rolled zip + deflate-raw (esm.sh zip import failed, method filed).
+- Code checks vs 76d57604: A/B/C confirmed real (oracle constant-psw vs dwell-25; double-draw vs single-draw; ctx[t] vs lag). No driver edit, no compute.
+- Pre-push state: CHATLOG + CURRENT_TASK updated here; README push section still reads 76d57604-drained (receipt for this batch owed to next push). No push executed in this turn (awaiting explicit push order per standing rule).
