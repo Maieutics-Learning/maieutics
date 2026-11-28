@@ -19,23 +19,32 @@ function u70Mulberry32(a) {
   };
 }
 const U70_T = 300, U70_SEEDS = [...Array(20).keys()];
-const U70_PSW = 0.02, U70_DWELL = 25, U70_PRHO = 0.03, U70_EPS = 0.10;
+let U70_PSW = 0.02, U70_DWELL = 25, U70_PRHO = 0.03; const U70_EPS = 0.10;
+let U70_UNFAM = null; // F16: unfamiliar params {dwell,psw,prho} when set (oracle knows the true dynamics)
 const U70_RHO = [0.55, 0.75, 0.95];
 const U70_PATH_BASE = 70000, U70_OBS_BASE = 72000;
-function u70GenPath(seed) {
+function u70GenPath(seed, P) {
+  P = P || {};
+  const psw = P.psw === undefined ? U70_PSW : P.psw;
+  const dwell = P.dwell === undefined ? U70_DWELL : P.dwell;
+  const prho = P.prho === undefined ? U70_PRHO : P.prho;
   const rng = u70Mulberry32(U70_PATH_BASE + seed);
   const ctx = new Array(U70_T), rho = new Array(U70_T), switches = [];
   let c = rng() < 0.5 ? 0 : 1, r = Math.floor(rng() * 3), lastSw = -100;
   for (let t = 0; t < U70_T; t++) {
-    if (t > 0 && rng() < U70_PSW && t - lastSw >= U70_DWELL) { c = 1 - c; lastSw = t; switches.push(t); }
-    else if (t > 0 && rng() < U70_PSW) { /* dwell-blocked: stays */ }
-    if (t > 0 && rng() < U70_PRHO) { let n = Math.floor(rng() * 2); r = (r + 1 + n) % 3; }
+    if (t > 0 && rng() < psw && t - lastSw >= dwell) { c = 1 - c; lastSw = t; switches.push(t); }
+    else if (t > 0 && rng() < psw) { /* dwell-blocked: stays */ }
+    if (t > 0 && rng() < prho) { let n = Math.floor(rng() * 2); r = (r + 1 + n) % 3; }
     ctx[t] = c; rho[t] = r;
   }
   return { ctx, rho, switches };
 }
-function u70RunSeed(seed) {
-  const path = u70GenPath(seed);
+function u70RunSeed(seed, P) {
+  P = P || {};
+  const psw = P.psw === undefined ? U70_PSW : P.psw;
+  const dwell = P.dwell === undefined ? U70_DWELL : P.dwell;
+  const prho = P.prho === undefined ? U70_PRHO : P.prho;
+  const path = u70GenPath(seed, P);
   const rng = u70Mulberry32(U70_OBS_BASE + seed);
   // posterior over 6 states [c*3+r]; uniform prior
   let post = [1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6, 1 / 6];
@@ -50,7 +59,7 @@ function u70RunSeed(seed) {
   const delays = [];
   for (const s of path.switches) {
     let d = null;
-    for (let t = s; t < Math.min(U70_T, s + U70_DWELL); t++) { /* filled below via posteriors */ }
+    for (let t = s; t < Math.min(U70_T, s + dwell); t++) { /* filled below via posteriors */ }
     delays.push({ switch: s, delay: null }); // placeholder, filled in main loop
   }
   const pTrueTrace = [];
@@ -66,9 +75,9 @@ function u70RunSeed(seed) {
     for (let cc = 0; cc < 2; cc++) for (let rr = 0; rr < 3; rr++) {
       // from (cc,rr): context flips w.p. PSW, rho resamples w.p. PRHO
       for (let nc = 0; nc < 2; nc++) {
-        const pc = nc === cc ? 1 - U70_PSW : U70_PSW;
+        const pc = nc === cc ? 1 - psw : psw;
         for (let nr = 0; nr < 3; nr++) {
-          const pr = nr === rr ? 1 - U70_PRHO : U70_PRHO / 2;
+          const pr = nr === rr ? 1 - prho : prho / 2;
           pred[nc * 3 + nr] += post[cc * 3 + rr] * pc * pr;
         }
       }
@@ -108,7 +117,7 @@ function u70RunSeed(seed) {
     if (act === good) cueActC++;
   }
   for (const d of delays) {
-    for (let t = d.switch; t < Math.min(U70_T, d.switch + U70_DWELL); t++) {
+    for (let t = d.switch; t < Math.min(U70_T, d.switch + dwell); t++) {
       if (pTrueTrace[t] >= 0.75) { d.delay = t - d.switch; break; }
     }
     if (d.delay === null) d.censored = true;
@@ -181,8 +190,9 @@ globalThis.runU70Oracle = async function (fs, log, opts) {
     try { tl = u70F12OracleTests(); } catch (e) { throw new Error("F12 HALT: " + String((e && e.message) || e)); }
     for (const m of tl) log("[F12-TEST] " + m);
   }
+  const unfamP = opts.unfamP || null; // F16: unfamiliar oracle params (same generator params as neural unfamiliar)
   const perSeed = (opts.seeds || U70_SEEDS).map((s) => {
-    const r = u70RunSeed(s);
+    const r = u70RunSeed(s, unfamP);
     log("u70 s" + s + " ctxAcc=" + r.ctxAcc + " ece=" + r.ece + " mce=" + r.mce + " delays=[" + r.detDelays + "] fa/100=" + r.faPer100 + " rhoAcc=" + r.rhoAcc + " mask=" + r.maskedAcc + " mis=" + r.misleadAcc + " oAct=" + r.oracleActAcc + "/cAct=" + r.cueActAcc);
     return r;
   });
@@ -201,7 +211,7 @@ globalThis.runU70Oracle = async function (fs, log, opts) {
   let driverHash = "n/a";
   try { driverHash = await (0, eval)("u32Sha256Hex")(await fs.readTextFile("src/evidence/u70/u70-oracle.js")); } catch (e) {}
   const body = { spec: (opts.f13 ? "u70-f13-prereg-proposal" : "u70-f12-prereg-proposal"), version: "v1.1", track: "U70-CTX", kind: (opts.f13 ? "f13-heldout-oracle-recompute (valid ECE; seeds 20..39; filed seeds-0..19 values stand as measured-as-run)" : (opts.f12 ? "f12-valid-ece-recompute (valid ECE; filed fixed-0.95 values stand as measured-as-run)" : "identifiability-report (descriptive, no bars, no verdict)")), driverHash, pooled, perSeed };
-  await fs.writeTextFile("src/evidence/u70/" + (opts.f13 ? "d-u70-oracle-f13.json" : (opts.f12 ? "d-u70-oracle-f12.json" : "d-u70-oracle-identifiability.json")), JSON.stringify(body));
+  await fs.writeTextFile("src/evidence/u70/" + (opts.out || (opts.f13 ? "d-u70-oracle-f13.json" : (opts.f12 ? "d-u70-oracle-f12.json" : "d-u70-oracle-identifiability.json"))), JSON.stringify(body));
   log("u70-oracle COMPLETE ctxAcc=" + pooled.ctxAcc + " ece=" + pooled.ece + " mce=" + pooled.mce + " delayMed=" + pooled.detDelayMedian + " fa/100=" + pooled.faPer100);
   return body;
 };

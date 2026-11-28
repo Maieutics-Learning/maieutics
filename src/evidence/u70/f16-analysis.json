@@ -1,0 +1,92 @@
+{
+ "spec": "u70-f16-prereg-proposal v1.2",
+ "n": 560,
+ "invalid": 0,
+ "stepCountAll200_1200": true,
+ "retentionAll": true,
+ "weightHashes": 80,
+ "configHashes": [
+  "04c34fcf56ad29bb591a858d34b5ad36b256c6e3ec1648ab1e543f0afd435277",
+  "b011bed2688830b5b277882232fb33a6f6a1913e6307c2a5355ba55a951992a1",
+  "c0342a98226ed667abb300fbdecc77e4626c85d2b14b9b97b7fdafa597b0426b",
+  "2386789fc5553f2b2faddef79eb4233a95d9771ba7804d9b3a696e4af577bc3f"
+ ],
+ "a0specEqualsF14": true,
+ "initLogG4": true,
+ "hashInequalityA0vsA2": true,
+ "replicationA0vsF14": {
+  "compared": 20,
+  "mismatches": 20
+ },
+ "armVerdicts": {
+  "A0": {
+   "trainProbe": 0.7183,
+   "trainGap": 0.1468,
+   "trainCtx": 0.8783,
+   "trainV": "TRAIN-REPAIRED",
+   "heldProbe": 0.6227,
+   "heldGap": 0.0274,
+   "heldCtx": 0.7777,
+   "heldV": "HELDOUT-DEGRADES"
+  },
+  "A1": {
+   "trainProbe": 0.5473,
+   "trainGap": 0.1075,
+   "trainCtx": 0.8408,
+   "trainV": "TRAIN-REGRESSED",
+   "heldProbe": 0.5243,
+   "heldGap": -0.0107,
+   "heldCtx": 0.7397,
+   "heldV": "HELDOUT-DEGRADES"
+  },
+  "A2": {
+   "trainProbe": 0.6163,
+   "trainGap": 0.1733,
+   "trainCtx": 0.906,
+   "trainV": "TRAIN-REGRESSED",
+   "heldProbe": 0.6148,
+   "heldGap": 0.0122,
+   "heldCtx": 0.7625,
+   "heldV": "HELDOUT-DEGRADES"
+  },
+  "B": {
+   "trainProbe": 0.6002,
+   "trainGap": 0.1488,
+   "trainCtx": 0.8848,
+   "trainV": "TRAIN-REGRESSED",
+   "heldProbe": 0.6118,
+   "heldGap": 0.0135,
+   "heldCtx": 0.7638,
+   "heldV": "HELDOUT-DEGRADES"
+  }
+ },
+ "synergyGraves": 0,
+ "interferenceGraves": 0,
+ "interactionRows": 40,
+ "descriptiveTables": {
+  "A0": {
+   "unfamCleanProbe": 0.5863,
+   "unfamCleanCtx": 0.7,
+   "unfamGap": -0.0108,
+   "unfamECE": 0.122098,
+   "heldECE": 0.187083,
+   "zzeroAction": 0.581,
+   "cleanAction": 0.8783,
+   "hcutAction": 0.7152,
+   "klMean": 0.0332,
+   "meanEnt": 0.6484
+  },
+  "B": {
+   "unfamCleanProbe": 0.5347,
+   "unfamCleanCtx": 0.668,
+   "unfamGap": -0.0428,
+   "unfamECE": 0.121405,
+   "heldECE": 0.196476,
+   "zzeroAction": 0.596,
+   "cleanAction": 0.8848,
+   "hcutAction": 0.7123,
+   "klMean": 0.0286,
+   "meanEnt": 0.6539
+  }
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "spec": "u70-f16-prereg-proposal v1.2",
+ "lines": [
+  "[F11-TEST] T1 forward-one-hotness PASS (200 draws, strict equality)",
+  "[F11-TEST] T2a jacobian-validity PASS (50 random, row-sum 0 + diff-preservation + re-derivation)",
+  "[F11-TEST] T2b signal-vitality PASS (284/284 encoder weights moved, loss finite)",
+  "[F11-TEST] T3 intervention-isolation PASS (exact binarity + mapping, adversarial q)",
+  "[F11-TEST] T4 shuffle-determinism PASS",
+  "[F12-TEST] E1 zero-on-perfect PASS (empty bins contribute 0)",
+  "[F12-TEST] E2 fixed-reference-detector PASS (valid 0.4 vs old 0.05)",
+  "[F12-TEST] E3 eval-determinism PASS (same-seed identical incl. valid ECE)",
+  "[F12-TEST] E4 retention-integrity PASS (bins sum T, trace T, recompute within 1e-4)",
+  "[F13-TEST] T5 disjointness+mapping+isolation PASS (0..19 x 20..39, reference-checked s=0,5,19)",
+  "[F13-TEST] T6a hash-format+init-determinism PASS",
+  "[F13-TEST] T6b train-step-determinism PASS (1-epoch double, identical hashes)",
+  "[F13-TEST] E4h held-out-retention PASS (seed-23 eval: bins sum T, trace T)",
+  "[F14-TEST] T7 metric-path-isolation PASS (300 trials: exact one-hot, no q float, valid permutation)",
+  "[F14-TEST] T8 helper-metric-equivalence PASS (300 trials strict ===)",
+  "[F14-TEST] T8b independent-recompute PASS (300 trials strict ===, q never referenced)",
+  "[F16-TEST] T10a flag-isolation PASS (A0==F14, 4 specs distinct, geometries + G4 initLog + hash-inequality)",
+  "[F16-TEST] T10b step-count PASS (200 optimizer + 1200 chunk passes/seed/arm, F14-identical)",
+  "[F16-TEST] T10c determinism PASS (4 arms x 1-epoch double identical)",
+  "[F16-TEST] T10d unfamiliar-disjointness PASS (2000..2019 distinct, outside 0..39 + 1000..1159, isolated)",
+  "[F16-TEST] T10e read-only PASS (hash identical pre/post zeroZ+hcut; hidden-reset deterministic)",
+  "[F16-TEST] T10f retention PASS (clean + unfamiliar + zeroZ + hcut: bins sum T, trace T)"
+ ]
+}

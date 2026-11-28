@@ -1,0 +1,272 @@
+{
+ "track": "U70-F15",
+ "metric": "TRUE",
+ "nSeeds": 20,
+ "nRows": 380,
+ "invalid": 0,
+ "trainPool": {
+  "probe": 0.6288,
+  "gap": 0.0626,
+  "ctx": 0.7948,
+  "probePass": 9,
+  "gapPass": 17,
+  "ctxPass": 2,
+  "ciProbe": [
+   0.5376,
+   0.72
+  ],
+  "ciGap": [
+   0.0263,
+   0.0988
+  ]
+ },
+ "heldout": {
+  "probe": 0.5957,
+  "gap": 0.0163,
+  "ctx": 0.7667,
+  "probePass": 10,
+  "gapPass": 11,
+  "ctxPass": 5,
+  "ciProbe": [
+   0.4917,
+   0.6997
+  ],
+  "ciGap": [
+   -0.0462,
+   0.0789
+  ]
+ },
+ "perSeed": [
+  {
+   "seed": 0,
+   "poolCleanProbe": 0.8137,
+   "poolCleanCtx": 0.8137,
+   "poolTrueGap": 0.1029,
+   "poolMinProbe": 0.7067,
+   "poolMaxProbe": 0.9233,
+   "heldProbe": 0.8767,
+   "heldGap": 0.0767,
+   "heldCtx": 0.8767
+  },
+  {
+   "seed": 1,
+   "poolCleanProbe": 0.8258,
+   "poolCleanCtx": 0.8258,
+   "poolTrueGap": 0.0975,
+   "poolMinProbe": 0.7333,
+   "poolMaxProbe": 0.8867,
+   "heldProbe": 0.7933,
+   "heldGap": 0.0666,
+   "heldCtx": 0.7933
+  },
+  {
+   "seed": 2,
+   "poolCleanProbe": 0.8062,
+   "poolCleanCtx": 0.5175,
+   "poolTrueGap": -0.2121,
+   "poolMinProbe": 0.66,
+   "poolMaxProbe": 0.88,
+   "heldProbe": 0.8267,
+   "heldGap": -0.3867,
+   "heldCtx": 0.4133
+  },
+  {
+   "seed": 3,
+   "poolCleanProbe": 0.8292,
+   "poolCleanCtx": 0.8292,
+   "poolTrueGap": 0.0962,
+   "poolMinProbe": 0.71,
+   "poolMaxProbe": 0.9133,
+   "heldProbe": 0.7033,
+   "heldGap": 0.0733,
+   "heldCtx": 0.7033
+  },
+  {
+   "seed": 4,
+   "poolCleanProbe": 0.6646,
+   "poolCleanCtx": 0.7804,
+   "poolTrueGap": 0.0796,
+   "poolMinProbe": 0.4333,
+   "poolMaxProbe": 0.8767,
+   "heldProbe": 0.8167,
+   "heldGap": 0.15,
+   "heldCtx": 0.9233
+  },
+  {
+   "seed": 5,
+   "poolCleanProbe": 0.7392,
+   "poolCleanCtx": 0.8383,
+   "poolTrueGap": 0.0688,
+   "poolMinProbe": 0.5467,
+   "poolMaxProbe": 0.87,
+   "heldProbe": 0.72,
+   "heldGap": 0.0267,
+   "heldCtx": 0.8367
+  },
+  {
+   "seed": 6,
+   "poolCleanProbe": 0.5471,
+   "poolCleanCtx": 0.8433,
+   "poolTrueGap": 0.0829,
+   "poolMinProbe": 0.33,
+   "poolMaxProbe": 0.8867,
+   "heldProbe": 0.44,
+   "heldGap": 0.04,
+   "heldCtx": 0.7033
+  },
+  {
+   "seed": 7,
+   "poolCleanProbe": 0.3792,
+   "poolCleanCtx": 0.6225,
+   "poolTrueGap": -0.1171,
+   "poolMinProbe": 0.2233,
+   "poolMaxProbe": 0.6133,
+   "heldProbe": 0.5367,
+   "heldGap": -0.34,
+   "heldCtx": 0.46
+  },
+  {
+   "seed": 8,
+   "poolCleanProbe": 0.1971,
+   "poolCleanCtx": 0.8029,
+   "poolTrueGap": 0.0883,
+   "poolMinProbe": 0.0967,
+   "poolMaxProbe": 0.3133,
+   "heldProbe": 0.2233,
+   "heldGap": 0.0367,
+   "heldCtx": 0.7767
+  },
+  {
+   "seed": 9,
+   "poolCleanProbe": 0.4612,
+   "poolCleanCtx": 0.8317,
+   "poolTrueGap": 0.1062,
+   "poolMinProbe": 0.2433,
+   "poolMaxProbe": 0.5867,
+   "heldProbe": 0.3333,
+   "heldGap": 0.0867,
+   "heldCtx": 0.7767
+  },
+  {
+   "seed": 10,
+   "poolCleanProbe": 0.5938,
+   "poolCleanCtx": 0.8267,
+   "poolTrueGap": 0.0938,
+   "poolMinProbe": 0.3233,
+   "poolMaxProbe": 0.77,
+   "heldProbe": 0.38,
+   "heldGap": 0.0567,
+   "heldCtx": 0.8367
+  },
+  {
+   "seed": 11,
+   "poolCleanProbe": 0.8562,
+   "poolCleanCtx": 0.8562,
+   "poolTrueGap": 0.1046,
+   "poolMinProbe": 0.6733,
+   "poolMaxProbe": 0.96,
+   "heldProbe": 0.9367,
+   "heldGap": 0.1334,
+   "heldCtx": 0.9367
+  },
+  {
+   "seed": 12,
+   "poolCleanProbe": 0.615,
+   "poolCleanCtx": 0.7808,
+   "poolTrueGap": 0.0867,
+   "poolMinProbe": 0.44,
+   "poolMaxProbe": 0.8067,
+   "heldProbe": 0.4167,
+   "heldGap": 0.1233,
+   "heldCtx": 0.89
+  },
+  {
+   "seed": 13,
+   "poolCleanProbe": 0.6433,
+   "poolCleanCtx": 0.7404,
+   "poolTrueGap": -0.0025,
+   "poolMinProbe": 0.4433,
+   "poolMaxProbe": 0.82,
+   "heldProbe": 0.71,
+   "heldGap": -0.0134,
+   "heldCtx": 0.7733
+  },
+  {
+   "seed": 14,
+   "poolCleanProbe": 0.5808,
+   "poolCleanCtx": 0.85,
+   "poolTrueGap": 0.085,
+   "poolMinProbe": 0.4333,
+   "poolMaxProbe": 0.8367,
+   "heldProbe": 0.2733,
+   "heldGap": -0.0833,
+   "heldCtx": 0.53
+  },
+  {
+   "seed": 15,
+   "poolCleanProbe": 0.1546,
+   "poolCleanCtx": 0.8454,
+   "poolTrueGap": 0.0833,
+   "poolMinProbe": 0.02,
+   "poolMaxProbe": 0.2933,
+   "heldProbe": 0.17,
+   "heldGap": 0.04,
+   "heldCtx": 0.83
+  },
+  {
+   "seed": 16,
+   "poolCleanProbe": 0.4967,
+   "poolCleanCtx": 0.8096,
+   "poolTrueGap": 0.0983,
+   "poolMinProbe": 0.4033,
+   "poolMaxProbe": 0.6,
+   "heldProbe": 0.5033,
+   "heldGap": 0.13,
+   "heldCtx": 0.86
+  },
+  {
+   "seed": 17,
+   "poolCleanProbe": 0.7375,
+   "poolCleanCtx": 0.8471,
+   "poolTrueGap": 0.1067,
+   "poolMinProbe": 0.63,
+   "poolMaxProbe": 0.8167,
+   "heldProbe": 0.6867,
+   "heldGap": 0.0934,
+   "heldCtx": 0.8467
+  },
+  {
+   "seed": 18,
+   "poolCleanProbe": 0.8308,
+   "poolCleanCtx": 0.8308,
+   "poolTrueGap": 0.0925,
+   "poolMinProbe": 0.69,
+   "poolMaxProbe": 0.94,
+   "heldProbe": 0.7233,
+   "heldGap": -0.05,
+   "heldCtx": 0.7233
+  },
+  {
+   "seed": 19,
+   "poolCleanProbe": 0.8042,
+   "poolCleanCtx": 0.8042,
+   "poolTrueGap": 0.1096,
+   "poolMinProbe": 0.71,
+   "poolMaxProbe": 0.8767,
+   "heldProbe": 0.8433,
+   "heldGap": 0.0666,
+   "heldCtx": 0.8433
+  }
+ ],
+ "verdicts": {
+  "trainPool": "F15-TRAIN-REGRESSED",
+  "heldout": "F15-HELDOUT-DEGRADES"
+ },
+ "f14comparison": {
+  "dPoolMinusF14trainProbe": -0.0895,
+  "dPoolMinusF14trainGap": -0.0842,
+  "dHeldMinusF14heldProbe": -0.027,
+  "dHeldMinusF14heldGap": -0.0111,
+  "dHeldMinusF14heldCtx": -0.011
+ }
+}

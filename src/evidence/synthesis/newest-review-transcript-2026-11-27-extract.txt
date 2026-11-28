@@ -1,0 +1,93 @@
+MAIEUTICS — LATEST REPOSITORY REVIEW
+
+Transcript of the latest review
+
+Scope note: This is an organized transcript of the latest repository-review exchange. It preserves the substance and findings of the assistant's review, but is not a byte-for-byte export of the chat interface.
+
+User request
+
+“Please check the latest [life-science-research].”
+
+Assistant review
+
+Overall assessment
+
+The new archive represents a significant update from the previous review. The latest work is U70-F14, and the repository has directly addressed several earlier implementation criticisms. The straight-through latent and calibration metric have been repaired and tested. However, held-out results expose a deeper problem: performance is substantially better on training trajectories than on unseen trajectories. The project's own latest verdict is that the apparent context-learning success does not yet generalize.
+
+1. U70 — context representation
+
+The previous review identified four implementation problems, and the new repository addresses them: the straight-through latent now has a genuinely one-hot forward value; the shuffle intervention replaces the complete categorical readout; ECE is now confidence-based; and F13 adds independent held-out trajectories with weight and configuration hashes.
+
+The repository added T7, T8 and T8b to exercise the real evaluation path, helper equivalence and independent recomputation. This is a meaningful improvement over tests that only exercised a helper without proving that the metric path used it.
+
+F14 training-trajectory metrics: context accuracy 0.8783, latent probe 0.7183, TRUE intervention gap 0.1468. Held-out metrics: context accuracy 0.7777, latent probe 0.6227, TRUE intervention gap 0.0274. The reported train-to-held-out differences are +0.1007 for context accuracy, +0.0957 for probe accuracy, and +0.1195 for the TRUE intervention gap.
+
+The oracle's held-out context accuracy is 0.9537, indicating that the synthetic task remains identifiable. The neural model's degradation is therefore not explained simply by an impossible task. The central result is that the model learns a useful context-related code on the trajectory seen during training, but that representation transfers poorly to a new trajectory.
+
+The TRUE-versus-partial intervention gap differences are small: training +0.0108 (CI [-0.0005, +0.0222]) and held-out +0.0050 (CI [-0.0046, +0.0146]); both intervals include zero. This means the earlier apparent gains were not primarily explained by posterior leakage, but the corrected intervention still does not establish a robust categorical latent.
+
+Architecture caveat: the minimal architecture specification describes h_t = GRU(h_{t-1}, x_t, z_{t-1}), but the implementation uses h_t = GRU(h_{t-1}, x_t). The categorical latent is computed after the recurrent update and used by readout heads; it does not feed back into the next recurrent state. The current model is a recurrent network with a categorical latent readout, not the fully integrated recurrent latent-state architecture in the specification.
+
+The training driver generates one path and observation sequence per model, trains on that sequence for 200 epochs, and evaluates on the same sequence. The held-out experiment tests generalization from one repeatedly trained trajectory to another, not training across many independent trajectories. This is a key limitation and the next experimental priority.
+
+2. U64 — novelty/change detector
+
+U64h is ORACLE-ONLY. The max-elevation and choice-surprise sensors each achieved 0/20 valid sensors. Neither silent sensor triggered in 3,000 slots. The oracle-triggered response worked in 17/20 cases. The reset mechanism can respond when given a valid trigger, but the proposed surprise sensors do not generate valid triggers.
+
+The distinction remains: a response mechanism that works under an oracle signal is not evidence that the system can recognize the relevant change itself. U65–U69 remain gated; the second-store experiment requires U64 PROCEED, which has not been achieved.
+
+3. P3 — uncertainty / 'ear' channel
+
+P3 v4.6 reports 0/3 for T1 (ear improves learning), 0/3 for T2 (ear-guided selection beats random), and 0/3 for T3 (ear predicts correctness). Tutor accuracy was approximately 0.18, with an uncertainty/correctness gap around 0.04–0.05. Student-ear soft correlations with correctness were essentially zero. Five additional information-gathering pilots failed their preregistered promises, 0/5.
+
+The current ear implementation is retired at this scale. The mouth-only curriculum remains the supported direction. A competent-tutor follow-up remains, so the results do not establish that uncertainty-based teaching is universally ineffective.
+
+4. P4 — score-guided selection
+
+The D dialect experiments showed that true-score selection ranked above uniform selection, which ranked above shuffled-score selection, in 6/6 independent seeds. The mean true-minus-uniform held-out loss gain was approximately +0.178. This is evidence that selection can steer learning under the tested conditions.
+
+Neutral-material experiments did not reproduce the effect. The synthesis identifies three conditions: score signals must contain real variation; selected material must be learnable; and the material must not merely reward memorization of noise. Selection toward failed cells can concentrate training on the least learnable material.
+
+Attribution caveat: the mini-prereg freezes weights and places the score-to-selection transformation in the harness. The result demonstrates a tutor-harness selection system, not an autonomous tutor independently changing its teaching strategy.
+
+ExpE/ExpF show generational narrowing of output distributions and amplification of self-repeating token patterns. The mouth-only control reproduces the effect without the pile/ear channel. Generational learning can therefore compound a pattern without necessarily improving generality. Future nursery evaluations should monitor diversity and transfer as well as task retention.
+
+5. Decomposition
+
+The decomp scale experiment found 0/3 pass at R0 (single-chain simplified task, h48), 0/3 at R1 (original dual-chain task, h96), and 0/2 rung passes at R2 (h192, with one tutor-gate abort). Direct accuracy on the simplified task improved to 0.69–0.74, but attempting decomposition made performance worse. Increasing model width did not solve it.
+
+Intermediate supervision is proposed as a hypothesis: teach the tutor to resolve the intermediate binding rather than expecting decomposition to emerge from outcome-only training. This is not yet a demonstrated solution.
+
+The reproducibility record identifies a generator bug affecting the B1 long-line battery: approximately 20% of lines can contain an undefined query. Affected absolute measurements are contaminated and X2 is void. Future tests should use the proposed safe wrapper.
+
+6. Assessment of the AI research process
+
+The research process improved: the agent corrected its F11 implementation claim after discovering that a tested helper was not used by the metric path; added tests on the real path; added held-out trajectories and hashes; corrected calibration; preserved negative results; and kept follow-up experiments gated.
+
+A remaining weakness is repository navigation and global documentation. The root README still identifies an older state, src/README.md points to a frozen older Gameplan, and active tracks have separate records. U70's README says F11–F14 are unpushed. The archive includes those updates, but that does not establish that the public GitHub branch contains them.
+
+7. Recommendations
+
+U70: keep F14 architecture fixed and train each model across multiple independently generated trajectories; evaluate on fresh trajectories. This isolates whether trajectory diversity alone improves generalization.
+
+U70: after that result, test z_(t-1) recurrence as a separate intervention, with matched training data and controls.
+
+U70: establish causal necessity with no-latent, randomized-latent, full read-point shuffle and recurrent-only baselines.
+
+U70: only then introduce unfamiliar contexts and test whether the system can recognize that its existing context inventory is insufficient.
+
+U64: keep the track gated until a valid, independently varying novelty signal is found and shown to activate the already-working response mechanism.
+
+P4: preserve the substrate-conditional finding and build competence/learnability checks into future selection systems.
+
+Repository: create a unified active-track status document, align root README and src/README.md with current work, and clearly mark unpushed experiments.
+
+Final assessment
+
+The repository is stronger than in the previous review, even though several recent experiments failed. The largest advance is improved diagnosis: the team is discovering why the system fails, correcting measurements, and narrowing claims. U70 has not solved context representation; U64 has not integrated a valid detector; P3's current ear is not useful at this scale; P4's selection benefit is conditional and harness-managed; and the nursery is not yet an autonomous learning system.
+
+The next priority is to establish whether U70 can learn a reusable context representation from diverse experience. This is central to the nursery goal: acquiring useful knowledge, recognizing when knowledge is insufficient, and applying knowledge in situations not previously encountered.
+
+Transcript fidelity note
+
+This document is an organized transcript of the latest review answer, not a verbatim transcript of every intermediate tool call or hidden analysis. Numeric values and interpretations are included as they appeared in the review exchange; they should be checked against the repository ledger before being used as experimental ground truth.
